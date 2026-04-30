@@ -1,6 +1,5 @@
 // ============================================================
-// Auth — Register · Nykaa Fashion card style
-// Wine/maroon header · white body · clean inputs
+// Auth — Register · Sparkshopwear card style
 // ============================================================
 
 $wine:      #8B1A4A;
@@ -15,86 +14,122 @@ $error:     #D32F2F;
 $ease:      cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
 .auth-section {
-  min-height: calc(100vh - 120px);
+  min-height: calc(100vh - 80px);
   background: $bg;
   display: flex;
-  align-items: center;
-  padding: 40px 0 60px;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 32px 0 40px;
 }
 
 .auth-card {
-  border-radius: 20px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.12);
+  box-shadow:
+    0 1px 2px rgba(17, 17, 17, 0.04),
+    0 24px 60px -16px rgba(17, 17, 17, 0.18);
   background: $white;
   margin: 0 auto;
-  max-width: 440px;
+  max-width: 460px;
+  border: 1px solid rgba(17, 17, 17, 0.04);
+  animation: authCardIn 0.45s $ease both;
 
   &__header {
-    background: linear-gradient(145deg, $wine-dark 0%, $wine 55%, $wine-mid 100%);
-    padding: 36px 32px 32px;
+    background:
+      radial-gradient(120% 90% at 80% 0%, rgba($white, 0.10) 0%, transparent 50%),
+      linear-gradient(140deg, $wine-dark 0%, $wine 60%, $wine-mid 100%);
+    padding: 24px 32px 22px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    gap: 6px;
     position: relative;
     overflow: hidden;
 
     &::before {
       content: '';
       position: absolute;
-      width: 200px; height: 200px;
-      border-radius: 50%;
-      background: rgba($white, 0.06);
-      top: -80px; right: -60px;
+      inset: 0;
+      background-image: radial-gradient(rgba($white, 0.10) 1px, transparent 1px);
+      background-size: 14px 14px;
+      opacity: 0.5;
+      pointer-events: none;
     }
+
     &::after {
       content: '';
       position: absolute;
-      width: 140px; height: 140px;
-      border-radius: 50%;
-      background: rgba($white, 0.04);
-      bottom: -60px; left: -40px;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 56px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, rgba($white, 0.85), transparent);
+      border-radius: 2px;
     }
   }
 
-  &__body { padding: 28px 28px 24px; }
+  &__body { padding: 22px 28px 22px; }
 }
 
 .auth-brand {
-  font-size: clamp(22px, 5vw, 30px);
-  font-weight: 900;
+  font-size: clamp(22px, 4.6vw, 28px);
+  font-weight: 800;
   color: $white;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.14em;
   margin: 0;
   line-height: 1;
-  font-style: italic;
   position: relative;
   z-index: 1;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
 
-  span { font-weight: 300; font-style: normal; letter-spacing: 0.12em; }
+  span {
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    color: rgba($white, 0.92);
+  }
+}
+
+.auth-tagline {
+  font-size: 11.5px;
+  color: rgba($white, 0.72);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .auth-title {
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 700;
   color: $dark;
   text-align: center;
-  margin: 0 0 6px;
+  margin: 0 0 4px;
+  letter-spacing: -0.005em;
 }
 
 .auth-subtitle {
-  font-size: 13px;
+  font-size: 12.5px;
   color: $muted;
   text-align: center;
-  margin: 0 0 24px;
+  margin: 0 0 18px;
   line-height: 1.5;
+}
+
+@keyframes authCardIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .auth-field {
@@ -106,18 +141,58 @@ $ease:      cubic-bezier(0.25, 0.46, 0.45, 0.94);
     font-size: 11.5px;
     font-weight: 600;
     color: #666;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
+  }
+
+  &__wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 17px;
+    color: #9a9a9a;
+    pointer-events: none;
+    transition: color 0.2s ease;
+    z-index: 1;
+  }
+
+  &__toggle {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    color: #9a9a9a;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: color 0.18s ease, background 0.18s ease;
+
+    &:hover { color: $wine; background: rgba($wine, 0.06); }
+
+    i { font-size: 17px; }
   }
 
   &__input {
     width: 100%;
-    height: 48px;
-    background: #F2F2F2;
+    height: 44px;
+    background: #F6F6F8;
     border: 1.5px solid transparent;
-    border-radius: 8px;
-    padding: 0 16px;
-    font-size: 14px;
+    border-radius: 10px;
+    padding: 0 14px;
+    font-size: 13.5px;
     color: $dark;
     outline: none;
     transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
@@ -127,16 +202,29 @@ $ease:      cubic-bezier(0.25, 0.46, 0.45, 0.94);
     &:focus {
       border-color: $wine;
       background: $white;
-      box-shadow: 0 0 0 3px rgba($wine, 0.08);
+      box-shadow: 0 0 0 4px rgba($wine, 0.08);
     }
+
+    &--with-icon  { padding-left: 44px; }
+    &--with-toggle { padding-right: 44px; }
 
     &--error { border-color: $error !important; background: rgba($error, 0.04) !important; }
   }
 
+  &__wrap:focus-within &__icon { color: $wine; }
+
   &__error {
     font-size: 11.5px;
     color: $error;
-    margin: 0;
+    margin: 2px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    &::before {
+      content: '⚠';
+      font-size: 11px;
+    }
   }
 }
 
@@ -152,10 +240,10 @@ $ease:      cubic-bezier(0.25, 0.46, 0.45, 0.94);
     ::ng-deep {
       .select2-container { width: 100% !important; }
       .select2-selection {
-        height: 48px !important;
-        background: #F2F2F2 !important;
+        height: 44px !important;
+        background: #F6F6F8 !important;
         border: 1.5px solid transparent !important;
-        border-radius: 8px !important;
+        border-radius: 10px !important;
         display: flex !important;
         align-items: center !important;
         padding: 0 10px !important;
@@ -165,7 +253,8 @@ $ease:      cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
   }
 
-  &__input { flex: 1; }
+  &__input-wrap { flex: 1; }
+  &__input      { flex: 1; }
 }
 
 .auth-check {
@@ -219,28 +308,28 @@ $ease:      cubic-bezier(0.25, 0.46, 0.45, 0.94);
   align-items: center !important;
   justify-content: center !important;
   width: 100% !important;
-  height: 50px !important;
+  height: 46px !important;
   background: $wine !important;
   color: $white !important;
   border: none !important;
-  border-radius: 8px !important;
+  border-radius: 10px !important;
   font-size: 15px !important;
   font-weight: 700 !important;
-  letter-spacing: 0.03em !important;
+  letter-spacing: 0.04em !important;
   cursor: pointer !important;
-  transition: background 0.22s ease, box-shadow 0.22s ease !important;
-  margin-top: 4px !important;
+  transition: background 0.22s ease, box-shadow 0.22s ease, transform 0.18s ease !important;
+  margin-top: 6px !important;
   box-shadow: 0 4px 16px rgba($wine, 0.28) !important;
 
-  &:hover { background: $wine-dark !important; box-shadow: 0 6px 20px rgba($wine, 0.38) !important; }
-  &:disabled, &[disabled] { background: #C8C8C8 !important; box-shadow: none !important; cursor: not-allowed !important; }
+  &:hover { background: $wine-dark !important; box-shadow: 0 8px 22px rgba($wine, 0.40) !important; transform: translateY(-1px) !important; }
+  &:disabled, &[disabled] { background: #C8C8C8 !important; box-shadow: none !important; cursor: not-allowed !important; transform: none !important; }
 }
 
 .auth-divider {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 20px 0 16px;
+  margin: 14px 0 12px;
   color: #C0C0C0;
   font-size: 12px;
   font-weight: 600;
@@ -255,9 +344,9 @@ $ease:      cubic-bezier(0.25, 0.46, 0.45, 0.94);
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: 13.5px;
+  font-size: 13px;
   color: $muted;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 
   &__link {
     color: $wine;
@@ -282,11 +371,13 @@ $ease:      cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
 html.dark {
   .auth-section { background: #0f0f1a; }
-  .auth-card { background: #1e1e2e; &__body { background: #1e1e2e; } }
+  .auth-card { background: #1e1e2e; border-color: rgba(255,255,255,0.05); &__body { background: #1e1e2e; } }
   .auth-title { color: #e0e0e0; }
   .auth-subtitle { color: #888; }
   .auth-field {
     &__label { color: #aaa; }
+    &__icon  { color: #777; }
+    &__toggle { color: #777; &:hover { color: $wine-mid; background: rgba(255,255,255,0.04); } }
     &__input { background: #2a2a3a; color: #e0e0e0; &::placeholder { color: #666; } &:focus { background: #242434; } }
   }
   .auth-check__box { border-color: #444; background: #2a2a3a; }
@@ -297,6 +388,8 @@ html.dark {
 }
 
 @media (max-width: 480px) {
-  .auth-card__body { padding: 22px 18px 20px; }
-  .auth-card__header { padding: 28px 20px 24px; }
+  .auth-card__body { padding: 24px 20px 22px; }
+  .auth-card__header { padding: 32px 20px 28px; }
+  .auth-phone { flex-direction: row; }
+  .auth-phone__code { width: 100px; }
 }

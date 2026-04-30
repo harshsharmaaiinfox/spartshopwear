@@ -544,11 +544,11 @@ header {
     .navbar-nav {
       .nav-item {
         +.nav-item {
-          margin-left: calc(15px + (25 - 15) * ((100vw - 1200px) / (1920 - 1200)));
+          margin-left: calc(6px + (12 - 6) * ((100vw - 1200px) / (1920 - 1200)));
 
           body.rtl & {
             margin-left: unset;
-            margin-right: calc(15px + (25 - 15) * ((100vw - 1200px) / (1920 - 1200)));
+            margin-right: calc(6px + (12 - 6) * ((100vw - 1200px) / (1920 - 1200)));
           }
 
           @include mq-max(xl) {
@@ -608,7 +608,7 @@ header {
 
       .nav-link {
         @include flex_common;
-        font-size: 16px;
+        font-size: 13px;
         font-weight: normal;
         position: relative;
         text-transform: capitalize;

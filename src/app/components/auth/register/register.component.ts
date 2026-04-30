@@ -33,7 +33,9 @@ export class RegisterComponent {
 
 
   public reCaptcha: boolean = true;
-  
+  public showPassword: boolean = false;
+  public showConfirmPassword: boolean = false;
+
 
   constructor(
     private store: Store,

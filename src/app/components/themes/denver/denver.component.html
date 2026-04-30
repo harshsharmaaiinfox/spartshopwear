@@ -20,19 +20,6 @@
         </div> -->
       </div>
     </div>
-    <button class="nf-banner-slider__arrow nf-banner-slider__arrow--prev" (click)="prevBanner()" aria-label="Previous">
-      <i class="ri-arrow-left-s-line"></i>
-    </button>
-    <button class="nf-banner-slider__arrow nf-banner-slider__arrow--next" (click)="nextBanner()" aria-label="Next">
-      <i class="ri-arrow-right-s-line"></i>
-    </button>
-    <div class="nf-banner-slider__dots">
-      <button class="nf-banner-slider__dot"
-              *ngFor="let slide of bannerSlides; let i = index"
-              [class.nf-banner-slider__dot--active]="i === currentBannerIndex"
-              (click)="goToBanner(i)" [attr.aria-label]="'Slide ' + (i + 1)">
-      </button>
-    </div>
   </div>
 
   <!-- ══════════════════════════════════════════

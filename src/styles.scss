@@ -1,10 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Google Fonts - Loaded via CSS to avoid Angular build inlining issues */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
 
 @import "assets/scss/app.scss";
+
+// Hide dropdown caret on main navbar menu items
+.navbar-nav .nav-link.dropdown-toggle {
+  &::after,
+  &::before {
+    display: none !important;
+    content: none !important;
+  }
+}
 
 // ── Shared right-panel for Edit Profile & Change Password ────────────────
 .nyk-right-panel-modal {
@@ -218,7 +227,7 @@
   }
 
   &:hover .nf-nykaa-cat__img img { transform: scale(1.06) !important; }
-  &:hover .nf-nykaa-cat__name    { color: #D4145A !important; }
+  &:hover .nf-nykaa-cat__name    { color: #A61C54!important; }
 }
 
 .nf-cat-see-all {
@@ -241,13 +250,13 @@
 
     i {
       font-size : 40px !important;
-      color     : #D4145A !important;
+      color     : #A61C54!important;
       transition: transform 0.2s ease !important;
     }
   }
 
-  .nf-nykaa-cat__name { color: #D4145A !important; }
+  .nf-nykaa-cat__name { color: #A61C54!important; }
 
-  &:hover .nf-cat-see-all__circle           { background: #D4145A !important; }
+  &:hover .nf-cat-see-all__circle           { background: #A61C54!important; }
   &:hover .nf-cat-see-all__circle i         { color: #fff !important; transform: scale(1.1) !important; }
 }

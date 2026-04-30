@@ -1,11 +1,11 @@
-# robots.txt for mangalfashion.com
+# robots.txt for SPARKSHOPWEAR.com
 # Updated: 2025-01-27
 
 User-agent: *
 Allow: /
 
 # Sitemap Location
-Sitemap: https://mangalfashion.com/sitemap.xml
+Sitemap: https://SPARKSHOPWEAR.com/sitemap.xml
 
 # Disallow Admin and System Areas
 Disallow: /admin/

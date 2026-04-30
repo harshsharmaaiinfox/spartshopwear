@@ -212,7 +212,7 @@ $nf-ease:      cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
     // ── hover state ──────────────────────────────────────
     &:hover .nf-sd-card__img--icon {
-      background: linear-gradient(145deg, #D4145A 0%, #a80f45 100%);
+      background: linear-gradient(145deg, #A61C54 0%, #a80f45 100%);
       &::before { opacity: 0.15; }
     }
 
@@ -379,15 +379,14 @@ html.dark {
   position: relative;
   margin: 20px 60px;
   border-radius: 16px;
-  padding: 0% important ;
+  padding: 0;
   overflow: hidden;
   height: 520px;
-  // height: clamp(300px, 45vw, 520px);
   background: #92927b;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
 
-  @media (max-width: 991px) { margin: 12px 24px; border-radius: 12px; }
-  @media (max-width: 575px) { margin: 8px 12px;  border-radius: 8px; height: 54vw; }
+  @media (max-width: 991px) { margin: 12px 24px; border-radius: 12px; height: 360px; }
+  @media (max-width: 575px) { margin: 8px 12px;  border-radius: 8px;  height: 54vw; }
 }
 
 // ── Slides ────────────────────────────────────────────────
@@ -417,7 +416,7 @@ html.dark {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  
+  object-position: center;
   display: block;
 }
 

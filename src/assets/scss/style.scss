@@ -465,3 +465,11 @@ section.policy-content-section.section-lg-space {
 section.contact-main-section.section-lg-space {
     padding-bottom: 0 !important;
 }
+header .navbar.navbar-expand-xl .navbar-nav .nav-item.dropdown > a {
+    padding: 0 !important;
+    font-size: 13px !important;
+}
+a.dropdown-item.nav-link {
+    padding: 3px !important;
+    font-size: 13px !important;
+}

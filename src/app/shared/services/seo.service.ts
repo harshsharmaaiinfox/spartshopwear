@@ -260,8 +260,8 @@ export class SeoService {
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "MANGAL MURTI LANDCRAFTS PRIVATE LIMITED",
-      "legalName": "MANGAL MURTI LANDCRAFTS PRIVATE LIMITED",
+      "name": "SPARK SHOP LANDCRAFTS PRIVATE LIMITED",
+      "legalName": "SPARK SHOP LANDCRAFTS PRIVATE LIMITED",
       "url": "https://sparkshopwear.com",
       "logo": "https://sparkshopwear.com/assets/images/logo.png",
       "email": "info@sparkshopwear.com",
@@ -322,7 +322,7 @@ export class SeoService {
       },
       "publisher": {
         "@type": "Organization",
-        "name": "MANGAL MURTI LANDCRAFTS PRIVATE LIMITED",
+        "name": "SPARK SHOP LANDCRAFTS PRIVATE LIMITED",
         "logo": {
           "@type": "ImageObject",
           "url": "https://sparkshopwear.com/assets/images/logo.png"
@@ -445,7 +445,7 @@ export class SeoService {
     this.setSEOData({
       title: 'Sparkshopwear | Premium Men’s & Women’s Clothing Online in India',
       description: 'Shop premium men’s and women’s fashion at Sparkshopwear. Explore stylish shirts, jackets, suits, denim, and more with fast delivery across India, COD options, and easy returns.',
-      keywords: 'activewear, gym wear, joggers, men\'s clothes, women\'s clothes, stylish outfits, comfort fit, performance clothing, mangalfashion',
+      keywords: 'activewear, gym wear, joggers, men\'s clothes, women\'s clothes, stylish outfits, comfort fit, performance clothing, SPARKSHOPWEAR',
       type: 'website',
       url: 'https://sparkshopwear.com/'
     });

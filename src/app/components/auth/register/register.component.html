@@ -1,5 +1,3 @@
-<app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
-
 <section class="auth-section">
   <div class="container-fluid-lg">
     <div class="row justify-content-center">
@@ -9,26 +7,30 @@
 
           <!-- Brand Header -->
           <div class="auth-card__header">
-            <h1 class="auth-brand">MANGAL<span>FASHION</span></h1>
+            <h1 class="auth-brand">SPARK<span>SHOPWEAR</span></h1>
+            <p class="auth-tagline">Premium fashion · Crafted for you</p>
           </div>
 
           <!-- Card Body -->
           <div class="auth-card__body">
             <h2 class="auth-title">Create Your Account</h2>
-            <p class="auth-subtitle">Join us for exclusive offers &amp; personalised experience</p>
+            <p class="auth-subtitle">Join us for exclusive offers &amp; a personalised experience</p>
 
             <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form">
 
               <!-- Full Name -->
               <div class="auth-field">
                 <label class="auth-field__label" for="name">{{ 'Full Name' | translate }}</label>
-                <input type="text" id="name" class="auth-field__input"
-                       formControlName="name"
-                       placeholder="{{ 'Name' | translate }}"
-                       (keydown)="allowOnlyLetters($event)"
-                       (input)="sanitizeNameInput($event)"
-                       (paste)="sanitizeNamePaste($event)"
-                       [class.auth-field__input--error]="form.controls['name'].touched && form.controls['name'].invalid">
+                <div class="auth-field__wrap">
+                  <i class="ri-user-line auth-field__icon"></i>
+                  <input type="text" id="name" class="auth-field__input auth-field__input--with-icon"
+                         formControlName="name"
+                         placeholder="{{ 'Name' | translate }}"
+                         (keydown)="allowOnlyLetters($event)"
+                         (input)="sanitizeNameInput($event)"
+                         (paste)="sanitizeNamePaste($event)"
+                         [class.auth-field__input--error]="form.controls['name'].touched && form.controls['name'].invalid">
+                </div>
                 <p class="auth-field__error" *ngIf="form.controls['name'].touched && form.controls['name'].errors?.['required']">
                   {{ 'name_is_required' | translate }}
                 </p>
@@ -40,12 +42,15 @@
               <!-- Email -->
               <div class="auth-field">
                 <label class="auth-field__label" for="email">{{ 'Email Address' | translate }}</label>
-                <input type="email" id="email" class="auth-field__input"
-                       formControlName="email"
-                       placeholder="{{ 'enter_your_email' | translate }}"
-                       (input)="filterEmailCharacters($event)"
-                       pattern="[a-zA-Z0-9._\-+@]+"
-                       [class.auth-field__input--error]="form.controls['email'].touched && form.controls['email'].invalid">
+                <div class="auth-field__wrap">
+                  <i class="ri-mail-line auth-field__icon"></i>
+                  <input type="email" id="email" class="auth-field__input auth-field__input--with-icon"
+                         formControlName="email"
+                         placeholder="{{ 'enter_your_email' | translate }}"
+                         (input)="filterEmailCharacters($event)"
+                         pattern="[a-zA-Z0-9._\-+@]+"
+                         [class.auth-field__input--error]="form.controls['email'].touched && form.controls['email'].invalid">
+                </div>
                 <p class="auth-field__error" *ngIf="form.controls['email'].touched && form.controls['email'].errors?.['required']">
                   {{ 'Email Is Required' | translate }}
                 </p>
@@ -71,14 +76,18 @@
                       </div>
                     </ng-template>
                   </select2>
-                  <input type="tel" id="phone" class="auth-field__input auth-phone__input"
-                         formControlName="phone"
-                         placeholder="{{ 'Phone' | translate }}"
-                         maxlength="10"
-                         (keydown)="allowOnlyDigits($event)"
-                         (input)="sanitizePhoneInput($event)"
-                         (paste)="sanitizePhonePaste($event)"
-                         [class.auth-field__input--error]="form.controls['phone'].touched && form.controls['phone'].invalid">
+                  <div class="auth-field__wrap auth-phone__input-wrap">
+                    <i class="ri-phone-line auth-field__icon"></i>
+                    <input type="tel" id="phone"
+                           class="auth-field__input auth-field__input--with-icon auth-phone__input"
+                           formControlName="phone"
+                           placeholder="{{ 'Phone' | translate }}"
+                           maxlength="10"
+                           (keydown)="allowOnlyDigits($event)"
+                           (input)="sanitizePhoneInput($event)"
+                           (paste)="sanitizePhonePaste($event)"
+                           [class.auth-field__input--error]="form.controls['phone'].touched && form.controls['phone'].invalid">
+                  </div>
                 </div>
                 <p class="auth-field__error" *ngIf="form.controls['phone'].touched && form.controls['phone'].errors?.['required']">
                   {{ 'Phone Number Is Required' | translate }}
@@ -91,10 +100,19 @@
               <!-- Password -->
               <div class="auth-field">
                 <label class="auth-field__label" for="password">{{ 'Password' | translate }}</label>
-                <input type="password" id="password" class="auth-field__input"
-                       formControlName="password"
-                       placeholder="{{ 'password' | translate }}"
-                       [class.auth-field__input--error]="form.controls['password'].touched && form.controls['password'].invalid">
+                <div class="auth-field__wrap">
+                  <i class="ri-lock-2-line auth-field__icon"></i>
+                  <input [type]="showPassword ? 'text' : 'password'" id="password"
+                         class="auth-field__input auth-field__input--with-icon auth-field__input--with-toggle"
+                         formControlName="password"
+                         placeholder="{{ 'password' | translate }}"
+                         [class.auth-field__input--error]="form.controls['password'].touched && form.controls['password'].invalid">
+                  <button type="button" class="auth-field__toggle"
+                          (click)="showPassword = !showPassword"
+                          [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'">
+                    <i [class]="showPassword ? 'ri-eye-line' : 'ri-eye-off-line'"></i>
+                  </button>
+                </div>
                 <p class="auth-field__error" *ngIf="form.controls['password'].touched && form.controls['password'].errors?.['required']">
                   {{ 'password_is_required' | translate }}
                 </p>
@@ -103,10 +121,19 @@
               <!-- Confirm Password -->
               <div class="auth-field">
                 <label class="auth-field__label" for="password_confirmation">{{ 'Password Confirmation' | translate }}</label>
-                <input type="password" id="password_confirmation" class="auth-field__input"
-                       formControlName="password_confirmation"
-                       placeholder="{{ 'password_confirmation' | translate }}"
-                       [class.auth-field__input--error]="form.controls['password_confirmation'].touched && (form.controls['password_confirmation'].errors?.['required'] || passwordMatchError)">
+                <div class="auth-field__wrap">
+                  <i class="ri-shield-check-line auth-field__icon"></i>
+                  <input [type]="showConfirmPassword ? 'text' : 'password'" id="password_confirmation"
+                         class="auth-field__input auth-field__input--with-icon auth-field__input--with-toggle"
+                         formControlName="password_confirmation"
+                         placeholder="{{ 'password_confirmation' | translate }}"
+                         [class.auth-field__input--error]="form.controls['password_confirmation'].touched && (form.controls['password_confirmation'].errors?.['required'] || passwordMatchError)">
+                  <button type="button" class="auth-field__toggle"
+                          (click)="showConfirmPassword = !showConfirmPassword"
+                          [attr.aria-label]="showConfirmPassword ? 'Hide password' : 'Show password'">
+                    <i [class]="showConfirmPassword ? 'ri-eye-line' : 'ri-eye-off-line'"></i>
+                  </button>
+                </div>
                 <p class="auth-field__error" *ngIf="form.controls['password_confirmation'].touched && form.controls['password_confirmation'].errors?.['required']">
                   {{ 'confirm_password_is_required' | translate }}
                 </p>
