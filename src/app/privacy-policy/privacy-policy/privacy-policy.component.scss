@@ -1,150 +1,131 @@
-// Modern Privacy Policy Page Styles
+// Premium Editorial Privacy Policy - Fashion Boutique Style
 
-// Hero Section
+// Design Tokens
+$policy-accent: #8b1c3f; // Maroon/Pink as requested
+$policy-dark:   #222222;
+$policy-gray:   #444444;
+$policy-muted:  #777777;
+$policy-cream:  #fffafa; // Very soft pink/white
+$policy-bg:     #ffffff;
+$policy-card-bg: #ffffff;
+$policy-shadow: 0 15px 45px rgba(0,0,0,0.06);
+$policy-radius: 16px;
+$font-serif: 'Playfair Display', serif;
+$font-sans: 'Raleway', sans-serif;
+
+// ── Hero Section: Immersive Entry ──────────────────────────
 .policy-hero-section {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  padding: 15px 0 15px;
-  margin-bottom: 15px;
+  background: linear-gradient(135deg, $policy-cream 0%, #ffeef2 100%);
+  padding: 120px 0 160px; // Extra padding at bottom for rounded overlap
+  text-align: center;
+  position: relative;
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+  overflow: hidden;
 
-  .policy-hero-content {
-    text-align: center;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: $policy-accent;
+    border-radius: 10px;
+  }
+
+  .hero-title {
+    font-family: $font-serif;
+    font-size: clamp(40px, 6vw, 72px);
+    color: $policy-dark;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.1;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+    color: $policy-gray;
+    font-weight: 500;
     max-width: 600px;
     margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0.8;
+  }
+}
 
-    .hero-icon-wrapper {
-      width: 52px;
-      height: 52px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #EA5A26 0%, #ff7a4a 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 26px;
-      margin: 0 auto 14px;
-      box-shadow: 0 4px 12px rgba(234, 90, 38, 0.3);
-    }
+// ── Layout with Sidebar ─────────────────────────────────────
+.policy-main-container {
+  margin-top: -80px; // Overlap with hero
+  padding-bottom: 100px;
+  position: relative;
+  z-index: 10;
 
-    .hero-title {
-      color: #222;
-      font-weight: 700;
-      font-size: 26px;
-      margin-bottom: 8px;
-      line-height: 1.2;
-    }
-
-    .hero-subtitle {
-      color: #6c757d;
-      font-size: 14px;
-      line-height: 1.6;
-      margin: 0;
+  .container {
+    max-width: 1200px;
+    display: flex;
+    gap: 40px;
+    
+    @media (max-width: 991px) {
+      flex-direction: column;
     }
   }
 }
 
-// Policy Content Section
-.policy-content-section {
-  .policy-content-card {
+// ── Sticky Sidebar ─────────────────────────────────────────
+.policy-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  
+  @media (max-width: 991px) {
+    width: 100%;
+    position: static;
+  }
+
+  .sidebar-nav {
+    position: sticky;
+    top: 100px;
     background: white;
-    border-radius: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
+    padding: 30px;
+    border-radius: $policy-radius;
+    box-shadow: $policy-shadow;
+    
+    .nav-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: $policy-dark;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eeeeee;
+    }
 
-    .content-body {
-      padding: 40px;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
 
-      p {
-        color: #6c757d;
-        font-size: 16px;
-        line-height: 1.8;
-        margin-bottom: 20px;
+      li {
+        margin-bottom: 12px;
 
         a {
-          color: #EA5A26;
           text-decoration: none;
+          color: $policy-muted;
+          font-size: 15px;
+          font-weight: 500;
           transition: all 0.3s ease;
+          display: block;
 
           &:hover {
-            color: #d4491f;
-            text-decoration: underline;
+            color: $policy-accent;
+            transform: translateX(5px);
           }
-        }
-
-        strong {
-          color: #222;
-          font-weight: 600;
-        }
-      }
-
-      .policy-section {
-        margin: 40px 0;
-        padding: 30px;
-        background: #f8f9fa;
-        border-radius: 12px;
-        border-left: 4px solid #EA5A26;
-
-        .section-heading {
-          color: #222;
-          font-weight: 700;
-          font-size: 22px;
-          margin-bottom: 20px;
-          display: flex;
-          align-items: center;
-          gap: 12px;
-
-          i {
-            color: #EA5A26;
-            font-size: 26px;
-          }
-        }
-
-        p {
-          margin-bottom: 0;
-        }
-      }
-
-      .grievance-officer-section {
-        margin-top: 50px;
-        padding: 30px;
-        background: rgba(234, 90, 38, 0.05);
-        border-radius: 12px;
-        border: 2px solid rgba(234, 90, 38, 0.2);
-
-        .grievance-title {
-          color: #222;
-          font-weight: 700;
-          font-size: 26px;
-          margin-bottom: 25px;
-          display: flex;
-          align-items: center;
-          gap: 12px;
-
-          i {
-            color: #EA5A26;
-            font-size: 28px;
-          }
-        }
-
-        .grievance-info {
-          p {
-            color: #222;
-            font-size: 16px;
-            margin-bottom: 12px;
-            line-height: 1.6;
-
-            strong {
-              color: #222;
-              font-weight: 600;
-            }
-
-            a {
-              color: #EA5A26;
-              text-decoration: none;
-
-              &:hover {
-                text-decoration: underline;
-              }
-            }
+          
+          &.active {
+            color: $policy-accent;
+            font-weight: 700;
           }
         }
       }
@@ -152,105 +133,129 @@
   }
 }
 
-// Responsive Design
-@media (max-width: 768px) {
-  .policy-hero-section {
-    padding: 24px 0 18px;
-
-    .policy-hero-content {
-      .hero-icon-wrapper {
-        width: 44px;
-        height: 44px;
-        font-size: 22px;
-        margin-bottom: 12px;
-      }
-
-      .hero-title {
-        font-size: 22px;
-      }
-
-      .hero-subtitle {
-        font-size: 13px;
-      }
-    }
+// ── Content Card ───────────────────────────────────────────
+.policy-content-card {
+  flex-grow: 1;
+  background: $policy-card-bg;
+  padding: 60px;
+  border-radius: $policy-radius;
+  box-shadow: $policy-shadow;
+  
+  @media (max-width: 575px) {
+    padding: 30px 20px;
   }
 
-  .policy-content-section {
-    .policy-content-card {
-      .content-body {
-        padding: 30px 25px;
+  .policy-section {
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #f5f5f5;
 
-        .policy-section {
-          padding: 20px;
-          margin: 30px 0;
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
 
-          .section-heading {
-            font-size: 20px;
-          }
-        }
+    .section-title {
+      font-family: $font-serif;
+      font-size: 24px;
+      color: $policy-dark;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      
+      &::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        background: $policy-accent;
+        border-radius: 50%;
+      }
+    }
 
-        .grievance-officer-section {
-          padding: 25px 20px;
+    .section-text {
+      color: $policy-gray;
+      font-size: 16px;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
 
-          .grievance-title {
-            font-size: 22px;
-          }
+    .section-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+
+      li {
+        position: relative;
+        padding-left: 25px;
+        margin-bottom: 15px;
+        color: $policy-gray;
+        font-size: 16px;
+        line-height: 1.7;
+
+        &::before {
+          content: '→';
+          position: absolute;
+          left: 0;
+          color: $policy-accent;
+          font-weight: bold;
         }
       }
     }
   }
 }
 
-@media (max-width: 576px) {
-  .policy-hero-section {
-    padding: 20px 0 14px;
+// ── Contact Info Box ──────────────────────────────────────
+.policy-contact-box {
+  margin-top: 60px;
+  padding: 40px;
+  background: rgba($policy-accent, 0.04);
+  border-left: 4px solid $policy-accent;
+  border-radius: 8px;
 
-    .policy-hero-content {
-      .hero-icon-wrapper {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
+  .contact-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: $policy-dark;
+    margin-bottom: 20px;
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: $policy-gray;
+      font-size: 16px;
+
+      i {
+        color: $policy-accent;
+        font-size: 18px;
       }
-
-      .hero-title {
-        font-size: 20px;
+      
+      a {
+        color: inherit;
+        text-decoration: none;
+        &:hover { color: $policy-accent; }
       }
     }
   }
+}
 
-  .policy-content-section {
-    .policy-content-card {
-      border-radius: 16px;
+// Smooth scroll
+:host {
+  scroll-behavior: smooth;
+}
 
-      .content-body {
-        padding: 25px 20px;
-
-        p {
-          font-size: 15px;
-        }
-
-        .policy-section {
-          padding: 20px 15px;
-
-          .section-heading {
-            font-size: 18px;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 8px;
-          }
-        }
-
-        .grievance-officer-section {
-          padding: 20px 15px;
-
-          .grievance-title {
-            font-size: 20px;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 8px;
-          }
-        }
-      }
-    }
-  }
+// Dark Mode Support
+html.dark {
+  .policy-hero-section { background: linear-gradient(135deg, #1C1C2E 0%, #2A2A40 100%); .hero-title { color: white; } .hero-subtitle { color: #aaaaaa; } }
+  .policy-sidebar .sidebar-nav { background: #1a1a2e; .nav-title { color: white; border-color: #333; } ul li a { color: #888; } }
+  .policy-content-card { background: #1a1a2e; .section-title { color: white; } .section-text { color: #cccccc; } .section-list li { color: #cccccc; } }
+  .policy-contact-box { background: rgba(255, 255, 255, 0.05); .contact-title { color: white; } .contact-item { color: #cccccc; } }
 }

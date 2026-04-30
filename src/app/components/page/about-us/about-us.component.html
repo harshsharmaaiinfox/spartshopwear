@@ -1,54 +1,42 @@
 <app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
 
-<!-- Hero Section -->
+<!-- ══════════════════════════════════════════
+  1. HERO SECTION: THE STATEMENT
+══════════════════════════════════════════ -->
 <section class="about-hero-section">
     <div class="container-fluid-lg">
-        <div class="row">
-            <div class="col-12">
-                <div class="about-hero-content">
-                    <div class="hero-icon-wrapper">
-                        <i class="ri-store-3-line"></i>
-                    </div>
-                    <h1 class="hero-title">About Sparkshopwear</h1>
-                    <p class="hero-subtitle">Your Trusted Fashion Destination</p>
-                    <p class="hero-description">
-                        We are passionate about bringing you the latest trends in fashion, offering premium quality
-                        clothing for men and women. At Sparkshopwear, we believe that style is a form of
-                        self-expression, and everyone deserves to look and feel their best.
-                    </p>
-                </div>
-            </div>
+        <div class="about-hero-content hero-align-left">
+            <h1 class="hero-title">About Sparkshopwear.</h1>
+            <p class="hero-subtitle">Modern, ethnic, and everything in between.</p>
         </div>
     </div>
 </section>
 
-<!-- Company Story Section -->
-<section class="about-story-section section-lg-space">
+<!-- ══════════════════════════════════════════
+  2. OUR STORY: THE EDITORIAL SPLIT
+══════════════════════════════════════════ -->
+<section class="about-story-section">
     <div class="container-fluid-lg">
-        <div class="row g-4 align-items-center">
-            <div class="col-lg-6">
-                <div class="story-image-wrapper">
-                    <div class="story-image">
-                        <img src="assets/images/about-image.png" alt="About Sparkshopwear" class="img-fluid">
-                    </div>
-                </div>
+        <div class="story-grid">
+            <div class="story-image-col">
+                <img src="assets/images/about-image.png" alt="Editorial Fashion Shot" class="story-image">
             </div>
-            <div class="col-lg-6">
-                <div class="story-content">
-                    <div class="section-header">
-                        <span class="section-label">Our Story</span>
-                        <h2 class="section-title">Fashion That Speaks to You</h2>
-                    </div>
+            <div class="story-content-col">
+                <div class="editorial-box">
+                    <span class="section-label">Our Story</span>
+                    <h2 class="section-title">Fashion That Speaks To You</h2>
                     <p class="story-text">
-                        Sparkshopwear was founded with a vision to make premium fashion accessible to everyone. We
-                        curate a wide range of clothing that combines style, quality, and affordability. Our collection
-                        includes the latest trends in men's and women's fashion, ensuring
-                        you always have access to the best styles.
+                        Fashion has always been more than just clothing — it’s about comfort, confidence, and self-expression. 
+                        Sparkshopwear was created with a simple vision: to make stylish, high-quality fashion accessible without the high price tag.
                     </p>
                     <p class="story-text">
-                        We are committed to providing exceptional customer service and ensuring that every shopping
-                        experience with us is enjoyable and satisfying. Our team works tirelessly to bring you the
-                        finest fashion pieces that reflect your unique personality.
+                        What started as an idea to bridge the gap between modern trends and traditional wear has grown into a trusted online fashion destination. 
+                        We noticed how people often had to choose between comfort and style, or between affordability and quality — and we decided to change that.
+                    </p>
+                    <p class="story-text">
+                        At Sparkshopwear, every collection is thoughtfully curated to suit real lifestyles. 
+                        Whether it’s breathable everyday wear for busy routines or elegant ethnic outfits for special occasions, 
+                        we focus on designs that feel good and look even better.
                     </p>
                 </div>
             </div>
@@ -56,173 +44,108 @@
     </div>
 </section>
 
-<!-- Values Section -->
-<section class="about-values-section section-lg-space">
+<!-- ══════════════════════════════════════════
+  3. EXPERIENCE THE SPARK: THE MINIMALIST GRID
+══════════════════════════════════════════ -->
+<section class="about-values-section">
     <div class="container-fluid-lg">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-header text-center">
-                    <span class="section-label">Why Choose Us</span>
-                    <h2 class="section-title">Our Core Values</h2>
-                </div>
-            </div>
+        <div class="section-header">
+            <h2 class="section-title">Experience The Spark</h2>
         </div>
-        <div class="row g-4">
-            <div class="col-lg-4 col-md-6">
-                <div class="value-card">
-                    <div class="value-icon-wrapper">
-                        <i class="ri-star-line"></i>
-                    </div>
-                    <h4 class="value-title">Premium Quality</h4>
-                    <p class="value-description">
-                        We source only the finest materials and work with trusted manufacturers to ensure every piece
-                        meets our high quality standards.
-                    </p>
-                </div>
+        <div class="minimalist-grid">
+            <!-- Point 1 -->
+            <div class="value-item">
+                <i class="ri-palette-line value-icon"></i>
+                <h4 class="value-title">Trendy Yet Timeless Styles</h4>
+                <p class="value-description">
+                    We bring together modern fashion trends and traditional ethnic designs, so you always find something that matches your vibe.
+                </p>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="value-card">
-                    <div class="value-icon-wrapper">
-                        <i class="ri-truck-line"></i>
-                    </div>
-                    <h4 class="value-title">Fast Delivery</h4>
-                    <p class="value-description">
-                        We understand the excitement of receiving your new fashion pieces. That's why we ensure quick
-                        and reliable delivery to your doorstep.
-                    </p>
-                </div>
+            <!-- Point 2 -->
+            <div class="value-item">
+                <i class="ri-heart-pulse-line value-icon"></i>
+                <h4 class="value-title">Comfort Comes First</h4>
+                <p class="value-description">
+                    Our clothing is designed for real life — easy to wear, breathable, and made for all-day comfort.
+                </p>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="value-card">
-                    <div class="value-icon-wrapper">
-                        <i class="ri-customer-service-2-line"></i>
-                    </div>
-                    <h4 class="value-title">Excellent Support</h4>
-                    <p class="value-description">
-                        Our dedicated customer support team is always ready to assist you with any queries or concerns
-                        you may have.
-                    </p>
-                </div>
+            <!-- Point 3 -->
+            <div class="value-item">
+                <i class="ri-money-dollar-circle-line value-icon"></i>
+                <h4 class="value-title">Affordable Fashion</h4>
+                <p class="value-description">
+                    Looking stylish shouldn’t be expensive. We offer premium-quality clothing at prices that make sense.
+                </p>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="value-card">
-                    <div class="value-icon-wrapper">
-                        <i class="ri-price-tag-3-line"></i>
-                    </div>
-                    <h4 class="value-title">Best Prices</h4>
-                    <p class="value-description">
-                        We offer competitive prices without compromising on quality, making premium fashion accessible
-                        to everyone.
-                    </p>
-                </div>
+            <!-- Point 4 -->
+            <div class="value-item">
+                <i class="ri-layout-grid-line value-icon"></i>
+                <h4 class="value-title">Versatile Collections</h4>
+                <p class="value-description">
+                    From casual everyday outfits to festive ethnic wear, our range is built to suit every occasion.
+                </p>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="value-card">
-                    <div class="value-icon-wrapper">
-                        <i class="ri-shield-check-line"></i>
-                    </div>
-                    <h4 class="value-title">Secure Shopping</h4>
-                    <p class="value-description">
-                        Your security and privacy are our top priorities. We use advanced security measures to protect
-                        your personal information.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="value-card">
-                    <div class="value-icon-wrapper">
-                        <i class="ri-refund-2-line"></i>
-                    </div>
-                    <h4 class="value-title">Easy Returns</h4>
-                    <p class="value-description">
-                        Not satisfied with your purchase? We offer hassle-free returns and exchanges to ensure your
-                        complete satisfaction.
-                    </p>
-                </div>
+            <!-- Point 5 -->
+            <div class="value-item">
+                <i class="ri-shield-check-line value-icon"></i>
+                <h4 class="value-title">Quality You Can Trust</h4>
+                <p class="value-description">
+                    We focus on durable fabrics, clean stitching, and reliable fits — because details matter.
+                </p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Company Information Section -->
-<section class="about-company-info-section section-lg-space">
+<!-- ══════════════════════════════════════════
+  4. OUR MISSION: THE SIGNATURE QUOTE
+══════════════════════════════════════════ -->
+<section class="about-mission-section">
     <div class="container-fluid-lg">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-header text-center">
-                    <span class="section-label">Company Information</span>
-                    <h2 class="section-title">Legal & Contact Details</h2>
+        <div class="mission-wrapper">
+            <span class="quote-icon quote-icon--start">“</span>
+            <span class="mission-label">Our Mission</span>
+            <p class="mission-text">
+                Our mission is to make fashion simple, comfortable, and accessible for everyone. 
+                We want to help you build a wardrobe that truly works for you.
+            </p>
+            <p class="mission-footer">Fashion isn’t about following trends — it’s about wearing what feels right.</p>
+            <span class="quote-icon quote-icon--end">”</span>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+  5. WHERE TO FIND US: THE PROFESSIONAL FOOTER
+══════════════════════════════════════════ -->
+<section class="about-footer-info">
+    <div class="container-fluid-lg">
+        <div class="footer-details-row">
+            <div class="detail-item">
+                <span class="detail-label">Brand Name</span>
+                <p class="detail-value">Sparkshopwear</p>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Registered Address</span>
+                <div class="detail-value">
+                    Ground Floor, Plot No. 23, MiQB Building,<br>
+                    Maruti Industrial Area, Sector 18,<br>
+                    Gurugram, Haryana – 122015
                 </div>
             </div>
-        </div>
-        <div class="row g-4 justify-content-center">
-            <div class="col-lg-10 col-xl-8">
-                <div class="company-info-card">
-                    <div class="info-item">
-                        <div class="info-icon-wrapper">
-                            <i class="ri-building-line"></i>
-                        </div>
-                        <div class="info-content">
-                            <label class="info-label">Company Name</label>
-                            <p class="info-value">SPARK SHOP LANDCRAFTS PRIVATE LIMITED</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon-wrapper">
-                            <i class="ri-file-text-line"></i>
-                        </div>
-                        <div class="info-content">
-                            <label class="info-label">Corporate Identification Number (GST)</label>
-                            <p class="info-value">09AAKCM2049Q1ZS</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon-wrapper">
-                            <i class="ri-mail-line"></i>
-                        </div>
-                        <div class="info-content">
-                            <label class="info-label">Email Address</label>
-                            <p class="info-value">
-                                <a href="mailto:info&#64;sparkshopwear.com">info&#64;sparkshopwear.com</a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon-wrapper">
-                            <i class="ri-map-pin-line"></i>
-                        </div>
-                        <div class="info-content">
-                            <label class="info-label">Registered Address</label>
-                            <div class="info-value">
-                                <div>Ground Floor, Plot No. 23, MiQB Building</div>
-                                <div>Maruti Industrial Area, Sector 18</div>
-                                <div>Gurugram, Haryana – 122015</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="detail-item">
+                <span class="detail-label">Corporate Info</span>
+                <p class="detail-value">CIN: 09AAKCM2049Q1ZS</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Mission Section -->
-<section class="about-mission-section section-lg-space">
+<!-- Closing Navy Anchor -->
+<section class="about-closing-anchor">
     <div class="container-fluid-lg">
-        <div class="row">
-            <div class="col-12">
-                <div class="mission-content text-center">
-                    <div class="mission-icon-wrapper">
-                        <i class="ri-lightbulb-line"></i>
-                    </div>
-                    <h2 class="mission-title">Our Mission</h2>
-                    <p class="mission-text">
-                        To empower individuals to express their unique style through high-quality, affordable fashion.
-                        We strive to be your go-to destination for the latest trends, exceptional service, and an
-                        unforgettable shopping experience.
-                    </p>
-                </div>
-            </div>
-        </div>
+        <p class="closing-text">
+            We’re more than just an online clothing store — we’re here to make everyday fashion easier, better, and more enjoyable.
+        </p>
     </div>
 </section>

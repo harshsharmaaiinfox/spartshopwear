@@ -3,13 +3,10 @@
   <!-- ══════════════════════════════════════════
     1. HERO BANNER SLIDER
   ══════════════════════════════════════════ -->
-  <div class="nf-banner-slider"
-       (mouseenter)="stopBannerAutoPlay()"
-       (mouseleave)="startBannerAutoPlay()">
+  <div class="nf-banner-slider" (mouseenter)="stopBannerAutoPlay()" (mouseleave)="startBannerAutoPlay()">
     <div class="nf-banner-slider__track">
-      <div class="nf-banner-slide"
-           *ngFor="let slide of bannerSlides; let i = index"
-           [class.nf-banner-slide--active]="i === currentBannerIndex">
+      <div class="nf-banner-slide" *ngFor="let slide of bannerSlides; let i = index"
+        [class.nf-banner-slide--active]="i === currentBannerIndex">
         <img [src]="slide.image" [alt]="slide.heading" class="nf-banner-slide__img" loading="eager">
         <!-- <div class="nf-banner-slide__overlay">
           <div class="nf-banner-slide__content">
@@ -30,45 +27,45 @@
       <h2 class="nf-home-section-title nf-home-section-title--center">Shop Drop</h2>
       <div class="nf-sd-grid">
 
-        <a href="/collections/lehengas"    class="nf-sd-card">
-          <div class="nf-sd-card__img"><img src="assets/images/lehanga1.jpg"     alt="Lehengas"     loading="lazy"></div>
+        <a href="/collections/lehengas" class="nf-sd-card">
+          <div class="nf-sd-card__img"><img src="assets/images/lehanga1.png" alt="Lehengas" loading="lazy"></div>
           <span class="nf-sd-card__label">LEHENGAS</span>
         </a>
 
-        <a href="/collections/sarees"      class="nf-sd-card">
-          <div class="nf-sd-card__img"><img src="assets/images/saare.jpg"        alt="Sarees"       loading="lazy"></div>
+        <a href="/collections/sarees" class="nf-sd-card">
+          <div class="nf-sd-card__img"><img src="assets/images/saare.png" alt="Sarees" loading="lazy"></div>
           <span class="nf-sd-card__label">SAREES</span>
         </a>
 
-        <a href="/collections/suits"       class="nf-sd-card">
-          <div class="nf-sd-card__img"><img src="assets/images/suit.jpg"         alt="Suits"        loading="lazy"></div>
+        <a href="/collections/suits" class="nf-sd-card">
+          <div class="nf-sd-card__img"><img src="assets/images/suit.png" alt="Suits" loading="lazy"></div>
           <span class="nf-sd-card__label">SUITS</span>
         </a>
 
-        <a href="/collections/dresses"     class="nf-sd-card">
-          <div class="nf-sd-card__img"><img src="assets/images/dress-1.jpg"      alt="Dresses"      loading="lazy"></div>
+        <a href="/collections/dresses" class="nf-sd-card">
+          <div class="nf-sd-card__img"><img src="assets/images/dress-1.png" alt="Dresses" loading="lazy"></div>
           <span class="nf-sd-card__label">DRESSES</span>
         </a>
 
-        <a href="/collections/kurtis"      class="nf-sd-card">
-          <div class="nf-sd-card__img"><img src="assets/images/dress2.jpeg"      alt="Kurtis"       loading="lazy"></div>
+        <a href="/collections/kurtis" class="nf-sd-card">
+          <div class="nf-sd-card__img"><img src="assets/images/kurtis.png" alt="Kurtis" loading="lazy"></div>
           <span class="nf-sd-card__label">KURTIS</span>
         </a>
 
-        <a href="/collections/western"     class="nf-sd-card">
-          <div class="nf-sd-card__img"><img src="assets/images/dress3.jpg"       alt="Western"      loading="lazy"></div>
+        <a href="/collections/western" class="nf-sd-card">
+          <div class="nf-sd-card__img"><img src="assets/images/western.png" alt="Western" loading="lazy"></div>
           <span class="nf-sd-card__label">WESTERN WEAR</span>
         </a>
 
-        <a href="/collections/ethnic"      class="nf-sd-card">
-          <div class="nf-sd-card__img"><img src="assets/images/dress2.jpeg"      alt="Ethnicwear"   loading="lazy"></div>
+        <a href="/collections/ethnic" class="nf-sd-card">
+          <div class="nf-sd-card__img"><img src="assets/images/dress-2.png" alt="Ethnicwear" loading="lazy"></div>
           <span class="nf-sd-card__label nf-sd-card__label--active">INDIANWEAR</span>
         </a>
 
         <a href="/collections" class="nf-sd-card nf-sd-card--view-more">
           <div class="nf-sd-card__img nf-sd-card__img--icon">
             <div class="nf-vm-inner">
-              
+
               <div class="nf-vm-arrow">
                 <i class="ri-arrow-right-line"></i>
               </div>
@@ -139,11 +136,46 @@
     <div class="container-fluid-lg">
       <h2 class="nf-home-section-title nf-home-section-title--center">Category Spotlight</h2>
       <div class="nf-cat-grid nf-cat-grid--5">
-        <a href="/collections/lehengas"  class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/lehanga1.jpg"    alt="Lehengas"   loading="lazy"><span class="nf-cat-card__name">LEHENGAS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 60% off</p><p class="nf-cat-card__desc">Bridal &amp; festive lehengas</p></div></a>
-        <a href="/collections/sarees"    class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/saare.jpg"        alt="Sarees"     loading="lazy"><span class="nf-cat-card__name">SAREES</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 30% off</p><p class="nf-cat-card__desc">Silk &amp; designer sarees</p></div></a>
-        <a href="/collections/suits"     class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/suit.jpg"         alt="Suits"      loading="lazy"><span class="nf-cat-card__name">SUITS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 50% off</p><p class="nf-cat-card__desc">Stylish ethnicwear</p></div></a>
-        <a href="/collections/dresses"   class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/dress-1.jpg"      alt="Dresses"    loading="lazy"><span class="nf-cat-card__name">DRESSES</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 40% off</p><p class="nf-cat-card__desc">Western &amp; fusion dresses</p></div></a>
-        <a href="/collections/kurtis"    class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/dress2.jpeg"      alt="Kurtis"     loading="lazy"><span class="nf-cat-card__name">KURTIS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 55% off</p><p class="nf-cat-card__desc">Everyday kurta sets</p></div></a>
+        <a href="/collections/lehengas" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/lehanga1.png" alt="Lehengas" loading="lazy"><span
+              class="nf-cat-card__name">LEHENGAS</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Up to 60% off</p>
+            <p class="nf-cat-card__desc">Bridal &amp; festive lehengas</p>
+          </div>
+        </a>
+        <a href="/collections/sarees" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/saare.png" alt="Sarees" loading="lazy"><span
+              class="nf-cat-card__name">SAREES</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Min 30% off</p>
+            <p class="nf-cat-card__desc">Silk &amp; designer sarees</p>
+          </div>
+        </a>
+        <a href="/collections/suits" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/suit.png" alt="Suits" loading="lazy"><span
+              class="nf-cat-card__name">SUITS</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Up to 50% off</p>
+            <p class="nf-cat-card__desc">Stylish ethnicwear</p>
+          </div>
+        </a>
+        <a href="/collections/dresses" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/dress-1.png" alt="Dresses" loading="lazy"><span
+              class="nf-cat-card__name">DRESSES</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Min 40% off</p>
+            <p class="nf-cat-card__desc">Western &amp; fusion dresses</p>
+          </div>
+        </a>
+        <a href="/collections/kurtis" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/kurtis.png" alt="Kurtis" loading="lazy"><span
+              class="nf-cat-card__name">KURTIS</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Up to 55% off</p>
+            <p class="nf-cat-card__desc">Everyday kurta sets</p>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -155,11 +187,46 @@
     <div class="container-fluid-lg">
       <h2 class="nf-home-section-title nf-home-section-title--center">Women's Fashion</h2>
       <div class="nf-cat-grid nf-cat-grid--5">
-        <a href="/collections/anarkali"   class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/dress2.jpeg"     alt="Anarkali"   loading="lazy"><span class="nf-cat-card__name">ANARKALI</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 35% off</p><p class="nf-cat-card__desc">Flowy &amp; elegant anarkalis</p></div></a>
-        <a href="/collections/gowns"      class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/dress-1.jpg"      alt="Gowns"      loading="lazy"><span class="nf-cat-card__name">GOWNS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 60% off</p><p class="nf-cat-card__desc">Evening &amp; party gowns</p></div></a>
-        <a href="/collections/western"    class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/dress3.jpg"       alt="Western"    loading="lazy"><span class="nf-cat-card__name">WESTERN</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 30% off</p><p class="nf-cat-card__desc">Trendy western wear</p></div></a>
-        <a href="/collections/partywear"  class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/menu_banner_3.jpg" alt="Partywear" loading="lazy"><span class="nf-cat-card__name">PARTYWEAR</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 50% off</p><p class="nf-cat-card__desc">Chic party outfits</p></div></a>
-        <a href="/collections/ethnic"     class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/suit.jpg"          alt="Ethnic"     loading="lazy"><span class="nf-cat-card__name">ETHNICWEAR</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 45% off</p><p class="nf-cat-card__desc">Premium ethnic collection</p></div></a>
+        <a href="/collections/anarkali" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/anarkali.png" alt="Anarkali" loading="lazy"><span
+              class="nf-cat-card__name">ANARKALI</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Min 35% off</p>
+            <p class="nf-cat-card__desc">Flowy &amp; elegant anarkalis</p>
+          </div>
+        </a>
+        <a href="/collections/gowns" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/gowns.png" alt="Gowns" loading="lazy"><span
+              class="nf-cat-card__name">GOWNS</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Up to 60% off</p>
+            <p class="nf-cat-card__desc">Evening &amp; party gowns</p>
+          </div>
+        </a>
+        <a href="/collections/western" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/western.png" alt="Western" loading="lazy"><span
+              class="nf-cat-card__name">WESTERN</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Min 30% off</p>
+            <p class="nf-cat-card__desc">Trendy western wear</p>
+          </div>
+        </a>
+        <a href="/collections/partywear" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/partywear.png" alt="Partywear" loading="lazy"><span
+              class="nf-cat-card__name">PARTYWEAR</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Up to 50% off</p>
+            <p class="nf-cat-card__desc">Chic party outfits</p>
+          </div>
+        </a>
+        <a href="/collections/ethnic" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/dress-2.png" alt="Ethnic" loading="lazy"><span
+              class="nf-cat-card__name">ETHNICWEAR</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Min 45% off</p>
+            <p class="nf-cat-card__desc">Premium ethnic collection</p>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -191,11 +258,46 @@
     <div class="container-fluid-lg">
       <h2 class="nf-home-section-title nf-home-section-title--center">Men's Fashion</h2>
       <div class="nf-cat-grid nf-cat-grid--5">
-        <a href="/collections/casual"     class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/hoodie.jpg"       alt="Casual"     loading="lazy"><span class="nf-cat-card__name">CASUAL</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 40% off</p><p class="nf-cat-card__desc">Everyday casual styles</p></div></a>
-        <a href="/collections/jeans"      class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/jeans.jpg"        alt="Jeans"      loading="lazy"><span class="nf-cat-card__name">JEANS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 30% off</p><p class="nf-cat-card__desc">Slim, regular &amp; more</p></div></a>
-        <a href="/collections/sweatshirts" class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/sweatshirt.jpg"  alt="Sweatshirts" loading="lazy"><span class="nf-cat-card__name">SWEATSHIRTS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 45% off</p><p class="nf-cat-card__desc">Comfort winterwear</p></div></a>
-        <a href="/collections/formal"     class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/menu_banner.jpg"   alt="Formal"     loading="lazy"><span class="nf-cat-card__name">FORMAL</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 35% off</p><p class="nf-cat-card__desc">Office &amp; formal wear</p></div></a>
-        <a href="/collections/ethnic-men" class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/menu_banner_2.jpg" alt="Ethnic Men"  loading="lazy"><span class="nf-cat-card__name">ETHNIC</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 50% off</p><p class="nf-cat-card__desc">Sherwanis &amp; kurtas</p></div></a>
+        <a href="/collections/casual" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/hoodie.jpg" alt="Casual" loading="lazy"><span
+              class="nf-cat-card__name">CASUAL</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Up to 40% off</p>
+            <p class="nf-cat-card__desc">Everyday casual styles</p>
+          </div>
+        </a>
+        <a href="/collections/jeans" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/jeans.jpg" alt="Jeans" loading="lazy"><span
+              class="nf-cat-card__name">JEANS</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Min 30% off</p>
+            <p class="nf-cat-card__desc">Slim, regular &amp; more</p>
+          </div>
+        </a>
+        <a href="/collections/sweatshirts" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/sweatshirt.jpg" alt="Sweatshirts" loading="lazy"><span
+              class="nf-cat-card__name">SWEATSHIRTS</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Up to 45% off</p>
+            <p class="nf-cat-card__desc">Comfort winterwear</p>
+          </div>
+        </a>
+        <a href="/collections/formal" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/formal.png" alt="Formal" loading="lazy"><span
+              class="nf-cat-card__name">FORMAL</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Min 35% off</p>
+            <p class="nf-cat-card__desc">Office &amp; formal wear</p>
+          </div>
+        </a>
+        <a href="/collections/ethnic-men" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/ethnic.png" alt="Ethnic Men" loading="lazy"><span
+              class="nf-cat-card__name">ETHNIC</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Up to 50% off</p>
+            <p class="nf-cat-card__desc">Sherwanis &amp; kurtas</p>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -207,11 +309,46 @@
     <div class="container-fluid-lg">
       <h2 class="nf-home-section-title nf-home-section-title--center">The Indian Edit</h2>
       <div class="nf-cat-grid nf-cat-grid--5">
-        <a href="/collections/lehengas"   class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/lehanga1.jpg"     alt="Lehengas"    loading="lazy"><span class="nf-cat-card__name">LEHENGAS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 35% off</p><p class="nf-cat-card__desc">500+ off</p></div></a>
-        <a href="/collections/sarees"     class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/saare.jpg"         alt="Sarees"      loading="lazy"><span class="nf-cat-card__name">SAREES</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 40% off</p><p class="nf-cat-card__desc">Designer collection</p></div></a>
-        <a href="/collections/anarkali"   class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/dress2.jpeg"       alt="Anarkali"    loading="lazy"><span class="nf-cat-card__name">ANARKALI</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 30% off</p><p class="nf-cat-card__desc">Festive collection</p></div></a>
-        <a href="/collections/suits"      class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/suit.jpg"          alt="Salwar Suits" loading="lazy"><span class="nf-cat-card__name">SALWAR SUITS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 55% off</p><p class="nf-cat-card__desc">Everyday ethnic</p></div></a>
-        <a href="/collections/indo-western" class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/menu_banner_3.jpg" alt="Indo Western" loading="lazy"><span class="nf-cat-card__name">INDO-WESTERN</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 40% off</p><p class="nf-cat-card__desc">Fusion styles</p></div></a>
+        <a href="/collections/lehengas" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/lehanga1.png" alt="Lehengas" loading="lazy"><span
+              class="nf-cat-card__name">LEHENGAS</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Min 35% off</p>
+            <p class="nf-cat-card__desc">500+ off</p>
+          </div>
+        </a>
+        <a href="/collections/sarees" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/saare.png" alt="Sarees" loading="lazy"><span
+              class="nf-cat-card__name">SAREES</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Up to 40% off</p>
+            <p class="nf-cat-card__desc">Designer collection</p>
+          </div>
+        </a>
+        <a href="/collections/anarkali" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/anarkali.png" alt="Anarkali" loading="lazy"><span
+              class="nf-cat-card__name">ANARKALI</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Min 30% off</p>
+            <p class="nf-cat-card__desc">Festive collection</p>
+          </div>
+        </a>
+        <a href="/collections/suits" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/SALWAR SUITS.png" alt="Salwar Suits"
+              loading="lazy"><span class="nf-cat-card__name">SALWAR SUITS</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Up to 55% off</p>
+            <p class="nf-cat-card__desc">Everyday ethnic</p>
+          </div>
+        </a>
+        <a href="/collections/indo-western" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/indo-west.png" alt="Indo Western" loading="lazy"><span
+              class="nf-cat-card__name">INDO-WESTERN</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Min 40% off</p>
+            <p class="nf-cat-card__desc">Fusion styles</p>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -224,11 +361,46 @@
     <div class="container-fluid-lg">
       <h2 class="nf-home-section-title nf-home-section-title--center">Festive &amp; Bridal</h2>
       <div class="nf-cat-grid nf-cat-grid--5">
-        <a href="/collections/bridal"     class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/saare.jpg"         alt="Bridal"     loading="lazy"><span class="nf-cat-card__name">BRIDAL</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 60% off</p><p class="nf-cat-card__desc">Wedding collections</p></div></a>
-        <a href="/collections/festive"    class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/lehanga1.jpg"      alt="Festive"    loading="lazy"><span class="nf-cat-card__name">FESTIVE</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 35% off</p><p class="nf-cat-card__desc">Celebration styles</p></div></a>
-        <a href="/collections/partywear"  class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/dress-1.jpg"       alt="Partywear"  loading="lazy"><span class="nf-cat-card__name">PARTYWEAR</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 50% off</p><p class="nf-cat-card__desc">Party-perfect looks</p></div></a>
-        <a href="/collections/occasion"   class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/menu_banner_2.jpg" alt="Occasion"   loading="lazy"><span class="nf-cat-card__name">OCCASION</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 40% off</p><p class="nf-cat-card__desc">Special day outfits</p></div></a>
-        <a href="/collections/ethnic"     class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/dress3.jpg"         alt="Ethnic"     loading="lazy"><span class="nf-cat-card__name">ETHNIC</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 55% off</p><p class="nf-cat-card__desc">Traditional styles</p></div></a>
+        <a href="/collections/bridal" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/bridal.png" alt="Bridal" loading="lazy"><span
+              class="nf-cat-card__name">BRIDAL</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Up to 60% off</p>
+            <p class="nf-cat-card__desc">Wedding collections</p>
+          </div>
+        </a>
+        <a href="/collections/festive" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/festival.png" alt="Festive" loading="lazy"><span
+              class="nf-cat-card__name">FESTIVE</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Min 35% off</p>
+            <p class="nf-cat-card__desc">Celebration styles</p>
+          </div>
+        </a>
+        <a href="/collections/partywear" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/partywear-2.png" alt="Partywear" loading="lazy"><span
+              class="nf-cat-card__name">PARTYWEAR</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Up to 50% off</p>
+            <p class="nf-cat-card__desc">Party-perfect looks</p>
+          </div>
+        </a>
+        <a href="/collections/occasion" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/occasion.png" alt="Occasion" loading="lazy"><span
+              class="nf-cat-card__name">OCCASION</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Min 40% off</p>
+            <p class="nf-cat-card__desc">Special day outfits</p>
+          </div>
+        </a>
+        <a href="/collections/ethnic" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/ethnic.png" alt="Ethnic" loading="lazy"><span
+              class="nf-cat-card__name">ETHNIC</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Up to 55% off</p>
+            <p class="nf-cat-card__desc">Traditional styles</p>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -291,11 +463,46 @@
     <div class="container-fluid-lg">
       <h2 class="nf-home-section-title nf-home-section-title--center">Her New Lookbook</h2>
       <div class="nf-cat-grid nf-cat-grid--5">
-        <a href="/collections/dresses"    class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/dress3.jpg"        alt="Dresses"    loading="lazy"><span class="nf-cat-card__name">DRESSES</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 50% off</p><p class="nf-cat-card__desc">Summer &amp; casual dresses</p></div></a>
-        <a href="/collections/western"    class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/dress-1.jpg"       alt="Western"    loading="lazy"><span class="nf-cat-card__name">WESTERN WEAR</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 40% off</p><p class="nf-cat-card__desc">Chic western styles</p></div></a>
-        <a href="/collections/tops"       class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/menu_banner_2.jpg" alt="Tops"       loading="lazy"><span class="nf-cat-card__name">TOPS &amp; TUNICS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 55% off</p><p class="nf-cat-card__desc">Every occasion tops</p></div></a>
-        <a href="/collections/co-ords"    class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/menu_banner_3.jpg" alt="Co-ords"    loading="lazy"><span class="nf-cat-card__name">CO-ORD SETS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 35% off</p><p class="nf-cat-card__desc">Matching set looks</p></div></a>
-        <a href="/collections/jeans-women" class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/jeans.jpg"        alt="Jeans"      loading="lazy"><span class="nf-cat-card__name">JEANS &amp; PANTS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 45% off</p><p class="nf-cat-card__desc">Denim &amp; more</p></div></a>
+        <a href="/collections/dresses" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/dress-1.png" alt="Dresses" loading="lazy"><span
+              class="nf-cat-card__name">DRESSES</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Up to 50% off</p>
+            <p class="nf-cat-card__desc">Summer &amp; casual dresses</p>
+          </div>
+        </a>
+        <a href="/collections/western" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/western.png" alt="Western" loading="lazy"><span
+              class="nf-cat-card__name">WESTERN WEAR</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Min 40% off</p>
+            <p class="nf-cat-card__desc">Chic western styles</p>
+          </div>
+        </a>
+        <a href="/collections/tops" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/TOPSTUNICS.png" alt="Tops" loading="lazy"><span
+              class="nf-cat-card__name">TOPS &amp; TUNICS</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Up to 55% off</p>
+            <p class="nf-cat-card__desc">Every occasion tops</p>
+          </div>
+        </a>
+        <a href="/collections/co-ords" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/CO-ORD SETS.png" alt="Co-ords" loading="lazy"><span
+              class="nf-cat-card__name">CO-ORD SETS</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Min 35% off</p>
+            <p class="nf-cat-card__desc">Matching set looks</p>
+          </div>
+        </a>
+        <a href="/collections/jeans-women" class="nf-cat-card">
+          <div class="nf-cat-card__img"><img src="assets/images/jeans.jpg" alt="Jeans" loading="lazy"><span
+              class="nf-cat-card__name">JEANS &amp; PANTS</span></div>
+          <div class="nf-cat-card__info">
+            <p class="nf-cat-card__offer">Up to 45% off</p>
+            <p class="nf-cat-card__desc">Denim &amp; more</p>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -339,10 +546,7 @@
   <section class="nf-sec nf-sec--cats" *ngIf="data?.content?.categories_icon_list?.status">
     <div class="container-fluid-lg">
       <h2 class="nf-home-section-title nf-home-section-title--center">All Categories</h2>
-      <app-theme-categories
-        [style]="'horizontal'"
-        [theme]="'paris'"
-        [sliderOption]="categorySlider"
+      <app-theme-categories [style]="'horizontal'" [theme]="'paris'" [sliderOption]="categorySlider"
         [categoryIds]="data?.content?.categories_icon_list?.category_ids || []"
         [image]="data?.content?.categories_icon_list?.image_url">
       </app-theme-categories>

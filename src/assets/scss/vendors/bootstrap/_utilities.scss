@@ -215,7 +215,7 @@ $utilities: map-merge(( // scss-docs-start utils-vertical-align
       ),
       // scss-docs-end utils-flex
       // Margin utilities
-      // scss-docs-start utils-spaGSTg
+      // scss-docs-start utils-spacing
       "margin": (responsive: true,
         property: margin,
         class: m,
@@ -307,7 +307,7 @@ $utilities: map-merge(( // scss-docs-start utils-vertical-align
         property: gap,
         class: gap,
         values: $spacers ),
-      // scss-docs-end utils-spaGSTg
+      // scss-docs-end utils-spacing
       // Text
       // scss-docs-start utils-text
       "font-family": (property: font-family,

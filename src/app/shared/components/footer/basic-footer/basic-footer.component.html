@@ -12,6 +12,11 @@
         <h5 class="nf-col__title">WHO ARE WE</h5>
         <ul class="nf-col__list">
           <li><a routerLink="/page/about-us">About Us</a></li>
+          <li><a routerLink="/contact-us">Contact Us</a></li>
+          <li><a routerLink="/term-condition">Terms &amp; Conditions</a></li>
+          <li><a routerLink="/privacy-policy">Privacy Policy</a></li>
+          <li><a routerLink="/shipping-policy">Shipping Policy</a></li>
+          <li><a routerLink="/refund-and-cancellation">Refund Policy</a></li>
         </ul>
       </div>
 
@@ -21,13 +26,8 @@
         <div class="nf-col__two-col">
           <ul class="nf-col__list">
             <li><a routerLink="/shipping-policy">Shipping &amp; Return Policy</a></li>
-            <li><a routerLink="/Contact-Us">Help Center</a></li>
-            <li><a routerLink="/term-condition">Terms &amp; Conditions</a></li>
-          </ul>
-          <ul class="nf-col__list">
-            <li><a routerLink="/privacy-policy">Privacy Policy</a></li>
+            <li><a routerLink="/contact-us">Help Center</a></li>
             <li><a routerLink="/refund-and-cancellation">Refund &amp; Cancellation</a></li>
-            <li><a routerLink="/Contact-Us">Contact Us</a></li>
           </ul>
         </div>
       </div>
@@ -48,16 +48,20 @@
       <div class="nf-col">
         <h5 class="nf-col__title">FOLLOW US</h5>
         <div class="nf-social-row">
-          <a href="https://www.instagram.com/SPARKSHOPWEARofficial/" target="_blank" rel="noopener" class="nf-social" title="Instagram">
+          <a href="https://www.instagram.com/SPARKSHOPWEARofficial/" target="_blank" rel="noopener" class="nf-social"
+            title="Instagram">
             <i class="ri-instagram-fill"></i>
           </a>
-          <a href="https://www.facebook.com/profile.php?id=61587125992259" target="_blank" rel="noopener" class="nf-social" title="Facebook">
+          <a href="https://www.facebook.com/profile.php?id=61587125992259" target="_blank" rel="noopener"
+            class="nf-social" title="Facebook">
             <i class="ri-facebook-circle-fill"></i>
           </a>
-          <a href="https://www.youtube.com/@SPARKSHOPWEARofficial" target="_blank" rel="noopener" class="nf-social" title="YouTube">
+          <a href="https://www.youtube.com/@SPARKSHOPWEARofficial" target="_blank" rel="noopener" class="nf-social"
+            title="YouTube">
             <i class="ri-youtube-fill"></i>
           </a>
-          <a href="https://www.pinterest.com/SPARKSHOPWEARofficial/" target="_blank" rel="noopener" class="nf-social" title="Pinterest">
+          <a href="https://www.pinterest.com/SPARKSHOPWEARofficial/" target="_blank" rel="noopener" class="nf-social"
+            title="Pinterest">
             <i class="ri-pinterest-fill"></i>
           </a>
         </div>
@@ -135,13 +139,9 @@
         <h5 class="nf-cat-col__title">NEWSLETTER</h5>
         <p class="nf-news-desc">Exclusive offers, latest collections &amp; style tips!</p>
         <div class="nf-news-form">
-          <input type="email" class="nf-news-input"
-                 placeholder="Enter your email address"
-                 [formControl]="email"
-                 (keyup.enter)="submitNewsletter()">
-          <button type="button" class="nf-news-btn"
-                  (click)="submitNewsletter()"
-                  [disabled]="isSubmitting">
+          <input type="email" class="nf-news-input" placeholder="Enter your email address" [formControl]="email"
+            (keyup.enter)="submitNewsletter()">
+          <button type="button" class="nf-news-btn" (click)="submitNewsletter()" [disabled]="isSubmitting">
             {{ isSubmitting ? '...' : 'SUBSCRIBE' }}
           </button>
         </div>
@@ -188,18 +188,24 @@
 <div class="sticky-action-container">
   <div class="social-widget" [class.expanded]="showSocialActions">
     <div class="social-menu">
-      <a href="https://www.facebook.com/profile.php?id=61587125992259" class="social-item" target="_blank" title="Facebook"><i class="ri-facebook-fill"></i></a>
-      <a href="https://x.com/SPARKSHOPWEAR" class="social-item" target="_blank" title="X"><i class="ri-twitter-x-fill"></i></a>
-      <a href="https://www.instagram.com/SPARKSHOPWEARofficial/" class="social-item" target="_blank" title="Instagram"><i class="ri-instagram-fill"></i></a>
-      <a href="https://www.pinterest.com/SPARKSHOPWEARofficial/_profile/" class="social-item" target="_blank" title="Pinterest"><i class="ri-pinterest-fill"></i></a>
-      <a href="https://www.youtube.com/@SPARKSHOPWEARofficial" class="social-item" target="_blank" title="Youtube"><i class="ri-youtube-fill"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=61587125992259" class="social-item" target="_blank"
+        title="Facebook"><i class="ri-facebook-fill"></i></a>
+      <a href="https://x.com/SPARKSHOPWEAR" class="social-item" target="_blank" title="X"><i
+          class="ri-twitter-x-fill"></i></a>
+      <a href="https://www.instagram.com/SPARKSHOPWEARofficial/" class="social-item" target="_blank"
+        title="Instagram"><i class="ri-instagram-fill"></i></a>
+      <a href="https://www.pinterest.com/SPARKSHOPWEARofficial/_profile/" class="social-item" target="_blank"
+        title="Pinterest"><i class="ri-pinterest-fill"></i></a>
+      <a href="https://www.youtube.com/@SPARKSHOPWEARofficial" class="social-item" target="_blank" title="Youtube"><i
+          class="ri-youtube-fill"></i></a>
     </div>
     <button class="social-toggle-btn" (click)="toggleSocialActions()" type="button" title="Social Menu">
       <i class="ri-share-line" *ngIf="!showSocialActions"></i>
       <i class="ri-close-line" *ngIf="showSocialActions"></i>
     </button>
   </div>
-  <button class="back-to-top-btn" [class.show]="showBackToTop" (click)="scrollToTop()" type="button" title="Back to Top">
+  <button class="back-to-top-btn" [class.show]="showBackToTop" (click)="scrollToTop()" type="button"
+    title="Back to Top">
     <i class="ri-arrow-up-line"></i>
   </button>
 </div>

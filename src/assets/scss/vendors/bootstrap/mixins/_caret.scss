@@ -30,7 +30,7 @@
   @if $enable-caret {
     &::after {
       display: inline-block;
-      margin-left: $caret-spaGSTg;
+      margin-left: $caret-spacing;
       vertical-align: $caret-vertical-align;
       content: "";
 
@@ -54,7 +54,7 @@
 
       &::before {
         display: inline-block;
-        margin-right: $caret-spaGSTg;
+        margin-right: $caret-spacing;
         vertical-align: $caret-vertical-align;
         content: "";
         @include caret-start();

@@ -52,7 +52,7 @@
   h4 {
     font-weight: 600;
     margin-bottom: calc(10px + (12 - 10) * ((100vw - 320px) / (1920 - 320)));
-    letter-spaGSTg: 0.4px;
+    letter-spacing: 0.4px;
     font-size: calc(15px + (16 - 15) * ((100vw - 320px) / (1920 - 320)));
     color: var(--theme-color);
     /* MANGAL Orange heading */
@@ -911,7 +911,7 @@
 
         span {
           text-transform: uppercase;
-          letter-spaGSTg: 0.5px;
+          letter-spacing: 0.5px;
         }
       }
     }
@@ -932,7 +932,7 @@
         font-weight: 600;
         font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1920 - 320)));
         text-transform: uppercase;
-        letter-spaGSTg: 0.5px;
+        letter-spacing: 0.5px;
 
         span {
           display: block;
@@ -2701,7 +2701,7 @@
   h4 {
     font-weight: 600;
     margin-bottom: calc(10px + (12 - 10) * ((100vw - 320px) / (1920 - 320)));
-    letter-spaGSTg: 0.4px;
+    letter-spacing: 0.4px;
     font-size: calc(15px + (16 - 15) * ((100vw - 320px) / (1920 - 320)));
   }
 
@@ -3010,7 +3010,7 @@
             background-color: var(--theme-color);
             border: unset;
             color: #ffffff;
-            letter-spaGSTg: 0.9px;
+            letter-spacing: 0.9px;
             font-size: calc(15px + (16 - 15) * ((100vw - 320px) / (1920 - 320)));
 
             i {
@@ -3027,7 +3027,7 @@
               background-color: var(--theme-color);
               border: unset;
               color: #ffffff;
-              letter-spaGSTg: 0.9px;
+              letter-spacing: 0.9px;
               font-size: 23px;
               padding: 7px 16px;
               border-radius: 9px;
@@ -3625,7 +3625,7 @@
       span {
         font-size: 13px;
         font-weight: 400;
-        letter-spaGSTg: 0.5px;
+        letter-spacing: 0.5px;
         line-height: 1;
       }
     }
@@ -3723,7 +3723,7 @@
         border-radius: 5px;
         border: none;
         font-size: 16px;
-        letter-spaGSTg: 1.1px;
+        letter-spacing: 1.1px;
         padding: calc(10px + (12 - 10) * ((100vw - 320px) / (1920 - 320))) calc(16px + (29 - 16) * ((100vw - 320px) / (1920 - 320)));
       }
     }

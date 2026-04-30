@@ -1,47 +1,133 @@
-<!-- Hero Section -->
+<app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+
+<!-- 1. Hero Section -->
 <section class="policy-hero-section">
-  <div class="container-fluid-lg">
-    <div class="row">
-      <div class="col-12">
-        <div class="policy-hero-content">
-          <div class="hero-icon-wrapper">
-            <i class="ri-truck-line"></i>
-          </div>
-          <h1 class="hero-title">Shipping & Delivery Policy</h1>
-          <p class="hero-subtitle">Fast and reliable delivery to your doorstep</p>
-        </div>
-      </div>
+    <div class="container">
+        <h1 class="hero-title">Shipping & Delivery</h1>
+        <p class="hero-subtitle">Fast, reliable, and hassle-free delivery for every order</p>
     </div>
-  </div>
 </section>
 
-<!-- Shipping Content Section -->
-<section class="policy-content-section section-lg-space">
-  <div class="container-fluid-lg">
-    <div class="row">
-      <div class="col-12">
-        <div class="policy-content-card">
-          <div class="content-body">
-            <div class="shipping-info-grid">
-              <div class="shipping-card">
-                <div class="card-icon-wrapper">
-                  <i class="ri-shopping-bag-line"></i>
-                </div>
-                <h3 class="card-title">For Normal Orders</h3>
-                <p class="card-description">All the orders will be delivered within 10-15 days.</p>
-              </div>
-              <div class="shipping-card">
-                <div class="card-icon-wrapper">
-                  <i class="ri-archive-line"></i>
-                </div>
-                <h3 class="card-title">For Bulk Orders</h3>
-                <p class="card-description">All the orders will be delivered within 10-15 business days.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+<!-- 2. Quick Info Cards -->
+<section class="shipping-quick-grid">
+    <div class="quick-card">
+        <div class="card-icon"><i class="ri-flashlight-line"></i></div>
+        <h4 class="card-title">Fast Dispatch</h4>
+        <p class="card-text">Orders are processed within 1–2 business days</p>
     </div>
-  </div>
+    <div class="quick-card">
+        <div class="card-icon"><i class="ri-truck-line"></i></div>
+        <h4 class="card-title">Delivery Time</h4>
+        <p class="card-text">Receive your order in 3–7 business days</p>
+    </div>
+    <div class="quick-card">
+        <div class="card-icon"><i class="ri-map-2-line"></i></div>
+        <h4 class="card-title">Pan India Shipping</h4>
+        <p class="card-text">We deliver to all metro and non-metro locations</p>
+    </div>
 </section>
-  
+
+<!-- 3. Main Content Section -->
+<div class="policy-main-container">
+    <main class="policy-content-card">
+        
+        <!-- Introduction -->
+        <section class="policy-section">
+            <h2 class="section-title">Introduction</h2>
+            <p class="section-text">
+                At <strong>Sparkshopwear</strong>, we are committed to delivering your orders quickly, safely, and efficiently. This Shipping & Delivery Policy outlines how we process, ship, and deliver your purchases.
+            </p>
+        </section>
+
+        <!-- Order Processing -->
+        <section class="policy-section">
+            <h2 class="section-title">Order Processing</h2>
+            <ul class="section-list">
+                <li>All orders are processed within <strong>1–2 business days</strong> after confirmation.</li>
+                <li>Orders are not processed on Sundays or public holidays.</li>
+                <li>Once your order is shipped, you will receive a confirmation message with tracking details.</li>
+            </ul>
+        </section>
+
+        <!-- Shipping Timeline -->
+        <section class="policy-section">
+            <h2 class="section-title">Shipping Timeline</h2>
+            <p class="section-text">We aim to deliver your products within the following timeframes:</p>
+            <ul class="section-list">
+                <li><strong>Metro Cities:</strong> 3–5 business days</li>
+                <li><strong>Other Locations:</strong> 5–7 business days</li>
+            </ul>
+            <p class="section-text">Please note that delivery timelines may vary depending on your location and courier availability.</p>
+        </section>
+
+        <!-- Shipping Charges -->
+        <section class="policy-section">
+            <h2 class="section-title">Shipping Charges</h2>
+            <ul class="section-list">
+                <li>We offer free shipping on selected orders (if applicable).</li>
+                <li>A standard shipping fee may be applied at checkout based on your location and order value.</li>
+            </ul>
+        </section>
+
+        <!-- Order Tracking -->
+        <section class="policy-section">
+            <h2 class="section-title">Order Tracking</h2>
+            <ul class="section-list">
+                <li>Once shipped, you will receive a tracking ID via email or SMS.</li>
+                <li>You can track your order in real-time through the provided link.</li>
+            </ul>
+        </section>
+
+        <!-- Highlight Box: Delivery Delays -->
+        <div class="policy-highlight-box">
+            <div class="highlight-icon"><i class="ri-error-warning-line"></i></div>
+            <div class="highlight-content">
+                <h4 class="highlight-title">Important Note on Delivery Delays</h4>
+                <p class="highlight-text">
+                    While we strive to deliver on time, delays may occur due to weather conditions, logistics issues, or high order volume during sale seasons. We appreciate your patience during these times.
+                </p>
+            </div>
+        </div>
+
+        <!-- Delivery Attempts & Address -->
+        <section class="policy-section">
+            <h2 class="section-title">Delivery Attempts</h2>
+            <p class="section-text">Our courier partners will attempt delivery multiple times. If the delivery fails due to an incorrect address or unavailability, the order may be returned to us.</p>
+            
+            <h4 class="mt-4 mb-2">Incorrect Address</h4>
+            <p class="section-text">
+                Please ensure that all shipping details are accurate. Sparkshopwear is not responsible for delivery issues caused by incorrect or incomplete addresses.
+            </p>
+        </section>
+
+        <!-- Damaged or Missing Items -->
+        <section class="policy-section">
+            <h2 class="section-title">Damaged or Missing Items</h2>
+            <p class="section-text">If you receive a damaged package or an item is missing, please:</p>
+            <ul class="section-list">
+                <li>Contact us within <strong>24–48 hours</strong> of delivery.</li>
+                <li>Share clear images of the package and product for quick resolution.</li>
+            </ul>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="policy-contact-box">
+            <h3 class="contact-title">Need Assistance?</h3>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="ri-map-pin-line"></i>
+                    <span>Gurugram, Haryana – 122015</span>
+                </div>
+                <div class="contact-item">
+                    <i class="ri-mail-line"></i>
+                    <a href="mailto:support&#64;sparkshopwear.com">support&#64;sparkshopwear.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="ri-phone-line"></i>
+                    <span>+91 9216196106</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>

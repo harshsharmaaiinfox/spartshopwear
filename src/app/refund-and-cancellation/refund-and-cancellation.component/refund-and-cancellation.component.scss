@@ -1,199 +1,318 @@
-// Modern Refund & Cancellation Page Styles
+// Premium Editorial Refund & Cancellation - Fashion Boutique Style
 
-// Hero Section
+// Design Tokens
+$policy-accent: #8b1c3f; // Maroon/Pink
+$policy-dark:   #222222;
+$policy-gray:   #444444;
+$policy-muted:  #777777;
+$policy-cream:  #fffafa;
+$policy-bg:     #ffffff;
+$policy-card-bg: #ffffff;
+$policy-shadow: 0 15px 45px rgba(0,0,0,0.06);
+$policy-radius: 16px;
+$font-serif: 'Playfair Display', serif;
+$font-sans: 'Raleway', sans-serif;
+
+// ── Hero Section ───────────────────────────────────────────
 .policy-hero-section {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  padding: 15px 0 15px;
-  margin-bottom: 15px;
+  background: linear-gradient(135deg, $policy-cream 0%, #ffeef2 100%);
+  padding: 100px 0 140px;
+  text-align: center;
+  position: relative;
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+  overflow: hidden;
 
-  .policy-hero-content {
-    text-align: center;
-    max-width: 900px;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: $policy-accent;
+    border-radius: 10px;
+  }
+
+  .hero-icon-top {
+    width: 60px;
+    height: 60px;
+    background: rgba($policy-accent, 0.1);
+    color: $policy-accent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    border: 1px solid rgba($policy-accent, 0.2);
+  }
+
+  .hero-title {
+    font-family: $font-serif;
+    font-size: clamp(36px, 5vw, 60px);
+    color: $policy-dark;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 1.1;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+    color: $policy-gray;
+    font-weight: 500;
+    max-width: 600px;
     margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0.8;
+  }
+}
 
-    .hero-icon-wrapper {
-      width: 65px;
-      height: 65px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, #EA5A26 0%, #ff7a4a 100%);
+// ── Highlight Card ─────────────────────────────────────────
+.refund-highlight-section {
+  margin-top: -50px;
+  position: relative;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+
+  .highlight-card {
+    background: white;
+    padding: 40px;
+    border-radius: $policy-radius;
+    box-shadow: $policy-shadow;
+    text-align: center;
+    max-width: 700px;
+    width: 100%;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-icon {
+      font-size: 32px;
+      color: $policy-accent;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .card-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: $policy-dark;
+      margin-bottom: 10px;
+    }
+
+    .card-text {
+      font-size: 16px;
+      color: $policy-gray;
+      margin: 0;
+      line-height: 1.6;
+    }
+  }
+}
+
+// ── Quick Info Cards ───────────────────────────────────────
+.quick-info-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin: 60px 0;
+  padding: 0 20px;
+
+  .quick-card-sm {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+    text-align: center;
+    min-width: 200px;
+    flex: 1;
+    max-width: 250px;
+    border: 1px solid #f8f8f8;
+    
+    i {
+      font-size: 24px;
+      color: $policy-accent;
+      margin-bottom: 12px;
+      display: block;
+    }
+    
+    span {
+      font-size: 15px;
+      font-weight: 600;
+      color: $policy-dark;
+    }
+  }
+}
+
+// ── Main Layout ─────────────────────────────────────────────
+.policy-main-container {
+  padding-bottom: 100px;
+}
+
+.policy-content-card {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: $policy-card-bg;
+  padding: 60px;
+  border-radius: $policy-radius;
+  box-shadow: $policy-shadow;
+  
+  @media (max-width: 575px) {
+    padding: 30px 20px;
+  }
+
+  .policy-section {
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #f5f5f5;
+
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .section-title {
+      font-family: $font-serif;
+      font-size: 26px;
+      color: $policy-dark;
+      margin-bottom: 25px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 50px;
-      margin: 0 auto 30px;
-      box-shadow: 0 8px 25px rgba(234, 90, 38, 0.3);
-    }
-
-    .hero-title {
-      color: #222;
-      font-weight: 700;
-      font-size: 31px;
-      margin-bottom: 5px;
-      line-height: 1.2;
-    }
-
-    .hero-subtitle {
-      color: #6c757d;
-      font-size: 18px;
-      line-height: 1.8;
-      margin: 0;
-    }
-  }
-}
-
-// Policy Content Section
-.policy-content-section {
-  .policy-content-card {
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-
-    .content-body {
-      padding: 40px;
-      display: flex;
-      justify-content: center;
-
-      .refund-info-card {
-        max-width: 600px;
-        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-        padding: 50px 40px;
-        border-radius: 16px;
-        text-align: center;
-        border: 2px solid #e9ecef;
-        transition: all 0.3s ease;
-
-        &:hover {
-          border-color: #EA5A26;
-          transform: translateY(-5px);
-          box-shadow: 0 8px 25px rgba(234, 90, 38, 0.15);
-        }
-
-        .card-icon-wrapper {
-          width: 100px;
-          height: 100px;
-          border-radius: 20px;
-          background: linear-gradient(135deg, #EA5A26 0%, #ff7a4a 100%);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-          font-size: 40px;
-          margin: 0 auto 30px;
-          box-shadow: 0 4px 15px rgba(234, 90, 38, 0.3);
-        }
-
-        .card-title {
-          color: #222;
-          font-weight: 700;
-          font-size: 26px;
-          margin-bottom: 20px;
-        }
-
-        .card-description {
-          color: #6c757d;
-          font-size: 18px;
-          line-height: 1.8;
-          margin: 0;
-        }
+      gap: 15px;
+      
+      &::before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        background: $policy-accent;
+        border-radius: 2px;
+        transform: rotate(45deg);
       }
     }
-  }
-}
 
-// Responsive Design
-@media (max-width: 768px) {
-  .policy-hero-section {
-    padding: 60px 0 40px;
+    .section-text {
+      color: $policy-gray;
+      font-size: 16px;
+      line-height: 1.9;
+      margin-bottom: 20px;
 
-    .policy-hero-content {
-      .hero-icon-wrapper {
-        width: 80px;
-        height: 80px;
-        font-size: 40px;
-        margin-bottom: 25px;
-      }
+      strong { color: $policy-dark; }
+    }
 
-      .hero-title {
-        font-size: 36px;
-      }
+    .section-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
 
-      .hero-subtitle {
+      li {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 15px;
+        color: $policy-gray;
         font-size: 16px;
-      }
-    }
-  }
+        line-height: 1.7;
 
-  .policy-content-section {
-    .policy-content-card {
-      .content-body {
-        padding: 30px 25px;
-
-        .refund-info-card {
-          padding: 40px 30px;
-
-          .card-icon-wrapper {
-            width: 80px;
-            height: 80px;
-            font-size: 35px;
-          }
-
-          .card-title {
-            font-size: 22px;
-          }
-
-          .card-description {
-            font-size: 16px;
-          }
+        &::before {
+          content: '\eb7b'; // Remix icon arrow-right-s-line
+          font-family: 'remixicon';
+          position: absolute;
+          left: 0;
+          color: $policy-accent;
+          font-weight: bold;
         }
       }
     }
   }
 }
 
-@media (max-width: 576px) {
-  .policy-hero-section {
-    padding: 40px 0 30px;
+// ── Highlight Box ──────────────────────────────────────────
+.policy-info-box {
+  background: rgba($policy-accent, 0.04);
+  border: 1px dashed $policy-accent;
+  padding: 25px;
+  border-radius: 12px;
+  margin: 30px 0;
+  text-align: center;
+  
+  p {
+    margin: 0;
+    color: $policy-dark;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 
-    .policy-hero-content {
-      .hero-icon-wrapper {
-        width: 70px;
-        height: 70px;
-        font-size: 35px;
+    i { color: $policy-accent; font-size: 20px; }
+  }
+}
+
+// ── Contact Info Box ──────────────────────────────────────
+.policy-contact-box {
+  margin-top: 80px;
+  padding: 60px;
+  background: $policy-cream;
+  border-radius: $policy-radius;
+  text-align: center;
+
+  .contact-title {
+    font-family: $font-serif;
+    font-size: 28px;
+    color: $policy-dark;
+    margin-bottom: 20px;
+  }
+
+  .contact-text {
+    color: $policy-muted;
+    margin-bottom: 30px;
+  }
+
+  .contact-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: $policy-dark;
+      font-weight: 500;
+      
+      i {
+        font-size: 20px;
+        color: $policy-accent;
       }
 
-      .hero-title {
-        font-size: 28px;
+      a {
+        color: inherit;
+        text-decoration: none;
+        &:hover { color: $policy-accent; }
       }
     }
   }
+}
 
-  .policy-content-section {
-    .policy-content-card {
-      border-radius: 16px;
+// Smooth scroll
+:host {
+  scroll-behavior: smooth;
+}
 
-      .content-body {
-        padding: 25px 20px;
-
-        .refund-info-card {
-          padding: 30px 20px;
-
-          .card-icon-wrapper {
-            width: 70px;
-            height: 70px;
-            font-size: 30px;
-          }
-
-          .card-title {
-            font-size: 20px;
-          }
-
-          .card-description {
-            font-size: 15px;
-          }
-        }
-      }
-    }
-  }
+// Dark Mode Support
+html.dark {
+  .policy-hero-section { background: linear-gradient(135deg, #1C1C2E 0%, #2A2A40 100%); .hero-title { color: white; } .hero-subtitle { color: #aaaaaa; } }
+  .refund-highlight-section .highlight-card { background: #1a1a2e; .card-title { color: white; } .card-text { color: #cccccc; } }
+  .quick-info-row .quick-card-sm { background: #1a1a2e; border-color: #333; span { color: white; } }
+  .policy-content-card { background: #1a1a2e; .section-title { color: white; } .section-text { color: #cccccc; } .section-list li { color: #cccccc; } }
+  .policy-info-box { background: rgba(255, 255, 255, 0.05); p { color: white; } }
+  .policy-contact-box { background: #1a1a2e; .contact-title { color: white; } .contact-item { color: #cccccc; } }
 }

@@ -162,7 +162,7 @@
   .member-button {
     font-size: calc(15px + (18 - 15) * ((100vw - 320px) / (1920 - 320)));
     font-weight: 500;
-    letter-spaGSTg: 1.4px;
+    letter-spacing: 1.4px;
   }
 
   .special-seller-box {
@@ -175,7 +175,7 @@
     h5 {
       font-weight: 500;
       font-size: 20px;
-      letter-spaGSTg: 0;
+      letter-spacing: 0;
       padding-bottom: 18px;
       border-bottom: 1px solid $content-color;
       margin-bottom: 25px;
@@ -262,7 +262,7 @@
     p {
       margin: 0;
       font-size: 14px;
-      letter-spaGSTg: 0.5px;
+      letter-spacing: 0.5px;
       line-height: 1.4;
     }
 
@@ -914,7 +914,7 @@
       a {
         width: 100%;
         font: inherit;
-        letter-spaGSTg: 0.04em;
+        letter-spacing: 0.04em;
         padding: calc(8px + (12 - 8) * ((100vw - 320px) / (1920 - 320))) calc(14px + (20 - 14) * ((100vw - 320px) / (1920 - 320)));
 
         &.shopping-button {
@@ -1189,7 +1189,7 @@
         border-radius: 4px;
         color: #ffffff;
         font-size: 12px;
-        letter-spaGSTg: 0.8px;
+        letter-spacing: 0.8px;
 
         body.rtl & {
           right: unset;
@@ -1332,7 +1332,7 @@
       }
 
       h5 {
-        letter-spaGSTg: 0.5px;
+        letter-spacing: 0.5px;
         display: flex;
         align-items: center;
 
@@ -2317,7 +2317,7 @@
         p {
           margin-bottom: 0;
           line-height: 1.2;
-          letter-spaGSTg: 0.05em;
+          letter-spacing: 0.05em;
         }
       }
     }
@@ -3343,7 +3343,7 @@
       }
 
       h5 {
-        letter-spaGSTg: 3px;
+        letter-spacing: 3px;
         color: #ddd;
         text-transform: uppercase;
       }
@@ -3826,13 +3826,13 @@
 
       h3 {
         font-size: calc(18px + (20 - 18) * ((100vw - 320px) / (1920 - 320)));
-        letter-spaGSTg: 0.7px;
+        letter-spacing: 0.7px;
         font-weight: 700;
       }
 
       h5 {
         margin-top: 6px;
-        letter-spaGSTg: 0.5px;
+        letter-spacing: 0.5px;
         color: $content-color;
       }
 
@@ -4491,7 +4491,7 @@
 
       li {
         background-color: $border-color;
-        letter-spaGSTg: 0.5px;
+        letter-spacing: 0.5px;
         padding: 4px 11px;
         border-radius: 3px;
         color: $title-color;
@@ -4625,7 +4625,7 @@
 
       li {
         background-color: $border-color;
-        letter-spaGSTg: 0.5px;
+        letter-spacing: 0.5px;
         padding: 4px 11px;
         border-radius: 3px;
         color: $title-color;
@@ -4985,7 +4985,7 @@
       .product-label {
         padding: 5px 10px;
         font-size: 13px;
-        letter-spaGSTg: 0.5px;
+        letter-spacing: 0.5px;
         border-radius: 4px;
         color: var(--theme-color);
         position: relative;
@@ -5087,7 +5087,7 @@
       .product-label {
         padding: 5px 10px;
         font-size: 13px;
-        letter-spaGSTg: 0.5px;
+        letter-spacing: 0.5px;
         border-radius: 4px;
         color: var(--theme-color);
         position: relative;

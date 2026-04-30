@@ -327,7 +327,7 @@
           h3 {
             font-size: calc(18px + (22 - 18) * ((100vw - 320px) / (1920 - 320)));
             font-weight: 600;
-            letter-spaGSTg: 0.7px;
+            letter-spacing: 0.7px;
           }
 
           h6 {
@@ -602,7 +602,7 @@
           margin: 0;
           font-size: calc(14px + (15 - 14) * ((100vw - 320px) / (1920 - 320)));
           line-height: 1.5;
-          letter-spaGSTg: 0.3px;
+          letter-spacing: 0.3px;
         }
       }
 
@@ -675,7 +675,7 @@
                 font-weight: 600;
                 display: flex;
                 align-items: center;
-                letter-spaGSTg: 0.6px;
+                letter-spacing: 0.6px;
                 font-size: calc(17px + (20 - 17) * ((100vw - 320px) / (1920 - 320)));
 
                 span {
@@ -702,7 +702,7 @@
               h6 {
                 margin-top: 6px;
                 font-size: calc(14px + (15 - 14) * ((100vw - 320px) / (1920 - 320)));
-                letter-spaGSTg: 0.6px;
+                letter-spacing: 0.6px;
                 font-weight: 300;
                 line-height: 1.5;
               }
@@ -823,7 +823,7 @@
             border-radius: 4px;
             color: #ffffff;
             font-size: 12px;
-            letter-spaGSTg: 0.8px;
+            letter-spacing: 0.8px;
 
             body.rtl & {
               right: unset;
@@ -905,7 +905,7 @@
                       border-radius: 4px;
                       color: #ffffff;
                       font-size: 12px;
-                      letter-spaGSTg: 0.8px;
+                      letter-spacing: 0.8px;
                     }
                   }
                 }

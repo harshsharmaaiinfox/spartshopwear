@@ -1,61 +1,58 @@
 <app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
 
-<!-- Hero Section -->
+<!-- ══════════════════════════════════════════
+  1. HERO SECTION: IMMERSIVE ENTRY
+══════════════════════════════════════════ -->
 <section class="contact-hero-section">
     <div class="container-fluid-lg">
-        <div class="row">
-            <div class="col-12">
-                <div class="contact-hero-content">
-                    <div class="hero-icon-wrapper">
-                        <i class="ri-customer-service-2-line"></i>
-                    </div>
-                    <h1 class="hero-title">Contact Us</h1>
-                    <p class="hero-subtitle">We'd love to hear from you!</p>
-                    <p class="hero-description">
-                        Get in touch with our customer support team for any questions, assistance, or feedback. We're
-                        here to help you 24/7.
-                    </p>
-                </div>
+        <div class="contact-hero-grid">
+            <div class="hero-text-content">
+                <h1 class="hero-title">Contact Us</h1>
+                <span class="hero-subtitle">We'd love to hear from you!</span>
+                <p class="hero-description">
+                    Have a question about our products, your order, or anything else? Our team at Sparkshopwear is
+                    always here to help you with quick and friendly support.
+                </p>
+
+                <p class="hero-description mt-3">
+                    At Sparkshopwear, your experience matters to us. Whether you need help choosing the right outfit,
+                    tracking your order, or sharing feedback, feel free to reach out anytime. We aim to make your
+                    shopping experience smooth and hassle-free.
+                </p>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="assets/images/contactus-image.png" alt="Get in touch with Sparkshopwear" class="model-image">
             </div>
         </div>
     </div>
 </section>
 
-<!-- Contact Information & Form Section -->
-<section class="contact-main-section section-lg-space">
+<!-- ══════════════════════════════════════════
+  2. MAIN SECTION: THE OVERLAP
+══════════════════════════════════════════ -->
+<section class="contact-main-section">
+    <img src="assets/images/web-logo.png" alt="" class="background-logo">
     <div class="container-fluid-lg">
-        <div class="row g-4">
-            <!-- Company Information Section -->
+        <div class="row align-items-center">
+
+            <!-- Company Information: Refined List -->
             <div class="col-lg-5">
-                <div class="contact-info-card">
-                    <div class="card-header-modern">
-                        <h3 class="section-title">
-                            <i class="ri-information-line"></i> Company Information
-                        </h3>
+                <div class="contact-info-list">
+                    <div class="section-header">
+                        <h2 class="section-title">Visit Our Boutique</h2>
                     </div>
-                    <div class="card-body-modern">
+                    <div class="info-list-wrapper">
+                        <!-- Brand Name -->
                         <div class="info-item">
-                            <div class="info-icon-wrapper">
-                                <i class="ri-building-line"></i>
-                            </div>
+                            <i class="ri-building-line info-icon"></i>
                             <div class="info-content">
-                                <label class="info-label">Company Name</label>
-                                <p class="info-value">SPARK SHOP LANDCRAFTS PRIVATE LIMITED</p>
+                                <label class="info-label">Brand Name</label>
+                                <p class="info-value">Sparkshopwear</p>
                             </div>
                         </div>
+                        <!-- Email -->
                         <div class="info-item">
-                            <div class="info-icon-wrapper">
-                                <i class="ri-file-text-line"></i>
-                            </div>
-                            <div class="info-content">
-                                <label class="info-label">GST</label>
-                                <p class="info-value">09AAKCM2049Q1ZS</p>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-icon-wrapper">
-                                <i class="ri-mail-line"></i>
-                            </div>
+                            <i class="ri-mail-open-line info-icon"></i>
                             <div class="info-content">
                                 <label class="info-label">Email Address</label>
                                 <p class="info-value">
@@ -63,156 +60,85 @@
                                 </p>
                             </div>
                         </div>
+                        <!-- Address -->
                         <div class="info-item">
-                            <div class="info-icon-wrapper">
-                                <i class="ri-map-pin-line"></i>
-                            </div>
+                            <i class="ri-map-pin-2-line info-icon"></i>
                             <div class="info-content">
                                 <label class="info-label">Registered Address</label>
                                 <div class="info-value">
-                                    <div>Ground Floor, Plot No. 23, MiQB Building</div>
-                                    <div>Maruti Industrial Area, Sector 18</div>
-                                    <div>Gurugram, Haryana – 122015</div>
+                                    Ground Floor, Plot No. 23, MiQB Building, <br>
+                                    Maruti Industrial Area, Sector 18, <br>
+                                    Gurugram, Haryana – 122015
                                 </div>
                             </div>
                         </div>
+                        <!-- CIN -->
                         <div class="info-item">
-                            <div class="info-icon-wrapper">
-                                <i class="ri-global-line"></i>
-                            </div>
+                            <i class="ri-government-line info-icon"></i>
                             <div class="info-content">
-                                <label class="info-label">Website</label>
-                                <p class="info-value">
-                                    <a href="https://sparkshopwear.com" target="_blank">sparkshopwear.com</a>
-                                </p>
+                                <label class="info-label">Corporate Info</label>
+                                <p class="info-value">CIN: 09AAKCM2049Q1ZS</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Contact Form Section -->
+            <!-- Get In Touch Form: Clean & Floating -->
             <div class="col-lg-7">
-                <div class="contact-form-card">
-                    <div class="card-header-modern">
-                        <h3 class="section-title">
-                            <i class="ri-message-3-line"></i> Get In Touch
-                        </h3>
-                        <p class="section-subtitle">Fill out the form below and we'll get back to you as soon as
-                            possible.</p>
+                <div class="contact-form-wrapper">
+                    <div class="form-header">
+                        <h3 class="form-title">Get In Touch</h3>
+                        <p class="form-subtitle">Fill out the form below and we'll get back to you as soon as possible.
+                        </p>
                     </div>
-                    <div class="card-body-modern">
-                        <form [formGroup]="form" (ngSubmit)="submit()">
-                            <div class="contact-form-fields">
-                                <div class="form-field-wrapper">
-                                    <label class="form-label-modern" for="fullname">
-                                        <i class="ri-user-line"></i>
-                                        {{ 'full_name' | translate }}
-                                    </label>
-                                    <div class="input-wrapper">
-                                        <input type="text" class="form-input-modern" id="fullname"
-                                            placeholder="{{ 'enter_full_name' | translate }}" formControlName="name"
-                                            (input)="filterSpecialCharacters($event, 'name')" pattern="[a-zA-Z\s]+">
-                                        <i class="ri-user-3-fill input-icon"></i>
-                                    </div>
-                                    <div class="error-message"
-                                        *ngIf="form.controls['name'].touched && form.controls['name'].errors?.['required']">
-                                        <i class="ri-error-warning-line"></i>
-                                        <span>{{ 'name_is_required' | translate }}</span>
-                                    </div>
-                                </div>
+                    <form [formGroup]="form" (ngSubmit)="submit()" class="floating-form">
 
-                                <div class="form-row">
-                                    <div class="form-field-wrapper">
-                                        <label class="form-label-modern" for="email">
-                                            <i class="ri-mail-line"></i>
-                                            {{ 'email_address' | translate }}
-                                        </label>
-                                        <div class="input-wrapper">
-                                            <input type="email" class="form-input-modern" id="email"
-                                                placeholder="{{ 'enter_email_address' | translate }}"
-                                                formControlName="email" (input)="filterEmailCharacters($event)"
-                                                pattern="[a-zA-Z0-9._\-+@]+">
-                                            <i class="ri-mail-fill input-icon"></i>
-                                        </div>
-                                        <div class="error-message"
-                                            *ngIf="form.controls['email'].touched && form.controls['email'].errors?.['required']">
-                                            <i class="ri-error-warning-line"></i>
-                                            <span>{{ 'email_is_required' | translate }}</span>
-                                        </div>
-                                        <div class="error-message"
-                                            *ngIf="form.controls['email'].touched && form.controls['email'].errors?.['email']">
-                                            <i class="ri-error-warning-line"></i>
-                                            <span>{{ 'invalid_email' | translate }}</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-field-wrapper">
-                                        <label class="form-label-modern" for="phonenumber">
-                                            <i class="ri-phone-line"></i>
-                                            {{ 'phone_number' | translate }}
-                                        </label>
-                                        <div class="input-wrapper">
-                                            <input type="tel" class="form-input-modern" id="phonenumber"
-                                                placeholder="{{ 'enter_your_phone_number' | translate }}"
-                                                formControlName="phone" (input)="filterPhoneNumber($event)"
-                                                maxlength="10" pattern="[0-9]{10}">
-                                            <i class="ri-smartphone-line input-icon"></i>
-                                        </div>
-                                        <div class="error-message"
-                                            *ngIf="form.controls['phone'].touched && form.controls['phone'].errors?.['required']">
-                                            <i class="ri-error-warning-line"></i>
-                                            <span>{{ 'phone_number_is_required' | translate }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-field-wrapper">
-                                    <label class="form-label-modern" for="subject">
-                                        <i class="ri-file-list-line"></i>
-                                        {{ 'subject' | translate }}
-                                    </label>
-                                    <div class="input-wrapper">
-                                        <input type="text" class="form-input-modern" id="subject"
-                                            placeholder="{{ 'enter_subject' | translate }}" formControlName="subject">
-                                        <i class="ri-file-text-line input-icon"></i>
-                                    </div>
-                                    <div class="error-message"
-                                        *ngIf="form.controls['subject'].touched && form.controls['subject'].errors?.['required']">
-                                        <i class="ri-error-warning-line"></i>
-                                        <span>{{ 'subject_is_required' | translate }}</span>
-                                    </div>
-                                </div>
-
-                                <div class="form-field-wrapper">
-                                    <label class="form-label-modern" for="message">
-                                        <i class="ri-message-2-line"></i>
-                                        {{ 'message' | translate }}
-                                    </label>
-                                    <div class="input-wrapper">
-                                        <textarea class="form-textarea-modern" id="message"
-                                            placeholder="{{ 'enter_your_message' | translate }}" rows="6"
-                                            formControlName="message"></textarea>
-                                        <i class="ri-chat-2-fill input-icon textarea-icon"></i>
-                                    </div>
-                                    <div class="error-message"
-                                        *ngIf="form.controls['message'].touched && form.controls['message'].errors?.['required']">
-                                        <i class="ri-error-warning-line"></i>
-                                        <span>{{ 'message_is_required' | translate }}</span>
-                                    </div>
-                                </div>
+                        <!-- Row 1: Name & Email -->
+                        <div class="form-group--half">
+                            <div class="form-group">
+                                <input type="text" class="form-control-modern" id="name" placeholder=" "
+                                    formControlName="name">
+                                <label for="name" class="form-label-floating">{{ 'full_name' | translate }}</label>
                             </div>
-
-                            <div class="form-submit-wrapper">
-                                <button type="submit" class="btn-submit" [disabled]="form.invalid">
-                                    <i class="ri-send-plane-fill"></i>
-                                    <span>{{ 'send_message' | translate }}</span>
-                                </button>
+                            <div class="form-group">
+                                <input type="email" class="form-control-modern" id="email" placeholder=" "
+                                    formControlName="email">
+                                <label for="email" class="form-label-floating">{{ 'email_address' | translate }}</label>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+
+                        <!-- Row 2: Phone & Subject -->
+                        <div class="form-group--half">
+                            <div class="form-group">
+                                <input type="tel" class="form-control-modern" id="phone" placeholder=" "
+                                    formControlName="phone" maxlength="10">
+                                <label for="phone" class="form-label-floating">{{ 'phone_number' | translate }}</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control-modern" id="subject" placeholder=" "
+                                    formControlName="subject">
+                                <label for="subject" class="form-label-floating">{{ 'subject' | translate }}</label>
+                            </div>
+                        </div>
+
+                        <!-- Row 3: Message -->
+                        <div class="form-group">
+                            <textarea class="form-control-modern" id="message" placeholder=" " formControlName="message"
+                                rows="4"></textarea>
+                            <label for="message" class="form-label-floating">{{ 'message' | translate }}</label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="form-submit">
+                            <button type="submit" class="btn-submit-pill" [disabled]="form.invalid">
+                                {{ 'send_message' | translate }}
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
+
         </div>
     </div>
 </section>

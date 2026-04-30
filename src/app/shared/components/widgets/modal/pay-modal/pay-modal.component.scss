@@ -17,7 +17,7 @@
       width: 60px;
       height: 60px;
       border-radius: 14px;
-      background: linear-gradient(135deg, #A61C540%, #ff7a4a 100%);
+      background: linear-gradient(135deg, #A61C54 0%, #ff7a4a 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -89,7 +89,7 @@
               box-shadow: 0 4px 15px rgba(212, 20, 90, 0.2);
 
               .payment-method-icon {
-                background: linear-gradient(135deg, #A61C540%, #ff7a4a 100%);
+                background: linear-gradient(135deg, #A61C54 0%, #ff7a4a 100%);
                 color: white;
                 transform: scale(1.1);
               }

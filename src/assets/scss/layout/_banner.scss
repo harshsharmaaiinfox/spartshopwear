@@ -430,7 +430,7 @@
 
     h5 {
       font-size: calc(15px + (18 - 15) * ((100vw - 320px) / (1920 - 320)));
-      letter-spaGSTg: 1px;
+      letter-spacing: 1px;
     }
 
     h6 {
@@ -443,7 +443,7 @@
       margin-bottom: 0;
       line-height: 1.5;
       color: $content-color;
-      letter-spaGSTg: 0.8px;
+      letter-spacing: 0.8px;
     }
 
     .banner-list {
@@ -529,13 +529,13 @@
     background-color: rgba($white, $alpha: 0.95);
 
     h5 {
-      letter-spaGSTg: 0.6px;
+      letter-spacing: 0.6px;
       margin-bottom: 3px;
       font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
     }
 
     h6 {
-      letter-spaGSTg: 1.7px;
+      letter-spacing: 1.7px;
       color: $content-color;
     }
   }
@@ -553,7 +553,7 @@
       display: block;
 
       span {
-        letter-spaGSTg: 1.5px;
+        letter-spacing: 1.5px;
         font-size: calc(16px + (18 - 16) * ((100vw - 320px) / (1920 - 320)));
         font-weight: 500;
       }

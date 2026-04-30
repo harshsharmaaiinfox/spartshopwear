@@ -351,10 +351,10 @@ $prefix: $variable-prefix !default;
 $gradient: linear-gradient(180deg, rgba($white, .15), rgba($white, 0)) !default;
 // scss-docs-end variable-gradient
 
-// SpaGSTg
+// spacing
 //
 // Control the default styling of most Bootstrap elements by modifying these
-// variables. Mostly focused on spaGSTg.
+// variables. Mostly focused on spacing.
 // You can add more entries to the $spacers map, should you need more variation.
 
 // scss-docs-start spacer-variables-maps
@@ -498,7 +498,7 @@ $component-active-bg: $primary !default;
 // scss-docs-start caret-variables
 $caret-width: .3em !default;
 $caret-vertical-align: $caret-width * .85 !default;
-$caret-spaGSTg: $caret-width * .85 !default;
+$caret-spacing: $caret-width * .85 !default;
 // scss-docs-end caret-variables
 
 $transition-base: all .2s ease-in-out !default;
@@ -1376,7 +1376,7 @@ $toast-border-width: $border-width !default;
 $toast-border-color: var(--#{$prefix}border-color-translucent) !default;
 $toast-border-radius: $border-radius !default;
 $toast-box-shadow: $box-shadow !default;
-$toast-spaGSTg: $container-padding-x !default;
+$toast-spacing: $container-padding-x !default;
 
 $toast-header-color: $gray-600 !default;
 $toast-header-background-color: rgba($white, .85) !default;
