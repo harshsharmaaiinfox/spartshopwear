@@ -4,11 +4,9 @@
   <header class="acc-dash__header">
     <div class="acc-dash__header-main">
       <div class="acc-avatar">
-        <img *ngIf="(user$ | async)?.profile_image?.original_url"
-             [src]="(user$ | async)?.profile_image?.original_url"
-             class="acc-avatar__img" alt="profile">
-        <span *ngIf="!(user$ | async)?.profile_image?.original_url"
-              class="acc-avatar__initials">
+        <img *ngIf="(user$ | async)?.profile_image?.original_url" [src]="(user$ | async)?.profile_image?.original_url"
+          class="acc-avatar__img" alt="profile">
+        <span *ngIf="!(user$ | async)?.profile_image?.original_url" class="acc-avatar__initials">
           {{ (user$ | async)?.name?.charAt(0)?.toUpperCase() || 'U' }}
         </span>
       </div>
@@ -53,7 +51,9 @@
             <dd *ngIf="(user$ | async)?.phone; else noPhone">
               +{{ (user$ | async)?.country_code }} {{ (user$ | async)?.phone }}
             </dd>
-            <ng-template #noPhone><dd class="acc-field__muted">Not added</dd></ng-template>
+            <ng-template #noPhone>
+              <dd class="acc-field__muted">Not added</dd>
+            </ng-template>
           </div>
           <div class="acc-field acc-field--row">
             <dt>Password</dt>
@@ -122,14 +122,14 @@
             <i class="ri-arrow-right-s-line acc-nav__chev"></i>
           </button>
 
-          <button type="button" class="acc-nav__item" (click)="navigateTo('notifications')">
+          <!-- <button type="button" class="acc-nav__item" (click)="navigateTo('notifications')">
             <i class="ri-notification-3-line"></i>
             <span class="acc-nav__text">
               <span class="acc-nav__label">Notifications</span>
               <span class="acc-nav__sub">Email &amp; alert preferences</span>
             </span>
             <i class="ri-arrow-right-s-line acc-nav__chev"></i>
-          </button>
+          </button> -->
         </nav>
       </section>
     </aside>

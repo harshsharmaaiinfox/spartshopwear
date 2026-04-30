@@ -218,9 +218,9 @@ $ease:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
 // ── Login / Register buttons ───────────────────────────────
 .acc-panel__actions {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 18px 20px 14px;
+  flex-direction: row;
+  gap: 12px;
+  padding: 18px 15px 14px;
 }
 
 .acc-btn {
@@ -228,10 +228,10 @@ $ease:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: 100%;
-  padding: 11px 16px;
+  flex: 1;
+  padding: 11px 8px;
   border-radius: 10px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.02em;
   text-decoration: none !important;
