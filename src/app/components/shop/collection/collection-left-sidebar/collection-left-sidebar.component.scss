@@ -1,0 +1,225 @@
+// ============================================================
+// Collection Left Sidebar Page — Nykaa Fashion Style
+// ============================================================
+
+$pink:   #D4145A;
+$dark:   #1C1C2E;
+$white:  #FFFFFF;
+$border: #EBEBEB;
+$bg:     #F7F7F7;
+
+// ── Custom grid columns (Bootstrap override) ──────────────
+:host ::ng-deep,
+:host {
+  .col-custome-3 {
+    width: 22%;
+    flex: 0 0 22%;
+    max-width: 22%;
+    padding-right: 0;
+
+    @media (max-width: 991px) {
+      width: 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+
+  .col-custome-9 {
+    width: 78%;
+    flex: 0 0 78%;
+    max-width: 78%;
+
+    @media (max-width: 991px) {
+      width: 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+// ── Page title bar ───────────────────────────────────────
+.nf-collection-title-bar {
+  text-align: center;
+  padding: 32px 16px 8px;
+  background: $white;
+}
+
+.nf-collection-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: $dark;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+// ── Page section ─────────────────────────────────────────
+.shop-section {
+  background: $white;
+  padding-top: 32px;
+  padding-bottom: 60px;
+}
+
+// ── Left sidebar column ───────────────────────────────────
+.col-custome-3 {
+  .left-box {
+    position: sticky;
+    top: 80px;
+    max-height: calc(100vh - 90px);
+    overflow-y: auto;
+    padding-right: 24px;
+    scrollbar-width: thin;
+    scrollbar-color: #E0E0E0 transparent;
+
+    &::-webkit-scrollbar { width: 3px; }
+    &::-webkit-scrollbar-track { background: transparent; }
+    &::-webkit-scrollbar-thumb { background: #E0E0E0; border-radius: 3px; }
+  }
+}
+
+// ── Product card overrides for collection page ────────────
+::ng-deep {
+  .nf-product-card {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: $white !important;
+
+    &:hover {
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    // Hide elements not in Nykaa reference
+    .nf-product-card__hover-bar  { display: none !important; }
+    .nf-product-card__action     { display: none !important; }
+    .nf-product-card__rating     { display: none !important; }
+    .nf-product-card__desc       { display: none !important; }
+
+    // Show Nykaa-style alerts
+    .nf-product-card__price-drop    { display: flex !important; }
+    .nf-product-card__limited-stock { display: block !important; }
+
+    // No hover image zoom
+    &:hover .nf-product-card__img { transform: none !important; }
+
+    // Portrait image
+    .nf-product-card__img-wrap {
+      aspect-ratio: 3 / 4 !important;
+      border-radius: 0 !important;
+    }
+
+    // Badge — top-left small pill
+    .nf-product-card__badge {
+      top: 8px !important;
+      left: 8px !important;
+      font-size: 10px !important;
+      padding: 3px 8px !important;
+      border-radius: 2px !important;
+    }
+
+    // Wishlist button — circle top-right
+    .nf-product-card__wishlist {
+      top: 8px !important;
+      right: 8px !important;
+      width: 30px !important;
+      height: 30px !important;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12) !important;
+
+      i { font-size: 15px !important; }
+    }
+
+    // Info area
+    .nf-product-card__info {
+      padding: 10px 0 16px !important;
+      gap: 4px !important;
+      background: $white !important;
+    }
+
+    // Brand name
+    .nf-product-card__brand {
+      font-size: 12.5px !important;
+      font-weight: 700 !important;
+      color: $dark !important;
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+    }
+
+    // Product name
+    .nf-product-card__name {
+      font-size: 12px !important;
+      color: #555 !important;
+      -webkit-line-clamp: 2 !important;
+    }
+
+    // Price
+    .nf-product-card__price {
+      font-size: 14px !important;
+      font-weight: 700 !important;
+      color: $dark !important;
+    }
+
+    .nf-product-card__mrp {
+      font-size: 12px !important;
+      color: #aaa !important;
+      text-decoration: line-through !important;
+    }
+
+    .nf-product-card__discount {
+      font-size: 12px !important;
+      font-weight: 600 !important;
+      color: $pink !important;
+    }
+
+    .nf-product-card__price-row {
+      margin-top: 4px !important;
+      gap: 5px !important;
+      align-items: baseline !important;
+    }
+  }
+}
+
+// ── Product list grid spacing ──────────────────────────────
+::ng-deep .product-list-section {
+  row-gap: 36px !important;
+  column-gap: 0 !important;
+
+  > * {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
+// ── Dark mode ──────────────────────────────────────────────
+html.dark {
+  .shop-section { background: #141420; }
+
+  ::ng-deep .nf-product-card {
+    background: #1e1e2e !important;
+    &:hover { box-shadow: 0 2px 16px rgba(0,0,0,0.35) !important; }
+    .nf-product-card__info  { background: #1e1e2e !important; }
+    .nf-product-card__brand { color: #e0e0e0 !important; }
+    .nf-product-card__name  { color: #999 !important; }
+    .nf-product-card__price { color: #e0e0e0 !important; }
+  }
+}
+
+// ── Mobile offcanvas sidebar ───────────────────────────────
+@media (max-width: 991px) {
+  .col-custome-3 {
+    .left-box {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 300px;
+      height: 100dvh;
+      max-height: 100dvh;
+      background: $white;
+      z-index: 1300;
+      padding: 20px 18px;
+      box-shadow: 4px 0 32px rgba(0, 0, 0, 0.16);
+      transition: left 0.3s ease;
+      border-radius: 0;
+
+      &.show { left: 0; }
+    }
+  }
+}

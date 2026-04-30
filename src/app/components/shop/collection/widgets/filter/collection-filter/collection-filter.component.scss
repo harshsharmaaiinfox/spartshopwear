@@ -1,0 +1,56 @@
+$pink: #D4145A;
+
+:host { display: block; }
+
+.nf-active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 12px 0 6px;
+}
+
+.nf-active-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 6px 5px 10px;
+  border: 1px solid rgba($pink, 0.35);
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+  background: rgba($pink, 0.05);
+  white-space: nowrap;
+  line-height: 1;
+
+  &__remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    color: #aaa;
+    border-radius: 50%;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+
+    i { font-size: 12px; line-height: 1; }
+
+    &:hover {
+      color: $pink;
+      background: rgba($pink, 0.1);
+    }
+  }
+}
+
+html.dark {
+  .nf-active-chip {
+    color: #ccc;
+    background: rgba($pink, 0.08);
+    border-color: rgba($pink, 0.3);
+  }
+}

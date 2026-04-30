@@ -1,0 +1,675 @@
+$pink: #D4145A;
+$pink-light: #e8316e;
+$pink-shadow: rgba(212, 20, 90, 0.2);
+
+// ── Nykaa Horizontal Stepper ──────────────────────────────────────────────
+.nyk-stepper-bar {
+  background: white;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+}
+
+.nyk-stepper-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.nyk-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+
+  .nyk-step-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+
+    i { font-size: 15px; }
+  }
+
+  .nyk-step-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #9ca3af;
+    white-space: nowrap;
+  }
+
+  &--done {
+    .nyk-step-circle {
+      background: #1a1a1a;
+      border-color: #1a1a1a;
+      color: white;
+    }
+    .nyk-step-label { color: #1a1a1a; }
+  }
+
+  &--active {
+    .nyk-step-circle {
+      background: $pink;
+      border-color: $pink;
+      color: white;
+      box-shadow: 0 0 0 4px rgba($pink, 0.15);
+    }
+    .nyk-step-label { color: $pink; }
+  }
+}
+
+.nyk-step-line {
+  flex: 1;
+  height: 1.5px;
+  background: #e5e7eb;
+  margin: 0 14px;
+  min-width: 40px;
+}
+
+// ── Main Checkout Section ─────────────────────────────────────────────────
+.nyk-checkout-section {
+  padding: 48px 0 60px;
+  background: #f9fafb;
+  min-height: calc(100vh - 65px);
+}
+
+// ── Section Header (Choose Address) ──────────────────────────────────────
+.nyk-section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 16px;
+
+  .nyk-section-header-text {
+    .nyk-choose-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+      letter-spacing: -0.5px;
+    }
+    .nyk-choose-sub {
+      font-size: 13.5px;
+      color: #6b7280;
+      margin: 0;
+      line-height: 1.5;
+      max-width: 420px;
+    }
+  }
+
+  .nyk-illustration {
+    width: 160px;
+    flex-shrink: 0;
+    opacity: 0.85;
+
+    svg { width: 100%; height: auto; }
+  }
+}
+
+// ── Address Grid ─────────────────────────────────────────────────────────
+.nyk-address-section,
+.nyk-billing-section {
+  margin-bottom: 24px;
+}
+
+.nyk-address-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+// Add New Address card
+.nyk-add-address-card {
+  border: 2px dashed #d1d5db;
+  border-radius: 10px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  color: #6b7280;
+  background: white;
+  transition: all 0.25s ease;
+  font-size: 14px;
+  font-weight: 600;
+
+  i {
+    font-size: 28px;
+    color: #9ca3af;
+    transition: all 0.25s ease;
+  }
+
+  &:hover {
+    border-color: $pink;
+    color: $pink;
+    background: rgba($pink, 0.03);
+
+    i { color: $pink; }
+  }
+}
+
+// Section sub-heading (Billing, Delivery, etc.)
+.nyk-section-subheading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1.5px solid #f0f0f0;
+
+  h5 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+  }
+}
+
+.nyk-link-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: $pink;
+  text-decoration: none;
+
+  i { font-size: 15px; }
+
+  &:hover { color: $pink-light; text-decoration: underline; }
+}
+
+// Full-width payment section (below delivery)
+.nyk-payment-full-section {
+  margin-top: 20px;
+}
+
+// Delivery Options body
+.nyk-delivery-section {
+  background: white;
+  border-radius: 12px;
+  border: 1.5px solid #f0f0f0;
+  padding: 18px 20px;
+  margin-bottom: 20px;
+}
+
+.nyk-delivery-body { padding-top: 8px; }
+
+// ── Guest User Cards ──────────────────────────────────────────────────────
+.nyk-guest-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.nyk-guest-step {
+  display: flex;
+  gap: 16px;
+  background: white;
+  border-radius: 12px;
+  border: 1.5px solid #f0f0f0;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+
+  .nyk-guest-step-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba($pink, 0.08);
+    color: $pink;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .nyk-guest-step-body {
+    flex: 1;
+
+    h5 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 14px;
+    }
+  }
+}
+
+// ── Modern Form Styles (guest) ────────────────────────────────────────────
+.form-group-modern {
+  margin-bottom: 1.25rem;
+
+  .form-label-modern {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+  }
+
+  .form-control-modern {
+    width: 100%;
+    padding: 11px 14px;
+    font-size: 14px;
+    color: #1f2937;
+    background-color: #fafafa;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    outline: none;
+    height: 44px;
+    box-sizing: border-box;
+
+    &:hover { border-color: #9ca3af; }
+
+    &:focus {
+      border-color: $pink;
+      box-shadow: 0 0 0 3px rgba($pink, 0.1);
+      background-color: white;
+    }
+
+    &::placeholder { color: #c0c0c0; font-size: 13px; }
+
+    &.is-invalid {
+      border-color: #ef4444;
+      &:focus { box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1); }
+    }
+  }
+
+  .error-message {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: #dc2626;
+    font-weight: 500;
+  }
+}
+
+.btn-register {
+  width: 100% !important;
+  padding: 12px 24px !important;
+  background: $pink !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 12px $pink-shadow !important;
+  min-height: 44px !important;
+
+  &:hover:not(:disabled) {
+    background: $pink-light !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba($pink, 0.3) !important;
+  }
+
+  &:disabled {
+    background: #d1d5db !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+}
+
+.already-account-link {
+  font-size: 13px;
+  color: #6b7280;
+
+  a {
+    color: $pink;
+    text-decoration: none;
+    font-weight: 600;
+
+    &:hover { text-decoration: underline; }
+  }
+}
+
+// ── RIGHT SIDEBAR ─────────────────────────────────────────────────────────
+.nyk-right-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: sticky;
+  top: 80px;
+}
+
+.nyk-sidebar-card {
+  background: white;
+  border-radius: 12px;
+  border: 1.5px solid #f0f0f0;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+// Payment options card
+.nyk-payment-card {
+  .nyk-sidebar-card-header {
+    padding: 14px 18px;
+    border-bottom: 1.5px solid #f0f0f0;
+    background: linear-gradient(135deg, #fff5f8 0%, #fce4ec 100%);
+
+    h5 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0;
+    }
+  }
+  .nyk-sidebar-card-body { padding: 14px 18px; }
+}
+
+// Bag card
+.nyk-bag-card { }
+
+.nyk-bag-row {
+  display: flex;
+  align-items: center;
+  padding: 16px 18px;
+  cursor: pointer;
+  gap: 8px;
+  user-select: none;
+
+  .nyk-bag-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+    flex: 1;
+  }
+
+  .nyk-bag-count {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+  }
+
+  .nyk-price-total {
+    color: #1a1a1a;
+    font-weight: 700;
+  }
+
+  i {
+    font-size: 20px;
+    color: #6b7280;
+    transition: transform 0.2s ease;
+  }
+}
+
+.nyk-bag-items {
+  border-top: 1.5px solid #f5f5f5;
+  padding: 14px 18px;
+}
+
+.nyk-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nyk-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+
+  .nyk-item-img {
+    width: 58px;
+    height: 58px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #f5f5f5;
+    border: 1px solid #efefef;
+
+    img { width: 100%; height: 100%; object-fit: cover; }
+  }
+
+  .nyk-item-info {
+    flex: 1;
+    min-width: 0;
+
+    .nyk-item-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .nyk-item-meta {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+
+    .nyk-item-price-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .nyk-item-price {
+        font-size: 14px;
+        font-weight: 700;
+        color: #1a1a1a;
+      }
+
+      .nyk-item-qty {
+        font-size: 13px;
+        color: #9ca3af;
+      }
+    }
+  }
+}
+
+// Price card
+.nyk-price-card { }
+
+.nyk-price-breakdown {
+  border-top: 1.5px solid #f5f5f5;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nyk-price-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13.5px;
+  color: #374151;
+
+  &--total {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+}
+
+.nyk-price-divider {
+  height: 1.5px;
+  background: #f0f0f0;
+  margin: 4px 0;
+}
+
+// Saving strip
+.nyk-saving-strip {
+  background: #e8f5e9;
+  border-radius: 8px;
+  padding: 11px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2e7d32;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  i { font-size: 16px; }
+  strong { font-weight: 700; }
+}
+
+// Min order error
+.nyk-min-order-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #dc2626;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  i { font-size: 16px; }
+}
+
+// Place Order button
+.nyk-place-order-btn {
+  width: 100%;
+  padding: 14px 20px !important;
+  background: $pink !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 6px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  min-height: 50px !important;
+  box-shadow: 0 4px 14px rgba(212, 20, 90, 0.3) !important;
+
+  i { font-size: 16px !important; }
+
+  &:hover:not(:disabled) {
+    background: $pink-light !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 20px rgba(212, 20, 90, 0.4) !important;
+  }
+
+  &:disabled {
+    background: #d1d5db !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+// Trust text
+.nyk-trust-text {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  color: #6b7280;
+  padding: 4px 2px;
+  line-height: 1.5;
+
+  i { font-size: 16px; color: #D4145A; flex-shrink: 0; margin-top: 1px; }
+}
+
+// ── Payment options inner styles ──────────────────────────────────────────
+::ng-deep {
+  .nyk-payment-card {
+    .payment-option .payment-category .form-check.custom-form-check {
+      margin: 0 0 8px 0;
+      padding: 12px 14px;
+      background: #fafafa;
+      border-radius: 10px;
+      border: 1.5px solid #f0f0f0;
+      transition: all 0.25s ease;
+
+      &:last-child { margin-bottom: 0; }
+
+      &:hover {
+        border-color: $pink;
+        background: white;
+      }
+
+      .form-check-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #1a1a1a;
+        cursor: pointer;
+
+        .payment-icon {
+          width: 28px;
+          height: 28px;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}
+
+// ── Responsive ───────────────────────────────────────────────────────────
+@media (max-width: 991px) {
+  .nyk-right-sidebar { position: static; }
+
+  .nyk-section-header {
+    .nyk-illustration { width: 120px; }
+    .nyk-choose-title { font-size: 22px; }
+  }
+
+  .nyk-address-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .nyk-stepper-inner { max-width: 100%; padding: 0 16px; }
+  .nyk-step-label { display: none; }
+  .nyk-step-line { min-width: 24px; }
+
+  .nyk-section-header {
+    .nyk-illustration { width: 90px; }
+    .nyk-choose-title { font-size: 20px; }
+  }
+
+  .nyk-address-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 576px) {
+  .nyk-checkout-section { padding: 16px 0 40px; }
+
+  .nyk-section-header {
+    flex-direction: column;
+    .nyk-illustration { width: 80px; align-self: flex-end; }
+  }
+}

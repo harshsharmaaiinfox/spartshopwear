@@ -1,0 +1,8 @@
+<div class="nf-active-filters" *ngIf="filters?.length">
+  <span class="nf-active-chip" *ngFor="let filter of filters">
+    {{ filter | titleCase }}
+    <button class="nf-active-chip__remove" (click)="remove(filter)" type="button">
+      <i class="ri-close-line"></i>
+    </button>
+  </span>
+</div>

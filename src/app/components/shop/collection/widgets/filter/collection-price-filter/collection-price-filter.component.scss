@@ -1,0 +1,129 @@
+$pink:   #D4145A;
+$dark:   #1C1C2E;
+$border: #E8E8E8;
+$white:  #FFFFFF;
+
+:host { display: block; }
+
+.price-range-filter { padding: 0; }
+
+// ── Input row ──────────────────────────────────────────────
+.price-inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.price-input {
+  flex: 1;
+  padding: 7px 10px;
+  border: 1.5px solid $border;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: $dark;
+  text-align: center;
+  background: $white;
+  outline: none;
+  transition: border-color 0.18s ease;
+
+  &:focus { border-color: $pink; }
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  &[type=number] { -moz-appearance: textfield; }
+}
+
+.price-separator { font-size: 14px; color: #aaa; flex-shrink: 0; }
+
+// ── Slider ─────────────────────────────────────────────────
+.price-slider-container { margin-bottom: 14px; }
+
+.price-slider-track {
+  position: relative;
+  height: 3px;
+  background: #E8E8E8;
+  border-radius: 2px;
+  margin: 18px 0;
+}
+
+.price-slider-fill {
+  position: absolute;
+  height: 100%;
+  background: $pink;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.price-slider {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  outline: none;
+  pointer-events: none;
+  -webkit-appearance: none;
+  appearance: none;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: $white;
+    border: 2.5px solid $pink;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: all;
+    z-index: 2;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.15);
+
+    &:hover {
+      transform: scale(1.25);
+      box-shadow: 0 0 0 5px rgba($pink, 0.12);
+    }
+  }
+
+  &::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: $white;
+    border: 2.5px solid $pink;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: all;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.15);
+  }
+
+  &::-moz-range-track { background: transparent; height: 3px; }
+  &.min-slider { z-index: 1; }
+  &.max-slider { z-index: 2; }
+}
+
+// ── Display below slider ───────────────────────────────────
+.price-display {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #555;
+  margin-top: 4px;
+}
+
+// ── Dark mode ──────────────────────────────────────────────
+html.dark {
+  .price-input {
+    background: #1e1e2e;
+    border-color: #2a2a3a;
+    color: #ddd;
+    &:focus { border-color: $pink; }
+  }
+  .price-slider-track { background: #2a2a3a; }
+  .price-slider-fill  { background: $pink; }
+  .price-slider::-webkit-slider-thumb { background: #1e1e2e; border-color: $pink; }
+  .price-display { color: #aaa; }
+}

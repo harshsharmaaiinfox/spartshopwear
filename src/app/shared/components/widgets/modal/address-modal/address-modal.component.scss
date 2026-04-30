@@ -1,0 +1,324 @@
+// ═══════════════════════════════════════════════════════════
+// ADDRESS MODAL — ViewEncapsulation.None → global scope
+// Primary color: #D4145A
+// ═══════════════════════════════════════════════════════════
+
+$pink   : #D4145A;
+$dark   : #1a1a1a;
+$muted  : #6b7280;
+$border : #e5e7eb;
+$bg     : #f9fafb;
+$error  : #ef4444;
+
+// ── Modal container override ─────────────────────────────
+.modal-content {
+  border-radius: 16px !important;
+  border       : none !important;
+  overflow     : hidden !important;
+  box-shadow   : 0 20px 60px rgba(0, 0, 0, 0.15) !important;
+}
+
+// ── Header ───────────────────────────────────────────────
+.am-header {
+  display         : flex;
+  align-items     : center;
+  justify-content : space-between;
+  padding         : 20px 24px;
+  border-bottom   : 1.5px solid $border;
+  background      : linear-gradient(135deg, #fff5f8 0%, #fce4ec 100%);
+
+  &__left {
+    display    : flex;
+    align-items: center;
+    gap        : 14px;
+  }
+
+  &__icon {
+    width          : 46px;
+    height         : 46px;
+    border-radius  : 12px;
+    background     : $pink;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    font-size      : 22px;
+    color          : white;
+    flex-shrink    : 0;
+    box-shadow     : 0 4px 14px rgba($pink, 0.32);
+  }
+
+  &__title {
+    font-size  : 18px;
+    font-weight: 700;
+    color      : $dark;
+    margin     : 0 0 2px;
+  }
+
+  &__sub {
+    font-size: 12.5px;
+    color    : $muted;
+    margin   : 0;
+  }
+}
+
+.am-close-btn {
+  width          : 36px;
+  height         : 36px;
+  border-radius  : 50%;
+  border         : none;
+  background     : rgba($pink, 0.08);
+  color          : $pink;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  cursor         : pointer;
+  font-size      : 20px;
+  transition     : all 0.2s ease;
+  flex-shrink    : 0;
+
+  &:hover {
+    background: $pink;
+    color     : white;
+    transform : rotate(90deg);
+  }
+}
+
+// ── Body ─────────────────────────────────────────────────
+.am-body {
+  padding         : 24px;
+  display         : flex;
+  flex-direction  : column;
+  gap             : 18px;
+  max-height      : 65vh;
+  overflow-y      : auto;
+
+  &::-webkit-scrollbar       { width: 4px; }
+  &::-webkit-scrollbar-track { background: transparent; }
+  &::-webkit-scrollbar-thumb { background: rgba($pink, 0.2); border-radius: 4px; }
+}
+
+// ── Row (2-column grid) ──────────────────────────────────
+.am-row {
+  display              : grid;
+  grid-template-columns: 1fr 1fr;
+  gap                  : 16px;
+}
+
+// ── Single field ──────────────────────────────────────────
+.am-field {
+  display       : flex;
+  flex-direction: column;
+  gap           : 8px;
+}
+
+.am-label {
+  display    : flex;
+  align-items: center;
+  gap        : 7px;
+  font-size  : 13px;
+  font-weight: 700;
+  color      : $dark;
+
+  i { font-size: 16px; color: $pink; }
+}
+
+.am-input {
+  width         : 100%;
+  padding       : 12px 16px;
+  border        : 1.5px solid $border;
+  border-radius : 10px;
+  font-size     : 14px;
+  color         : $dark;
+  background    : $bg;
+  transition    : all 0.22s ease;
+  font-family   : inherit;
+  box-sizing    : border-box;
+
+  &:focus {
+    outline     : none;
+    border-color: $pink;
+    background  : white;
+    box-shadow  : 0 0 0 3px rgba($pink, 0.1);
+  }
+
+  &::placeholder { color: #c0c0c0; }
+
+  &--error {
+    border-color: $error;
+    background  : #fff8f8;
+    &:focus     { box-shadow: 0 0 0 3px rgba($error, 0.1); }
+  }
+}
+
+.am-textarea {
+  @extend .am-input;
+  resize    : vertical;
+  min-height: 90px;
+  padding   : 12px 16px;
+}
+
+.am-error {
+  display    : flex;
+  align-items: center;
+  gap        : 5px;
+  font-size  : 12px;
+  color      : $error;
+  font-weight: 500;
+  margin     : 0;
+
+  i { font-size: 14px; }
+}
+
+// ── Select2 override ──────────────────────────────────────
+.am-select2 { width: 100%; }
+
+.am-select2 .select2-container          { width: 100% !important; }
+.am-select2 .select2-selection {
+  padding      : 11px 16px !important;
+  padding-right: 38px !important;
+  border       : 1.5px solid $border !important;
+  border-radius: 10px !important;
+  background   : $bg !important;
+  min-height   : 46px !important;
+  display      : flex !important;
+  align-items  : center !important;
+  transition   : all 0.22s ease !important;
+}
+.am-select2 .select2-selection:focus-within,
+.am-select2 .select2-container--open .select2-selection {
+  border-color: $pink !important;
+  background  : white !important;
+  box-shadow  : 0 0 0 3px rgba($pink, 0.1) !important;
+}
+.am-select2 .select2-selection__rendered {
+  padding    : 0 !important;
+  font-size  : 14px !important;
+  color      : $dark !important;
+  line-height: 1.5 !important;
+  white-space: normal !important;
+}
+.am-select2 .select2-selection__arrow { right: 12px !important; }
+.am-select2 .select2-dropdown {
+  border       : 1.5px solid $pink !important;
+  border-radius: 10px !important;
+  box-shadow   : 0 6px 20px rgba($pink, 0.12) !important;
+  margin-top   : 4px !important;
+}
+.am-select2 .select2-results__option {
+  padding   : 10px 14px !important;
+  font-size : 13.5px !important;
+}
+.am-select2 .select2-results__option[aria-selected="true"],
+.am-select2 .select2-results__option--highlighted {
+  background : rgba($pink, 0.08) !important;
+  color      : $pink !important;
+  font-weight: 600 !important;
+}
+
+// ── Phone input ───────────────────────────────────────────
+.am-phone-wrap {
+  position: relative;
+  display : flex;
+  align-items: center;
+}
+
+.am-phone-prefix {
+  position       : absolute;
+  left           : 0;
+  top            : 50%;
+  transform      : translateY(-50%);
+  height         : 100%;
+  min-width      : 58px;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  background     : rgba($pink, 0.08);
+  color          : $pink;
+  font-weight    : 700;
+  font-size      : 13.5px;
+  border-radius  : 10px 0 0 10px;
+  border-right   : 1.5px solid rgba($pink, 0.2);
+  z-index        : 2;
+  pointer-events : none;
+}
+
+.am-phone-input {
+  padding-left : 70px !important;
+  border-radius: 10px !important;
+}
+
+// ── Footer ────────────────────────────────────────────────
+.am-footer {
+  display         : flex;
+  align-items     : center;
+  justify-content : flex-end;
+  gap             : 12px;
+  padding         : 16px 24px;
+  border-top      : 1.5px solid $border;
+  background      : #fafafa;
+}
+
+.am-cancel-btn {
+  padding      : 11px 24px;
+  border       : 1.5px solid $border;
+  background   : white;
+  color        : $muted;
+  border-radius: 10px;
+  font-size    : 14px;
+  font-weight  : 600;
+  cursor       : pointer;
+  transition   : all 0.2s ease;
+
+  &:hover {
+    border-color: #9ca3af;
+    color       : $dark;
+  }
+}
+
+.am-save-btn,
+button.am-save-btn {
+  display        : inline-flex !important;
+  align-items    : center !important;
+  justify-content: center !important;
+  gap            : 7px !important;
+  padding        : 11px 28px !important;
+  background     : $pink !important;
+  color          : white !important;
+  border         : none !important;
+  border-radius  : 10px !important;
+  font-size      : 14px !important;
+  font-weight    : 700 !important;
+  cursor         : pointer !important;
+  box-shadow     : 0 4px 14px rgba($pink, 0.3) !important;
+  transition     : all 0.22s ease !important;
+
+  i { font-size: 16px !important; }
+
+  &:hover {
+    background: darken(#D4145A, 8%) !important;
+    transform : translateY(-1px) !important;
+    box-shadow: 0 6px 20px rgba($pink, 0.4) !important;
+  }
+}
+
+// ── Right-panel mode (checkout) ───────────────────────────
+.nyk-address-right-panel .am-footer .am-save-btn,
+.nyk-address-right-panel .am-footer button.am-save-btn {
+  background    : #1a1a1a !important;
+  width         : 100% !important;
+  letter-spacing: 0.8px !important;
+  text-transform: uppercase !important;
+  font-size     : 13px !important;
+  box-shadow    : none !important;
+
+  &:hover { background: #333 !important; transform: none !important; }
+}
+
+// ── Responsive ────────────────────────────────────────────
+@media (max-width: 576px) {
+  .am-row       { grid-template-columns: 1fr; }
+  .am-body      { padding: 18px; gap: 16px; }
+  .am-footer    { flex-direction: column-reverse; gap: 10px; padding: 14px 18px; }
+  .am-cancel-btn,
+  .am-save-btn  { width: 100%; text-align: center; }
+}

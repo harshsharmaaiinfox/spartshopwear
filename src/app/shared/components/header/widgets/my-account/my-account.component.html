@@ -1,0 +1,119 @@
+<!-- My Account Basic Style -->
+<div *ngIf="style == 'basic'" class="acc-wrap">
+
+  <!-- Trigger — rendered by parent nf-action__circle -->
+  <div class="acc-trigger">
+    <div class="acc-trigger__icon">
+      <i class="ri-user-line" *ngIf="!(isAuthenticated$ | async) else profileIcon"></i>
+      <ng-template #profileIcon>
+        <div class="acc-trigger__avatar">
+          <img [src]="(user$ | async)?.profile_image?.original_url"
+               class="img-fluid" alt="profile"
+               *ngIf="(user$ | async)?.profile_image?.original_url else initials">
+          <ng-template #initials>
+            <span class="acc-trigger__initial">
+              {{ (user$ | async)?.name?.charAt(0)?.toUpperCase() }}
+            </span>
+          </ng-template>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+
+  <!-- Dropdown panel -->
+  <div class="acc-panel">
+
+    <!-- ── Arrow notch ── -->
+    <div class="acc-panel__notch"></div>
+
+    <!-- ══ GUEST STATE ══ -->
+    <ng-container *ngIf="!(isAuthenticated$ | async)">
+
+      <div class="acc-panel__head acc-panel__head--guest">
+        <div class="acc-panel__head-avatar">
+          <i class="ri-user-3-line"></i>
+        </div>
+        <div class="acc-panel__head-copy">
+          <p class="acc-panel__greeting">Welcome Back!</p>
+          <p class="acc-panel__sub">Sign in to your account</p>
+        </div>
+      </div>
+
+      <div class="acc-panel__actions">
+        <a [routerLink]="['/auth/login']" class="acc-btn acc-btn--primary">
+          <i class="ri-login-circle-line"></i>
+          <span>Login</span>
+        </a>
+        <a [routerLink]="['/auth/register']" class="acc-btn acc-btn--ghost">
+          <i class="ri-user-add-line"></i>
+          <span>Create Account</span>
+        </a>
+      </div>
+
+      <div class="acc-panel__divider"></div>
+
+      <p class="acc-panel__hint">
+        <i class="ri-shield-check-line"></i>
+        Safe &amp; secure login
+      </p>
+
+    </ng-container>
+
+    <!-- ══ AUTHENTICATED STATE ══ -->
+    <ng-container *ngIf="(isAuthenticated$ | async)">
+
+      <div class="acc-panel__head acc-panel__head--auth">
+        <div class="acc-panel__auth-avatar">
+          <img [src]="(user$ | async)?.profile_image?.original_url"
+               *ngIf="(user$ | async)?.profile_image?.original_url else authInitials"
+               class="img-fluid" alt="profile">
+          <ng-template #authInitials>
+            <span>{{ (user$ | async)?.name?.charAt(0)?.toUpperCase() }}</span>
+          </ng-template>
+        </div>
+        <div class="acc-panel__auth-info">
+          <p class="acc-panel__auth-name">{{ (user$ | async)?.name }}</p>
+          <p class="acc-panel__auth-email">{{ (user$ | async)?.email }}</p>
+        </div>
+      </div>
+
+      <div class="acc-panel__divider"></div>
+
+      <nav class="acc-panel__nav">
+        <a [routerLink]="['/account/dashboard']" class="acc-nav-item">
+          <span class="acc-nav-item__icon"><i class="ri-dashboard-line"></i></span>
+          <span class="acc-nav-item__label">Dashboard</span>
+          <i class="ri-arrow-right-s-line acc-nav-item__arrow"></i>
+        </a>
+        <a [routerLink]="['/account/orders']" class="acc-nav-item">
+          <span class="acc-nav-item__icon"><i class="ri-shopping-bag-2-line"></i></span>
+          <span class="acc-nav-item__label">My Orders</span>
+          <i class="ri-arrow-right-s-line acc-nav-item__arrow"></i>
+        </a>
+        <a [routerLink]="['/wishlist']" class="acc-nav-item">
+          <span class="acc-nav-item__icon"><i class="ri-heart-line"></i></span>
+          <span class="acc-nav-item__label">Wishlist</span>
+          <i class="ri-arrow-right-s-line acc-nav-item__arrow"></i>
+        </a>
+        <a [routerLink]="['/account/profile']" class="acc-nav-item">
+          <span class="acc-nav-item__icon"><i class="ri-user-settings-line"></i></span>
+          <span class="acc-nav-item__label">Profile Settings</span>
+          <i class="ri-arrow-right-s-line acc-nav-item__arrow"></i>
+        </a>
+      </nav>
+
+      <div class="acc-panel__divider"></div>
+
+      <div class="acc-panel__footer">
+        <a href="javascript:void(0)" (click)="confirmationModal.openModal()" class="acc-logout">
+          <i class="ri-logout-circle-r-line"></i>
+          <span>Sign Out</span>
+        </a>
+      </div>
+
+    </ng-container>
+
+  </div>
+</div>
+
+<app-confirmation-modal #confirmationModal (confirmed)="logout()"></app-confirmation-modal>

@@ -1,0 +1,53 @@
+<div class="nf-cat-filter">
+
+  <!-- Search (only when many categories) -->
+  <div class="nf-cat-search" *ngIf="categories.length > 5">
+    <i class="ri-search-line nf-cat-search__icon"></i>
+    <input type="text"
+           placeholder="{{ 'search_text' | translate }}"
+           [(ngModel)]="searchText"
+           class="nf-cat-search__input">
+  </div>
+
+  <!-- Category list -->
+  <ul class="nf-cat-list" *ngIf="categories?.length">
+    <div *ngTemplateOutlet="recursiveCategories; context: { $implicit: categories }"></div>
+
+    <ng-template #recursiveCategories let-categories>
+      <ng-container *ngFor="let category of categories | filter: searchText:'subcategories'">
+        <li class="nf-cat-list__item">
+
+          <label class="nf-cat-item"
+                 [class.nf-cat-item--checked]="checked(category?.slug!)"
+                 [class.nf-cat-item--disabled]="category.is_clickable === false"
+                 (click)="category.is_clickable !== false && toggleCategory(category?.slug!, category)">
+            <span class="nf-cat-item__box">
+              <i class="ri-check-line nf-cat-item__check"></i>
+            </span>
+            <span class="nf-cat-item__label">{{ category?.name }}</span>
+          </label>
+
+          <!-- Subcategories (show when parent selected) -->
+          <ul class="nf-cat-sublist" *ngIf="category?.subcategories?.length">
+            <ng-container *ngTemplateOutlet="recursiveCategories; context: { $implicit: category.subcategories }"></ng-container>
+          </ul>
+
+        </li>
+      </ng-container>
+    </ng-template>
+  </ul>
+
+  <!-- Search no results -->
+  <p class="nf-cat-empty"
+     *ngIf="categories?.length && (categories | filter: searchText:'subcategories').length === 0">
+    No results found.
+  </p>
+
+  <!-- No categories at all -->
+  <app-no-data
+    [class]="'no-data-added bg-light'"
+    [text]="'no_category_found'"
+    *ngIf="!categories?.length">
+  </app-no-data>
+
+</div>

@@ -1,0 +1,104 @@
+$pink:   #D4145A;
+$dark:   #1C1C2E;
+$border: #C8C8C8;
+$white:  #FFFFFF;
+
+:host { display: block; }
+
+.nf-attr-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.nf-attr-list__item { display: block; }
+
+// ── Attribute row ──────────────────────────────────────────
+.nf-attr-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  cursor: pointer;
+  user-select: none;
+
+  // Hidden native input
+  &__input { display: none; }
+
+  // Checkbox box
+  &__box {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    border: 1.5px solid $border;
+    border-radius: 3px;
+    background: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.18s ease;
+  }
+
+  &__check {
+    font-size: 11px;
+    color: $white;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    line-height: 1;
+  }
+
+  &__label {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.4;
+    flex: 1;
+    transition: color 0.15s ease;
+  }
+
+  // Color swatch
+  &__swatch {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.18s ease;
+
+    i { font-size: 11px; color: $white; line-height: 1; }
+
+    &--checked {
+      box-shadow: 0 0 0 2px $white, 0 0 0 4px $pink;
+    }
+  }
+
+  // Hover
+  &:hover {
+    .nf-attr-item__box   { border-color: $pink; }
+    .nf-attr-item__label { color: $dark; }
+  }
+
+  // Checked
+  &--checked {
+    .nf-attr-item__box  { background: $pink; border-color: $pink; }
+    .nf-attr-item__check { opacity: 1; }
+    .nf-attr-item__label { color: $dark; font-weight: 600; }
+  }
+}
+
+// ── Dark mode ──────────────────────────────────────────────
+html.dark {
+  .nf-attr-item {
+    &__box   { background: #2a2a3a; border-color: #3a3a4a; }
+    &__label { color: #aaa; }
+    &:hover .nf-attr-item__label { color: #e0e0e0; }
+    &--checked {
+      .nf-attr-item__box  { background: $pink; border-color: $pink; }
+      .nf-attr-item__label { color: #e0e0e0; }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+<ng-container *ngIf="!addresses?.length">
+  <div class="nyk-no-address">
+    <i class="ri-map-pin-line"></i>
+    <span>{{ 'no_address_found' | translate }}</span>
+  </div>
+</ng-container>
+
+<ng-container *ngFor="let address of addresses; let i = index;">
+  <label for="adddress-{{type}}-{{i}}" class="nyk-address-card-label">
+    <div class="nyk-address-card" [class.nyk-address-card--selected]="i === 0">
+      <!-- Radio -->
+      <div class="nyk-address-radio">
+        <input
+          class="nyk-radio-input"
+          type="radio"
+          value="{{address.id}}"
+          name="adddress-{{type}}"
+          id="adddress-{{type}}-{{i}}"
+          [checked]="i === 0"
+          (change)="set($event)">
+        <span class="nyk-radio-dot"></span>
+      </div>
+
+      <!-- Card body -->
+      <div class="nyk-address-card-body">
+        <div class="nyk-address-card-top">
+          <span class="nyk-address-type-badge">{{ address?.title }}</span>
+        </div>
+        <div class="nyk-address-line nyk-address-line--main">
+          <div *ngIf="address?.floor_no">Floor No. {{ address?.floor_no }},</div>
+          <div *ngIf="address?.flat_no">Flat No. {{ address?.flat_no }},</div>
+          <div *ngIf="address?.building">{{ address?.building }},</div>
+          <div *ngIf="address?.road">{{ address?.road }},</div>
+          <div>{{ address?.street }}, {{ address?.city }}, {{ address?.area }}, {{ address?.country_id }}</div>
+        </div>
+        <div class="nyk-address-meta" *ngIf="address.pincode || address.phone">
+          <span *ngIf="address.pincode">{{ address?.pincode }}</span>
+          <span class="nyk-meta-sep" *ngIf="address.pincode && address.phone">·</span>
+          <span *ngIf="address.phone">+{{ address?.country_code }} {{ address?.phone }}</span>
+        </div>
+      </div>
+    </div>
+  </label>
+</ng-container>

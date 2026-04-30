@@ -1,0 +1,27 @@
+// Inherits from collection-left-sidebar styles via global col-custome classes
+.shop-section { padding-top: 20px; padding-bottom: 40px; }
+
+.col-custome-3 .left-box {
+  position: sticky;
+  top: 80px;
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+  padding-right: 20px;
+  scrollbar-width: thin;
+  scrollbar-color: #E0E0E0 transparent;
+  &::-webkit-scrollbar { width: 3px; }
+  &::-webkit-scrollbar-thumb { background: #E0E0E0; border-radius: 3px; }
+}
+
+@media (max-width: 991px) {
+  .col-custome-3 .left-box {
+    position: fixed;
+    top: 0; left: -100%;
+    width: 300px; height: 100dvh; max-height: 100dvh;
+    background: #fff; z-index: 1300;
+    padding: 20px 18px;
+    box-shadow: 4px 0 32px rgba(0,0,0,0.16);
+    transition: left 0.3s ease;
+    &.show { left: 0; }
+  }
+}

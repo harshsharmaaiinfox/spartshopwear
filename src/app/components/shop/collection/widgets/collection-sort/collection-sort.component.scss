@@ -1,0 +1,155 @@
+// ============================================================
+// Sort Bar — Nykaa Fashion Reference
+// ============================================================
+
+$pink:   #D4145A;
+$dark:   #1C1C2E;
+$muted:  #777;
+$border: #E8E8E8;
+$white:  #FFFFFF;
+$bg:     #F5F5F5;
+
+:host { display: block; }
+
+.nf-sort-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid $border;
+  margin-bottom: 20px;
+  flex-wrap: nowrap;
+}
+
+.nf-sort-bar__spacer { flex: 1; }
+
+// Mobile filter btn
+.nf-sort-bar__mobile-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1.5px solid $border;
+  border-radius: 6px;
+  background: $white;
+  font-size: 13px;
+  font-weight: 600;
+  color: $dark;
+  cursor: pointer;
+  transition: border-color 0.18s ease;
+
+  i { font-size: 15px; color: #666; }
+
+  &:hover { border-color: $pink; color: $pink; i { color: $pink; } }
+}
+
+// Grid buttons group
+.nf-grid-group {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  border: 1px solid $border;
+  border-radius: 6px;
+  padding: 3px;
+  background: $bg;
+}
+
+.nf-grid-btn {
+  width: 34px;
+  height: 32px;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s ease;
+
+  img {
+    width: 17px;
+    height: 17px;
+    opacity: 0.4;
+    filter: grayscale(1);
+    transition: opacity 0.15s ease, filter 0.15s ease;
+  }
+
+  &:hover {
+    background: rgba($white, 0.7);
+    img { opacity: 0.75; }
+  }
+
+  &--active {
+    background: $white;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    img { opacity: 1; filter: none; }
+  }
+}
+
+// Sort dropdown — Nykaa style (border box, "Sort by Popularity")
+.nf-sort-select {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid $border;
+  border-radius: 6px;
+  padding: 0 10px 0 10px;
+  height: 38px;
+  background: $white;
+  gap: 4px;
+  position: relative;
+  transition: border-color 0.18s ease;
+
+  &:hover { border-color: #C0C0C0; }
+
+  &__icon {
+    font-size: 15px;
+    color: #999;
+    flex-shrink: 0;
+  }
+
+  &__label {
+    font-size: 13px;
+    color: $muted;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  &__input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 13px;
+    font-weight: 700;
+    color: $dark;
+    cursor: pointer;
+    appearance: none;
+    padding-right: 18px;
+    min-width: 90px;
+    max-width: 140px;
+  }
+
+  &__caret {
+    position: absolute;
+    right: 8px;
+    font-size: 17px;
+    color: #aaa;
+    pointer-events: none;
+  }
+}
+
+// Dark mode
+html.dark {
+  .nf-sort-bar { border-bottom-color: #2a2a3a; }
+  .nf-grid-group { background: #1e1e2e; border-color: #2a2a3a; }
+  .nf-grid-btn--active { background: #2a2a3a; }
+  .nf-sort-select { background: #1e1e2e; border-color: #2a2a3a;
+    &__input { color: #e0e0e0; option { background: #1e1e2e; } }
+    &__label { color: #888; }
+  }
+  .nf-sort-bar__mobile-filter { background: #1e1e2e; border-color: #2a2a3a; color: #ccc; }
+}
+
+@media (max-width: 767px) {
+  .nf-sort-select { flex: 1; &__input { min-width: 70px; } }
+}

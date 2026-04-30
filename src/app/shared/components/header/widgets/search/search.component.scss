@@ -1,0 +1,19 @@
+// The `standard` style wrapper is the only div in this template with NO class attribute.
+// Every other style uses .input-group / .searchbar-box-2 / .search-full etc.
+// div:not([class]) precisely targets it — Angular only adds _ngcontent attr, not class.
+
+div:not([class]) {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+// Dropdown results MUST be absolute — otherwise it pushes the search button below the input
+.search-suggestion-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 1001;
+}

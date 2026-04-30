@@ -1,0 +1,172 @@
+// ============================================================
+// Nykaa-style Product Detail Page Layout
+// ============================================================
+
+$dark:   #1C1C2E;
+$pink:   #D4145A;
+$green:  #388E3C;
+$gray:   #878787;
+$border: #E8E8E8;
+$white:  #FFFFFF;
+$active: #D4145A;
+
+// ── Page wrapper ───────────────────────────────────────────
+.nyk-product-page {
+  background: $white;
+  padding: 24px 0 40px;
+}
+
+// ── 3-column layout ────────────────────────────────────────
+.nyk-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+// ── Col 1: Vertical thumbnail strip ───────────────────────
+.nyk-thumb-strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 76px;
+  flex-shrink: 0;
+}
+
+.nyk-thumb-nav {
+  width: 32px;
+  height: 32px;
+  border: 1px solid $border;
+  border-radius: 50%;
+  background: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+
+  i { font-size: 18px; color: $dark; }
+
+  &:hover {
+    border-color: $dark;
+    background: $dark;
+    i { color: $white; }
+  }
+}
+
+.nyk-thumb-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 480px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+.nyk-thumb-item {
+  width: 72px;
+  height: 90px;
+  flex-shrink: 0;
+  border: 2px solid $border;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.18s ease;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  &:hover       { border-color: #aaa; }
+  &--active     { border-color: $dark; }
+}
+
+// ── Col 2: Main image ──────────────────────────────────────
+.nyk-main-img {
+  position: relative;
+  flex: 0 0 45%;
+  max-width: 45%;
+
+  &__photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    background: #f8f8f8;
+  }
+
+  ::ng-deep {
+    .owl-stage-outer,
+    .owl-stage,
+    .owl-item { overflow: visible !important; }
+  }
+}
+
+.nyk-slide {
+  display: block;
+  overflow: hidden;
+  background: #f8f8f8;
+
+  // Ensure ngx-image-zoom also uses contain
+  ::ng-deep img {
+    object-fit: contain !important;
+    background: #f8f8f8;
+  }
+}
+
+// ── Badge group ────────────────────────────────────────────
+.nyk-badge-group {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 5;
+  display: flex;
+  gap: 6px;
+}
+
+.nyk-badge {
+  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $white;
+  border-radius: 2px;
+
+  &--sale     { background: $pink; }
+  &--featured { background: #1565C0; }
+  &--new      { background: #E8A800; color: #1a1a1a; }
+}
+
+// ── Col 3: Product info ────────────────────────────────────
+.nyk-info-col {
+  flex: 1;
+  min-width: 0;
+  padding-left: 8px;
+}
+
+// ── Below fold ─────────────────────────────────────────────
+.nyk-below-fold {
+  margin-top: 40px;
+  border-top: 1px solid $border;
+  padding-top: 32px;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.nyk-related { margin-bottom: 40px; }
+
+// ── Responsive ────────────────────────────────────────────
+@media (max-width: 991px) {
+  .nyk-layout {
+    flex-wrap: wrap;
+  }
+  .nyk-thumb-strip { display: none; }
+  .nyk-main-img    { flex: 0 0 100%; max-width: 100%; }
+  .nyk-info-col    { flex: 0 0 100%; padding-left: 0; }
+}

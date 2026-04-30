@@ -1,0 +1,422 @@
+// ============================================================
+// Account Dropdown — Premium Panel
+// ============================================================
+
+$pink:    #D4145A;
+$dark:    #1C1C2E;
+$white:   #FFFFFF;
+$muted:   #777777;
+$border:  #F0F0F0;
+$bg:      #FAFAFA;
+$green:   #0B8C3D;
+$ease:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+:host { display: block; }
+
+// ── Wrapper (relative anchor for the panel) ───────────────
+.acc-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+// ── Trigger icon ──────────────────────────────────────────
+.acc-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    i {
+      font-size: 20px;
+      color: #2d2d2d;
+      transition: color 0.22s ease;
+    }
+  }
+
+  &__avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: $pink;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba($pink, 0.3);
+
+    img { width: 100%; height: 100%; object-fit: cover; }
+  }
+
+  &__initial {
+    color: $white;
+    font-size: 12px;
+    font-weight: 700;
+  }
+}
+
+// ── Dropdown Panel ────────────────────────────────────────
+.acc-panel {
+  position: absolute;
+  top: calc(100% + 18px);
+  right: -12px;
+  width: 272px;
+  background: $white;
+  border-radius: 16px;
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.04),
+    0 12px 32px rgba(0, 0, 0, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.97);
+  transform-origin: top right;
+  transition:
+    opacity 0.24s $ease,
+    transform 0.24s $ease,
+    visibility 0.24s;
+  z-index: 1100;
+  overflow: hidden;
+
+  // Arrow notch
+  &__notch {
+    position: absolute;
+    top: -7px;
+    right: 22px;
+    width: 14px;
+    height: 14px;
+    background: $white;
+    border-left: 1px solid rgba(0, 0, 0, 0.07);
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+    transform: rotate(45deg);
+    border-radius: 2px 0 0 0;
+  }
+}
+
+// Show panel on hover
+.acc-wrap:hover .acc-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+// ── Guest Head ─────────────────────────────────────────────
+.acc-panel__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 20px 16px;
+
+  &--guest {
+    background: linear-gradient(135deg, #FFF5F8 0%, #FFF9F5 100%);
+    border-bottom: 1px solid #FCE8EF;
+  }
+
+  &--auth {
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #FFF5F8 0%, #FFF9F5 100%);
+  }
+}
+
+.acc-panel__head-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba($pink, 0.1);
+  border: 2px solid rgba($pink, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  i {
+    font-size: 22px;
+    color: $pink;
+  }
+}
+
+.acc-panel__head-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.acc-panel__greeting {
+  font-size: 14px;
+  font-weight: 700;
+  color: $dark;
+  margin: 0 0 2px;
+  line-height: 1.3;
+}
+
+.acc-panel__sub {
+  font-size: 11.5px;
+  color: $muted;
+  margin: 0;
+  line-height: 1.4;
+}
+
+// ── Auth user head ─────────────────────────────────────────
+.acc-panel__auth-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: $pink;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2.5px solid rgba($pink, 0.25);
+  box-shadow: 0 2px 8px rgba($pink, 0.2);
+
+  img { width: 100%; height: 100%; object-fit: cover; }
+
+  span {
+    color: $white;
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+
+.acc-panel__auth-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.acc-panel__auth-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: $dark;
+  margin: 0 0 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.acc-panel__auth-email {
+  font-size: 11px;
+  color: $muted;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// ── Login / Register buttons ───────────────────────────────
+.acc-panel__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px 20px 14px;
+}
+
+.acc-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: all 0.22s $ease;
+
+  i { font-size: 16px; }
+
+  &--primary {
+    background: $pink;
+    color: $white !important;
+    box-shadow: 0 4px 14px rgba($pink, 0.3);
+
+    &:hover {
+      background: darken($pink, 8%);
+      box-shadow: 0 6px 18px rgba($pink, 0.4);
+      transform: translateY(-1px);
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: $dark !important;
+    border: 1.5px solid #E0E0E0;
+
+    &:hover {
+      border-color: $pink;
+      color: $pink !important;
+      background: rgba($pink, 0.04);
+    }
+  }
+}
+
+// ── Hint line ─────────────────────────────────────────────
+.acc-panel__hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #aaa;
+  padding: 10px 20px 16px;
+  margin: 0;
+
+  i { font-size: 13px; color: $green; }
+}
+
+// ── Divider ───────────────────────────────────────────────
+.acc-panel__divider {
+  height: 1px;
+  background: $border;
+  margin: 0;
+}
+
+// ── Nav items (authenticated) ─────────────────────────────
+.acc-panel__nav {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.acc-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 10px;
+  border-radius: 10px;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: background 0.18s ease;
+  color: #333;
+
+  &:hover {
+    background: rgba($pink, 0.06);
+
+    .acc-nav-item__icon { background: rgba($pink, 0.12); i { color: $pink; } }
+    .acc-nav-item__label { color: $pink; }
+    .acc-nav-item__arrow { color: $pink; opacity: 1; }
+  }
+
+  &__icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: #F4F4F4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.18s ease;
+
+    i {
+      font-size: 16px;
+      color: #555;
+      transition: color 0.18s ease;
+    }
+  }
+
+  &__label {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    transition: color 0.18s ease;
+  }
+
+  &__arrow {
+    font-size: 17px;
+    color: #ccc;
+    opacity: 0.6;
+    transition: color 0.18s ease, opacity 0.18s ease;
+  }
+}
+
+// ── Footer (Sign Out) ──────────────────────────────────────
+.acc-panel__footer {
+  padding: 10px 10px 12px;
+}
+
+.acc-logout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 10px;
+  border-radius: 10px;
+  text-decoration: none !important;
+  cursor: pointer;
+  color: #E53935;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.18s ease;
+
+  i { font-size: 17px; }
+
+  &:hover {
+    background: rgba(#E53935, 0.07);
+    color: #E53935;
+  }
+}
+
+// ── Dark mode ──────────────────────────────────────────────
+html.dark {
+  .acc-panel {
+    background: #1e1e2e;
+    border-color: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+
+    &__notch { background: #1e1e2e; border-color: rgba(255, 255, 255, 0.08); }
+    &__head--guest,
+    &__head--auth { background: linear-gradient(135deg, #26162d 0%, #211a2a 100%); border-bottom-color: #2e1f2e; }
+    &__divider { background: #2a2a3a; }
+    &__hint { color: #555; }
+    &__nav { padding: 8px 10px; }
+  }
+
+  .acc-panel__greeting,
+  .acc-panel__auth-name { color: #e0e0e0; }
+
+  .acc-nav-item {
+    color: #ccc;
+    &:hover { background: rgba($pink, 0.1); }
+    &__icon { background: #2a2a3a; i { color: #aaa; } }
+    &__label { color: #ccc; }
+  }
+
+  .acc-btn--ghost {
+    color: #ccc !important;
+    border-color: #3a3a4a;
+    &:hover { border-color: $pink; color: $pink !important; }
+  }
+
+  .acc-trigger__icon i { color: #ccc; }
+}
+
+// ── RTL ────────────────────────────────────────────────────
+body.rtl {
+  .acc-panel { right: auto; left: -12px; transform-origin: top left; }
+  .acc-panel__notch { right: auto; left: 22px; }
+  .acc-nav-item { flex-direction: row-reverse; }
+  .acc-nav-item__arrow { transform: scaleX(-1); }
+}
+
+// ── Mobile ────────────────────────────────────────────────
+@media (max-width: 575px) {
+  .acc-panel { width: 248px; right: -8px; }
+}

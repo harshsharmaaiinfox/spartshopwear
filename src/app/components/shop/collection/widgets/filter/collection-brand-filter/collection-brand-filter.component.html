@@ -1,0 +1,46 @@
+<!-- Search (when many brands) -->
+<div class="nf-brand-search" *ngIf="brands && brands.length > 5">
+  <i class="ri-search-line nf-brand-search__icon"></i>
+  <input type="text"
+         placeholder="{{ 'search_text' | translate }}"
+         [(ngModel)]="searchText"
+         class="nf-brand-search__input">
+</div>
+
+<!-- Brand list -->
+<ul class="nf-brand-list" *ngIf="brands?.length">
+  <li class="nf-brand-list__item"
+      *ngFor="let brand of brands | filter: searchText:''">
+
+    <label class="nf-brand-item"
+           [class.nf-brand-item--checked]="checked(brand?.slug!)"
+           [for]="'brand-' + brand?.id">
+
+      <span class="nf-brand-item__box">
+        <i class="ri-check-line nf-brand-item__check"></i>
+      </span>
+      <span class="nf-brand-item__label">{{ brand?.name }}</span>
+
+      <input type="checkbox"
+             [id]="'brand-' + brand?.id"
+             [value]="brand?.slug"
+             [checked]="checked(brand?.slug!)"
+             (change)="applyFilter($event)"
+             class="nf-brand-item__input">
+    </label>
+
+  </li>
+</ul>
+
+<!-- Search no results -->
+<p class="nf-brand-empty"
+   *ngIf="brands?.length && (brands | filter: searchText:'').length === 0">
+  No results found.
+</p>
+
+<!-- No brands -->
+<app-no-data
+  [class]="'no-data-added bg-light'"
+  [text]="'no_category_found'"
+  *ngIf="!brands?.length">
+</app-no-data>

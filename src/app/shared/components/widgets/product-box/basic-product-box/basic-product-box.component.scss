@@ -1,0 +1,415 @@
+// ============================================================
+// Basic Product Card — Nykaa Fashion Style
+// Portrait · Brand prominent · Pink tags · Action circles
+// ============================================================
+
+$nf-pink:    #D4145A;
+$nf-dark:    #1C1C2E;
+$nf-white:   #FFFFFF;
+$nf-border:  #F0F0F0;
+$nf-text:    #1a1a1a;
+$nf-muted:   #777777;
+$nf-green:   #0B8C3D;
+$nf-teal:    #006D6D;
+$nf-shadow:  0 2px 12px rgba(0, 0, 0, 0.07);
+$nf-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+$nf-ease:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+:host { display: block; height: 100%; }
+
+// ── Card shell ─────────────────────────────────────────────
+.nf-product-card {
+  position: relative;
+  background: $nf-white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  cursor: pointer;
+  transition: box-shadow 0.28s $nf-ease;
+  border-radius: 4px;
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: $nf-shadow-lg;
+    .nf-product-card__img { transform: scale(1.04); }
+    .nf-product-card__hover-bar { opacity: 1; transform: translateY(0); }
+  }
+}
+
+// ── Sale / featured badge — top-left ──────────────────────
+.nf-product-card__badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 5;
+  padding: 3px 8px;
+  border-radius: 2px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $nf-white;
+  line-height: 1.4;
+
+  &--sale     { background: $nf-pink; }
+  &--featured { background: #1565C0; }
+  &--new      { background: #E8A800; color: #1a1a1a; }
+}
+
+// ── Action buttons stack — top-right ──────────────────────
+.nf-product-card__actions {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nf-product-card__action-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba($nf-white, 0.92);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+
+  i {
+    font-size: 15px;
+    color: #666;
+    transition: color 0.2s ease;
+  }
+
+  &:hover {
+    background: $nf-white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16);
+    i { color: $nf-pink; }
+  }
+
+  &--active {
+    background: rgba($nf-pink, 0.08);
+    i { color: $nf-pink; }
+  }
+
+  &--compare i { font-size: 14px; }
+}
+
+// ── Close button (wishlist page) ───────────────────────────
+.nf-product-card__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 5;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba($nf-white, 0.92);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+
+  i { font-size: 15px; color: $nf-text; }
+  &:hover { background: $nf-white; }
+}
+
+// ── Product image ──────────────────────────────────────────
+.nf-product-card__img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #F4F4F4;
+  flex-shrink: 0;
+}
+
+.nf-product-card__img-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.nf-product-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.4s $nf-ease;
+}
+
+// ── Hover quick-view bar ───────────────────────────────────
+.nf-product-card__hover-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.24s ease, transform 0.24s $nf-ease;
+  z-index: 4;
+  background: linear-gradient(to top, rgba($nf-dark, 0.5) 0%, transparent 100%);
+  display: flex;
+  justify-content: center;
+}
+
+.nf-product-card__quickview {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba($nf-white, 0.95);
+  border: none;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: $nf-text;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+
+  i { font-size: 14px; }
+  &:hover { background: $nf-pink; color: $nf-white; }
+}
+
+// ── Product tags — Nykaa pill style below image ────────────
+.nf-product-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 8px 8px 0;
+  min-height: 0;
+}
+
+.nf-product-card__tag {
+  display: inline-block;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 2px 7px;
+  border-radius: 2px;
+  line-height: 1.6;
+  text-transform: uppercase;
+
+  &--exclusive {
+    color: $nf-teal;
+    border: 1px solid rgba($nf-teal, 0.45);
+    background: rgba($nf-teal, 0.04);
+  }
+
+  &--style {
+    color: #555;
+    border: 1px solid #DEDEDE;
+    background: transparent;
+  }
+
+  &--sale {
+    color: $nf-pink;
+    border: 1px solid rgba($nf-pink, 0.4);
+    background: rgba($nf-pink, 0.04);
+  }
+}
+
+// ── Product info ───────────────────────────────────────────
+.nf-product-card__info {
+  padding: 6px 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  background: $nf-white;
+}
+
+// Brand
+.nf-product-card__brand {
+  font-size: 13px;
+  font-weight: 700;
+  color: $nf-text;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Product name
+.nf-product-card__name-link {
+  text-decoration: none !important;
+  color: inherit;
+  display: block;
+}
+
+.nf-product-card__name {
+  font-size: 12.5px;
+  font-weight: 400;
+  color: #555;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Short description
+.nf-product-card__desc {
+  font-size: 12px;
+  color: #aaa;
+  margin: 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// ── Price row ──────────────────────────────────────────────
+.nf-product-card__price-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.nf-product-card__price {
+  font-size: 14px;
+  font-weight: 700;
+  color: $nf-text;
+  line-height: 1;
+}
+
+.nf-product-card__mrp {
+  font-size: 12px;
+  color: #aaa;
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+.nf-product-card__discount {
+  font-size: 12px;
+  font-weight: 600;
+  color: $nf-pink;
+}
+
+// ── Price dropped alert ────────────────────────────────────
+.nf-product-card__price-drop {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: $nf-pink;
+  line-height: 1.3;
+
+  i { font-size: 12px; }
+}
+
+// ── Limited stock alert ────────────────────────────────────
+.nf-product-card__limited-stock {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #E65100;
+  line-height: 1.3;
+}
+
+// ── Rating ─────────────────────────────────────────────────
+.nf-product-card__rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 2px;
+
+  ::ng-deep .nf-stars {
+    display: flex;
+    gap: 1px;
+    .star { font-size: 12px !important; color: #FFC107 !important; }
+  }
+}
+
+.nf-product-card__stock {
+  font-size: 10px;
+  font-weight: 600;
+  color: $nf-green;
+  background: rgba($nf-green, 0.08);
+  padding: 2px 6px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+// ── Add to Bag CTA ────────────────────────────────────────
+.nf-product-card__action {
+  margin-top: auto;
+  padding-top: 10px;
+
+  ::ng-deep {
+    app-product-cart-button { display: block; width: 100%; }
+
+    button:not(.btn-minus):not(.btn-plus) {
+      width: 100% !important;
+      height: 38px !important;
+      background: $nf-pink !important;
+      border: none !important;
+      border-radius: 2px !important;
+      color: $nf-white !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.06em !important;
+      text-transform: uppercase !important;
+      cursor: pointer;
+      transition: background 0.2s ease !important;
+      &:hover { background: darken($nf-pink, 8%) !important; }
+    }
+
+    .cart_qty.qty-box .input-group {
+      height: 38px;
+      button {
+        background: $nf-pink !important;
+        border: none !important;
+        border-radius: 0 !important;
+        width: 34px !important;
+        height: 38px !important;
+        i { color: $nf-white !important; font-size: 15px !important; }
+        &:hover { background: darken($nf-pink, 8%) !important; }
+      }
+      input {
+        height: 38px !important;
+        text-align: center;
+        font-weight: 600;
+        border-color: $nf-border !important;
+      }
+    }
+  }
+}
+
+// ── Dark mode ──────────────────────────────────────────────
+html.dark {
+  .nf-product-card {
+    background: #1a1a2a;
+    &:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+  }
+  .nf-product-card__img-wrap { background: #232333; }
+  .nf-product-card__info     { background: #1a1a2a; }
+  .nf-product-card__brand    { color: #e0e0e0; }
+  .nf-product-card__name     { color: #999; }
+  .nf-product-card__price    { color: #e0e0e0; }
+  .nf-product-card__action-btn { background: rgba(30, 30, 46, 0.88); i { color: #bbb; } }
+}
+
+// ── RTL ────────────────────────────────────────────────────
+body.rtl {
+  .nf-product-card__badge  { left: auto; right: 8px; }
+  .nf-product-card__actions { right: auto; left: 8px; }
+  .nf-product-card__close  { right: auto; left: 8px; }
+}

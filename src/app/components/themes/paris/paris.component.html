@@ -1,0 +1,311 @@
+<div class="nf-homepage">
+
+  <!-- ══════════════════════════════════════════════
+    1. HERO BANNER — Full-width large banner
+  ══════════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--hero" *ngIf="data?.content?.home_banner">
+    <app-theme-home-banner [theme]="'paris'" [data]="data?.content?.home_banner"></app-theme-home-banner>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+    2. CATEGORY STRIP — Right below hero (Nykaa: Westernwear | Men | Footwear …)
+  ══════════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--category-strip">
+    <div class="container-fluid-lg">
+      <app-theme-categories
+        [fixedCategories]="flatCategoryOptions"
+        [title]="data?.content?.main_content?.section2_categories_list?.title || 'Shop By Category'"
+        [theme]="'paris'"
+        [style]="'horizontal'">
+      </app-theme-categories>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+    3. TRENDING BANNERS — Nykaa "Trending Summer Picks" horizontal scroll
+  ══════════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--featured" *ngIf="data?.content?.featured_banners?.banners?.length">
+    <div class="container-fluid-lg">
+      <div class="nf-section-head">
+        <h2 class="nf-section-title nf-trending-title">
+          {{ data?.content?.featured_banners?.title || 'Trending Picks' }}
+        </h2>
+      </div>
+      <app-theme-banner [style]="'horizontal'" [banners]="data?.content?.featured_banners?.banners"></app-theme-banner>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+    4. TRENDING PRODUCTS — Nykaa: "Trending Summer Picks" product row
+  ══════════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--products" *ngIf="data?.content?.main_content?.section1_products?.status">
+    <div class="container-fluid-lg">
+      <div class="nf-section-head">
+        <div class="nf-section-head__text">
+          <h2 class="nf-section-title">{{ data?.content?.main_content?.section1_products?.title }}</h2>
+          <p class="nf-section-desc" *ngIf="data?.content?.main_content?.section1_products?.description">
+            {{ data?.content?.main_content?.section1_products?.description }}
+          </p>
+        </div>
+      </div>
+      <app-theme-product
+        [productIds]="data?.content?.main_content?.section1_products?.product_ids || []"
+        [slider]="true"
+        [sliderOption]="productSlider"
+        [style]="'horizontal'">
+      </app-theme-product>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+    5. EDITORIAL BANNER 1 — Nykaa: "LUXE EDIT" (large left + right image)
+  ══════════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--editorial" *ngIf="data?.content?.main_content?.section3_two_column_banners?.status">
+    <div class="container-fluid-lg">
+      <div class="nf-editorial-wrap">
+        <div class="nf-editorial-main nf-card">
+          <app-image-link
+            [image]="data?.content?.main_content?.section3_two_column_banners?.banner_1"
+            [bgImage]="false">
+          </app-image-link>
+          <div class="nf-card__hover-label">
+            <span>Shop Now</span>
+            <i class="ri-arrow-right-long-line"></i>
+          </div>
+        </div>
+        <div class="nf-editorial-aside nf-card">
+          <app-image-link
+            [image]="data?.content?.main_content?.section3_two_column_banners?.banner_2"
+            [bgImage]="false">
+          </app-image-link>
+          <div class="nf-card__hover-label">
+            <span>Explore</span>
+            <i class="ri-arrow-right-long-line"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+    6. SECTION 4 PRODUCTS — Nykaa: "Hottest brands on offer" products
+  ══════════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--products" *ngIf="data?.content?.main_content?.section4_products?.status">
+    <div class="container-fluid-lg">
+      <div class="nf-section-head">
+        <div class="nf-section-head__text">
+          <h2 class="nf-section-title">{{ data?.content?.main_content?.section4_products?.title }}</h2>
+          <p class="nf-section-desc" *ngIf="data?.content?.main_content?.section4_products?.description">
+            {{ data?.content?.main_content?.section4_products?.description }}
+          </p>
+        </div>
+      </div>
+      <app-theme-product
+        [productIds]="data?.content?.main_content?.section4_products?.product_ids || []"
+        [sliderOption]="productSlider"
+        [slider]="true"
+        [style]="'horizontal'">
+      </app-theme-product>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+    7. TOP SELLER — Store sellers row
+  ══════════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--sellers" *ngIf="data?.content?.main_content?.seller?.status">
+    <div class="container-fluid-lg">
+      <div class="nf-section-head">
+        <div class="nf-section-head__text">
+          <h2 class="nf-section-title">{{ data?.content?.main_content?.seller?.title }}</h2>
+          <p class="nf-section-desc" *ngIf="data?.content?.main_content?.seller?.description">
+            {{ data?.content?.main_content?.seller?.description }}
+          </p>
+        </div>
+      </div>
+      <app-top-seller [sellerIds]="data?.content?.main_content?.seller?.store_ids || []"></app-top-seller>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+    8. EDITORIAL BANNER 2 — Nykaa: "HIDDEN GEMS" (right large + left image)
+  ══════════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--editorial" *ngIf="data?.content?.main_content?.section6_two_column_banners?.status">
+    <div class="container-fluid-lg">
+      <div class="nf-editorial-wrap nf-editorial-wrap--reverse">
+        <div class="nf-editorial-aside nf-card">
+          <app-image-link
+            [image]="data?.content?.main_content?.section6_two_column_banners?.banner_2"
+            [bgImage]="false">
+          </app-image-link>
+          <div class="nf-card__hover-label">
+            <span>Explore</span>
+            <i class="ri-arrow-right-long-line"></i>
+          </div>
+        </div>
+        <div class="nf-editorial-main nf-card">
+          <app-image-link
+            [image]="data?.content?.main_content?.section6_two_column_banners?.banner_1"
+            [bgImage]="false">
+          </app-image-link>
+          <div class="nf-card__hover-label">
+            <span>Shop Now</span>
+            <i class="ri-arrow-right-long-line"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+    9. FULL WIDTH SALE BANNER — Nykaa: promotional full-width strip
+  ══════════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--sale" *ngIf="data?.content?.main_content?.section5_coupons?.status">
+    <div class="container-fluid-lg">
+      <div class="nf-sale-wrap nf-card">
+        <app-theme-banner
+          [banners]="data?.content?.main_content?.section5_coupons"
+          [style]="'full_width'">
+        </app-theme-banner>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+    10. SECTION 7 PRODUCTS — "Our Best Sellers"
+  ══════════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--products" *ngIf="data?.content?.main_content?.section7_products?.status">
+    <div class="container-fluid-lg">
+      <div class="nf-section-head">
+        <div class="nf-section-head__text">
+          <h2 class="nf-section-title">{{ data?.content?.main_content?.section7_products?.title }}</h2>
+          <p class="nf-section-desc" *ngIf="data?.content?.main_content?.section7_products?.description">
+            {{ data?.content?.main_content?.section7_products?.description }}
+          </p>
+        </div>
+      </div>
+      <app-theme-product
+        [productIds]="data?.content?.main_content?.section7_products?.product_ids || []"
+        [style]="'classic'">
+      </app-theme-product>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+    11. FULL WIDTH BANNER
+  ══════════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--fw-banner" *ngIf="data?.content?.main_content?.section8_full_width_banner?.status">
+    <div class="container-fluid-lg">
+      <div class="nf-card">
+        <app-image-link
+          [image]="data?.content?.main_content?.section8_full_width_banner"
+          [bgImage]="false">
+        </app-image-link>
+        <div class="nf-card__hover-label">
+          <span>Shop Now</span>
+          <i class="ri-arrow-right-long-line"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+    12. BLOGS — Latest stories
+  ══════════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--blogs" *ngIf="data?.content?.main_content?.section9_featured_blogs?.status">
+    <div class="container-fluid-lg">
+      <div class="nf-section-head">
+        <div class="nf-section-head__text">
+          <h2 class="nf-section-title">{{ data?.content?.main_content?.section9_featured_blogs?.title }}</h2>
+          <p class="nf-section-desc" *ngIf="data?.content?.main_content?.section9_featured_blogs?.description">
+            {{ data?.content?.main_content?.section9_featured_blogs?.description }}
+          </p>
+        </div>
+      </div>
+      <app-blog [blogIds]="data?.content?.main_content?.section9_featured_blogs?.blog_ids || []"></app-blog>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+    13. BRANDS — Brand logos strip
+  ══════════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--brands brand-effect" *ngIf="data?.content?.brands?.status && data?.content?.brands?.brand_ids?.length">
+    <div class="container-fluid-lg">
+      <app-brand [brandIds]="data?.content?.brands?.brand_ids || []"></app-brand>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+    14. FIND EVERYTHING — Nykaa: "Find everything for every need" category circles
+  ══════════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--find-all">
+    <div class="container-fluid-lg">
+      <div class="nf-section-head nf-section-head--center">
+        <h3 class="nf-section-title">Find everything for every need</h3>
+      </div>
+      <div class="nf-find-grid">
+        <a routerLink="/page/about-us" href="/page/about-us" class="nf-find-card" title="About Us">
+          <div class="nf-find-card__circle">
+            <i class="ri-information-line"></i>
+          </div>
+          <span class="nf-find-card__label">About Us</span>
+        </a>
+        <a routerLink="/Contact-Us" href="/Contact-Us" class="nf-find-card" title="Contact Us">
+          <div class="nf-find-card__circle">
+            <i class="ri-customer-service-line"></i>
+          </div>
+          <span class="nf-find-card__label">Contact Us</span>
+        </a>
+        <a routerLink="/page/faq" href="/page/faq" class="nf-find-card" title="FAQ">
+          <div class="nf-find-card__circle">
+            <i class="ri-question-line"></i>
+          </div>
+          <span class="nf-find-card__label">FAQ</span>
+        </a>
+        <a routerLink="/page/offers" href="/page/offers" class="nf-find-card" title="Offers">
+          <div class="nf-find-card__circle">
+            <i class="ri-gift-line"></i>
+          </div>
+          <span class="nf-find-card__label">Offers</span>
+        </a>
+        <a routerLink="/term-condition" href="/term-condition" class="nf-find-card" title="Terms">
+          <div class="nf-find-card__circle">
+            <i class="ri-file-text-line"></i>
+          </div>
+          <span class="nf-find-card__label">T&amp;C</span>
+        </a>
+        <a routerLink="/privacy-policy" href="/privacy-policy" class="nf-find-card" title="Privacy Policy">
+          <div class="nf-find-card__circle">
+            <i class="ri-shield-check-line"></i>
+          </div>
+          <span class="nf-find-card__label">Privacy</span>
+        </a>
+        <a routerLink="/collections" href="/collections" class="nf-find-card" title="Shop All">
+          <div class="nf-find-card__circle">
+            <i class="ri-shopping-bag-line"></i>
+          </div>
+          <span class="nf-find-card__label">Shop All</span>
+        </a>
+        <a routerLink="/Contact-Us" href="/Contact-Us" class="nf-find-card" title="Support">
+          <div class="nf-find-card__circle">
+            <i class="ri-headphone-line"></i>
+          </div>
+          <span class="nf-find-card__label">Support</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+    15. NEWSLETTER
+  ══════════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--newsletter" *ngIf="data?.content?.news_letter?.status">
+    <app-newsletter [data]="data?.content?.news_letter || null"></app-newsletter>
+  </section>
+
+  <!-- SEO H1 — visually hidden, crawlable -->
+  <div class="nf-seo-hidden" aria-hidden="true">
+    <h1>mangal fashion Premium Mens and Womens Fashion Online</h1>
+    <p>Discover new season shirts jackets suits denim and more at mangal fashion. Premium quality fast shipping across India COD and easy returns.</p>
+  </div>
+
+</div>

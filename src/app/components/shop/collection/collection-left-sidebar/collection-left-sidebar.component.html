@@ -1,0 +1,31 @@
+<section>
+    <div class="container-fluid-lg">
+        <div class="row">
+            <div class="col-12">
+                <app-collection-category-banner [imageUrl]="bannerImageUrl"></app-collection-category-banner>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nykaa-style page title -->
+<div class="nf-collection-title-bar">
+  <h1 class="nf-collection-title">
+    {{ filter?.['category'] ? (filter['category'] | titlecase) + ' – Shop All' : 'Shop All' }}
+  </h1>
+</div>
+
+<section class="section-b-space shop-section" id="filtered_products">
+    <div class="container-fluid-lg">
+        <div class="row">
+            <div class="col-custome-3">
+                <div class="left-box" [class.show]="attributeService.offCanvasMenu">
+                    <app-collection-sidebar [filter]="filter"></app-collection-sidebar>
+                </div>
+            </div>
+            <div class="col-custome-9">
+                <app-collection-products [filter]="filter"></app-collection-products>
+            </div>
+        </div>
+    </div>
+</section>

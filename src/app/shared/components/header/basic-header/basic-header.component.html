@@ -1,0 +1,82 @@
+<header class="nf-header" [class.nf-header--sticky]="stick && sticky">
+
+  <!-- ═══════════════════════════════════════════════════════
+    ROW 1 — Logo · Primary Nav · Search · Account/Wishlist/Cart
+  ═══════════════════════════════════════════════════════ -->
+  <div class="nf-header__row1">
+    <div class="container-fluid-lg">
+      <div class="nf-row1">
+
+        <!-- Mobile hamburger -->
+        <div class="nf-row1__hamburger d-xl-none">
+          <app-navbar-menu-button (activeMenu)="toggle($event)" [show]="active"></app-navbar-menu-button>
+        </div>
+
+        <!-- Logo -->
+        <div class="nf-row1__logo">
+          <app-logo [textClass]="'txt-theme f-w-700'" [data]="data" [logo]="logo"></app-logo>
+        </div>
+
+        <!-- Primary Nav — Women, Men, Kids, Home… -->
+        <nav class="nf-row1__nav d-none d-xl-flex">
+          <div class="main-nav navbar navbar-expand-xl navbar-light">
+            <app-menu></app-menu>
+          </div>
+        </nav>
+
+        <!-- Search Bar -->
+        <div class="nf-row1__search d-none d-lg-flex">
+          <app-box-search [style]="'standard'"></app-box-search>
+        </div>
+
+        <!-- Right Actions: Account | Wishlist | Cart -->
+        <div class="nf-row1__actions">
+
+          <div class="nf-action nf-action--account onhover-dropdown">
+            <div class="nf-action__circle">
+              <app-my-account [style]="'basic'"></app-my-account>
+            </div>
+            <span class="nf-action__label d-none d-lg-inline">Account</span>
+          </div>
+
+          <div class="nf-action nf-action--wishlist d-none d-md-flex">
+            <div class="nf-action__circle">
+              <app-header-wishlist [style]="'basic'"></app-header-wishlist>
+            </div>
+            <span class="nf-action__label d-none d-lg-inline">Wishlist</span>
+          </div>
+
+          <div class="nf-action nf-action--cart onhover-dropdown">
+            <div class="nf-action__circle">
+              <app-header-cart [style]="'basic'"></app-header-cart>
+            </div>
+            <span class="nf-action__label d-none d-lg-inline">Cart</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+    Mobile offcanvas menu
+  ═══════════════════════════════════════════════════════ -->
+  <div class="d-xl-none">
+    <div class="offcanvas offcanvas-collapse nf-mobile-menu" [class.show]="active">
+      <div class="offcanvas-header nf-mobile-menu__header">
+        <div class="nf-mobile-menu__brand">
+          <div class="nf-mobile-menu__icon"><i class="ri-store-2-line"></i></div>
+          <h5 class="nf-mobile-menu__title">{{ 'Menu' | translate }}</h5>
+        </div>
+        <button class="nf-mobile-menu__close" type="button" (click)="toggle(false)">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+      <div class="offcanvas-body nf-mobile-menu__body">
+        <app-menu></app-menu>
+      </div>
+    </div>
+    <div class="offcanvas-backdrop fade" *ngIf="active" [class.show]="active" (click)="toggle(false)"></div>
+  </div>
+
+</header>

@@ -1,0 +1,193 @@
+// ============================================================
+// Filter Sidebar — matches Nykaa reference exactly
+// ============================================================
+
+$pink:   #D4145A;
+$dark:   #1C1C2E;
+$border: #E8E8E8;
+$white:  #FFFFFF;
+
+:host { display: block; }
+
+// ── Kill Bootstrap accordion defaults ─────────────────────
+::ng-deep {
+  .accordion-button {
+    &::after { display: none !important; }
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    color: inherit !important;
+    font-size: inherit !important;
+  }
+  .accordion-item  { border: none !important; background: transparent !important; }
+  .accordion-body  { padding: 0 !important; }
+  .accordion-header{ margin: 0 !important; }
+}
+
+// ── Sidebar shell ──────────────────────────────────────────
+.nf-sidebar {
+  background: $white;
+  padding-right: 6px;
+}
+
+// ── "Filters  ·  Clear All" header ────────────────────────
+.nf-sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1.5px solid $border;
+  margin-bottom: 0;
+}
+
+.nf-sidebar__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: $dark;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.nf-sidebar__clear {
+  font-size: 13px;
+  font-weight: 600;
+  color: $pink;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+  &:hover { opacity: 0.7; }
+}
+
+// ── Static filter sections (Department / Category) ─────────
+.nf-filter-section {
+  padding: 18px 0;
+  border-bottom: 1px solid $border;
+}
+
+.nf-filter-section__label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: $dark;
+  margin-bottom: 10px;
+}
+
+.nf-filter-section__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+// ── Chips ──────────────────────────────────────────────────
+.nf-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  background: #F0F0F0;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: #333;
+  line-height: 1;
+  white-space: nowrap;
+
+  &--removable {
+    cursor: pointer;
+    transition: background 0.15s ease;
+
+    i { font-size: 13px; color: #888; }
+
+    &:hover {
+      background: rgba($pink, 0.08);
+      color: $pink;
+      i { color: $pink; }
+    }
+  }
+}
+
+// ── Accordion ─────────────────────────────────────────────
+.nf-accordion { display: flex; flex-direction: column; }
+
+.nf-accordion__item {
+  border-bottom: 1px solid $border !important;
+}
+
+// Accordion trigger button
+.nf-accordion__btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 18px 0 !important;
+  background: none !important;
+  border: none;
+  cursor: pointer;
+  gap: 8px;
+
+  span {
+    font-size: 14px;
+    font-weight: 600;
+    color: $dark;
+    line-height: 1;
+  }
+
+  .nf-accordion__icon {
+    font-size: 18px;
+    color: #555;
+    flex-shrink: 0;
+    line-height: 1;
+    transition: transform 0.22s ease;
+  }
+
+  // When open: "+" rotates to "×"
+  &[aria-expanded="true"] .nf-accordion__icon {
+    transform: rotate(45deg);
+  }
+}
+
+// Accordion body padding
+.nf-accordion__body {
+  padding: 4px 0 16px;
+}
+
+// ── Size chips ─────────────────────────────────────────────
+.nf-size-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.nf-size-chip {
+  min-width: 40px;
+  height: 34px;
+  padding: 0 10px;
+  border: 1.5px solid #DEDEDE;
+  border-radius: 4px;
+  background: $white;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #444;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+
+  &:hover { border-color: $pink; color: $pink; }
+  &.active { background: $pink; border-color: $pink; color: $white; }
+}
+
+// ── Dark mode ──────────────────────────────────────────────
+html.dark {
+  .nf-sidebar        { background: #1a1a2a; }
+  .nf-sidebar__title { color: #e0e0e0; }
+  .nf-sidebar__header,
+  .nf-filter-section,
+  .nf-accordion__item { border-color: #2a2a3a !important; }
+  .nf-filter-section__label { color: #ddd; }
+  .nf-chip           { background: #2a2a3a; color: #ccc; }
+  .nf-accordion__btn span { color: #e0e0e0; }
+  .nf-accordion__icon     { color: #aaa; }
+  ::ng-deep .accordion-button { background: transparent !important; }
+}

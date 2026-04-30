@@ -1,0 +1,36 @@
+<!-- Featured Banners — Nykaa "Trending Summer Picks" horizontal scroll -->
+<div class="nf-trending-wrap" *ngIf="banners?.length && style == 'horizontal'">
+  <button class="nf-trending-arrow nf-trending-arrow--left" (click)="scrollLeft()" aria-label="Scroll left">
+    <i class="ri-arrow-left-s-line"></i>
+  </button>
+  <div class="nf-trending-scroll" #scrollContainer>
+    <ng-container *ngFor="let banner of banners">
+      <ng-container *ngIf="banner?.status">
+        <div class="nf-trending-card">
+          <app-image-link [image]="banner" [bgImage]="false"></app-image-link>
+          <a class="nf-trending-card__explore"
+             [href]="banner?.redirect_link?.link ? '/' + banner?.redirect_link?.link : '#'">
+            Explore More <i class="ri-arrow-right-s-line"></i>
+          </a>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+  <button class="nf-trending-arrow nf-trending-arrow--right" (click)="scrollRight()" aria-label="Scroll right">
+    <i class="ri-arrow-right-s-line"></i>
+  </button>
+</div>
+
+<!-- Vertical Banner -->
+<div [class]="class" *ngIf="banners?.image_url && style == 'vertical'">
+  <div class="nf-card">
+    <app-image-link [image]="banners" [bgImage]="false"></app-image-link>
+  </div>
+</div>
+
+<!-- Full Width Banner -->
+<div class="nf-fullwidth-banner" *ngIf="banners?.image_url && style == 'full_width'">
+  <div class="nf-card nf-card--full">
+    <app-image-link [image]="banners" [bgImage]="false"></app-image-link>
+  </div>
+</div>

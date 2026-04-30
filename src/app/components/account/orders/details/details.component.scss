@@ -1,0 +1,492 @@
+// ══════════════════════════════════════════════════════════
+// Nykaa-style Order Details  —  #D4145A theme
+// ══════════════════════════════════════════════════════════
+$pink   : #D4145A;
+$pink-lt: rgba(212,20,90,0.08);
+$dark   : #1a1a1a;
+$muted  : #6b7280;
+$border : #f0f0f0;
+$bg     : #fafafa;
+$green  : #16a34a;
+$yellow : #d97706;
+$red    : #dc2626;
+$blue   : #2563eb;
+
+// ── Base wrapper ──────────────────────────────────────────
+.nyk-od {
+  display       : flex;
+  flex-direction: column;
+  gap           : 18px;
+  padding-bottom: 40px;
+}
+
+// ── Top bar ───────────────────────────────────────────────
+.nyk-od__topbar {
+  display        : flex;
+  align-items    : center;
+  justify-content: space-between;
+  flex-wrap      : wrap;
+  gap            : 12px;
+  padding        : 16px 20px;
+  background     : #fff;
+  border         : 1px solid $border;
+  border-radius  : 12px;
+}
+
+.nyk-od__topbar-left {
+  display    : flex;
+  align-items: center;
+  gap        : 10px;
+  flex-wrap  : wrap;
+}
+
+.nyk-od__back {
+  display        : inline-flex;
+  align-items    : center;
+  gap            : 5px;
+  font-size      : 13px;
+  font-weight    : 600;
+  color          : $pink;
+  text-decoration: none;
+  i { font-size: 16px; }
+  &:hover { text-decoration: underline; }
+}
+
+.nyk-od__divider { color: #d1d5db; font-size: 16px; }
+
+.nyk-od__order-num {
+  font-size  : 15px;
+  font-weight: 700;
+  color      : $dark;
+}
+
+// Status pills
+.nyk-od__status-pill {
+  display      : inline-block;
+  padding      : 3px 12px;
+  border-radius: 20px;
+  font-size    : 12px;
+  font-weight  : 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+
+  &--pending     { background: rgba($yellow,0.12); color: $yellow; }
+  &--processing  { background: rgba($blue,0.1);    color: $blue; }
+  &--shipped     { background: rgba($blue,0.1);    color: $blue; }
+  &--out-for-delivery { background: rgba($blue,0.1); color: $blue; }
+  &--delivered   { background: rgba($green,0.1);   color: $green; }
+  &--cancelled   { background: rgba($red,0.1);     color: $red; }
+}
+
+// ── Topbar action buttons ─────────────────────────────────
+.nyk-od__topbar-right { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.nyk-od__btn {
+  display        : inline-flex;
+  align-items    : center;
+  gap            : 6px;
+  padding        : 10px 22px;
+  border-radius  : 50px;
+  font-size      : 13px;
+  font-weight    : 700;
+  letter-spacing : 0.03em;
+  text-decoration: none;
+  cursor         : pointer;
+  transition     : all 0.2s ease;
+
+  &--primary {
+    background: $pink;
+    color     : #fff;
+    border    : none;
+    box-shadow: 0 4px 14px rgba($pink,0.3);
+    &:hover { background: darken(#D4145A,8%); color:#fff; transform: translateY(-1px); }
+  }
+
+  &--outline {
+    background: #fff;
+    color     : $pink;
+    border    : 1.5px solid $pink;
+    &:hover { background: $pink-lt; }
+  }
+
+  &--sm {
+    padding  : 8px 18px;
+    font-size: 12px;
+    background: #fff;
+    color    : $pink;
+    border   : 1.5px solid $pink;
+    &:hover { background: $pink-lt; }
+  }
+
+  i { font-size: 15px; }
+}
+
+// ── Card ──────────────────────────────────────────────────
+.nyk-od__card {
+  background   : #fff;
+  border       : 1px solid $border;
+  border-radius: 12px;
+  overflow     : hidden;
+}
+
+.nyk-od__card-head {
+  display    : flex;
+  align-items: center;
+  gap        : 8px;
+  padding    : 16px 20px;
+  font-size  : 15px;
+  font-weight: 700;
+  color      : $dark;
+  border-bottom: 1px solid $border;
+  background : $bg;
+
+  i { font-size: 18px; color: $pink; }
+}
+
+// ── Tracking ──────────────────────────────────────────────
+.nyk-od__steps {
+  display    : flex;
+  align-items: flex-start;
+  padding    : 28px 20px;
+  overflow-x : auto;
+  gap        : 0;
+}
+
+.nyk-od__step {
+  display       : flex;
+  flex-direction: column;
+  align-items   : center;
+  gap           : 8px;
+  min-width     : 90px;
+  opacity       : 0.35;
+  transition    : opacity 0.2s;
+
+  &.done, &.active { opacity: 1; }
+}
+
+.nyk-od__step-circle {
+  width          : 52px;
+  height         : 52px;
+  border-radius  : 50%;
+  background     : #e5e7eb;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  position       : relative;
+  transition     : all 0.2s ease;
+
+  img { width: 26px; height: 26px; filter: brightness(0) invert(1); }
+
+  .nyk-od__step.done & { background: $green; }
+  .nyk-od__step.active & {
+    background: $pink;
+    box-shadow: 0 0 0 4px rgba($pink,0.2);
+    transform : scale(1.12);
+  }
+
+  &--cancel { background: $red !important; }
+}
+
+.nyk-od__step-label {
+  font-size  : 11px;
+  font-weight: 600;
+  color      : $muted;
+  text-align : center;
+  white-space: nowrap;
+
+  .nyk-od__step.active & { color: $dark; font-weight: 700; }
+}
+
+.nyk-od__step-line {
+  flex      : 1;
+  height    : 2px;
+  background: #e5e7eb;
+  margin-top: 25px;
+  min-width : 24px;
+  transition: background 0.2s;
+
+  &.done { background: $green; }
+}
+
+// ── Products ──────────────────────────────────────────────
+.nyk-od__product-list { padding: 12px 20px; }
+
+.nyk-od__product {
+  display    : flex;
+  align-items: center;
+  gap        : 16px;
+  padding    : 16px 0;
+  border-bottom: 1px solid $border;
+
+  &:last-child { border-bottom: none; }
+}
+
+.nyk-od__product-img {
+  width        : 80px;
+  height       : 96px;
+  border-radius: 8px;
+  overflow     : hidden;
+  flex-shrink  : 0;
+  background   : $bg;
+  border       : 1px solid $border;
+
+  img { width:100%; height:100%; object-fit:cover; object-position:top; }
+}
+
+.nyk-od__product-info { flex: 1; min-width: 0; }
+
+.nyk-od__product-name {
+  font-size    : 14px;
+  font-weight  : 600;
+  color        : $dark;
+  margin       : 0 0 8px;
+  line-height  : 1.4;
+}
+
+.nyk-od__product-meta {
+  display  : flex;
+  flex-wrap: wrap;
+  gap      : 12px;
+  font-size: 13px;
+  color    : $muted;
+
+  b { color: $dark; }
+}
+
+.nyk-od__product-right {
+  display       : flex;
+  flex-direction: column;
+  align-items   : flex-end;
+  gap           : 8px;
+  flex-shrink   : 0;
+}
+
+.nyk-od__product-sub {
+  font-size  : 16px;
+  font-weight: 700;
+  color      : $pink;
+}
+
+.nyk-od__product-action { display: flex; }
+
+.nyk-od__refund-btn {
+  display        : inline-flex;
+  align-items    : center;
+  gap            : 5px;
+  padding        : 6px 16px;
+  border-radius  : 20px;
+  background     : $pink;
+  color          : #fff;
+  font-size      : 12px;
+  font-weight    : 700;
+  text-decoration: none;
+  transition     : all 0.2s;
+  i { font-size: 14px; }
+  &:hover { background: darken(#D4145A,8%); color:#fff; }
+}
+
+// ── Badges ────────────────────────────────────────────────
+.nyk-od__badge {
+  display      : inline-block;
+  padding      : 4px 12px;
+  border-radius: 20px;
+  font-size    : 12px;
+  font-weight  : 600;
+
+  &--grey      { background: #f3f4f6; color: $muted; }
+  &--pending   { background: rgba($yellow,0.1); color: $yellow; }
+  &--approved  { background: rgba($green,0.1);  color: $green; }
+  &--rejected  { background: rgba($red,0.1);    color: $red; }
+  &--delivered { background: rgba($green,0.1);  color: $green; }
+  &--shipped   { background: rgba($blue,0.1);   color: $blue; }
+  &--cancelled { background: rgba($red,0.1);    color: $red; }
+  &--processing { background: rgba($blue,0.1);  color: $blue; }
+}
+
+// ── Info grid ─────────────────────────────────────────────
+.nyk-od__info-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 18px;
+
+  @media (max-width: 1024px) { grid-template-columns: 1fr; }
+}
+
+// ── Consumer Details ──────────────────────────────────────
+.nyk-od__detail-grid {
+  display  : flex;
+  flex-wrap: wrap;
+  gap      : 0;
+}
+
+.nyk-od__detail {
+  display  : flex;
+  gap      : 12px;
+  padding  : 16px 20px;
+  width    : 50%;
+  border-bottom: 1px solid $border;
+
+  @media (max-width: 768px) { width: 100%; }
+
+  &:nth-last-child(-n+2):nth-child(odd),
+  &:last-child { border-bottom: none; }
+}
+
+.nyk-od__detail-icon {
+  width          : 36px;
+  height         : 36px;
+  border-radius  : 8px;
+  background     : $pink-lt;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  flex-shrink    : 0;
+
+  i { color: $pink; font-size: 17px; }
+}
+
+.nyk-od__detail {
+  label {
+    display      : block;
+    font-size    : 11px;
+    font-weight  : 600;
+    color        : $muted;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+
+  p {
+    font-size  : 13px;
+    color      : $dark;
+    line-height: 1.6;
+    margin     : 0;
+  }
+}
+
+.nyk-od__phone {
+  display    : inline-flex;
+  align-items: center;
+  gap        : 4px;
+  font-size  : 12.5px;
+  color      : $muted;
+  margin-top : 4px;
+  i { font-size: 13px; }
+}
+
+// Payment status
+.nyk-od__pay-status {
+  display      : inline-block;
+  padding      : 4px 12px;
+  border-radius: 20px;
+  font-size    : 12px;
+  font-weight  : 700;
+
+  &--completed, &--paid { background: rgba($green,0.1); color: $green; }
+  &--pending             { background: rgba($yellow,0.1); color: $yellow; }
+  &--failed              { background: rgba($red,0.1); color: $red; }
+}
+
+// ── Summary ───────────────────────────────────────────────
+.nyk-od__summary-list {
+  list-style: none;
+  margin    : 0;
+  padding   : 8px 20px 4px;
+
+  li {
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+    padding        : 12px 0;
+    border-bottom  : 1px dashed $border;
+    font-size      : 14px;
+    color          : $muted;
+
+    &:last-child { border-bottom: none; }
+
+    span:last-child { font-weight: 600; color: $dark; }
+  }
+}
+
+.nyk-od__summary-discount span { color: $green !important; }
+
+.nyk-od__summary-total {
+  padding-top: 14px !important;
+  border-top : 2px solid $border !important;
+  border-bottom: none !important;
+  margin-top : 4px;
+
+  span:first-child { font-size: 15px !important; font-weight: 700 !important; color: $dark !important; }
+  span:last-child  { font-size: 20px !important; font-weight: 800 !important; color: $pink !important; }
+}
+
+// ── Sub orders ────────────────────────────────────────────
+.nyk-od__sub-list { padding: 12px 20px; display: flex; flex-direction: column; gap: 12px; }
+
+.nyk-od__sub {
+  display        : flex;
+  align-items    : center;
+  justify-content: space-between;
+  gap            : 16px;
+  padding        : 16px;
+  border         : 1px solid $border;
+  border-radius  : 10px;
+  background     : $bg;
+  flex-wrap      : wrap;
+  transition     : box-shadow 0.2s;
+
+  &:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+}
+
+.nyk-od__sub-row {
+  display  : flex;
+  flex-wrap: wrap;
+  gap      : 20px;
+  flex     : 1;
+}
+
+.nyk-od__sub-item {
+  display       : flex;
+  flex-direction: column;
+  gap           : 3px;
+
+  label { font-size: 11px; color: $muted; font-weight: 600; text-transform: uppercase; }
+  span  { font-size: 13px; color: $dark; font-weight: 600; }
+}
+
+.nyk-od__pink { color: $pink !important; font-weight: 700; }
+
+// ── Loading ───────────────────────────────────────────────
+.nyk-od-loading {
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+  justify-content: center;
+  padding        : 80px 20px;
+  gap            : 16px;
+
+  &__spinner {
+    width        : 40px;
+    height       : 40px;
+    border       : 3px solid #f0f0f0;
+    border-top   : 3px solid $pink;
+    border-radius: 50%;
+    animation    : nyk-spin 0.8s linear infinite;
+  }
+
+  p { color: $muted; font-size: 14px; margin: 0; }
+}
+
+@keyframes nyk-spin { to { transform: rotate(360deg); } }
+
+// ── Responsive ────────────────────────────────────────────
+@media (max-width: 768px) {
+  .nyk-od__topbar { flex-direction: column; align-items: flex-start; }
+  .nyk-od__topbar-right { width: 100%; }
+  .nyk-od__btn { width: 100%; justify-content: center; }
+  .nyk-od__product { flex-wrap: wrap; }
+  .nyk-od__product-right { flex-direction: row; align-items: center; width: 100%; justify-content: space-between; }
+  .nyk-od__steps { padding: 20px 12px; }
+  .nyk-od__step { min-width: 70px; }
+  .nyk-od__detail { width: 100%; }
+}

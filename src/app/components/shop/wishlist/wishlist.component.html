@@ -1,0 +1,122 @@
+<!-- ── Nykaa-style Wishlist Header Bar ─────────────────────── -->
+<div class="wl-header-bar">
+  <div class="container-fluid-lg">
+    <div class="wl-header-inner">
+
+      <div class="wl-header-left">
+        <div class="wl-header-icon">
+          <i class="ri-heart-3-fill"></i>
+        </div>
+        <div class="wl-header-text">
+          <h2 class="wl-header-title">{{ 'Wishlist' | translate }}</h2>
+          <p class="wl-header-sub">{{ 'Your favorite items saved for later' | translate }}</p>
+        </div>
+      </div>
+
+      <div class="wl-header-badge" *ngIf="(wishlistItems$ | async)?.data?.length">
+        <span class="wl-badge-count">{{ (wishlistItems$ | async)?.data?.length }}</span>
+        <span class="wl-badge-label">ITEMS</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── Main content ───────────────────────────────────────── -->
+<section class="wl-content">
+  <div class="container-fluid-lg">
+
+    <!-- Skeleton -->
+    <ng-container *ngIf="wishlistService?.skeletonLoader else productContent">
+      <div class="wl-grid">
+        <div *ngFor="let item of skeletonItems">
+          <app-skeleton-product-box></app-skeleton-product-box>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Product grid -->
+    <ng-template #productContent>
+      <div class="wl-grid" *ngIf="(wishlistItems$ | async)?.data?.length">
+
+        <div class="wl-product-card" *ngFor="let product of (wishlistItems$ | async)?.data">
+
+          <!-- Image area -->
+          <div class="wl-card-img-wrap">
+            <span class="wl-sale-badge" *ngIf="isOnSale(product)">SALE</span>
+            <a [routerLink]="['/product/', product?.slug]">
+              <img [src]="product?.product_thumbnail?.original_url || 'assets/images/product.png'"
+                   [alt]="product?.name" class="wl-card-img">
+            </a>
+            <button class="wl-remove-btn" (click)="removeWishlist(product)" title="Remove">
+              <i class="ri-close-line"></i>
+            </button>
+          </div>
+
+          <!-- Info -->
+          <div class="wl-card-info">
+
+            <span class="wl-sale-pill" *ngIf="isOnSale(product)">SALE</span>
+
+            <a [routerLink]="['/product/', product?.slug]" class="wl-card-name">{{ product?.name }}</a>
+            <p class="wl-card-desc">{{ product?.short_description || product?.name }}</p>
+
+            <!-- Price -->
+            <div class="wl-price-row">
+              <span class="wl-price-sale">{{ product?.sale_price | currencySymbol }}</span>
+              <span class="wl-price-original" *ngIf="isOnSale(product)">
+                {{ product?.price | currencySymbol }}
+              </span>
+              <span class="wl-discount" *ngIf="isOnSale(product)">
+                {{ getDiscount(product) }}% off
+              </span>
+            </div>
+
+            <!-- Rating + stock -->
+            <div class="wl-card-meta">
+              <div class="wl-stars" *ngIf="product?.rating_count">
+                <ng-container *ngFor="let s of getStarArray()">
+                  <i [class]="s <= getAvgRating(product) ? 'ri-star-fill' : 'ri-star-line'"></i>
+                </ng-container>
+              </div>
+              <span class="wl-in-stock" *ngIf="product?.stock_status === 'in_stock'">In Stock</span>
+              <span class="wl-out-stock" *ngIf="product?.stock_status !== 'in_stock'">Out of Stock</span>
+            </div>
+
+            <!-- Price drop -->
+            <div class="wl-price-drop" *ngIf="isOnSale(product)">
+              <i class="ri-arrow-down-line"></i>
+              Price dropped by {{ getDiff(product) | currencySymbol }}
+            </div>
+
+            <!-- Add to bag -->
+            <button class="wl-add-to-bag"
+                    (click)="addToCart(product)"
+                    [disabled]="product?.stock_status !== 'in_stock'">
+              ADD TO BAG
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+    </ng-template>
+
+    <!-- Empty State -->
+    <div class="wl-empty"
+         *ngIf="!(wishlistItems$ | async)?.data?.length && !wishlistService.skeletonLoader">
+      <div class="wl-empty-icon">
+        <i class="ri-heart-line"></i>
+      </div>
+      <h4 class="wl-empty-title">{{ 'No Items Added' | translate }}</h4>
+      <p class="wl-empty-sub">
+        {{ 'It appears that nothing has been added to your wishlist. Explore categories if you want to.' | translate }}
+      </p>
+      <a [routerLink]="['/collections']" class="wl-empty-btn">
+        <i class="ri-shopping-bag-line"></i>
+        {{ 'Start Shopping' | translate }}
+      </a>
+    </div>
+
+  </div>
+</section>

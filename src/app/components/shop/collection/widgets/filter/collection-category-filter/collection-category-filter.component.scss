@@ -1,0 +1,158 @@
+$pink:   #D4145A;
+$dark:   #1C1C2E;
+$border: #C8C8C8;
+$white:  #FFFFFF;
+
+:host { display: block; }
+
+// ── Search box ─────────────────────────────────────────────
+.nf-cat-search {
+  position: relative;
+  margin-bottom: 12px;
+
+  &__icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #aaa;
+    pointer-events: none;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 8px 10px 8px 32px;
+    border: 1.5px solid #E8E8E8;
+    border-radius: 4px;
+    font-size: 13px;
+    color: $dark;
+    outline: none;
+    background: $white;
+    transition: border-color 0.18s ease;
+
+    &:focus { border-color: $pink; }
+    &::placeholder { color: #bbb; }
+  }
+}
+
+// ── Category list ──────────────────────────────────────────
+.nf-cat-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.nf-cat-list__item {
+  display: flex;
+  flex-direction: column;
+}
+
+// ── Single category row ────────────────────────────────────
+.nf-cat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  cursor: pointer;
+  user-select: none;
+
+  // Checkbox box
+  &__box {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    border: 1.5px solid $border;
+    border-radius: 3px;
+    background: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.18s ease;
+  }
+
+  // Check icon (hidden by default)
+  &__check {
+    font-size: 11px;
+    color: $white;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  // Label text
+  &__label {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.4;
+    flex: 1;
+    transition: color 0.15s ease;
+  }
+
+  // Hover state
+  &:hover {
+    .nf-cat-item__box  { border-color: $pink; }
+    .nf-cat-item__label { color: $dark; }
+  }
+
+  // Checked state
+  &--checked {
+    .nf-cat-item__box  { background: $pink; border-color: $pink; }
+    .nf-cat-item__check { opacity: 1; }
+    .nf-cat-item__label { color: $dark; font-weight: 600; }
+  }
+
+  // Disabled state
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+    pointer-events: none;
+  }
+}
+
+// ── Sub-category list ──────────────────────────────────────
+.nf-cat-sublist {
+  list-style: none;
+  padding: 0 0 0 26px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+
+  .nf-cat-item {
+    padding: 7px 0;
+    &__label { font-size: 12.5px; color: #666; }
+    &__box   { width: 15px; height: 15px; }
+    &__check { font-size: 10px; }
+  }
+}
+
+// ── Empty state ────────────────────────────────────────────
+.nf-cat-empty {
+  font-size: 13px;
+  color: #aaa;
+  text-align: center;
+  padding: 12px 0;
+  margin: 0;
+}
+
+// ── Dark mode ──────────────────────────────────────────────
+html.dark {
+  .nf-cat-search__input {
+    background: #1e1e2e;
+    border-color: #2a2a3a;
+    color: #ddd;
+    &::placeholder { color: #666; }
+    &:focus { border-color: $pink; }
+  }
+
+  .nf-cat-item {
+    &__box   { background: #2a2a3a; border-color: #3a3a4a; }
+    &__label { color: #aaa; }
+    &:hover .nf-cat-item__label { color: #e0e0e0; }
+    &--checked {
+      .nf-cat-item__box  { background: $pink; border-color: $pink; }
+      .nf-cat-item__label { color: #e0e0e0; }
+    }
+  }
+}

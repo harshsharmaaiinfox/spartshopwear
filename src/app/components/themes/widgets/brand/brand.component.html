@@ -1,0 +1,59 @@
+<div class="nf-brands-wrap">
+
+  <!-- Section header — Nykaa "IN THE SPOTLIGHT" style -->
+  <div class="nf-brands-header" *ngIf="brands?.length">
+    <span class="nf-brands-eyebrow">IN THE SPOTLIGHT</span>
+    <h2 class="nf-brands-title">Hottest brands on offer</h2>
+  </div>
+
+  <!-- Brand grid — 5 columns portrait cards -->
+  <div class="nf-brands-grid" *ngIf="brands?.length">
+    <a *ngFor="let brand of brands"
+       href="/brand/{{brand.slug}}"
+       [routerLink]="['/brand', brand.slug]"
+       class="nf-brand-card">
+
+      <!-- Portrait image with brand name overlay -->
+      <div class="nf-brand-card__img-wrap">
+
+        <img *ngIf="brand.brand_banner?.original_url; else tryBrandImg"
+             [src]="brand.brand_banner.original_url"
+             [alt]="brand.name"
+             class="nf-brand-card__img">
+
+        <ng-template #tryBrandImg>
+          <img *ngIf="brand.brand_image?.original_url; else fallback"
+               [src]="brand.brand_image?.original_url"
+               [alt]="brand.name"
+               class="nf-brand-card__img">
+        </ng-template>
+
+        <ng-template #fallback>
+          <div class="nf-brand-card__fallback">
+            <span>{{ brand.name }}</span>
+          </div>
+        </ng-template>
+
+        <!-- Brand name overlaid at bottom of image -->
+        <div class="nf-brand-card__overlay">
+          <span class="nf-brand-card__brand-name">{{ brand.name }}</span>
+        </div>
+
+      </div>
+
+      <!-- Info below image: offer + tagline -->
+      <div class="nf-brand-card__info">
+        <p class="nf-brand-card__offer" *ngIf="brand.meta_title">{{ brand.meta_title }}</p>
+        <p class="nf-brand-card__tagline" *ngIf="brand.meta_description">{{ brand.meta_description }}</p>
+      </div>
+
+    </a>
+  </div>
+
+  <app-no-data
+    [class]="'no-data-added bg-light'"
+    [text]="'no_product_found'"
+    *ngIf="!brands?.length">
+  </app-no-data>
+
+</div>

@@ -1,0 +1,40 @@
+// ============================================================
+// Collection Products — Nykaa Fashion grid
+// ============================================================
+
+$border: #EBEBEB;
+$white:  #FFFFFF;
+
+:host { display: block; }
+
+// Product grid spacing
+::ng-deep {
+  .product-list-section {
+    margin-left: -8px !important;
+    margin-right: -8px !important;
+
+    > * {
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+    }
+
+    // Row gap between product rows
+    row-gap: 28px !important;
+  }
+
+  // No data state
+  .collection-no-data {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// Pagination spacing
+::ng-deep app-collection-paginate {
+  display: block;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid $border;
+}

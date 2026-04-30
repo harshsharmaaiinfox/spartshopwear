@@ -1,0 +1,418 @@
+<!-- ── Nykaa-style Horizontal Stepper ──────────────────────────────────── -->
+<div class="nyk-stepper-bar">
+  <div class="container-fluid-lg">
+    <div class="nyk-stepper-inner">
+
+      <!-- Step 1: Sign Up / Account -->
+      <div class="nyk-step" [class.nyk-step--done]="(accessToken$ | async)">
+        <div class="nyk-step-circle">
+          <i class="ri-check-line" *ngIf="(accessToken$ | async)"></i>
+          <span *ngIf="!(accessToken$ | async)">1</span>
+        </div>
+        <span class="nyk-step-label">{{ (accessToken$ | async) ? 'Signed In' : 'Sign Up' }}</span>
+      </div>
+
+      <div class="nyk-step-line"></div>
+
+      <!-- Step 2: Address (active) -->
+      <div class="nyk-step nyk-step--active">
+        <div class="nyk-step-circle">
+          <i class="ri-edit-line"></i>
+        </div>
+        <span class="nyk-step-label">Address</span>
+      </div>
+
+      <div class="nyk-step-line"></div>
+
+      <!-- Step 3: Payment -->
+      <div class="nyk-step">
+        <div class="nyk-step-circle">3</div>
+        <span class="nyk-step-label">Payment</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── Main Checkout Body ──────────────────────────────────────────────── -->
+<section class="nyk-checkout-section" id="mySubPaisa">
+  <div class="container-fluid-lg">
+    <div class="row g-0 g-lg-4">
+
+      <!-- ── LEFT: Address / Guest forms ──────────────────────────────── -->
+      <div class="col-lg-8">
+
+        <!-- ═══ LOGGED-IN USER ═══ -->
+        <ng-container *ngIf="(accessToken$ | async)">
+
+          <!-- Section header -->
+          <div class="nyk-section-header">
+            <div class="nyk-section-header-text">
+              <h2 class="nyk-choose-title">Choose Address</h2>
+              <p class="nyk-choose-sub">Detailed address will help our delivery partner reach your doorstep quickly</p>
+            </div>
+            <div class="nyk-illustration">
+              <svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <ellipse cx="100" cy="140" rx="80" ry="14" fill="#f0e6f0" opacity=".6"/>
+                <rect x="55" y="70" width="90" height="70" rx="4" fill="#7c3aed" opacity=".15"/>
+                <rect x="60" y="75" width="80" height="65" rx="3" fill="#ede9fe"/>
+                <polygon points="50,75 100,40 150,75" fill="#7c3aed" opacity=".7"/>
+                <rect x="82" y="100" width="36" height="40" rx="2" fill="#7c3aed" opacity=".5"/>
+                <rect x="70" y="85" width="18" height="18" rx="1" fill="white" opacity=".8"/>
+                <rect x="112" y="85" width="18" height="18" rx="1" fill="white" opacity=".8"/>
+                <circle cx="150" cy="45" r="14" fill="#f97316" opacity=".7"/>
+                <circle cx="52" cy="95" r="6" fill="#D4145A" opacity=".5"/>
+                <circle cx="165" cy="80" r="5" fill="#8b5cf6" opacity=".4"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Shipping Address Section -->
+          <div *ngIf="!(cartDigital$ | async)" class="nyk-address-section">
+            <div class="nyk-address-grid" id="shipping-address-grid">
+              <!-- Add New Address card -->
+              <div class="nyk-add-address-card" (click)="AddressModal.openModal(undefined, 'nyk-address-right-panel')">
+                <i class="ri-add-line"></i>
+                <span>Add New Address</span>
+              </div>
+
+              <!-- Existing saved addresses -->
+              <app-address-block
+                [addresses]="(user$ | async)?.address"
+                [type]="'shipping'"
+                (selectAddress)="selectShippingAddress($event)">
+              </app-address-block>
+            </div>
+          </div>
+
+          <!-- Billing Address Section (collapsible label) -->
+          <div class="nyk-billing-section">
+            <div class="nyk-section-subheading">
+              <h5>Billing Address</h5>
+              <a href="javascript:void(0)" class="nyk-link-add" (click)="AddressModal.openModal(undefined, 'nyk-address-right-panel')">
+                <i class="ri-add-line"></i> Add New
+              </a>
+            </div>
+            <div class="nyk-address-grid">
+              <app-address-block
+                [addresses]="(user$ | async)?.address"
+                [type]="'billing'"
+                (selectAddress)="selectBillingAddress($event)">
+              </app-address-block>
+            </div>
+          </div>
+
+          <!-- Delivery Options -->
+          <div *ngIf="!(cartDigital$ | async)" class="nyk-delivery-section">
+            <div class="nyk-section-subheading">
+              <h5>Delivery Options</h5>
+            </div>
+            <div class="nyk-delivery-body">
+              <div class="empty-box" *ngIf="!(user$ | async)">
+                <h2>{{ 'No Delivery Options Found' | translate }}</h2>
+              </div>
+              <app-delivery-block
+                [setting]="(setting$ | async)!"
+                (selectDelivery)="selectDelivery($event)">
+              </app-delivery-block>
+            </div>
+          </div>
+
+          <!-- ── Payment Method (Nykaa-style, full width) ── -->
+          <div class="nyk-payment-full-section" *ngIf="(setting$ | async)?.payment_methods?.length">
+            <app-payment-block
+              [setting]="(setting$ | async)!"
+              (selectPaymentMethod)="selectPaymentMethod($event)">
+            </app-payment-block>
+          </div>
+
+        </ng-container>
+
+        <!-- ═══ GUEST USER ═══ -->
+        <ng-container *ngIf="(setting$ | async)?.activation?.guest_checkout && !(accessToken$ | async)">
+          <div class="nyk-section-header">
+            <div class="nyk-section-header-text">
+              <h2 class="nyk-choose-title">Account Details</h2>
+              <p class="nyk-choose-sub">Create an account or enter your details to continue</p>
+            </div>
+          </div>
+
+          <div class="nyk-guest-card">
+            <!-- Account Details -->
+            <div class="nyk-guest-step">
+              <div class="nyk-guest-step-icon"><i class="ri-user-line"></i></div>
+              <div class="nyk-guest-step-body">
+                <h5>{{ 'Account Details' | translate }}</h5>
+                <form [formGroup]="form" class="checkout-form row g-3">
+                  <div class="col-md-4">
+                    <div class="form-group-modern">
+                      <label for="name" class="form-label-modern">{{ 'Name' | translate }}</label>
+                      <input type="text" class="form-control-modern" formControlName="name"
+                        placeholder="{{ 'Enter Name' | translate }}" id="name"
+                        (input)="filterSpecialCharacters($event, 'name')" pattern="[a-zA-Z0-9\s\.\-\']+">
+                      <div class="error-message"
+                        *ngIf="form?.controls?.['name']?.touched && form.controls['name']?.errors?.['required']">
+                        {{ 'Name Is Required' | translate }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group-modern">
+                      <label for="email" class="form-label-modern">{{ 'Email' | translate }}</label>
+                      <input type="email" class="form-control-modern"
+                        placeholder="{{ 'Enter Email Address' | translate }}" formControlName="email" id="email"
+                        (input)="filterEmailCharacters($event)" pattern="[a-zA-Z0-9._\-+@]+">
+                      <div class="error-message"
+                        *ngIf="form?.controls?.['email']?.touched && form.controls['email']?.errors?.['required']">
+                        {{ 'Email is Required' | translate }}
+                      </div>
+                      <div *ngIf="form.controls['email'].touched && form.controls['email'].errors?.['email']" class="error-message">
+                        {{ 'Invalid Email' | translate }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group-modern">
+                      <label class="form-label-modern" for="phoneno">{{ 'Phone Number' | translate }}</label>
+                      <input type="number" class="form-control-modern" formControlName="phone"
+                        placeholder="{{ 'enter_phone' | translate }}" name="phone" id="phoneno">
+                    </div>
+                    <div class="error-message"
+                      *ngIf="form?.controls?.['phone']?.touched && form.controls['phone']?.errors?.['required']">
+                      {{ 'Phone is Required' | translate }}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group-modern">
+                      <label for="pass" class="form-label-modern">{{ 'Password' | translate }}</label>
+                      <input type="password" class="form-control-modern" formControlName="password"
+                        placeholder="{{ 'Enter Password' | translate }}" id="pass">
+                      <div class="error-message"
+                        *ngIf="form?.controls?.['password']?.touched && form.controls['password']?.errors?.['required']">
+                        {{ 'Password is Required' | translate }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 d-flex flex-column align-items-end reg-btn">
+                    <app-button [class]="'btn btn-register mb-2'" [id]="'register_btn'"
+                      (click)="registerAccount()" [loading]="loading"
+                      [disabled]="loading || form.controls['name'].invalid || form.controls['email'].invalid || form.controls['phone'].invalid || form.controls['password'].invalid">
+                      {{ 'Register' | translate }}
+                    </app-button>
+                    <div class="already-account-link">
+                      <span>{{ 'Already have an account?' | translate }} </span>
+                      <a [routerLink]="['/auth/login']" class="text-theme fw-bold">{{ 'Login' | translate }}</a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Shipping Address for Guest -->
+            <div *ngIf="!(cartDigital$ | async)" class="nyk-guest-step">
+              <div class="nyk-guest-step-icon"><i class="ri-map-pin-line"></i></div>
+              <div class="nyk-guest-step-body">
+                <div class="nyk-section-subheading">
+                  <h5>{{ 'Shipping Address' | translate }}</h5>
+                  <a href="javascript:void(0)" class="nyk-link-add" (click)="AddressModal.openModal(undefined, 'nyk-address-right-panel')">
+                    <i class="ri-add-line"></i> {{ 'Add Address' | translate }}
+                  </a>
+                </div>
+                <app-address-block [addresses]="(user$ | async)?.address || []" [type]="'shipping'"
+                  (selectAddress)="selectShippingAddress($event)">
+                </app-address-block>
+              </div>
+            </div>
+
+            <!-- Billing Address for Guest -->
+            <div class="nyk-guest-step">
+              <div class="nyk-guest-step-icon"><i class="ri-map-pin-line"></i></div>
+              <div class="nyk-guest-step-body">
+                <div class="nyk-section-subheading">
+                  <h5>{{ 'Billing_address' | translate }}</h5>
+                  <a href="javascript:void(0)" class="nyk-link-add" (click)="AddressModal.openModal(undefined, 'nyk-address-right-panel')">
+                    <i class="ri-add-line"></i> {{ 'Add Address' | translate }}
+                  </a>
+                </div>
+                <app-address-block [addresses]="(user$ | async)?.address || []" [type]="'billing'"
+                  (selectAddress)="selectBillingAddress($event)">
+                </app-address-block>
+              </div>
+            </div>
+
+            <!-- Delivery Options for Guest -->
+            <div *ngIf="!(cartDigital$ | async)" class="nyk-guest-step">
+              <div class="nyk-guest-step-icon"><i class="ri-truck-line"></i></div>
+              <div class="nyk-guest-step-body">
+                <h5>{{ 'Delivery Options' | translate }}</h5>
+                <app-delivery-block [setting]="(setting$ | async)!" (selectDelivery)="selectDelivery($event)">
+                </app-delivery-block>
+              </div>
+            </div>
+
+          </div>
+        </ng-container>
+
+      </div><!-- /col-lg-8 -->
+
+      <!-- ── RIGHT: Order Summary Sidebar ─────────────────────────────── -->
+      <div class="col-lg-4 mt-4 mt-lg-0">
+        <div class="nyk-right-sidebar">
+
+
+          <!-- Bag Section -->
+          <div class="nyk-sidebar-card nyk-bag-card">
+            <div class="nyk-bag-row" (click)="bagExpanded = !bagExpanded">
+              <span class="nyk-bag-label">Bag</span>
+              <span class="nyk-bag-count">{{ (cartItem$ | async)?.length }} Item{{ (cartItem$ | async)?.length !== 1 ? 's' : '' }}</span>
+              <i [class]="bagExpanded ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line'"></i>
+            </div>
+            <div class="nyk-bag-items" *ngIf="bagExpanded">
+              <app-no-data [class]="'empty-cart'" [image]="'assets/svg/empty-items.svg'"
+                [text]="'No Items Cart'" *ngIf="!(cartItem$ | async)?.length">
+              </app-no-data>
+              <ul class="nyk-items-list" *ngIf="(cartItem$ | async)?.length">
+                <li *ngFor="let item of cartItem$ | async" class="nyk-item">
+                  <div class="nyk-item-img">
+                    <img [src]="item?.variation && item?.variation?.variation_image
+                                  ? item?.variation?.variation_image?.original_url
+                                  : item?.product?.product_thumbnail
+                                  ? item?.product?.product_thumbnail?.original_url
+                                  : 'assets/images/product.png'" alt="product">
+                  </div>
+                  <div class="nyk-item-info">
+                    <p class="nyk-item-name">{{ item?.variation ? item?.variation?.name : item?.product?.name }}</p>
+                    <div class="nyk-item-meta" *ngIf="item?.variation">
+                      <span>{{ item?.variation?.selected_variation || item?.variation?.name }}</span>
+                    </div>
+                    <div class="nyk-item-price-row">
+                      <span class="nyk-item-price">
+                        {{ (item?.variation ? item.variation.sale_price : item?.wholesale_price || item?.product?.sale_price)! | currencySymbol }}
+                      </span>
+                      <span class="nyk-item-qty">× {{ item.quantity }}</span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Price Details Section -->
+          <div class="nyk-sidebar-card nyk-price-card">
+            <div class="nyk-bag-row" (click)="priceExpanded = !priceExpanded">
+              <span class="nyk-bag-label">Price Details</span>
+              <span class="nyk-bag-count nyk-price-total">
+                {{ (checkoutTotal ? (checkoutTotal.total.total | currencySymbol) : (((cartTotal$ | async) ?? 0) | currencySymbol)) }}
+              </span>
+              <i [class]="priceExpanded ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line'"></i>
+            </div>
+            <div class="nyk-price-breakdown" *ngIf="priceExpanded">
+              <div class="nyk-price-row">
+                <span>{{ 'Subtotal' | translate }}</span>
+                <span>{{ (checkoutTotal ? (checkoutTotal.total.sub_total | currencySymbol) : (((cartTotal$ | async) ?? 0) | currencySymbol)) }}</span>
+              </div>
+              <div class="nyk-price-row" *ngIf="!(cartDigital$ | async)">
+                <span>{{ 'Shipping' | translate }}</span>
+                <span>{{ (checkoutTotal ? (checkoutTotal.total.shipping_total | currencySymbol) : (0 | currencySymbol)) }}</span>
+              </div>
+              <div class="nyk-price-row">
+                <span>{{ 'Tax' | translate }}</span>
+                <span>{{ (checkoutTotal ? (checkoutTotal.total.tax_total | currencySymbol) : (0 | currencySymbol)) }}</span>
+              </div>
+              <div class="nyk-price-row" *ngIf="(user$ | async) && checkoutTotal && (user$ | async)?.point?.balance">
+                <span>{{ 'Points' | translate }}</span>
+                <span>{{ (checkoutTotal ? (checkoutTotal.total.convert_point_amount! | currencySymbol) : '') }}</span>
+              </div>
+              <div class="nyk-price-divider"></div>
+              <div class="nyk-price-row nyk-price-row--total">
+                <span>{{ 'Total' | translate }}</span>
+                <span>{{ (checkoutTotal ? (checkoutTotal.total.total | currencySymbol) : (((cartTotal$ | async) ?? 0) | currencySymbol)) }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Saving Strip -->
+          <div class="nyk-saving-strip" *ngIf="checkoutTotal">
+            <i class="ri-checkbox-circle-fill"></i>
+            You are saving <strong>{{ checkoutTotal.total.shipping_total | currencySymbol }}</strong> on delivery
+          </div>
+
+          <!-- Min order error -->
+          <div class="nyk-min-order-error" *ngIf="minOrderError">
+            <i class="ri-alert-line"></i> {{ minOrderError }}
+          </div>
+
+          <!-- Place Order Button -->
+          <form [formGroup]="form" (ngSubmit)="placeorder()" *ngIf="(cartItem$ | async)?.length">
+            <div class="custom-box-loader" *ngIf="loading">
+              <app-loader [loaderClass]="'custom-loader-wrapper'"></app-loader>
+            </div>
+            <app-button
+              [class]="'btn nyk-place-order-btn'"
+              [id]="'place_order'"
+              [disabled]="loading || !(form.valid && checkoutTotal) || !!minOrderError"
+              [loading]="loading">
+              <i class="ri-lock-line"></i>
+              {{ 'Place Order' | translate }}
+            </app-button>
+          </form>
+
+          <!-- Trust text -->
+          <div class="nyk-trust-text">
+            <i class="ri-shield-check-line"></i>
+            Authentic Products. Secure Payments. Easy Return &amp; Exchange
+          </div>
+
+        </div>
+      </div><!-- /col-lg-4 -->
+
+    </div><!-- /row -->
+  </div><!-- /container -->
+</section>
+
+<address-modal #addressModal></address-modal>
+<div id="paymentContainer" style="visibility: hidden;"></div>
+
+<ng-template #payByQRModal let-data="data">
+  <div class="dashboard-address p-5">
+    <div class="title-header">
+      <div class="d-flex align-items-center w-100 justify-content-between">
+        <h5>{{ 'Payment By QR' }}</h5>
+      </div>
+    </div>
+    <div class="row g-sm-4 g-3">
+      <div class="col-12">
+        <div class="address-box p3">
+          <div>
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header" style="background-color:#007bff;color:white;border-bottom:none;">
+                  <h5 class="modal-title">Order ID: <span class="badge bg-light text-dark">#9990</span></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body payByNeoKred" style="text-align:center;">
+                  <app-loader *ngIf="loading"></app-loader>
+                  <ng-container *ngIf="!payByNeoStep">
+                    <div style="border:1px solid #ddd;padding:10px;border-radius:5px;">
+                      <img src="/assets/images/QR_Code.png" alt="QR Code" class="img-fluid">
+                    </div>
+                    <p class="mt-2" style="font-weight:bold;background:#f8f9fa;padding:5px;border-radius:5px;display:inline-block;">9643790758&YESBANK</p>
+                    <p class="text-muted">Please scan the QR code with any UPI app to pay for your order.</p>
+                  </ng-container>
+                  <ng-container *ngIf="payByNeoStep">
+                    <p>Enter 14 Digits Number</p>
+                  </ng-container>
+                </div>
+                <div class="modal-footer">
+                  <h5 class="me-auto">₹ 1100.00</h5>
+                  <button type="button" class="btn btn-primary" (click)="paybyNeoNext()" *ngIf="!payByNeoStep">Next</button>
+                  <button type="button" class="btn btn-primary" (click)="paybyNeoDone()" *ngIf="payByNeoStep">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

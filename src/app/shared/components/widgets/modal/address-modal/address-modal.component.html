@@ -1,0 +1,173 @@
+<ng-template #addressModal let-modal>
+
+  <!-- ── Header ─────────────────────────────────────────── -->
+  <div class="am-header">
+    <div class="am-header__left">
+      <div class="am-header__icon">
+        <i class="ri-map-pin-line"></i>
+      </div>
+      <div class="am-header__text">
+        <h3 class="am-header__title">{{ (!address ? 'Add Address' : 'Edit Address') | translate }}</h3>
+        <p class="am-header__sub">{{ (!address ? 'Add a new delivery address' : 'Update your address details') | translate }}</p>
+      </div>
+    </div>
+    <button type="button" class="am-close-btn" (click)="modal.dismiss('Cross click')">
+      <i class="ri-close-line"></i>
+    </button>
+  </div>
+
+  <!-- ── Form ───────────────────────────────────────────── -->
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="am-body">
+
+      <!-- Row 1: Title + Country -->
+      <div class="am-row">
+        <div class="am-field">
+          <label class="am-label" for="title">
+            <i class="ri-home-line"></i> {{ 'Title' | translate }}
+          </label>
+          <input class="am-input" id="title" type="text"
+                 placeholder="{{ 'Enter Title' | translate }}"
+                 formControlName="title"
+                 (keydown)="allowOnlyLetters($event)"
+                 (input)="sanitizeLettersInput($event, 'title')"
+                 (paste)="sanitizeLettersPaste($event)"
+                 [class.am-input--error]="form?.controls?.['title']?.touched && (form.controls['title']?.errors?.['required'] || form.controls['title']?.errors?.['pattern'])">
+          <p class="am-error" *ngIf="form?.controls?.['title']?.touched && form.controls['title']?.errors?.['required']">
+            <i class="ri-error-warning-line"></i> {{ 'Title is Required' | translate }}
+          </p>
+          <p class="am-error" *ngIf="form?.controls?.['title']?.touched && form.controls['title']?.errors?.['pattern']">
+            <i class="ri-error-warning-line"></i> {{ 'Only letters and spaces are allowed' | translate }}
+          </p>
+        </div>
+
+        <div class="am-field">
+          <label class="am-label" for="country_id">
+            <i class="ri-global-line"></i> {{ 'Country' | translate }}
+          </label>
+          <select2 class="am-select2" [data]="(countries$ | async) ? (countries$ | async)! : []"
+                   [placeholder]="'select_country' | translate"
+                   formControlName="country_id"
+                   (update)="countryChange($event)"
+                   resettable [value]="356">
+          </select2>
+          <p class="am-error" *ngIf="form?.controls?.['country_id']?.touched && form?.controls?.['country_id']?.errors?.['required']">
+            <i class="ri-error-warning-line"></i> {{ 'Country is Required' | translate }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Row 2: State + City -->
+      <div class="am-row">
+        <div class="am-field">
+          <label class="am-label" for="state_id">
+            <i class="ri-map-line"></i> {{ 'State' | translate }}
+          </label>
+          <select2 class="am-select2" [data]="stateNameData"
+                   [placeholder]="'Select State' | translate"
+                   formControlName="state_id"
+                   (update)="stateChange($event)">
+          </select2>
+          <p class="am-error" *ngIf="form?.controls?.['state_id']?.touched && form?.controls?.['state_id']?.errors?.['required']">
+            <i class="ri-error-warning-line"></i> {{ 'State is Required' | translate }}
+          </p>
+        </div>
+
+        <div class="am-field">
+          <label class="am-label" for="city">
+            <i class="ri-building-line"></i> {{ 'City' | translate }}
+          </label>
+          <select2 class="am-select2" [data]="cityOptions"
+                   [placeholder]="'Enter City' | translate"
+                   formControlName="city"
+                   (update)="cityChange($event)">
+          </select2>
+          <p class="am-error" *ngIf="form?.controls?.['city']?.touched && form.controls['city']?.errors?.['required']">
+            <i class="ri-error-warning-line"></i> {{ 'City is Required' | translate }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Row 3: Area + Pincode -->
+      <div class="am-row">
+        <div class="am-field">
+          <label class="am-label" for="area">
+            <i class="ri-community-line"></i> {{ 'Area' | translate }}
+          </label>
+          <select2 class="am-select2" [data]="officeNameData"
+                   [placeholder]="'Enter Area' | translate"
+                   formControlName="area"
+                   (update)="areaChange($event)">
+          </select2>
+          <p class="am-error" *ngIf="form?.controls?.['area']?.touched && form.controls['area']?.errors?.['required']">
+            <i class="ri-error-warning-line"></i> {{ 'Area is Required' | translate }}
+          </p>
+        </div>
+
+        <div class="am-field">
+          <label class="am-label" for="pincode">
+            <i class="ri-mail-line"></i> {{ 'Pincode' | translate }}
+          </label>
+          <input class="am-input" id="pincode" type="text" maxlength="6" minlength="6"
+                 placeholder="{{ 'Enter Pincode' | translate }}"
+                 formControlName="pincode" numbersOnly
+                 [class.am-input--error]="form?.controls?.['pincode']?.touched && (form.controls['pincode']?.errors?.['required'] || form.controls['pincode']?.errors?.['minlength'])">
+          <p class="am-error" *ngIf="form?.controls?.['pincode']?.touched && (form.controls['pincode']?.errors?.['required'] || form.controls['pincode']?.errors?.['minlength'])">
+            <i class="ri-error-warning-line"></i> {{ 'Pincode is invalid' | translate }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Address (full width) -->
+      <div class="am-field">
+        <label class="am-label" for="street">
+          <i class="ri-road-map-line"></i> {{ 'Address' | translate }}
+        </label>
+        <textarea class="am-textarea" id="street" rows="3"
+                  placeholder="{{ 'Enter Address' | translate }}"
+                  formControlName="street"
+                  [class.am-input--error]="form?.controls?.['street']?.touched && form.controls['street']?.errors?.['required']"></textarea>
+        <p class="am-error" *ngIf="form?.controls?.['street']?.touched && form.controls['street']?.errors?.['required']">
+          <i class="ri-error-warning-line"></i> {{ 'Street Address is Required' | translate }}
+        </p>
+      </div>
+
+      <!-- Phone Number -->
+      <div class="am-field">
+        <label class="am-label" for="phone">
+          <i class="ri-phone-line"></i> {{ 'Phone Number' | translate }}
+        </label>
+        <div class="am-phone-wrap">
+          <span class="am-phone-prefix">+91</span>
+          <input type="tel" class="am-input am-phone-input" id="phone"
+                 maxlength="10" minlength="9"
+                 formControlName="phone"
+                 placeholder="{{ 'Enter Phone' | translate }}"
+                 (keydown)="allowOnlyDigits($event)"
+                 (input)="sanitizeDigitsInput($event, 'phone')"
+                 (paste)="sanitizeDigitsPaste($event)"
+                 [class.am-input--error]="form.controls['phone'].touched && (form.controls['phone'].errors?.['required'] || form.controls['phone'].errors?.['pattern'])">
+        </div>
+        <p class="am-error" *ngIf="form.controls['phone'].touched && form.controls['phone'].errors?.['required']">
+          <i class="ri-error-warning-line"></i> {{ 'Phone Number is Required' | translate }}
+        </p>
+        <p class="am-error" *ngIf="form.controls['phone'].touched && form.controls['phone'].errors?.['pattern']">
+          <i class="ri-error-warning-line"></i> {{ 'Phone Number is Invalid' | translate }}
+        </p>
+      </div>
+
+    </div>
+
+    <!-- ── Footer ─────────────────────────────────────────── -->
+    <div class="am-footer">
+      <button type="button" class="am-cancel-btn" (click)="modal.dismiss('Cancel')">
+        {{ 'Cancel' | translate }}
+      </button>
+      <app-button [class]="'am-save-btn'" [type]="'submit'" [id]="'save_address_btn'" [spinner]="true">
+        <i class="ri-check-line"></i>
+        <span>{{ 'Save Address' | translate }}</span>
+      </app-button>
+    </div>
+
+  </form>
+</ng-template>

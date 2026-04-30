@@ -1,0 +1,118 @@
+<!-- ═══════════════════════════════════════════════════════
+     NYKAA-STYLE SAVED ADDRESSES PAGE
+═══════════════════════════════════════════════════════ -->
+
+<!-- ── Page Header ────────────────────────────────────────── -->
+<div class="nyk-sa-header">
+  <div class="nyk-sa-header-left">
+    <div class="nyk-sa-icon-box">
+      <i class="ri-map-pin-line"></i>
+    </div>
+    <div>
+      <h2 class="nyk-sa-title">{{ 'Saved Address' | translate }}</h2>
+      <p class="nyk-sa-subtitle">{{ 'Manage your delivery addresses' | translate }}</p>
+    </div>
+  </div>
+  <div class="nyk-sa-header-right">
+    <a [routerLink]="['/account/dashboard']" class="nyk-sa-back-link">
+      <i class="ri-arrow-left-line"></i>
+      <span>{{ 'Back to Dashboard' | translate }}</span>
+    </a>
+    <button type="button" class="nyk-sa-add-btn" (click)="AddressModal.openModal(undefined, 'nyk-address-right-panel')">
+      <i class="ri-add-line"></i>
+      <span>{{ 'Add Address' | translate }}</span>
+    </button>
+  </div>
+</div>
+
+<!-- ── Address Cards ──────────────────────────────────────── -->
+<div class="nyk-sa-cards-grid" *ngIf="(user$ | async)?.address?.length">
+
+  <div class="nyk-sa-card" *ngFor="let address of (user$ | async)?.address">
+
+    <!-- Card top pink section -->
+    <div class="nyk-sa-card-top">
+      <div class="nyk-sa-card-icon">
+        <i class="ri-home-4-fill"></i>
+      </div>
+      <div class="nyk-sa-card-type">
+        <span class="nyk-sa-type-label">ADDRESS TYPE</span>
+        <span class="nyk-sa-type-value">{{ address?.title }}</span>
+      </div>
+    </div>
+
+    <!-- Card white body -->
+    <div class="nyk-sa-card-body">
+
+      <div class="nyk-sa-info-row">
+        <i class="ri-user-line"></i>
+        <div class="nyk-sa-info-content">
+          <span class="nyk-sa-info-label">NAME</span>
+          <span class="nyk-sa-info-value">{{ (user$ | async)?.name | titlecase }}</span>
+        </div>
+      </div>
+
+      <div class="nyk-sa-info-row">
+        <i class="ri-map-pin-line"></i>
+        <div class="nyk-sa-info-content">
+          <span class="nyk-sa-info-label">ADDRESS</span>
+          <span class="nyk-sa-info-value">
+            <ng-container *ngIf="address?.floor_no">Floor {{ address?.floor_no }}, </ng-container>
+            <ng-container *ngIf="address?.flat_no">Flat {{ address?.flat_no }}, </ng-container>
+            <ng-container *ngIf="address?.building">{{ address?.building }}, </ng-container>
+            <ng-container *ngIf="address?.road">{{ address?.road }}, </ng-container>
+            {{ address?.street }}, {{ address?.city }}, {{ address?.area }}, {{ address?.country_id }}
+          </span>
+        </div>
+      </div>
+
+      <div class="nyk-sa-info-pair">
+        <div class="nyk-sa-info-row">
+          <i class="ri-mail-line"></i>
+          <div class="nyk-sa-info-content">
+            <span class="nyk-sa-info-label">PIN CODE</span>
+            <span class="nyk-sa-info-value">{{ address?.pincode }}</span>
+          </div>
+        </div>
+        <div class="nyk-sa-info-row">
+          <i class="ri-phone-line"></i>
+          <div class="nyk-sa-info-content">
+            <span class="nyk-sa-info-label">PHONE</span>
+            <span class="nyk-sa-info-value">+{{ address?.country_code }} {{ address?.phone }}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Card footer buttons -->
+    <div class="nyk-sa-card-footer">
+      <button type="button" class="nyk-sa-edit-btn" (click)="AddressModal.openModal(address, 'nyk-address-right-panel')">
+        <i class="ri-edit-line"></i>
+        <span>{{ 'Edit' | translate }}</span>
+      </button>
+      <button type="button" class="nyk-sa-remove-btn" (click)="DeleteModal.openModal('delete', address)">
+        <i class="ri-delete-bin-line"></i>
+        <span>{{ 'Remove' | translate }}</span>
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ── Empty State ────────────────────────────────────────── -->
+<div class="nyk-sa-empty" *ngIf="!(user$ | async)?.address?.length">
+  <div class="nyk-sa-empty-icon">
+    <i class="ri-map-pin-line"></i>
+  </div>
+  <h4 class="nyk-sa-empty-title">No Addresses Found</h4>
+  <p class="nyk-sa-empty-sub">Add a delivery address to make checkout faster.</p>
+  <button type="button" class="nyk-sa-add-btn" (click)="AddressModal.openModal(undefined, 'nyk-address-right-panel')">
+    <i class="ri-add-line"></i>
+    Add Your First Address
+  </button>
+</div>
+
+<address-modal #addressModal></address-modal>
+<app-delete-modal #deleteModal (deleteItem)="delete($event.actionToPerform, $event.data)"></app-delete-modal>

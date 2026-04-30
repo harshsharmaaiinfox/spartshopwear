@@ -1,0 +1,255 @@
+<div class="nyk-od" *ngIf="!loading && order">
+
+  <!-- ══ TOP BAR ════════════════════════════════════════════ -->
+  <div class="nyk-od__topbar">
+    <div class="nyk-od__topbar-left">
+      <a [routerLink]="['/account/order']" class="nyk-od__back">
+        <i class="ri-arrow-left-line"></i> My Orders
+      </a>
+      <span class="nyk-od__divider">|</span>
+      <span class="nyk-od__order-num">Order #{{ order.order_number }}</span>
+      <span class="nyk-od__status-pill nyk-od__status-pill--{{ order?.order_status?.slug }}">
+        {{ order?.order_status?.name | titlecase }}
+      </span>
+    </div>
+    <div class="nyk-od__topbar-right">
+      <a *ngIf="canPayNow" class="nyk-od__btn nyk-od__btn--primary"
+         href="javascript:void(0)" (click)="payModal.openModal(order)">
+        <i class="ri-secure-payment-line"></i> Pay Now
+      </a>
+      <a *ngIf="canDownloadInvoice" class="nyk-od__btn nyk-od__btn--outline"
+         (click)="download(order.order_number)" download>
+        <i class="ri-download-2-line"></i> Invoice
+      </a>
+    </div>
+  </div>
+
+  <!-- ══ TRACKING ═══════════════════════════════════════════ -->
+  <div class="nyk-od__card nyk-od__tracking" *ngIf="showTracking">
+    <div class="nyk-od__card-head">
+      <i class="ri-map-pin-time-line"></i> Order Tracking
+    </div>
+    <div class="nyk-od__steps">
+      <ng-container *ngFor="let s of (orderStatus$ | async)?.data; let last = last">
+        <ng-container [ngSwitch]="true">
+          <ng-container *ngSwitchCase="!((s?.sequence! >= order.order_status.sequence! &&
+            order.order_status?.slug == 'cancelled') ||
+            s?.slug == 'cancelled' ||
+            (order.is_digital_only && (s?.slug == 'shipped' || s?.slug == 'out-for-delivery')))">
+            <div class="nyk-od__step"
+                 [class.done]="s?.sequence! < order.order_status.sequence!"
+                 [class.active]="s?.sequence! === order.order_status.sequence!">
+              <div class="nyk-od__step-circle">
+                <img src="assets/svg/tracking/{{ s?.slug }}.svg" [alt]="s?.name">
+              </div>
+              <span class="nyk-od__step-label">{{ s?.name | titleCase }}</span>
+            </div>
+            <div class="nyk-od__step-line" *ngIf="!last"
+                 [class.done]="s?.sequence! < order.order_status.sequence!"></div>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+      <div class="nyk-od__step nyk-od__step--cancel active"
+           *ngIf="order?.order_status?.slug == 'cancelled'">
+        <div class="nyk-od__step-circle nyk-od__step-circle--cancel">
+          <img src="assets/svg/tracking/cancelled.svg" alt="Cancelled">
+        </div>
+        <span class="nyk-od__step-label">Cancelled</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PRODUCTS ═══════════════════════════════════════════ -->
+  <div class="nyk-od__card" *ngIf="order?.products?.length">
+    <div class="nyk-od__card-head">
+      <i class="ri-shopping-bag-3-line"></i> Ordered Items
+    </div>
+    <div class="nyk-od__product-list">
+      <div class="nyk-od__product" *ngFor="let product of order.products">
+
+        <div class="nyk-od__product-img">
+          <img [src]="product?.pivot?.variation?.variation_image?.original_url
+                      || product?.product_thumbnail?.original_url
+                      || 'assets/images/product.png'" alt="product">
+        </div>
+
+        <div class="nyk-od__product-info">
+          <p class="nyk-od__product-name">
+            {{ product?.pivot?.variation ? product?.pivot?.variation?.name : product?.name }}
+          </p>
+          <div class="nyk-od__product-meta">
+            <span><b>Qty:</b> {{ product?.pivot?.quantity }}</span>
+            <span><b>Price:</b> {{ product?.pivot?.single_price | currencySymbol }}</span>
+          </div>
+        </div>
+
+        <div class="nyk-od__product-right">
+          <span class="nyk-od__product-sub">{{ product?.pivot?.subtotal | currencySymbol }}</span>
+          <div class="nyk-od__product-action">
+            <ng-container *ngIf="product?.is_return === 1 &&
+              order?.payment_status === 'COMPLETED' &&
+              order.order_status?.slug == 'delivered' &&
+              !product?.pivot?.refund_status; else refundState">
+              <a class="nyk-od__refund-btn" href="javascript:void(0)"
+                 (click)="refundModal.openModal(product, order.id)">
+                <i class="ri-refund-line"></i> Refund
+              </a>
+            </ng-container>
+            <ng-template #refundState>
+              <ng-container *ngIf="product.is_return === 0; else hasStatus">
+                <span class="nyk-od__badge nyk-od__badge--grey">Non Refundable</span>
+              </ng-container>
+              <ng-template #hasStatus>
+                <span *ngIf="product?.pivot?.refund_status"
+                      class="nyk-od__badge nyk-od__badge--{{ product?.pivot?.refund_status?.toLowerCase() }}">
+                  {{ product?.pivot?.refund_status | titleCase }}
+                </span>
+                <span *ngIf="!product?.pivot?.refund_status"
+                      class="nyk-od__badge nyk-od__badge--grey"
+                      ngbTooltip="Available after delivery">Refund</span>
+              </ng-template>
+            </ng-template>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ INFO GRID ══════════════════════════════════════════ -->
+  <div class="nyk-od__info-grid">
+
+    <!-- Consumer Details -->
+    <div class="nyk-od__card nyk-od__consumer">
+      <div class="nyk-od__card-head">
+        <i class="ri-user-3-line"></i> Consumer Details
+      </div>
+      <div class="nyk-od__detail-grid">
+
+        <div class="nyk-od__detail" *ngIf="order?.billing_address">
+          <span class="nyk-od__detail-icon"><i class="ri-file-text-line"></i></span>
+          <div>
+            <label>Billing Address</label>
+            <p>
+              <span *ngIf="order.billing_address.floor_no">Floor {{ order.billing_address.floor_no }}, </span>
+              <span *ngIf="order.billing_address.flat_no">Flat {{ order.billing_address.flat_no }}, </span>
+              {{ order.billing_address.street }},
+              {{ order.billing_address.city }},
+              {{ getStateName(order.billing_address.state_id) }}&nbsp;{{ order.billing_address.pincode }}<br>
+              <span class="nyk-od__phone">
+                <i class="ri-phone-line"></i>
+                +{{ order.billing_address.country_code }} {{ order.billing_address.phone }}
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div class="nyk-od__detail" *ngIf="order?.shipping_address && !order?.is_digital_only">
+          <span class="nyk-od__detail-icon"><i class="ri-truck-line"></i></span>
+          <div>
+            <label>Shipping Address</label>
+            <p>
+              <span *ngIf="order.shipping_address.floor_no">Floor {{ order.shipping_address.floor_no }}, </span>
+              <span *ngIf="order.shipping_address.flat_no">Flat {{ order.shipping_address.flat_no }}, </span>
+              {{ order.shipping_address.street }},
+              {{ order.shipping_address.city }},
+              {{ getStateName(order.shipping_address.state_id) }}&nbsp;{{ order.shipping_address.pincode }}<br>
+              <span class="nyk-od__phone">
+                <i class="ri-phone-line"></i>
+                +{{ order.shipping_address.country_code }} {{ order.shipping_address.phone }}
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div class="nyk-od__detail" *ngIf="!order?.is_digital_only">
+          <span class="nyk-od__detail-icon"><i class="ri-calendar-check-line"></i></span>
+          <div>
+            <label>Delivery Slot</label>
+            <p>Standard Delivery &nbsp;·&nbsp; Approx 10–15 Days</p>
+          </div>
+        </div>
+
+        <div class="nyk-od__detail" *ngIf="order?.payment_method">
+          <span class="nyk-od__detail-icon"><i class="ri-bank-card-line"></i></span>
+          <div>
+            <label>Payment Mode</label>
+            <p>
+              <span *ngIf="order?.payment_method === 'star_mangal'">Pay via UPI App</span>
+              <span *ngIf="order?.payment_method === 'pay_drill'">Cash Free</span>
+              <span *ngIf="order?.payment_method !== 'star_mangal' && order?.payment_method !== 'pay_drill'">
+                {{ order?.payment_method | titleCase }}
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div class="nyk-od__detail" *ngIf="order?.payment_status">
+          <span class="nyk-od__detail-icon"><i class="ri-shield-check-line"></i></span>
+          <div>
+            <label>Payment Status</label>
+            <span class="nyk-od__pay-status nyk-od__pay-status--{{ order?.payment_status?.toLowerCase() }}">
+              {{ order.payment_status | titleCase }}
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Price Summary -->
+    <div class="nyk-od__card nyk-od__summary">
+      <div class="nyk-od__card-head">
+        <i class="ri-receipt-line"></i> Price Details
+      </div>
+      <ul class="nyk-od__summary-list">
+        <li><span>Subtotal</span><span>{{ (order.amount || 0) | currencySymbol }}</span></li>
+        <li *ngIf="!order?.is_digital_only"><span>Shipping</span><span>{{ (order.shipping_total || 0) | currencySymbol }}</span></li>
+        <li><span>Tax</span><span>{{ (order.tax_total || 0) | currencySymbol }}</span></li>
+        <li class="nyk-od__summary-discount" *ngIf="order.coupon_total_discount != 0">
+          <span>Discount</span><span>- {{ order.coupon_total_discount | currencySymbol }}</span>
+        </li>
+        <li class="nyk-od__summary-discount" *ngIf="order.wallet_balance != 0">
+          <span>Wallet</span><span>- {{ order.wallet_balance | currencySymbol }}</span>
+        </li>
+        <li class="nyk-od__summary-total">
+          <span>Total Payable</span><span>{{ (order.total || 0) | currencySymbol }}</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ══ SUB ORDERS ═════════════════════════════════════════ -->
+  <div class="nyk-od__card" *ngIf="order?.sub_orders?.length">
+    <div class="nyk-od__card-head">
+      <i class="ri-file-list-3-line"></i> Sub Orders
+    </div>
+    <div class="nyk-od__sub-list">
+      <div class="nyk-od__sub" *ngFor="let sub of order.sub_orders">
+        <div class="nyk-od__sub-row">
+          <div class="nyk-od__sub-item"><label>Order #</label><span>{{ sub.order_number }}</span></div>
+          <div class="nyk-od__sub-item"><label>Date</label><span>{{ sub.created_at | date:'dd MMM yyyy' }}</span></div>
+          <div class="nyk-od__sub-item"><label>Amount</label><span class="nyk-od__pink">{{ sub.amount | currencySymbol }}</span></div>
+          <div class="nyk-od__sub-item">
+            <label>Status</label>
+            <span class="nyk-od__badge nyk-od__badge--{{ sub.order_status.slug }}">{{ sub.order_status.name | titleCase }}</span>
+          </div>
+        </div>
+        <a [routerLink]="['/account/order/details', sub.order_number]" class="nyk-od__btn nyk-od__btn--sm">
+          View Details <i class="ri-arrow-right-line"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Loading -->
+<div class="nyk-od-loading" *ngIf="loading">
+  <div class="nyk-od-loading__spinner"></div>
+  <p>Loading order details…</p>
+</div>
+
+<app-refund-modal #refundModal></app-refund-modal>
+<app-pay-modal #payModal></app-pay-modal>

@@ -1,0 +1,253 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Google Fonts - Loaded via CSS to avoid Angular build inlining issues */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+@import "assets/scss/app.scss";
+
+// ── Shared right-panel for Edit Profile & Change Password ────────────────
+.nyk-right-panel-modal {
+  padding: 0 !important;
+}
+.nyk-right-panel-modal.modal {
+  display        : flex !important;
+  align-items    : flex-start !important;
+  justify-content: flex-end !important;
+}
+.nyk-right-panel-modal .modal-dialog {
+  position  : fixed !important;
+  top       : 0 !important;
+  right     : 0 !important;
+  bottom    : 0 !important;
+  margin    : 0 !important;
+  max-width : 440px !important;
+  width     : 440px !important;
+  height    : 100vh !important;
+  animation : nykPanelSlideIn 0.32s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.nyk-right-panel-modal .modal-content {
+  height        : 100vh !important;
+  border-radius : 0 !important;
+  border        : none !important;
+  border-left   : 1.5px solid #e5e7eb !important;
+  overflow-y    : auto !important;
+  display       : flex !important;
+  flex-direction: column !important;
+  box-shadow    : -8px 0 32px rgba(0,0,0,0.12) !important;
+}
+// Body fills height, footer sticks at bottom
+.nyk-right-panel-modal .ep-body,
+.nyk-right-panel-modal .cp-body {
+  flex      : 1 !important;
+  max-height: none !important;
+}
+.nyk-right-panel-modal .ep-footer,
+.nyk-right-panel-modal .cp-footer {
+  position  : sticky !important;
+  bottom    : 0 !important;
+  background: #fafafa !important;
+  border-top: 1.5px solid #e5e7eb !important;
+  z-index   : 10 !important;
+}
+
+@media (max-width: 576px) {
+  .nyk-right-panel-modal .modal-dialog {
+    max-width: 100vw !important;
+    width    : 100vw !important;
+  }
+}
+
+// ── Nykaa right-panel address drawer ─────────────────────────────────────
+.nyk-address-right-panel {
+  padding: 0 !important;
+}
+
+.nyk-address-right-panel.modal {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: flex-end !important;
+}
+
+.nyk-address-right-panel .modal-dialog {
+  position  : fixed !important;
+  top       : 0 !important;
+  right     : 0 !important;
+  bottom    : 0 !important;
+  margin    : 0 !important;
+  max-width : 460px !important;
+  width     : 460px !important;
+  height    : 100vh !important;
+  animation : nykPanelSlideIn 0.32s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.nyk-address-right-panel .modal-content {
+  height        : 100vh !important;
+  border-radius : 0 !important;
+  border        : none !important;
+  border-left   : 1.5px solid #e5e7eb !important;
+  overflow-y    : auto !important;
+  display       : flex !important;
+  flex-direction: column !important;
+  box-shadow    : -8px 0 32px rgba(0,0,0,0.12) !important;
+}
+
+// Body fills remaining space, footer sticks to bottom
+.nyk-address-right-panel .am-body {
+  flex      : 1 !important;
+  max-height: none !important;
+}
+
+.nyk-address-right-panel .am-footer {
+  position  : sticky !important;
+  bottom    : 0 !important;
+  background: white !important;
+  border-top: 1.5px solid #e5e7eb !important;
+  z-index   : 10 !important;
+}
+
+// "Save Address" button → full-width dark style inside panel
+.nyk-address-right-panel .am-save-btn,
+.nyk-address-right-panel button.am-save-btn {
+  width         : 100% !important;
+  background    : #1a1a1a !important;
+  letter-spacing: 0.8px !important;
+  text-transform: uppercase !important;
+  font-size     : 13px !important;
+  box-shadow    : none !important;
+  border-radius : 6px !important;
+  justify-content: center !important;
+}
+
+.nyk-address-right-panel .am-save-btn:hover,
+.nyk-address-right-panel button.am-save-btn:hover {
+  background: #333 !important;
+  transform : none !important;
+  box-shadow: none !important;
+}
+
+@keyframes nykPanelSlideIn {
+  from { transform: translateX(100%); opacity: 0.5; }
+  to   { transform: translateX(0);    opacity: 1;   }
+}
+
+@media (max-width: 576px) {
+  .nyk-address-right-panel .modal-dialog {
+    max-width: 100vw !important;
+    width    : 100vw !important;
+  }
+}
+
+// ── Pay Now right-panel drawer ───────────────────────────────────────────────
+.nyk-pay-right-panel { padding: 0 !important; }
+.nyk-pay-right-panel.modal { display: flex !important; align-items: flex-start !important; justify-content: flex-end !important; }
+.nyk-pay-right-panel .modal-dialog {
+  position: fixed !important; top: 0 !important; right: 0 !important;
+  bottom: 0 !important; margin: 0 !important;
+  max-width: 420px !important; width: 420px !important; height: 100vh !important;
+  animation: nykPanelSlideIn 0.32s cubic-bezier(0.4,0,0.2,1) !important;
+}
+.nyk-pay-right-panel .modal-content {
+  height: 100vh !important; border-radius: 0 !important; border: none !important;
+  border-left: 1.5px solid #e5e7eb !important; overflow-y: auto !important;
+  display: flex !important; flex-direction: column !important;
+  box-shadow: -8px 0 32px rgba(0,0,0,0.12) !important;
+}
+.nyk-pay-right-panel .modern-modal-body { flex: 1 !important; }
+@media (max-width: 576px) {
+  .nyk-pay-right-panel .modal-dialog { max-width: 100vw !important; width: 100vw !important; }
+}
+
+// ════════════════════════════════════════════════════════════
+// Home Page — Category Grid  (4 cols × 2 rows + See All)
+// ════════════════════════════════════════════════════════════
+.nf-cat-grid-title {
+  font-size     : 20px !important;
+  font-weight   : 700 !important;
+  color         : #2d2d2d !important;
+  text-align    : center !important;
+  margin        : 0 0 24px !important;
+  letter-spacing: 0.01em !important;
+}
+
+.nf-cat-grid-wrap {
+  display               : grid !important;
+  grid-template-columns : repeat(4, 1fr) !important;
+  gap                   : 20px 16px !important;
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap                  : 12px !important;
+  }
+}
+
+.nf-nykaa-cat {
+  display        : flex !important;
+  flex-direction : column !important;
+  align-items    : center !important;
+  gap            : 10px !important;
+  text-decoration: none !important;
+  cursor         : pointer !important;
+
+  .nf-nykaa-cat__img {
+    width        : 100% !important;
+    aspect-ratio : 3 / 4 !important;
+    border-radius: 10px !important;
+    overflow     : hidden !important;
+    background   : #f5f5f5 !important;
+
+    img {
+      width           : 100% !important;
+      height          : 100% !important;
+      object-fit      : cover !important;
+      object-position : top center !important;
+      display         : block !important;
+      transition      : transform 0.4s ease !important;
+    }
+  }
+
+  .nf-nykaa-cat__name {
+    font-size     : 13px !important;
+    font-weight   : 700 !important;
+    color         : #2d2d2d !important;
+    text-align    : center !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    line-height   : 1.3 !important;
+    transition    : color 0.2s ease !important;
+  }
+
+  &:hover .nf-nykaa-cat__img img { transform: scale(1.06) !important; }
+  &:hover .nf-nykaa-cat__name    { color: #D4145A !important; }
+}
+
+.nf-cat-see-all {
+  display        : flex !important;
+  flex-direction : column !important;
+  align-items    : center !important;
+  gap            : 10px !important;
+  text-decoration: none !important;
+  cursor         : pointer !important;
+
+  .nf-cat-see-all__circle {
+    width          : 100% !important;
+    aspect-ratio   : 3 / 4 !important;
+    border-radius  : 10px !important;
+    background     : #fce4ec !important;
+    display        : flex !important;
+    align-items    : center !important;
+    justify-content: center !important;
+    transition     : background 0.2s ease !important;
+
+    i {
+      font-size : 40px !important;
+      color     : #D4145A !important;
+      transition: transform 0.2s ease !important;
+    }
+  }
+
+  .nf-nykaa-cat__name { color: #D4145A !important; }
+
+  &:hover .nf-cat-see-all__circle           { background: #D4145A !important; }
+  &:hover .nf-cat-see-all__circle i         { color: #fff !important; transform: scale(1.1) !important; }
+}

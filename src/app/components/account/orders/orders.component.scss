@@ -1,0 +1,443 @@
+$pink:   #D4145A;
+$dark:   #1a1a1a;
+$muted:  #6b7280;
+$border: #e5e7eb;
+$bg:     #f3f4f6;
+$green:  #16a34a;
+$yellow: #d97706;
+$red:    #dc2626;
+$blue:   #2563eb;
+
+// ── Page Header ───────────────────────────────────────────
+.ord-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  background: $bg;
+  border-radius: 14px;
+  margin-bottom: 24px;
+  border: 1.5px solid $border;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: $pink;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba($pink, 0.32);
+    flex-shrink: 0;
+
+    i { font-size: 26px; color: white; }
+  }
+
+  &__title {
+    font-size: 22px;
+    font-weight: 800;
+    color: $dark;
+    margin: 0 0 3px;
+    letter-spacing: -0.3px;
+  }
+
+  &__sub {
+    font-size: 13px;
+    color: $muted;
+    margin: 0;
+  }
+
+  &__count {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+    border: 1.5px solid $border;
+    border-radius: 10px;
+    background: white;
+    min-width: 76px;
+  }
+}
+
+.ord-count-num {
+  font-size: 26px;
+  font-weight: 800;
+  color: $pink;
+  line-height: 1;
+}
+
+.ord-count-lbl {
+  font-size: 10px;
+  font-weight: 700;
+  color: $muted;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+// ── Orders List ───────────────────────────────────────────
+.ord-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+// ── Single Order Card ─────────────────────────────────────
+.ord-card {
+  background: white;
+  border-radius: 14px;
+  border: 1.5px solid $border;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  transition: box-shadow 0.22s ease;
+
+  &:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  // ── Top bar ──
+  &__topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: #fafafa;
+    border-bottom: 1.5px solid $border;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  &__num {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: $dark;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    i { font-size: 15px; color: $pink; }
+  }
+
+  &__date,
+  &__items {
+    font-size: 12.5px;
+    color: $muted;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    i { font-size: 13px; }
+  }
+
+  // ── Products section ──
+  &__products {
+    padding: 0 20px;
+  }
+
+  // ── Footer ──
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: #fafafa;
+    border-top: 1.5px solid $border;
+    gap: 16px;
+    flex-wrap: wrap;
+
+    &-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+// ── Status badge ──────────────────────────────────────────
+.ord-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 700;
+  background: rgba($muted, 0.1);
+  color: $muted;
+
+  i { font-size: 14px; }
+
+  &--paid {
+    background: rgba($green, 0.1);
+    color: $green;
+    border: 1px solid rgba($green, 0.2);
+  }
+
+  &--pending {
+    background: rgba($yellow, 0.1);
+    color: $yellow;
+    border: 1px solid rgba($yellow, 0.2);
+  }
+
+  &--failed {
+    background: rgba($red, 0.1);
+    color: $red;
+    border: 1px solid rgba($red, 0.2);
+  }
+
+  &--processing {
+    background: rgba($blue, 0.1);
+    color: $blue;
+    border: 1px solid rgba($blue, 0.2);
+  }
+}
+
+// ── Product row ───────────────────────────────────────────
+.ord-product {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid $border;
+
+  &--last { border-bottom: none; }
+
+  &__img {
+    width: 68px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1px solid $border;
+    background: #f8f8f8;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__brand {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: $muted;
+    margin: 0 0 4px;
+  }
+
+  &__name {
+    font-size: 14px;
+    font-weight: 600;
+    color: $dark;
+    margin: 0 0 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: $muted;
+  }
+
+  &__qty {
+    background: $bg;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 500;
+  }
+
+  &__price {
+    font-size: 15px;
+    font-weight: 800;
+    color: $dark;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+
+// ── Footer elements ───────────────────────────────────────
+.ord-total-label {
+  font-size: 12px;
+  color: $muted;
+  font-weight: 500;
+}
+
+.ord-total-amount {
+  font-size: 17px;
+  font-weight: 800;
+  color: $dark;
+}
+
+.ord-pay-method {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: $muted;
+  background: $bg;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid $border;
+
+  i { font-size: 13px; }
+}
+
+.ord-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  background: $pink;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 700;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+  box-shadow: 0 3px 12px rgba($pink, 0.28);
+
+  i { font-size: 16px; }
+
+  &:hover {
+    background: darken(#D4145A, 8%);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba($pink, 0.38);
+  }
+}
+
+// ── Pagination ────────────────────────────────────────────
+.ord-pagination {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+// ── Empty state ───────────────────────────────────────────
+.ord-empty {
+  text-align: center;
+  padding: 80px 20px;
+  background: white;
+  border-radius: 16px;
+  border: 1.5px solid $border;
+
+  &__icon {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: rgba($pink, 0.07);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+
+    i { font-size: 52px; color: $pink; opacity: 0.6; }
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    color: $dark;
+    margin-bottom: 10px;
+  }
+
+  &__sub {
+    font-size: 14px;
+    color: $muted;
+    margin: 0 auto 28px;
+    max-width: 380px;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 30px;
+    background: $pink;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: 0 4px 14px rgba($pink, 0.3);
+    transition: all 0.22s ease;
+
+    &:hover {
+      background: darken(#D4145A, 8%);
+      transform: translateY(-2px);
+      color: white;
+    }
+
+    i { font-size: 18px; }
+  }
+}
+
+// ── Responsive ────────────────────────────────────────────
+@media (max-width: 768px) {
+  .ord-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 18px;
+
+    &__count {
+      flex-direction: row;
+      gap: 8px;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .ord-card {
+    &__topbar {
+      padding: 12px 16px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__products { padding: 0 16px; }
+    &__footer { padding: 12px 16px; flex-direction: column; align-items: flex-start; }
+  }
+
+  .ord-view-btn { width: 100%; justify-content: center; }
+
+  .ord-product {
+    &__img { width: 56px; height: 68px; }
+    &__price { font-size: 14px; }
+  }
+}
+
+@media (max-width: 480px) {
+  .ord-card__meta { gap: 12px; }
+  .ord-product { gap: 12px; }
+}

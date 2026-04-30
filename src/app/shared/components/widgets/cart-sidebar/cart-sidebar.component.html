@@ -1,0 +1,144 @@
+<!-- Backdrop -->
+<div class="cs-backdrop" [class.cs-backdrop--show]="sidebarCartOpen$ | async"
+     (click)="closeCart()"></div>
+
+<!-- Drawer -->
+<div class="cs-drawer" [class.cs-drawer--open]="sidebarCartOpen$ | async">
+
+  <!-- ── Header ── -->
+  <div class="cs-header">
+    <button class="cs-header__close" (click)="closeCart()" aria-label="Close">
+      <i class="ri-close-line"></i>
+    </button>
+    <h2 class="cs-header__title">Bag</h2>
+  </div>
+
+  <!-- ══ FILLED CART ══ -->
+  <ng-container *ngIf="(cartItem$ | async)?.length">
+
+    <div class="cs-body">
+
+      <!-- Items -->
+      <div class="cs-items">
+        <div class="cs-item" *ngFor="let item of cartItem$ | async">
+
+          <div class="cs-item__img">
+            <img [src]="item?.variation?.variation_image?.original_url
+                        || item?.product?.product_thumbnail?.original_url
+                        || 'assets/images/product.png'"
+                 [alt]="item?.product?.name">
+          </div>
+
+          <div class="cs-item__info">
+            <div class="cs-item__top">
+              <div class="cs-item__names">
+                <p class="cs-item__brand" *ngIf="item?.product?.brand">
+                  {{ item?.product?.brand?.name }}
+                </p>
+                <p class="cs-item__name">
+                  {{ item?.variation?.name || item?.product?.name }}
+                </p>
+              </div>
+              <button class="cs-item__del" (click)="delete(item.id)" title="Remove">
+                <i class="ri-close-line"></i>
+              </button>
+            </div>
+
+            <div class="cs-item__meta">
+              <span *ngIf="item?.variation?.selected_variation">
+                Size&nbsp;<strong>{{ item?.variation?.selected_variation }}</strong>
+              </span>
+              <span class="cs-item__meta-sep" *ngIf="item?.variation?.selected_variation">&nbsp;&nbsp;</span>
+              <div class="cs-item__qty">
+                <button class="cs-item__qty-btn" (click)="updateQuantity(item, -1)">
+                  <i class="ri-subtract-line" *ngIf="item.quantity > 1"></i>
+                  <i class="ri-delete-bin-line" *ngIf="item.quantity <= 1"></i>
+                </button>
+                <span class="cs-item__qty-num">{{ item.quantity }}</span>
+                <button class="cs-item__qty-btn" (click)="updateQuantity(item, 1)">
+                  <i class="ri-add-line"></i>
+                </button>
+              </div>
+            </div>
+
+            <p class="cs-item__return"><i class="ri-refresh-line"></i> 7 Day Return</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- You Pay -->
+      <div class="cs-youpay">
+        <span class="cs-youpay__label">
+          <i class="ri-information-line"></i> You Pay
+          <strong>{{ (cartTotal$ | async)! | currencySymbol }}</strong>
+        </span>
+        <span class="cs-youpay__savings">Shipping &amp; taxes calculated at checkout</span>
+      </div>
+
+      <!-- Price Summary -->
+      <div class="cs-summary">
+        <h4 class="cs-summary__title">Price Summary</h4>
+        <p class="cs-summary__tax">Prices are inclusive of all taxes</p>
+
+        <div class="cs-summary__row">
+          <span>Bag Total ({{ (cartItem$ | async)?.length }} items)</span>
+          <span>{{ (cartTotal$ | async)! | currencySymbol }}</span>
+        </div>
+        <div class="cs-summary__row cs-summary__row--green">
+          <span>Discount on MRP</span>
+          <span>— Free</span>
+        </div>
+        <div class="cs-summary__row">
+          <span>Sub Total</span>
+          <span>{{ (cartTotal$ | async)! | currencySymbol }}</span>
+        </div>
+        <div class="cs-summary__row cs-summary__row--green">
+          <span>Convenience Charges</span>
+          <span>Free</span>
+        </div>
+
+        <div class="cs-summary__divider"></div>
+
+        <div class="cs-summary__total">
+          <span>You Pay</span>
+          <strong>{{ (cartTotal$ | async)! | currencySymbol }}</strong>
+        </div>
+
+        <div class="cs-summary__pill">
+          <i class="ri-checkbox-circle-fill"></i>
+          Yay! You are saving extra on this order.
+        </div>
+      </div>
+
+
+      <!-- Footer spacer -->
+      <div class="cs-footer-spacer"></div>
+
+    </div><!-- /cs-body -->
+
+    <!-- Sticky Footer -->
+    <div class="cs-footer">
+      <p class="cs-footer__saving">You saved extra on this purchase</p>
+      <div class="cs-footer__row">
+        <div class="cs-footer__left">
+          <strong class="cs-footer__price">{{ (cartTotal$ | async)! | currencySymbol }}</strong>
+          <a [routerLink]="['/cart']" (click)="closeCart()" class="cs-footer__view">View Details</a>
+        </div>
+        <a [routerLink]="['/checkout']" (click)="closeCart()" class="cs-footer__btn">
+          Proceed to Buy
+        </a>
+      </div>
+    </div>
+
+  </ng-container>
+
+  <!-- ══ EMPTY CART ══ -->
+  <div class="cs-empty" *ngIf="!(cartItem$ | async)?.length">
+    <div class="cs-empty__icon"><i class="ri-shopping-bag-line"></i></div>
+    <h4 class="cs-empty__title">Your Bag is Empty</h4>
+    <p class="cs-empty__sub">Looks like you haven't added anything yet</p>
+    <button class="cs-empty__btn" (click)="closeCart()">Start Shopping</button>
+  </div>
+
+</div>

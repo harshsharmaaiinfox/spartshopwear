@@ -1,0 +1,94 @@
+<div class="nyk-product-page">
+  <div class="container-fluid-lg">
+
+    <!-- ── Main product section ── -->
+    <div class="nyk-layout">
+
+      <!-- Col 1: Vertical thumbnail strip -->
+      <div class="nyk-thumb-strip" *ngIf="product?.product_galleries?.length">
+        <button class="nyk-thumb-nav" (click)="scrollThumbUp()" aria-label="Previous">
+          <i class="ri-arrow-up-s-line"></i>
+        </button>
+        <div class="nyk-thumb-list" #thumbList>
+          <div class="nyk-thumb-item"
+               *ngFor="let image of product?.product_galleries"
+               [class.nyk-thumb-item--active]="image.id.toString() === activeSlide.toString()"
+               (click)="owlCar.to(activeSlide = image.id.toString())">
+            <img [src]="image.original_url" [alt]="product?.name" loading="lazy">
+          </div>
+        </div>
+        <button class="nyk-thumb-nav" (click)="scrollThumbDown()" aria-label="Next">
+          <i class="ri-arrow-down-s-line"></i>
+        </button>
+      </div>
+
+      <!-- Col 2: Main image -->
+      <div class="nyk-main-img">
+        <!-- Sale / Featured badge -->
+        <div class="nyk-badge-group">
+          <span class="nyk-badge nyk-badge--sale"    *ngIf="product?.is_sale_enable">SALE</span>
+          <span class="nyk-badge nyk-badge--featured" *ngIf="!product?.is_sale_enable && product?.is_featured">FEATURED</span>
+          <span class="nyk-badge nyk-badge--new"      *ngIf="!product?.is_sale_enable && !product?.is_featured && product?.is_trending">NEW</span>
+        </div>
+
+        <owl-carousel-o [options]="productMainThumbSlider" #owlCar>
+          <!-- Gallery images -->
+          <ng-container *ngFor="let image of product?.product_galleries; index as i">
+            <ng-template carouselSlide [id]="image.id.toString()">
+              <div class="nyk-slide">
+                <ng-container *ngIf="videType.includes(image.mime_type); else audioSlide">
+                  <video class="w-100" controls>
+                    <source [src]="image.original_url" [type]="image.mime_type">
+                  </video>
+                </ng-container>
+                <ng-template #audioSlide>
+                  <ng-container *ngIf="audioType.includes(image.mime_type); else imgSlide">
+                    <audio controls>
+                      <source [src]="image.original_url" [type]="image.mime_type">
+                    </audio>
+                  </ng-container>
+                </ng-template>
+                <ng-template #imgSlide>
+                  <img [src]="image.original_url" [alt]="product?.name" class="nyk-main-img__photo">
+                </ng-template>
+              </div>
+            </ng-template>
+          </ng-container>
+
+          <!-- Fallback thumbnail -->
+          <ng-container *ngIf="!product?.product_galleries?.length">
+            <ng-template carouselSlide [id]="'1'">
+              <div class="nyk-slide">
+                <img [src]="product?.product_thumbnail?.original_url || 'assets/images/product.png'"
+                     [alt]="product?.name" class="nyk-main-img__photo">
+              </div>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+
+      <!-- Col 3: Product info -->
+      <div class="nyk-info-col">
+        <app-product-contain [product]="product" [option]="option" [owlCar]="owlCar">
+        </app-product-contain>
+        <app-product-action [product]="product"></app-product-action>
+        <app-product-delivery-information [product]="product"></app-product-delivery-information>
+        <app-payment-option [product]="product" [option]="option"></app-payment-option>
+        <app-product-social-share [product]="product" [option]="option"></app-product-social-share>
+      </div>
+
+    </div><!-- /.nyk-layout -->
+
+    <!-- Below fold -->
+    <div class="nyk-below-fold">
+      <app-product-information [product]="product"></app-product-information>
+
+      <div class="nyk-related" *ngIf="product?.cross_sell_products?.length">
+        <app-product-bundle [product]="product"></app-product-bundle>
+      </div>
+
+      <app-product-details-tabs [product]="product"></app-product-details-tabs>
+    </div>
+
+  </div>
+</div>

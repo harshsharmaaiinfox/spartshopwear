@@ -1,0 +1,1212 @@
+// ============================================================
+// Denver Theme — Nykaa Fashion Design System
+// White · Clean · Pink accents · Premium hover effects
+// ============================================================
+
+$nf-pink:      #D4145A;
+$nf-pink-soft: rgba(212, 20, 90, 0.07);
+$nf-dark:      #1C1C2E;
+$nf-gold:      #C9A065;
+$nf-white:     #FFFFFF;
+$nf-bg:        #FAFAFA;
+$nf-border:    #F0F0F0;
+$nf-text:      #222222;
+$nf-muted:     #888888;
+$nf-radius:    12px;
+$nf-shadow:    0 2px 16px rgba(0, 0, 0, 0.07);
+$nf-shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.15);
+$nf-ease:      cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+// ── Root wrapper ───────────────────────────────────────────
+.nf-denver {
+  background: $nf-white;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  > section:first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+}
+
+// ── Universal section ─────────────────────────────────────
+.nf-sec {
+  padding: 32px 0;
+  background: $nf-white;
+
+  &--cats           { padding: 20px 0; border-bottom: 1px solid $nf-border; }
+  &--shop-drop      { padding: 28px 0 20px; border-bottom: 1px solid $nf-border; }
+  &--cat-section    { padding: 36px 0; }
+  &--products       { padding: 36px 0; }
+  &--triptych       { padding: 0; }
+  &--editorial-banner { padding: 0; }
+  &--videos         { padding: 48px 0; background: $nf-bg; }
+  &--light          { background: $nf-bg; }
+  &--bg-light       { background: #FAFAFA; }
+  &--spotlight      { padding: 36px 0; }
+}
+
+// ════════════════════════════════════════════════════════
+// HOME SECTION TITLE — Myntra/Nykaa centered style
+// ════════════════════════════════════════════════════════
+.nf-home-section-title {
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 24px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+
+  &--center {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+}
+
+// ════════════════════════════════════════════════════════
+// SHOP DROP — Myntra-style category grid
+// Rounded rectangle cards · name below · 6-col grid
+// ════════════════════════════════════════════════════════
+.nf-sec--shop-drop {
+  padding: 40px 0 48px;
+}
+
+.nf-sd-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+
+  @media (max-width: 1100px) { grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  @media (max-width: 768px)  { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media (max-width: 500px)  { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+}
+
+.nf-sd-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none !important;
+  cursor: pointer;
+
+  &:hover &__img img { transform: scale(1.04); }
+
+  &__img {
+    width: 100%;
+    aspect-ratio: 5 / 5;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #EDE8E0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.38s $nf-ease;
+    }
+  }
+
+  &__label {
+    font-size: 25px;
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1.3;
+    white-space: nowrap;
+
+    &--active {
+      font-weight: 800;
+      color: #1a1a1a;
+    }
+  }
+
+  // ── VIEW MORE card ──────────────────────────────────────
+  &--view-more {
+    .nf-sd-card__img--icon {
+      background     : linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
+      display        : flex;
+      align-items    : center;
+      justify-content: center;
+      overflow       : visible;
+      position       : relative;
+      transition     : background 0.35s ease;
+
+      // subtle dot-pattern overlay
+      &::before {
+        content   : '';
+        position  : absolute;
+        inset     : 0;
+        background: radial-gradient(circle, rgba(212,20,90,0.18) 1px, transparent 1px);
+        background-size: 18px 18px;
+        border-radius: inherit;
+        opacity   : 0.7;
+        transition: opacity 0.35s ease;
+      }
+    }
+
+    // inner layout — dots grid + arrow + sub-text
+    .nf-vm-inner {
+      position       : relative;
+      z-index        : 1;
+      display        : flex;
+      flex-direction : column;
+      align-items    : center;
+      gap            : 14px;
+    }
+
+    // 2×2 decorative squares
+    .nf-vm-dots {
+      display              : grid;
+      grid-template-columns: 1fr 1fr;
+      gap                  : 6px;
+
+      span {
+        display      : block;
+        width        : 14px;
+        height       : 14px;
+        border-radius: 3px;
+        background   : rgba(255,255,255,0.15);
+        border       : 1.5px solid rgba(255,255,255,0.3);
+        transition   : background 0.3s ease, border-color 0.3s ease;
+      }
+    }
+
+    // arrow circle button
+    .nf-vm-arrow {
+      width          : 52px;
+      height         : 52px;
+      border-radius  : 50%;
+      border         : 2px solid rgba(212,20,90,0.6);
+      display        : flex;
+      align-items    : center;
+      justify-content: center;
+      transition     : all 0.3s ease;
+
+      i {
+        font-size : 24px;
+        color     : #D4145A;
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
+    }
+
+    // "Explore All" sub-text
+    .nf-vm-sub {
+      font-size     : 11px;
+      font-weight   : 500;
+      color         : rgba(255,255,255,0.5);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin        : 0;
+      transition    : color 0.3s ease;
+    }
+
+    .nf-sd-card__label {
+      color      : #1a1a1a;
+      font-weight: 800;
+    }
+
+    // ── hover state ──────────────────────────────────────
+    &:hover .nf-sd-card__img--icon {
+      background: linear-gradient(145deg, #D4145A 0%, #a80f45 100%);
+      &::before { opacity: 0.15; }
+    }
+
+    &:hover .nf-vm-dots span {
+      background  : rgba(255,255,255,0.35);
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    &:hover .nf-vm-arrow {
+      background  : #fff;
+      border-color: #fff;
+      transform   : scale(1.1);
+
+      i { color: #D4145A; transform: translateX(3px); }
+    }
+
+    &:hover .nf-vm-sub   { color: rgba(255,255,255,0.85); }
+    &:hover .nf-sd-card__label { color: #D4145A; }
+  }
+}
+
+html.dark {
+  .nf-sd-card__img   { background: #1e1e2e; }
+  .nf-sd-card__label { color: #e0e0e0; }
+  .nf-sd-card--view-more .nf-sd-card__img--icon { background: linear-gradient(145deg, #0d0d0d 0%, #1a1a1a 100%); }
+}
+
+// Dark mode
+html.dark {
+  .nf-sd-card__img  { background: #1e1e2e; }
+  .nf-sd-card__label { color: #e0e0e0; }
+}
+
+// ════════════════════════════════════════════════════════
+// CATEGORY GRID — Myntra-style category cards
+// ════════════════════════════════════════════════════════
+.nf-cat-grid {
+  display: grid;
+  gap: 16px;
+
+  &--5 {
+    grid-template-columns: repeat(5, 1fr);
+
+    @media (max-width: 1200px) { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 900px)  { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 600px)  { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  }
+}
+
+.nf-cat-card {
+  display: block;
+  text-decoration: none !important;
+  color: inherit;
+  cursor: pointer;
+
+  &:hover .nf-cat-card__img img {
+    transform: scale(1.04);
+  }
+
+  &__img {
+    position: relative;
+    width: 100%;
+    padding-top: 120%;
+    overflow: hidden;
+    background: $nf-bg;
+    border-radius: 4px;
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.4s $nf-ease;
+    }
+  }
+
+  &__name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%);
+    padding: 32px 10px 10px;
+    font-size: 20px;
+    font-weight: 700;
+    color: $nf-white;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  &__info {
+    padding: 8px 2px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__offer {
+    font-size: 20px;
+    font-weight: 700;
+    color: $nf-dark;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  &__desc {
+    font-size: 15.5px;
+    color: $nf-muted;
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+// ── Section heading — Nykaa pink-underline style ──────────
+.nf-section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid $nf-border;
+
+  &--center {
+    justify-content: center;
+    text-align: center;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 28px;
+  }
+}
+
+.nf-section-title {
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 700;
+  color: $nf-dark;
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 3px;
+    background: $nf-pink;
+    border-radius: 2px;
+    margin-top: 8px;
+  }
+
+  .nf-section-head--center & {
+    &::after { margin: 8px auto 0; }
+  }
+}
+
+// ════════════════════════════════════════════════════════
+// 1. HERO BANNER SLIDER — Reference style
+// Rounded card · side margins · text left · arrows · dots
+// ════════════════════════════════════════════════════════
+.nf-banner-slider {
+  position: relative;
+  margin: 20px 60px;
+  border-radius: 16px;
+  padding: 0% important ;
+  overflow: hidden;
+  height: 520px;
+  // height: clamp(300px, 45vw, 520px);
+  background: #92927b;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
+
+  @media (max-width: 991px) { margin: 12px 24px; border-radius: 12px; }
+  @media (max-width: 575px) { margin: 8px 12px;  border-radius: 8px; height: 54vw; }
+}
+
+// ── Slides ────────────────────────────────────────────────
+.nf-banner-slider__track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.nf-banner-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.55s ease;
+  pointer-events: none;
+
+  &--active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+// ── Slide image ───────────────────────────────────────────
+.nf-banner-slide__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+  display: block;
+}
+
+// ── Text overlay — left ~40% of banner ────────────────────
+.nf-banner-slide__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding-left: clamp(28px, 5vw, 72px);
+  padding-right: 50%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.38) 0%,
+    rgba(0, 0, 0, 0.28) 40%,
+    transparent 70%
+  );
+}
+
+.nf-banner-slide__content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.nf-banner-slide__heading {
+  font-size: clamp(22px, 3.5vw, 46px);
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.nf-banner-slide__sub {
+  font-size: clamp(13px, 1.6vw, 20px);
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0;
+  line-height: 1.45;
+  font-weight: 400;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  max-width: 320px;
+}
+
+.nf-banner-slide__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 28px;
+  background: $nf-white;
+  color: $nf-dark;
+  font-size: clamp(11px, 1.2vw, 14px);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  width: fit-content;
+  transition: background 0.22s ease, color 0.22s ease;
+  border: 2px solid $nf-white;
+
+  &:hover {
+    background: transparent;
+    color: $nf-white;
+  }
+
+  @media (max-width: 575px) { padding: 8px 18px; font-size: 11px; }
+}
+
+// ── Navigation arrows ─────────────────────────────────────
+.nf-banner-slider__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba($nf-white, 0.88);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+
+  i { font-size: 22px; color: $nf-dark; }
+
+  &:hover {
+    background: $nf-white;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+  }
+
+  &--prev { left: 14px; }
+  &--next { right: 14px; }
+
+  @media (max-width: 575px) {
+    width: 32px;
+    height: 32px;
+    i { font-size: 18px; }
+    &--prev { left: 8px; }
+    &--next { right: 8px; }
+  }
+}
+
+// ── Dot indicators — bottom right ─────────────────────────
+.nf-banner-slider__dots {
+  position: absolute;
+  bottom: 14px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 10;
+}
+
+.nf-banner-slider__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba($nf-white, 0.5);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.25s ease;
+
+  &--active {
+    background: $nf-white;
+    width: 22px;
+    border-radius: 4px;
+  }
+}
+
+// ════════════════════════════════════════════════════════
+// 4. TRIPTYCH EDITORIAL — Nykaa 3-panel "LUXE EDIT" style
+// ════════════════════════════════════════════════════════
+.nf-triptych {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3px;
+  margin: 0 60px;
+  border-radius: 16px;
+  overflow: hidden;
+
+  @media (max-width: 991px) { margin: 0 24px; border-radius: 12px; }
+  @media (max-width: 575px) { margin: 0 12px; border-radius: 8px; }
+
+  @media (min-width: 768px) { grid-template-columns: repeat(3, 1fr); }
+}
+
+.nf-triptych__panel {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  text-decoration: none;
+  background: $nf-dark;
+  min-height: 340px;
+
+  @media (min-width: 576px)  { min-height: 420px; }
+  @media (min-width: 992px)  { min-height: 520px; }
+  @media (min-width: 1200px) { min-height: 600px; }
+}
+
+.nf-triptych__img-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s $nf-ease;
+  }
+}
+
+.nf-triptych__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba($nf-dark, 0.88) 0%,
+    rgba($nf-dark, 0.45) 45%,
+    rgba($nf-dark, 0.1) 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  padding: 28px 24px;
+  transition: background 0.4s ease;
+  z-index: 2;
+}
+
+.nf-triptych__text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transform: translateY(8px);
+  transition: transform 0.4s $nf-ease;
+}
+
+.nf-triptych__tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $nf-gold;
+  background: rgba($nf-gold, 0.15);
+  border: 1px solid rgba($nf-gold, 0.35);
+  padding: 4px 10px;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.nf-triptych__title {
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 800;
+  color: $nf-white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+  line-height: 1.15;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+.nf-triptych__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $nf-white;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s;
+
+  i {
+    font-size: 16px;
+    color: $nf-gold;
+    transition: transform 0.22s ease;
+  }
+}
+
+// Bottom accent line
+.nf-triptych__panel::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, $nf-pink, $nf-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s $nf-ease;
+  z-index: 3;
+}
+
+.nf-triptych__panel:hover {
+  .nf-triptych__img-wrap img { transform: scale(1.06); }
+  .nf-triptych__overlay { background: linear-gradient(to top, rgba($nf-dark, 0.92) 0%, rgba($nf-dark, 0.55) 50%, rgba($nf-dark, 0.15) 100%); }
+  .nf-triptych__text { transform: translateY(0); }
+  .nf-triptych__cta { opacity: 1; transform: translateY(0); i { transform: translateX(4px); } }
+  &::after { transform: scaleX(1); }
+}
+
+// ════════════════════════════════════════════════════════
+// 6. EDITORIAL FULL BANNER — "TRADITION, STYLED BEAUTIFULLY"
+// ════════════════════════════════════════════════════════
+.nf-editorial-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  min-height: 380px;
+  background: $nf-dark;
+
+  @media (min-width: 576px)  { min-height: 460px; }
+  @media (min-width: 992px)  { min-height: 560px; }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    inset: 0;
+    transition: transform 0.6s $nf-ease;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      rgba($nf-dark, 0.85) 0%,
+      rgba($nf-dark, 0.6) 45%,
+      rgba($nf-dark, 0.15) 100%
+    );
+    display: flex;
+    align-items: center;
+    padding: 40px clamp(24px, 6vw, 100px);
+    z-index: 2;
+  }
+
+  &__content {
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: $nf-gold;
+  }
+
+  &__heading {
+    font-size: clamp(32px, 5vw, 60px);
+    font-weight: 900;
+    color: $nf-white;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0;
+    line-height: 1.1;
+    text-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  }
+
+  &__sub {
+    font-size: clamp(14px, 1.5vw, 18px);
+    color: rgba($nf-white, 0.82);
+    margin: 0;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    background: $nf-pink;
+    color: $nf-white;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 6px;
+    width: fit-content;
+    transition: all 0.3s $nf-ease;
+    box-shadow: 0 4px 20px rgba($nf-pink, 0.4);
+
+    i {
+      font-size: 16px;
+      transition: transform 0.22s ease;
+    }
+
+    &:hover {
+      background: darken($nf-pink, 8%);
+      box-shadow: 0 8px 28px rgba($nf-pink, 0.55);
+      transform: translateY(-2px);
+      color: $nf-white;
+
+      i { transform: translateX(4px); }
+    }
+  }
+
+  &:hover &__img { transform: scale(1.03); }
+}
+
+// ── Dark mode — category sections ─────────────────────────
+html.dark {
+  .nf-home-section-title { color: #e0e0e0; }
+
+  .nf-drop-item span { color: #ccc; }
+  .nf-drop-item__img { border-color: #2a2a3a; background: #1e1e2e; }
+
+  .nf-cat-card__offer { color: #e0e0e0; }
+  .nf-cat-card__desc  { color: #888; }
+  .nf-cat-card__img   { background: #1e1e2e; }
+
+  .nf-sec--bg-light { background: #1a1a2a; }
+}
+
+// ════════════════════════════════════════════════════════
+// 8. TRENDING VIDEOS SECTION
+// ════════════════════════════════════════════════════════
+.nf-video-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  align-items: start;
+
+  @media (min-width: 992px) { grid-template-columns: 1.2fr 1fr; gap: 40px; }
+}
+
+// Video carousel
+.nf-video-carousel {
+  position: relative;
+  padding: 0 48px;
+}
+
+.nf-video-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid $nf-border;
+  background: $nf-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.3s ease;
+  box-shadow: $nf-shadow;
+
+  i { font-size: 20px; color: $nf-text; transition: color 0.2s ease; }
+
+  &--prev { left: 0; }
+  &--next { right: 0; }
+
+  &:hover {
+    border-color: $nf-pink;
+    background: $nf-pink;
+    box-shadow: 0 4px 16px rgba($nf-pink, 0.3);
+
+    i { color: $nf-white; }
+  }
+}
+
+.nf-video-track-wrap {
+  overflow: hidden;
+  padding: 12px 0;
+}
+
+.nf-video-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 400px;
+
+  @media (max-width: 768px) { height: 300px; }
+  @media (max-width: 480px) { height: 240px; }
+}
+
+.nf-video-slide {
+  position: absolute;
+  width: 52%;
+  height: 100%;
+  transition: all 0.55s $nf-ease;
+  cursor: pointer;
+  will-change: transform, opacity;
+
+  @media (max-width: 768px) { width: 68%; }
+  @media (max-width: 480px) { width: 82%; }
+
+  &:not(.nf-video-slide--active) {
+    pointer-events: none;
+    filter: brightness(0.85);
+  }
+
+  &--active { z-index: 10; cursor: default; }
+}
+
+.nf-video-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: $nf-radius;
+  overflow: hidden;
+  background: $nf-dark;
+  box-shadow: $nf-shadow-lg;
+
+  &__header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.75), transparent);
+    padding: 12px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 5;
+  }
+
+  &__title {
+    color: $nf-white;
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    margin-right: 10px;
+  }
+
+  &__controls {
+    display: flex;
+    gap: 10px;
+
+    i {
+      color: rgba($nf-white, 0.85);
+      font-size: 15px;
+      cursor: pointer;
+      transition: color 0.2s ease;
+
+      &:hover { color: $nf-pink; }
+    }
+  }
+
+  &__body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &__play {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.28);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3;
+    transition: background 0.3s ease;
+
+    &:hover { background: rgba(0,0,0,0.18); }
+
+    i {
+      font-size: 48px;
+      color: $nf-white;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    &:hover i { transform: scale(1.1); }
+  }
+
+  &__view-btn {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: $nf-pink;
+    color: $nf-white;
+    border: none;
+    padding: 9px 24px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 5;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 2px 12px rgba($nf-pink, 0.4);
+
+    &:hover {
+      background: darken($nf-pink, 8%);
+      transform: translateX(-50%) translateY(-2px);
+      box-shadow: 0 4px 16px rgba($nf-pink, 0.5);
+    }
+  }
+}
+
+// Right feature card — Nykaa editorial box
+.nf-video-feature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+
+  @media (max-width: 768px) { height: auto; }
+}
+
+.nf-feature-card {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #FFF5F8 0%, #FFF9F0 100%);
+  border: 1px solid rgba($nf-pink, 0.12);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(28px, 4vw, 48px) clamp(20px, 3vw, 40px);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: $nf-shadow;
+
+  // Decorative pink circle
+  &::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba($nf-pink, 0.04);
+  }
+
+  &__eyebrow {
+    font-size: 13px;
+    font-style: italic;
+    color: $nf-muted;
+    font-family: Georgia, serif;
+    margin-bottom: 12px;
+    letter-spacing: 0.04em;
+  }
+
+  &__title {
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 800;
+    color: $nf-dark;
+    letter-spacing: 0.04em;
+    margin: 0 0 4px;
+    line-height: 1.15;
+  }
+
+  &__tm {
+    font-size: 0.55em;
+    vertical-align: super;
+    font-weight: 400;
+  }
+
+  &__sub {
+    font-size: 16px;
+    font-style: italic;
+    color: $nf-muted;
+    font-family: Georgia, serif;
+    margin: 0 0 24px;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: $nf-dark;
+    color: $nf-white;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s $nf-ease;
+    margin-bottom: 18px;
+
+    i {
+      font-size: 16px;
+      transition: transform 0.22s ease;
+    }
+
+    &:hover {
+      background: $nf-pink;
+      box-shadow: 0 6px 20px rgba($nf-pink, 0.35);
+      transform: translateY(-2px);
+
+      i { transform: translateX(4px); }
+    }
+  }
+
+  &__desc {
+    font-size: 13px;
+    color: $nf-muted;
+    margin: 0;
+    line-height: 1.6;
+    max-width: 240px;
+  }
+}
+
+// ════════════════════════════════════════════════════════
+// PRODUCT CARD OVERRIDES — denver theme (minimal/clean style)
+// Removes: Quick View, Add to Bag, Rating, Description, hover effects
+// Keeps: image, wishlist heart, name, price row
+// ════════════════════════════════════════════════════════
+.nf-denver {
+  ::ng-deep {
+    .nf-product-card {
+      border-radius: 0 !important;
+      box-shadow: none !important;
+
+      // Remove all hover effects
+      &:hover {
+        box-shadow: none !important;
+
+        .nf-product-card__img    { transform: none !important; }
+        .nf-product-card__hover-bar { opacity: 0 !important; transform: translateY(100%) !important; }
+      }
+
+      // Reduce image height — change from 3/4 to 2/3 portrait
+      .nf-product-card__img-wrap {
+        aspect-ratio: 3 / 3.5 !important;
+      }
+
+      // Hide QUICK VIEW bar entirely
+      .nf-product-card__hover-bar { display: none !important; }
+
+      // Hide ADD TO BAG button
+      .nf-product-card__action { display: none !important; }
+
+      // Hide rating stars + in stock badge
+      .nf-product-card__rating { display: none !important; }
+
+      // Hide short description
+      .nf-product-card__desc { display: none !important; }
+
+      // Clean info panel — tighten spacing
+      .nf-product-card__info {
+        padding: 10px 2px 12px !important;
+        gap: 3px !important;
+      }
+
+      // Name — slightly bolder, dark
+      .nf-product-card__name {
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        color: #1a1a1a !important;
+      }
+
+      // Price — clean, dark
+      .nf-product-card__price {
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        color: #1a1a1a !important;
+      }
+
+      // Price row — compact
+      .nf-product-card__price-row {
+        margin-top: 2px !important;
+        gap: 5px !important;
+      }
+    }
+  }
+}
+
+// ── Accessibility ─────────────────────────────────────────
+.nf-video-nav:focus,
+.nf-feature-card__btn:focus {
+  outline: 2px solid $nf-pink;
+  outline-offset: 2px;
+}
+
+// ── Dark mode ─────────────────────────────────────────────
+html.dark {
+  .nf-denver { background: #141420; }
+
+  .nf-sec {
+    background: #141420;
+    &--videos, &--light { background: #1a1a2a; }
+    &--cats { border-bottom-color: #2a2a3a; }
+  }
+
+  .nf-section-head { border-bottom-color: #2a2a3a; }
+  .nf-section-title { color: #e0e0e0; }
+
+  .nf-feature-card {
+    background: linear-gradient(135deg, #1e1428 0%, #1e1a14 100%);
+    border-color: rgba($nf-pink, 0.2);
+  }
+
+  .nf-video-nav {
+    background: #1e1e2e;
+    border-color: #2a2a3a;
+    i { color: #ccc; }
+  }
+}

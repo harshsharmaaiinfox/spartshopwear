@@ -1,0 +1,139 @@
+<div class="nyk-pay-wrap">
+
+  <!-- ── Section heading ───────────────────────────────── -->
+  <div class="nyk-pay-heading">
+    <div class="nyk-pay-heading__text">
+      <h2 class="nyk-pay-heading__title">Choose payment method</h2>
+      <p class="nyk-pay-heading__sub">Choose the payment method you prefer</p>
+    </div>
+    <div class="nyk-pay-heading__illustration" aria-hidden="true">
+      <svg viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="100" cy="115" rx="75" ry="12" fill="#f0e6f0" opacity=".5"/>
+        <!-- Card back -->
+        <rect x="30" y="40" width="90" height="56" rx="8" fill="#8b5cf6" opacity=".6" transform="rotate(-12 75 68)"/>
+        <!-- Card front -->
+        <rect x="70" y="35" width="90" height="56" rx="8" fill="#D4145A"/>
+        <rect x="70" y="52" width="90" height="10" fill="rgba(255,255,255,0.2)"/>
+        <rect x="78" y="70" width="30" height="6" rx="3" fill="rgba(255,255,255,0.5)"/>
+        <rect x="78" y="80" width="50" height="5" rx="2.5" fill="rgba(255,255,255,0.3)"/>
+        <!-- Hand left -->
+        <path d="M20 90 Q30 70 50 75 L80 60" stroke="#fbbf24" stroke-width="12" stroke-linecap="round" fill="none"/>
+        <!-- Hand right -->
+        <path d="M175 85 Q165 65 145 72 L120 58" stroke="#f97316" stroke-width="12" stroke-linecap="round" fill="none"/>
+        <circle cx="155" cy="28" r="8" fill="#a78bfa" opacity=".5"/>
+        <circle cx="45" cy="30" r="5" fill="#D4145A" opacity=".4"/>
+        <circle cx="170" cy="50" r="4" fill="#8b5cf6" opacity=".3"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ── Two-panel payment layout ──────────────────────── -->
+  <div class="nyk-pay-panel">
+
+    <!-- LEFT: method list -->
+    <div class="nyk-pay-list">
+      <p class="nyk-pay-list__heading">Payment Method Options</p>
+
+      <ng-container *ngFor="let payment of setting?.payment_methods; let i = index;">
+        <button type="button"
+                class="nyk-pay-item"
+                *ngIf="payment?.status"
+                [class.nyk-pay-item--active]="selectedMethod === payment.name"
+                (click)="set(payment.name)">
+
+          <!-- hidden radio for form submission -->
+          <input type="radio"
+                 name="payment_method"
+                 [id]="payment.name"
+                 [checked]="selectedMethod === payment.name"
+                 (change)="set(payment.name)"
+                 style="display:none">
+
+          <div class="nyk-pay-item__icon">
+            <i [class]="getMethodIcon(payment.name)"></i>
+          </div>
+
+          <div class="nyk-pay-item__text">
+            <span class="nyk-pay-item__title">
+              {{ payment.title ? payment.title : payment.name }}
+            </span>
+            <span class="nyk-pay-item__sub">{{ getMethodSub(payment.name) }}</span>
+          </div>
+
+          <i class="ri-arrow-right-s-line nyk-pay-item__arrow"></i>
+        </button>
+      </ng-container>
+    </div>
+
+    <!-- RIGHT: detail panel -->
+    <div class="nyk-pay-detail">
+      <ng-container *ngFor="let payment of setting?.payment_methods;">
+        <div class="nyk-pay-detail__pane"
+             *ngIf="payment?.status && selectedMethod === payment.name">
+
+          <!-- UPI pane -->
+          <ng-container *ngIf="getMethodIcon(payment.name) === 'ri-smartphone-line'">
+            <h4 class="nyk-pay-detail__title">
+              <i class="ri-smartphone-line"></i> Pay with UPI
+            </h4>
+            <div class="nyk-pay-detail__upi-apps">
+              <span class="nyk-upi-app"><i class="ri-google-play-fill" style="color:#34A853"></i> GPay</span>
+              <span class="nyk-upi-app"><i class="ri-phone-fill" style="color:#5f259f"></i> PhonePe</span>
+              <span class="nyk-upi-app"><i class="ri-wallet-fill" style="color:#00BAF2"></i> Paytm</span>
+            </div>
+            <div class="nyk-pay-detail__secure-note">
+              <i class="ri-shield-check-line"></i>
+              <span>100% secure &amp; encrypted UPI payment</span>
+            </div>
+            <div class="nyk-pay-detail__brand" *ngIf="payment.icon">
+              <img [src]="payment.icon" [alt]="payment.name">
+            </div>
+          </ng-container>
+
+          <!-- Card / Cashfree pane -->
+          <ng-container *ngIf="getMethodIcon(payment.name) === 'ri-bank-card-line'">
+            <h4 class="nyk-pay-detail__title">
+              <i class="ri-bank-card-line"></i> Pay via Card / Cashfree
+            </h4>
+            <div class="nyk-pay-detail__card-icons">
+              <span class="nyk-card-type">Visa</span>
+              <span class="nyk-card-type">Mastercard</span>
+              <span class="nyk-card-type">Rupay</span>
+            </div>
+            <div class="nyk-pay-detail__secure-note">
+              <i class="ri-shield-check-line"></i>
+              <span>Secured by Cashfree Payments</span>
+            </div>
+            <div class="nyk-pay-detail__brand" *ngIf="payment.icon">
+              <img [src]="payment.icon" [alt]="payment.name">
+            </div>
+          </ng-container>
+
+          <!-- Default pane -->
+          <ng-container *ngIf="getMethodIcon(payment.name) !== 'ri-smartphone-line' && getMethodIcon(payment.name) !== 'ri-bank-card-line'">
+            <h4 class="nyk-pay-detail__title">
+              <i [class]="getMethodIcon(payment.name)"></i>
+              {{ payment.title ? payment.title : payment.name }}
+            </h4>
+            <p class="nyk-pay-detail__desc">{{ getMethodSub(payment.name) }}</p>
+            <div class="nyk-pay-detail__secure-note">
+              <i class="ri-shield-check-line"></i>
+              <span>100% secure &amp; safe checkout</span>
+            </div>
+            <div class="nyk-pay-detail__brand" *ngIf="payment.icon">
+              <img [src]="payment.icon" [alt]="payment.name">
+            </div>
+          </ng-container>
+
+        </div>
+      </ng-container>
+
+      <!-- Empty state (no method selected) -->
+      <div class="nyk-pay-detail__empty" *ngIf="!selectedMethod">
+        <i class="ri-hand-coin-line"></i>
+        <p>Select a payment method from the left</p>
+      </div>
+    </div>
+
+  </div>
+</div>

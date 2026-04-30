@@ -1,0 +1,220 @@
+// ============================================================
+// Featured Banners — Nykaa "Trending Summer Picks" style
+// Horizontal scrollable portrait cards + "Explore More" button
+// ============================================================
+
+$nf-pink:    #D4145A;
+$nf-dark:    #1C1C2E;
+$nf-gold:    #C9A065;
+$nf-white:   #FFFFFF;
+$nf-radius:  10px;
+$nf-shadow:  0 2px 12px rgba(0, 0, 0, 0.08);
+$nf-shadow-lg: 0 10px 32px rgba(0, 0, 0, 0.14);
+$nf-ease:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+// ── Trending horizontal scroll wrapper ─────────────────────
+.nf-trending-wrap {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+}
+
+.nf-trending-scroll {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 8px 0 20px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+
+  &::-webkit-scrollbar { display: none; }
+
+  @media (min-width: 1200px) { gap: 18px; }
+
+  // Trailing spacer — browsers drop padding-right on overflow flex containers
+  // so we use ::after to create the right-side gap that mirrors the container padding
+  &::after {
+    content: '';
+    flex: 0 0 auto;
+    width: 16px;
+
+    @media (min-width: 576px)  { width: 24px; }
+    @media (min-width: 768px)  { width: 36px; }
+    @media (min-width: 1200px) { width: 52px; }
+    @media (min-width: 1400px) { width: 72px; }
+    @media (min-width: 1600px) { width: 96px; }
+  }
+}
+
+// ── Arrow navigation buttons ───────────────────────────────
+.nf-trending-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-60%);
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: $nf-white;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+
+  i {
+    font-size: 20px;
+    color: $nf-dark;
+    line-height: 1;
+  }
+
+  &:hover {
+    background: $nf-pink;
+    box-shadow: 0 4px 18px rgba($nf-pink, 0.35);
+    transform: translateY(-60%) scale(1.08);
+    i { color: $nf-white; }
+  }
+
+  &--left  { left: -16px; }
+  &--right { right: -16px; }
+
+  // Show arrows only on desktop (touch devices scroll natively)
+  @media (min-width: 768px) { display: flex; }
+}
+
+// ── Individual trending banner card ────────────────────────
+.nf-trending-card {
+  position: relative;
+  flex-shrink: 0;
+  width: 220px;
+  scroll-snap-align: start;
+  border-radius: $nf-radius;
+  overflow: hidden;
+  background: #f8f3ec;  // Nykaa warm cream bg
+  box-shadow: $nf-shadow;
+  cursor: pointer;
+  transition: transform 0.35s $nf-ease, box-shadow 0.35s $nf-ease;
+
+  @media (min-width: 576px)  { width: 250px; }
+  @media (min-width: 768px)  { width: 270px; }
+  @media (min-width: 1200px) { width: 290px; }
+
+  // Image fills the card — portrait ratio (Nykaa ~3:4)
+  ::ng-deep {
+    app-image-link,
+    .banner-contain,
+    a {
+      display: block;
+      width: 100%;
+    }
+
+    img {
+      width: 100% !important;
+      height: 340px !important;
+      object-fit: cover !important;
+      object-position: top center !important;
+      display: block;
+      transition: transform 0.45s $nf-ease !important;
+
+      @media (min-width: 768px) { height: 380px !important; }
+    }
+  }
+
+  // "Explore More >" pill button — always visible at bottom
+  &__explore {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 7px 16px;
+    background: rgba($nf-dark, 0.82);
+    color: $nf-white;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    border-radius: 99px;
+    white-space: nowrap;
+    text-decoration: none;
+    backdrop-filter: blur(4px);
+    transition: background 0.2s ease, transform 0.2s ease;
+    z-index: 3;
+
+    i {
+      font-size: 14px;
+      transition: transform 0.2s ease;
+    }
+
+    &:hover {
+      background: $nf-pink;
+      color: $nf-white;
+      i { transform: translateX(3px); }
+    }
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $nf-shadow-lg;
+
+    ::ng-deep img { transform: scale(1.04) !important; }
+  }
+}
+
+// ── Shared nf-card (vertical / full-width styles) ──────────
+.nf-card {
+  position: relative;
+  border-radius: $nf-radius;
+  overflow: hidden;
+  background: #fafafa;
+  box-shadow: $nf-shadow;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.35s $nf-ease, box-shadow 0.35s $nf-ease;
+
+  &--full { border-radius: $nf-radius; }
+
+  ::ng-deep {
+    img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block;
+      transition: transform 0.45s $nf-ease !important;
+    }
+
+    a { display: block; height: 100%; width: 100%; }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, $nf-pink, $nf-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.32s $nf-ease;
+    z-index: 2;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $nf-shadow-lg;
+    ::ng-deep img { transform: scale(1.04) !important; }
+    &::after { transform: scaleX(1); }
+  }
+}
+
+.nf-fullwidth-banner { width: 100%; }

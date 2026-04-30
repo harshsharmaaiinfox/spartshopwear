@@ -1,0 +1,159 @@
+<!-- ── Nykaa-style Bank Details Page ────────────────────── -->
+
+<!-- Page Header -->
+<div class="bd-header">
+  <div class="bd-header__left">
+    <div class="bd-header__icon">
+      <i class="ri-bank-line"></i>
+    </div>
+    <div class="bd-header__text">
+      <h2 class="bd-header__title">{{ 'Bank Details' | translate }}</h2>
+      <p class="bd-header__sub">{{ 'Manage your payment and bank information' | translate }}</p>
+    </div>
+  </div>
+  <a [routerLink]="['/account/dashboard']" class="bd-back-btn">
+    <i class="ri-arrow-left-line"></i>
+    <span>{{ 'Back to Dashboard' | translate }}</span>
+  </a>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+  <!-- ── Bank Account Card ──────────────────────────────── -->
+  <div class="bd-card">
+    <!-- Card Header -->
+    <div class="bd-card__header">
+      <div class="bd-card__header-icon">
+        <i class="ri-bank-card-line"></i>
+      </div>
+      <div>
+        <h4 class="bd-card__title">{{ 'Bank Details' | translate }}</h4>
+        <p class="bd-card__sub">{{ 'Enter your bank account information' | translate }}</p>
+      </div>
+    </div>
+
+    <!-- Fields -->
+    <div class="bd-fields-grid">
+
+      <div class="bd-field">
+        <label class="bd-label" for="bank_account_no">
+          <i class="ri-numbers-line"></i>
+          {{ 'Bank Account No.' | translate }}
+        </label>
+        <input class="bd-input" id="bank_account_no" type="text"
+               placeholder="{{ 'Enter Bank Account Number' | translate }}"
+               formControlName="bank_account_no"
+               (keydown)="allowOnlyDigits($event)"
+               (input)="sanitizeDigitsInput($event, 'bank_account_no')"
+               (paste)="sanitizeDigitsPaste($event)"
+               [class.bd-input--error]="form?.controls?.['bank_account_no']?.touched && form.controls['bank_account_no']?.errors?.['pattern']">
+        <p class="bd-error" *ngIf="form?.controls?.['bank_account_no']?.touched && form.controls['bank_account_no']?.errors?.['pattern']">
+          <i class="ri-error-warning-line"></i>
+          {{ 'Only numbers are allowed' | translate }}
+        </p>
+      </div>
+
+      <div class="bd-field">
+        <label class="bd-label" for="bank_name">
+          <i class="ri-building-line"></i>
+          {{ 'Bank Name' | translate }}
+        </label>
+        <input class="bd-input" id="bank_name" type="text"
+               placeholder="{{ 'Enter Bank Name' | translate }}"
+               formControlName="bank_name"
+               (keydown)="allowOnlyLetters($event)"
+               (input)="sanitizeLettersInput($event, 'bank_name')"
+               (paste)="sanitizeLettersPaste($event)"
+               [class.bd-input--error]="form?.controls?.['bank_name']?.touched && form.controls['bank_name']?.errors?.['pattern']">
+        <p class="bd-error" *ngIf="form?.controls?.['bank_name']?.touched && form.controls['bank_name']?.errors?.['pattern']">
+          <i class="ri-error-warning-line"></i>
+          {{ 'Only letters and spaces are allowed' | translate }}
+        </p>
+      </div>
+
+      <div class="bd-field">
+        <label class="bd-label" for="bank_holder_name">
+          <i class="ri-user-line"></i>
+          {{ 'Account Holder Name' | translate }}
+        </label>
+        <input class="bd-input" id="bank_holder_name" type="text"
+               placeholder="{{ 'Enter Account Holder Name' | translate }}"
+               formControlName="bank_holder_name"
+               (keydown)="allowOnlyLetters($event)"
+               (input)="sanitizeLettersInput($event, 'bank_holder_name')"
+               (paste)="sanitizeLettersPaste($event)"
+               [class.bd-input--error]="form?.controls?.['bank_holder_name']?.touched && form.controls['bank_holder_name']?.errors?.['pattern']">
+        <p class="bd-error" *ngIf="form?.controls?.['bank_holder_name']?.touched && form.controls['bank_holder_name']?.errors?.['pattern']">
+          <i class="ri-error-warning-line"></i>
+          {{ 'Only letters and spaces are allowed' | translate }}
+        </p>
+      </div>
+
+      <div class="bd-field">
+        <label class="bd-label" for="ifsc">
+          <i class="ri-file-code-line"></i>
+          {{ 'IFSC Code' | translate }}
+        </label>
+        <input class="bd-input" id="ifsc" type="text"
+               placeholder="{{ 'Enter IFSC Code' | translate }}"
+               formControlName="ifsc">
+      </div>
+
+      <div class="bd-field">
+        <label class="bd-label" for="swift">
+          <i class="ri-global-line"></i>
+          {{ 'SWIFT Code' | translate }}
+        </label>
+        <input class="bd-input" id="swift" type="text"
+               placeholder="{{ 'Enter SWIFT Code' | translate }}"
+               formControlName="swift">
+      </div>
+
+    </div>
+
+    <!-- Secure note -->
+    <div class="bd-secure-note">
+      <i class="ri-shield-check-line"></i>
+      <span>Your bank information is encrypted and stored securely.</span>
+    </div>
+  </div>
+
+  <!-- ── PayPal Card ─────────────────────────────────────── -->
+  <div class="bd-card">
+    <div class="bd-card__header">
+      <div class="bd-card__header-icon bd-card__header-icon--paypal">
+        <i class="ri-paypal-line"></i>
+      </div>
+      <div>
+        <h4 class="bd-card__title">{{ 'PayPal Details' | translate }}</h4>
+        <p class="bd-card__sub">{{ 'Enter your PayPal email address' | translate }}</p>
+      </div>
+    </div>
+
+    <div class="bd-fields-grid bd-fields-grid--single">
+      <div class="bd-field">
+        <label class="bd-label" for="paypal_email">
+          <i class="ri-mail-line"></i>
+          {{ 'PayPal Email' | translate }}
+        </label>
+        <input class="bd-input" id="paypal_email" type="email"
+               placeholder="{{ 'Enter PayPal Email Address' | translate }}"
+               formControlName="paypal_email"
+               [class.bd-input--error]="form?.controls?.['paypal_email']?.touched && form.controls['paypal_email']?.errors?.['email']">
+        <p class="bd-error" *ngIf="form?.controls?.['paypal_email']?.touched && form.controls['paypal_email']?.errors?.['email']">
+          <i class="ri-error-warning-line"></i>
+          {{ 'Please enter a valid email address' | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Save Button ─────────────────────────────────────── -->
+  <div class="bd-form-actions">
+    <button type="submit" class="bd-save-btn">
+      <i class="ri-save-3-line"></i>
+      {{ 'Save Changes' | translate }}
+    </button>
+  </div>
+
+</form>

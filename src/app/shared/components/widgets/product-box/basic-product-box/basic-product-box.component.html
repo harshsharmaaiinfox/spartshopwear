@@ -1,0 +1,129 @@
+<div class="nf-product-card" [class]="class">
+
+  <!-- ── Sale / Featured / New badge — top-left ── -->
+  <div class="nf-product-card__badge"
+       [class.nf-product-card__badge--sale]="product.is_sale_enable"
+       [class.nf-product-card__badge--featured]="!product.is_sale_enable && product.is_featured"
+       [class.nf-product-card__badge--new]="!product.is_sale_enable && !product.is_featured && product.is_trending"
+       *ngIf="product.is_trending || product.is_sale_enable || product.is_featured">
+    <span>{{ product.is_sale_enable ? 'SALE' : product.is_featured ? 'FEATURED' : 'New' }}</span>
+  </div>
+
+  <!-- ── Action buttons — top-right stack ── -->
+  <div class="nf-product-card__actions" *ngIf="!close">
+    <!-- Wishlist -->
+    <button class="nf-product-card__action-btn"
+            [class.nf-product-card__action-btn--active]="product.is_wishlist"
+            (click)="addToWishlist(product)"
+            title="Wishlist">
+      <i class="ri-heart-fill" *ngIf="product.is_wishlist"></i>
+      <i class="ri-heart-line" *ngIf="!product.is_wishlist"></i>
+    </button>
+    <!-- Compare -->
+    <button class="nf-product-card__action-btn nf-product-card__action-btn--compare"
+            title="Compare"
+            (click)="$event.stopPropagation()">
+      <i class="ri-scales-3-line"></i>
+    </button>
+  </div>
+
+  <!-- ── Close (wishlist page) ── -->
+  <button class="nf-product-card__close" *ngIf="close"
+          (click)="removeWishlist(product.id)">
+    <i class="ri-close-line"></i>
+  </button>
+
+  <!-- ── Product Image ── -->
+  <div class="nf-product-card__img-wrap">
+    <a [routerLink]="['/product/', product.slug]" class="nf-product-card__img-link">
+      <img appLazyLoad
+           [src]="product.product_thumbnail ? product.product_thumbnail.original_url : 'assets/images/product.png'"
+           [alt]="product.name"
+           class="nf-product-card__img lazy-loading"
+           placeholder="assets/images/placeholder.png">
+    </a>
+
+    <!-- Quick View (hidden in collection, visible in other themes) -->
+    <div class="nf-product-card__hover-bar">
+      <button class="nf-product-card__quickview"
+              (click)="cartPopupModal.openModal(product)"
+              title="Quick View">
+        <i class="ri-eye-line"></i>
+        <span>Quick View</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Product Tags (Nykaa-style pills below image) ── -->
+  <div class="nf-product-card__tags">
+    <span class="nf-product-card__tag nf-product-card__tag--exclusive"
+          *ngIf="product.is_featured">EXCLUSIVE</span>
+    <span class="nf-product-card__tag nf-product-card__tag--style"
+          *ngIf="product.is_trending">LATEST STYLE</span>
+    <span class="nf-product-card__tag nf-product-card__tag--sale"
+          *ngIf="product.is_sale_enable && !product.is_featured && !product.is_trending">SALE</span>
+  </div>
+
+  <!-- ── Product Info ── -->
+  <div class="nf-product-card__info">
+
+    <!-- Brand -->
+    <div class="nf-product-card__brand" *ngIf="product.brand">
+      {{ product.brand.name }}
+    </div>
+
+    <!-- Product name -->
+    <a [routerLink]="['/product/', product.slug]" class="nf-product-card__name-link">
+      <h3 class="nf-product-card__name">{{ product.name }}</h3>
+    </a>
+
+    <!-- Short description -->
+    <p class="nf-product-card__desc" *ngIf="product.short_description">
+      {{ product.short_description }}
+    </p>
+
+    <!-- Price row -->
+    <div class="nf-product-card__price-row">
+      <span class="nf-product-card__price">{{ product.price | currencySymbol }}</span>
+      <span class="nf-product-card__mrp"
+            *ngIf="product.is_sale_enable && product.sale_price">
+        {{ product.sale_price | currencySymbol }}
+      </span>
+      <span class="nf-product-card__discount"
+            *ngIf="product.is_sale_enable && product.sale_price && product.price > product.sale_price">
+        {{ ((1 - product.sale_price / product.price) * 100) | number:'1.0-0' }}% off
+      </span>
+    </div>
+
+    <!-- Price dropped alert -->
+    <div class="nf-product-card__price-drop"
+         *ngIf="product.is_sale_enable && product.sale_price && product.sale_price > product.price">
+      <i class="ri-arrow-down-line"></i>
+      Price dropped by {{ product.sale_price - product.price | currencySymbol }}
+    </div>
+
+    <!-- Limited stock alert -->
+    <div class="nf-product-card__limited-stock"
+         *ngIf="product.is_sale_enable && product.quantity > 0 && product.quantity <= 5">
+      Limited stock!
+    </div>
+
+    <!-- Rating -->
+    <div class="nf-product-card__rating">
+      <ngb-rating [rate]="product.rating_count" class="nf-stars"></ngb-rating>
+      <span class="nf-product-card__stock" *ngIf="product.stock_status == 'in_stock'">
+        In Stock
+      </span>
+    </div>
+
+    <!-- Add to Bag -->
+    <div class="nf-product-card__action">
+      <app-product-cart-button [product]="product" [text]="'Add to Bag'"></app-product-cart-button>
+    </div>
+
+  </div>
+</div>
+
+<app-product-detail-modal #productDetailModal [product]="product"></app-product-detail-modal>
+<app-variation-modal #variationModal></app-variation-modal>
+<app-cart-popup-modal #cartPopupModal></app-cart-popup-modal>

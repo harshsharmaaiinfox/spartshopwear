@@ -1,0 +1,287 @@
+$pink:   #D4145A;
+$dark:   #1a1a1a;
+$muted:  #6b7280;
+$border: #e5e7eb;
+$bg:     #f9fafb;
+$error:  #ef4444;
+
+// ── Modal Header ─────────────────────────────────────────
+.ep-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1.5px solid $border;
+  background: linear-gradient(135deg, #fff5f8 0%, #fce4ec 100%);
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  &__icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: $pink;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba($pink, 0.3);
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 700;
+    color: $dark;
+    margin: 0 0 2px;
+    text-transform: capitalize;
+  }
+
+  &__sub {
+    font-size: 12.5px;
+    color: $muted;
+    margin: 0;
+  }
+}
+
+.ep-close-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba($pink, 0.08);
+  color: $pink;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+
+  &:hover {
+    background: $pink;
+    color: white;
+    transform: rotate(90deg);
+  }
+}
+
+// ── Body ─────────────────────────────────────────────────
+.ep-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// ── Field ─────────────────────────────────────────────────
+.ep-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ep-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: $dark;
+
+  i { font-size: 15px; color: $pink; }
+}
+
+.ep-input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid $border;
+  border-radius: 10px;
+  font-size: 14.5px;
+  color: $dark;
+  background: $bg;
+  transition: all 0.22s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: $pink;
+    background: white;
+    box-shadow: 0 0 0 3px rgba($pink, 0.1);
+  }
+
+  &::placeholder { color: #c0c0c0; }
+
+  &--error {
+    border-color: $error;
+    background: #fff8f8;
+
+    &:focus {
+      border-color: $error;
+      box-shadow: 0 0 0 3px rgba($error, 0.1);
+    }
+  }
+}
+
+.ep-error {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: $error;
+  font-weight: 500;
+  margin: 0;
+
+  i { font-size: 14px; }
+}
+
+// ── Phone Row ─────────────────────────────────────────────
+.ep-phone-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.ep-country-code {
+  flex: 0 0 110px;
+  min-width: 110px;
+
+  ::ng-deep {
+    .select2-container {
+      width: 100% !important;
+
+      .select2-selection {
+        padding: 10px 12px;
+        border: 1.5px solid $border;
+        border-radius: 10px;
+        background: $bg;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        transition: all 0.22s ease;
+
+        &:focus-within {
+          border-color: $pink;
+          background: white;
+          box-shadow: 0 0 0 3px rgba($pink, 0.1);
+        }
+      }
+
+      &.select2-container--open .select2-selection {
+        border-color: $pink;
+        background: white;
+        box-shadow: 0 0 0 3px rgba($pink, 0.1);
+      }
+    }
+
+    .select2-dropdown {
+      border: 1.5px solid $pink;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba($pink, 0.12);
+      margin-top: 4px;
+    }
+  }
+}
+
+.ep-flag-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ep-dial-code {
+  font-size: 13px;
+  font-weight: 600;
+  color: $dark;
+}
+
+.ep-phone-input {
+  flex: 1;
+}
+
+// ── Footer ───────────────────────────────────────────────
+.ep-footer {
+  display        : flex;
+  align-items    : center;
+  justify-content: flex-end;
+  gap            : 12px;
+  padding        : 20px 24px;
+  border-top     : 1.5px solid $border;
+  background     : #fff;
+}
+
+// ── Cancel button ─────────────────────────────────────────
+.ep-cancel-btn {
+  position      : relative;
+  padding       : 13px 28px;
+  border        : 1.5px solid #d1d5db;
+  background    : #fff;
+  color         : #4b5563;
+  border-radius : 50px;
+  font-size     : 14px;
+  font-weight   : 600;
+  letter-spacing: 0.02em;
+  cursor        : pointer;
+  transition    : all 0.22s ease;
+  font-family   : inherit;
+
+  &:hover {
+    border-color: #9ca3af;
+    color       : $dark;
+    background  : $bg;
+  }
+
+  &:active { transform: scale(0.97); }
+}
+
+// ── Submit button ─────────────────────────────────────────
+.ep-submit-btn {
+  display        : inline-flex;
+  align-items    : center;
+  gap            : 8px;
+  padding        : 13px 32px;
+  background     : linear-gradient(135deg, $pink 0%, darken(#D4145A, 10%) 100%);
+  color          : #fff;
+  border         : none;
+  border-radius  : 50px;
+  font-size      : 14px;
+  font-weight    : 700;
+  letter-spacing : 0.04em;
+  text-transform : uppercase;
+  cursor         : pointer;
+  box-shadow     : 0 4px 18px rgba($pink, 0.35);
+  transition     : all 0.22s ease;
+  position       : relative;
+  overflow       : hidden;
+  font-family    : inherit;
+
+  &::after {
+    content      : '';
+    position     : absolute;
+    inset        : 0;
+    background   : linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  i { font-size: 17px; font-weight: 700; }
+
+  &:hover {
+    transform : translateY(-2px);
+    box-shadow: 0 8px 24px rgba($pink, 0.45);
+    background: linear-gradient(135deg, darken(#D4145A, 5%) 0%, darken(#D4145A, 15%) 100%);
+  }
+
+  &:active {
+    transform : translateY(0) scale(0.97);
+    box-shadow: 0 3px 10px rgba($pink, 0.3);
+  }
+}

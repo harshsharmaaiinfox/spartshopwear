@@ -1,0 +1,100 @@
+<ng-container *ngIf="product">
+
+  <!-- Brand name -->
+  <div class="nyk-brand" *ngIf="product?.brand">{{ product.brand.name }}</div>
+
+  <!-- Product name -->
+  <h1 class="nyk-product-name">{{ selectedVariation ? selectedVariation.name : product.name }}</h1>
+
+  <!-- Price row -->
+  <div class="nyk-price-row">
+    <span class="nyk-price">
+      {{ (selectedVariation ? selectedVariation.sale_price : product.sale_price) | currencySymbol }}
+    </span>
+    <span class="nyk-discount-pct" *ngIf="selectedVariation ? selectedVariation.discount : product.discount">
+      {{ (selectedVariation ? selectedVariation.discount : product.discount) }}% Off
+    </span>
+  </div>
+
+  <!-- MRP -->
+  <div class="nyk-mrp" *ngIf="selectedVariation ? selectedVariation.discount : product.discount">
+    MRP &nbsp;<del>{{ (selectedVariation ? selectedVariation.price : product.price) | currencySymbol }}</del>
+    <span class="nyk-mrp__tax">&nbsp; Inclusive of all taxes</span>
+  </div>
+
+  <div class="nyk-divider"></div>
+
+  <!-- Short description -->
+  <div class="nyk-short-desc" *ngIf="product?.short_description">
+    <p [innerHTML]="product.short_description"></p>
+  </div>
+
+  <ng-container *ngIf="product?.status">
+
+    <!-- Variant attributes (size, color etc.) -->
+    <div class="nyk-variants">
+      <app-variant-attributes
+        [product]="product"
+        [attributes]="product.attributes || []"
+        (selectVariation)="selectVariation($event!)"
+        [owlCar]="owlCar">
+      </app-variant-attributes>
+    </div>
+
+    <!-- Sale countdown -->
+    <app-sale-timer
+      [startDate]="product.sale_starts_at"
+      [endDate]="product.sale_expired_at"
+      *ngIf="product.sale_starts_at && product.sale_expired_at"
+      [title]="'hurry_up_sales_ends_in'">
+    </app-sale-timer>
+
+    <!-- Wholesale -->
+    <ng-container *ngIf="product?.wholesales?.length">
+      <app-product-wholesale [product]="product"></app-product-wholesale>
+      <h4 class="nyk-total">Total: <span>{{ totalPrice | currencySymbol }}</span></h4>
+    </ng-container>
+
+    <!-- Quantity -->
+    <div class="nyk-qty-row" *ngIf="!product?.is_external">
+      <span class="nyk-qty-label">Qty:</span>
+      <div class="nyk-qty-box">
+        <button class="nyk-qty-btn" (click)="updateQuantity(-1)"><i class="ri-subtract-line"></i></button>
+        <span class="nyk-qty-val">{{ productQty }}</span>
+        <button class="nyk-qty-btn" (click)="updateQuantity(1)"><i class="ri-add-line"></i></button>
+      </div>
+    </div>
+
+    <!-- CTA buttons — internal product -->
+    <div class="nyk-cta-row" *ngIf="!product?.is_external">
+      <button class="nyk-btn nyk-btn--wishlist" (click)="addToWishlist(product)">
+        <i class="ri-heart-{{ product.is_wishlist ? 'fill' : 'line' }}"></i>
+        {{ product.is_wishlist ? 'Wishlisted' : 'Add to Wishlist' }}
+      </button>
+
+      <ng-container *ngIf="(selectedVariation && selectedVariation.status && selectedVariation.quantity >= productQty)
+                        || (!selectedVariation && product.quantity >= productQty); else outStock">
+        <app-button [id]="'addcartbtnVariation' + product.id"
+                    [class]="'nyk-btn nyk-btn--bag'"
+                    (click)="addToCart(product)">
+          Add to Bag
+        </app-button>
+      </ng-container>
+      <ng-template #outStock>
+        <button class="nyk-btn nyk-btn--bag nyk-btn--disabled" disabled>Out of Stock</button>
+      </ng-template>
+    </div>
+
+    <!-- CTA buttons — external product -->
+    <div class="nyk-cta-row" *ngIf="product?.is_external">
+      <app-button [id]="'externalBtn' + product.id" [class]="'nyk-btn nyk-btn--bag w-100'"
+        (click)="externalProductLink(product.external_url)">
+        {{ product.external_button_text || 'Buy Now' }}
+      </app-button>
+    </div>
+
+  </ng-container>
+
+  <div class="nyk-unavailable" *ngIf="!product?.status">Currently Unavailable</div>
+
+</ng-container>

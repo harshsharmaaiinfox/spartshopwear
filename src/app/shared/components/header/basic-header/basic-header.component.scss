@@ -1,0 +1,516 @@
+// ============================================================
+// Navbar — Nykaa Fashion Style
+// Two rows: primary nav + sub-category strip
+// ============================================================
+
+$nf-pink:     #D4145A;
+$nf-dark:     #1C1C2E;
+$nf-white:    #FFFFFF;
+$nf-border:   #EFEFEF;
+$nf-text:     #333333;
+$nf-muted:    #666666;
+$nf-shadow:   0 2px 12px rgba(0, 0, 0, 0.08);
+$nf-ease:     cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+// ── Root header ───────────────────────────────────────────
+.nf-header {
+  position: relative;
+  width: 100%;
+  z-index: 999;
+  background: $nf-white;
+
+  &--sticky {
+    .nf-header__row1 {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: $nf-white;
+      box-shadow: $nf-shadow;
+      animation: nf-slide-down 0.25s ease both;
+    }
+
+    .nf-header__row2 { display: none !important; }
+  }
+}
+
+@keyframes nf-slide-down {
+  from { transform: translateY(-100%); }
+  to   { transform: translateY(0); }
+}
+
+// ══════════════════════════════════════════════════════════
+// ROW 1 — Main header bar
+// ══════════════════════════════════════════════════════════
+.nf-header__row1 {
+  background: $nf-white;
+  border-bottom: 1px solid $nf-border;
+  transition: box-shadow 0.3s ease;
+}
+
+.nf-row1 {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  gap: 16px;
+
+  @media (max-width: 575px) { padding: 8px 0; gap: 10px; }
+}
+
+// Logo
+.nf-row1__logo {
+  flex-shrink: 0;
+
+  ::ng-deep .web-logo img {
+    width: clamp(120px, 14vw, 200px) !important;
+    max-width: 200px !important;
+    height: auto !important;
+  }
+}
+
+// Primary nav (Women, Men, Kids…)
+.nf-row1__nav {
+  flex-shrink: 0;
+  align-items: center;
+
+  ::ng-deep {
+    .navbar-nav {
+      display: flex;
+      flex-direction: row;
+      gap: 2px;
+      align-items: center;
+
+      > .nav-item > .nav-link {
+        font-size: 14px;
+        font-weight: 600;
+        color: $nf-text !important;
+        padding: 8px 12px !important;
+        border-radius: 4px;
+        position: relative;
+        white-space: nowrap;
+        transition: color 0.2s ease;
+
+        // Pink underline on hover/active — Nykaa signature
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 12px;
+          right: 12px;
+          height: 2px;
+          background: $nf-pink;
+          border-radius: 2px;
+          transform: scaleX(0);
+          transition: transform 0.22s ease;
+        }
+
+        &:hover,
+        &.active {
+          color: $nf-pink !important;
+          &::after { transform: scaleX(1); }
+        }
+      }
+    }
+  }
+}
+
+// Search bar — Nykaa style: input + pink button inline
+.nf-row1__search {
+  flex: 1;
+  min-width: 0;
+  max-width: 440px;
+  margin: 0 auto;
+
+  // Host element fills available space
+  ::ng-deep app-box-search { display: block; width: 100%; }
+
+  ::ng-deep {
+    // Input — left rounded, gray background
+    .form-control {
+      flex: 1 !important;
+      height: 40px !important;
+      background: #F5F5F5 !important;
+      border: 1.5px solid #E2E2E2 !important;
+      border-right: none !important;
+      border-radius: 8px 0 0 8px !important;
+      padding: 0 14px !important;
+      font-size: 13px !important;
+      color: $nf-text !important;
+      box-shadow: none !important;
+      transition: border-color 0.2s ease, background 0.2s ease !important;
+
+      &::placeholder { color: #aaa !important; }
+
+      &:focus {
+        border-color: $nf-pink !important;
+        background: $nf-white !important;
+        outline: none !important;
+        box-shadow: none !important;
+      }
+    }
+
+    // Pink search button — right rounded
+    .btn.search-button,
+    button.search-button {
+      flex-shrink: 0 !important;
+      width: 42px !important;
+      height: 40px !important;
+      background: $nf-pink !important;
+      border: 1.5px solid $nf-pink !important;
+      border-radius: 0 8px 8px 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 0 !important;
+      transition: background 0.2s ease !important;
+
+      &:hover { background: darken($nf-pink, 8%) !important; }
+
+      i { font-size: 17px !important; color: $nf-white !important; }
+    }
+  }
+}
+
+// ── Right actions: Account | Wishlist | Cart ──────────────
+.nf-row1__actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.nf-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 10px;
+  transition: background 0.22s ease;
+  position: relative;
+  text-decoration: none;
+
+  @media (max-width: 575px) { padding: 4px 6px; }
+
+  &:hover { background: rgba($nf-pink, 0.06); }
+
+  // Premium icon circle container
+  &__circle {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid #E8E8E8;
+    background: #FAFAFA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+
+    @media (max-width: 575px) { width: 34px; height: 34px; }
+
+    ::ng-deep {
+      // Strip default button/link styles
+      button,
+      a,
+      .header-wishlist,
+      .btn,
+      .btn.header-wishlist,
+      .custom-account-dropdown,
+      .account-trigger {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        height: 100% !important;
+        box-shadow: none !important;
+      }
+
+      // Icon styling
+      i {
+        font-size: 20px !important;
+        color: #2d2d2d !important;
+        transition: color 0.22s ease, transform 0.22s ease !important;
+        line-height: 1 !important;
+
+        @media (max-width: 575px) { font-size: 18px !important; }
+      }
+
+      // Badge counter — pink pill
+      .badge,
+      span.position-absolute {
+        background: $nf-pink !important;
+        color: $nf-white !important;
+        font-size: 9px !important;
+        font-weight: 700 !important;
+        min-width: 15px !important;
+        height: 15px !important;
+        line-height: 15px !important;
+        border-radius: 99px !important;
+        border: 1.5px solid $nf-white !important;
+        padding: 0 3px !important;
+        top: -2px !important;
+        right: -2px !important;
+      }
+
+      // Account wrap — fill the circle
+      .acc-wrap,
+      .acc-trigger {
+        width: 100% !important;
+        height: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+
+      .acc-trigger__avatar {
+        width: 26px !important;
+        height: 26px !important;
+        border-radius: 50% !important;
+        overflow: hidden !important;
+        border: 2px solid rgba($nf-pink, 0.3) !important;
+        background: $nf-pink !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        img {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: cover !important;
+        }
+      }
+    }
+  }
+
+  // Hover: circle glows pink
+  &:hover &__circle {
+    border-color: rgba($nf-pink, 0.35);
+    background: rgba($nf-pink, 0.05);
+    box-shadow: 0 0 0 3px rgba($nf-pink, 0.08);
+
+    ::ng-deep i { color: $nf-pink !important; transform: scale(1.1) !important; }
+  }
+
+  &__label {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: $nf-muted;
+    margin-top: 5px;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    transition: color 0.22s ease;
+  }
+
+  &:hover &__label { color: $nf-pink; }
+
+  // Subtle divider between actions
+  &--wishlist,
+  &--cart {
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 24px;
+      background: #EBEBEB;
+    }
+  }
+}
+
+// Logo img width override
+.navbar-top .web-logo img {
+  width: clamp(120px, 14vw, 200px) !important;
+  max-width: 200px !important;
+  height: auto !important;
+}
+
+
+// ══════════════════════════════════════════════════════════
+// Mobile hamburger
+// ══════════════════════════════════════════════════════════
+.nf-row1__hamburger {
+  flex-shrink: 0;
+
+  ::ng-deep {
+    button, .navbar-toggler {
+      border: none;
+      background: transparent;
+      padding: 6px;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+
+      &:hover { background: rgba($nf-pink, 0.07); }
+
+      i, span { font-size: 24px; color: $nf-dark; }
+    }
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+// Mobile Offcanvas Menu
+// ══════════════════════════════════════════════════════════
+.nf-mobile-menu {
+  background: $nf-white !important;
+  width: 300px !important;
+  box-shadow: 4px 0 32px rgba(0, 0, 0, 0.15) !important;
+
+  &__header {
+    background: $nf-dark;
+    padding: 18px 20px;
+    border-bottom: 2px solid $nf-pink;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba($nf-pink, 0.2);
+    border: 1px solid rgba($nf-pink, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i { font-size: 18px; color: $nf-pink; }
+  }
+
+  &__title {
+    color: $nf-white !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+  }
+
+  &__close {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba($nf-white, 0.25);
+    background: rgba($nf-white, 0.1);
+    color: $nf-white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover { background: rgba($nf-white, 0.22); }
+  }
+
+  &__body {
+    padding: 8px 0;
+    background: $nf-white;
+
+    ::ng-deep {
+      .navbar-nav .nav-item {
+        border-bottom: 1px solid #F0F0F0;
+
+        &:last-child { border-bottom: none; }
+
+        .nav-link {
+          padding: 14px 22px;
+          font-size: 14px;
+          font-weight: 600;
+          color: $nf-text;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          transition: color 0.2s ease, padding-left 0.2s ease, background 0.2s ease;
+
+          &:hover {
+            color: $nf-pink;
+            background: rgba($nf-pink, 0.04);
+            padding-left: 28px;
+          }
+        }
+
+        .dropdown-toggle::after {
+          content: '\ea6e';
+          font-family: 'remixicon';
+          border: none;
+          font-size: 16px;
+          transition: transform 0.25s ease;
+          color: #aaa;
+        }
+
+        .dropdown-toggle[aria-expanded="true"]::after {
+          transform: rotate(180deg);
+          color: $nf-pink;
+        }
+      }
+
+      .dropdown-menu {
+        background: #FAFAFA;
+        border: none;
+        box-shadow: none;
+        padding: 4px 0;
+
+        .dropdown-item {
+          padding: 11px 22px 11px 40px;
+          font-size: 13px;
+          color: #666;
+          border-bottom: 1px solid #F0F0F0;
+          transition: all 0.2s ease;
+
+          &:last-child { border-bottom: none; }
+          &:hover { background: rgba($nf-pink, 0.04); color: $nf-pink; padding-left: 46px; }
+        }
+      }
+    }
+  }
+}
+
+// ── Dark mode ─────────────────────────────────────────────
+html.dark {
+  .nf-header { background: #141420; }
+  .nf-header__row1 { background: #141420; border-bottom-color: #2a2a3a; }
+
+  .nf-action__label { color: #aaa; }
+
+  .nf-action__circle {
+    border-color: #2a2a3a;
+    background: #1e1e2e;
+
+    ::ng-deep i { color: #ccc !important; }
+  }
+
+  .nf-action:hover .nf-action__circle {
+    border-color: rgba($nf-pink, 0.45);
+    background: rgba($nf-pink, 0.08);
+  }
+
+  .nf-action--wishlist::before,
+  .nf-action--cart::before { background: #2a2a3a; }
+
+  .nf-row1__nav ::ng-deep .navbar-nav > .nav-item > .nav-link {
+    color: #ddd !important;
+    &:hover, &.active { color: $nf-pink !important; }
+  }
+
+  .nf-row1__search ::ng-deep {
+    input { background: #1e1e2e !important; border-color: #2a2a3a !important; color: #ddd !important; }
+  }
+
+  .nf-mobile-menu { background: #141420 !important; }
+  .nf-mobile-menu__body { background: #141420; }
+}

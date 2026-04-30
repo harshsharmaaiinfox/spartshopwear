@@ -1,0 +1,135 @@
+<!-- ── Nykaa-style My Orders Page ─────────────────────────── -->
+
+<!-- Page Header -->
+<div class="ord-header">
+  <div class="ord-header__left">
+    <div class="ord-header__icon">
+      <i class="ri-shopping-bag-3-line"></i>
+    </div>
+    <div>
+      <h2 class="ord-header__title">{{ 'My Orders' | translate }}</h2>
+      <p class="ord-header__sub">{{ 'Track, return, or buy things again' | translate }}</p>
+    </div>
+  </div>
+  <div class="ord-header__count" *ngIf="(order$ | async)?.total">
+    <span class="ord-count-num">{{ (order$ | async)?.total }}</span>
+    <span class="ord-count-lbl">ORDERS</span>
+  </div>
+</div>
+
+<!-- ── Orders List ────────────────────────────────────────── -->
+<div class="ord-list" *ngIf="(order$ | async)?.data?.length">
+
+  <div class="ord-card" *ngFor="let order of (order$ | async)?.data">
+
+    <!-- Card top bar: order meta -->
+    <div class="ord-card__topbar">
+      <div class="ord-card__meta">
+        <span class="ord-card__num">
+          <i class="ri-receipt-line"></i>
+          Order #{{ order?.order_number }}
+        </span>
+        <span class="ord-card__date" *ngIf="order?.created_at">
+          <i class="ri-calendar-line"></i>
+          {{ order?.created_at | date: 'dd MMM yyyy' }}
+        </span>
+        <span class="ord-card__items" *ngIf="order?.products?.length">
+          <i class="ri-box-3-line"></i>
+          {{ order?.products?.length }} {{ order?.products?.length === 1 ? 'Item' : 'Items' }}
+        </span>
+      </div>
+
+      <!-- Payment status badge -->
+      <div class="ord-status-badge"
+           [class.ord-status-badge--paid]="order?.payment_status === 'paid'"
+           [class.ord-status-badge--pending]="order?.payment_status === 'pending'"
+           [class.ord-status-badge--failed]="order?.payment_status === 'failed'"
+           [class.ord-status-badge--processing]="order?.payment_status === 'processing'">
+        <i class="ri-checkbox-circle-line" *ngIf="order?.payment_status === 'paid'"></i>
+        <i class="ri-time-line" *ngIf="order?.payment_status === 'pending'"></i>
+        <i class="ri-close-circle-line" *ngIf="order?.payment_status === 'failed'"></i>
+        <i class="ri-loader-4-line" *ngIf="order?.payment_status === 'processing'"></i>
+        {{ order?.payment_status | titlecase }}
+      </div>
+    </div>
+
+    <!-- Products section -->
+    <div class="ord-card__products" *ngIf="order?.products?.length">
+      <div class="ord-product" *ngFor="let product of order?.products; let last = last"
+           [class.ord-product--last]="last">
+
+        <!-- Product image -->
+        <div class="ord-product__img">
+          <img [src]="product?.product_thumbnail?.original_url || 'assets/images/product.png'"
+               [alt]="product?.name">
+        </div>
+
+        <!-- Product info -->
+        <div class="ord-product__info">
+          <p class="ord-product__brand" *ngIf="product?.brand?.name">{{ product?.brand?.name }}</p>
+          <p class="ord-product__name">{{ product?.name }}</p>
+          <div class="ord-product__meta">
+            <span *ngIf="product?.unit">{{ product?.unit }}</span>
+            <span class="ord-product__qty">Qty: 1</span>
+          </div>
+        </div>
+
+        <!-- Product price -->
+        <div class="ord-product__price">
+          {{ product?.sale_price | currencySymbol }}
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Card footer: total + action -->
+    <div class="ord-card__footer">
+      <div class="ord-card__footer-left">
+        <span class="ord-total-label">Order Total</span>
+        <span class="ord-total-amount">{{ order?.total | currencySymbol }}</span>
+
+        <!-- Payment method pill -->
+        <span class="ord-pay-method">
+          <i class="ri-bank-card-line"></i>
+          <ng-container [ngSwitch]="order?.payment_method">
+            <span *ngSwitchCase="'mangal fashion_nabu'">UPI Intent</span>
+            <span *ngSwitchCase="'pay_drill'">Cashfree</span>
+            <span *ngSwitchCase="'star_mangal'">Pay via UPI</span>
+            <span *ngSwitchDefault>{{ order?.payment_method | titlecase }}</span>
+          </ng-container>
+        </span>
+      </div>
+
+      <a [routerLink]="['/account/order/details', order?.order_number]"
+         class="ord-view-btn">
+        <span>View Details</span>
+        <i class="ri-arrow-right-line"></i>
+      </a>
+    </div>
+
+  </div><!-- /ord-card -->
+
+  <!-- Pagination -->
+  <div class="ord-pagination" *ngIf="((order$ | async)?.total || 0) > filter['paginate']">
+    <app-pagination
+      [total]="(order$ | async)?.total || 0"
+      [currentPage]="filter['page']"
+      [pageSize]="filter['paginate']"
+      (setPage)="setPaginate($event)">
+    </app-pagination>
+  </div>
+
+</div><!-- /ord-list -->
+
+<!-- ── Empty State ────────────────────────────────────────── -->
+<div class="ord-empty" *ngIf="!(order$ | async)?.data?.length">
+  <div class="ord-empty__icon">
+    <i class="ri-shopping-bag-line"></i>
+  </div>
+  <h4 class="ord-empty__title">{{ 'No Orders have yet' | translate }}</h4>
+  <p class="ord-empty__sub">Looks like you haven't placed any orders yet.</p>
+  <a [routerLink]="['/collections']" class="ord-empty__btn">
+    <i class="ri-shopping-bag-3-line"></i>
+    Start Shopping
+  </a>
+</div>

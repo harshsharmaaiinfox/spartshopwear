@@ -1,0 +1,196 @@
+// ============================================================
+// Premium Banner System — Nykaa Fashion × Tata Cliq
+// White · Clean · Rounded · Hover Zoom + "Shop Now" Strip
+// ============================================================
+
+$nf-pink:    #D4145A;
+$nf-dark:    #1C1C2E;
+$nf-gold:    #C9A065;
+$nf-white:   #FFFFFF;
+$nf-bg:      #FAFAFA;
+$nf-radius:  12px;
+$nf-shadow:  0 2px 16px rgba(0, 0, 0, 0.07);
+$nf-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.17);
+$nf-ease:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+// ── Hero Section ───────────────────────────────────────────
+.nf-hero-section {
+  background: $nf-white;
+  padding: 16px 16px 24px;
+
+  @media (min-width: 576px)  { padding: 20px 24px 28px; }
+  @media (min-width: 768px)  { padding: 24px 36px 32px; }
+  @media (min-width: 1200px) { padding: 28px 52px 36px; }
+  @media (min-width: 1400px) { padding: 32px 72px 40px; }
+  @media (min-width: 1600px) { padding: 36px 96px 44px; }
+}
+
+// ── Hero Grid ─────────────────────────────────────────────
+.nf-hero-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 3fr 2fr;
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  @media (min-width: 1400px) { gap: 22px; }
+}
+
+// ── Main Banner Column — reduced height (Nykaa style) ────
+.nf-main-col .nf-card--main {
+  min-height: 180px;
+  max-height: 380px;
+
+  @media (min-width: 576px)  { min-height: 220px; max-height: 400px; }
+  @media (min-width: 768px)  { min-height: 260px; max-height: 420px; }
+  @media (min-width: 1200px) { min-height: 300px; max-height: 440px; }
+
+  // Prevent image from exceeding the max height
+  ::ng-deep img { max-height: 440px; object-position: top center; }
+}
+
+// ── Sub Banners Column ─────────────────────────────────────
+.nf-sub-col {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr 1fr;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  @media (min-width: 1400px) { gap: 22px; }
+
+  .nf-card--sub {
+    min-height: 130px;
+
+    @media (min-width: 768px)  { min-height: 190px; }
+    @media (min-width: 1200px) { min-height: 235px; }
+  }
+}
+
+// ── Universal Banner Card ──────────────────────────────────
+.nf-card {
+  position: relative;
+  border-radius: $nf-radius;
+  overflow: hidden;
+  background: $nf-bg;
+  box-shadow: $nf-shadow;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  transition: transform 0.4s $nf-ease, box-shadow 0.4s $nf-ease;
+
+  &--full { border-radius: 0; }
+
+  // Images fill the card
+  ::ng-deep {
+    .b-cl,
+    .home-contain {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      border-radius: inherit;
+      background-size: cover !important;
+      background-position: center !important;
+      transition: transform 0.5s $nf-ease !important;
+    }
+
+    img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block;
+      transition: transform 0.5s $nf-ease !important;
+    }
+
+    a { display: block; height: 100%; width: 100%; }
+  }
+
+  // "Shop Now" hover label — Nykaa style
+  &__hover-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 18px 22px 16px;
+    background: linear-gradient(to top,
+      rgba($nf-dark, 0.82) 0%,
+      rgba($nf-dark, 0.35) 55%,
+      transparent 100%
+    );
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: transform 0.32s $nf-ease, opacity 0.32s ease;
+    z-index: 3;
+
+    span {
+      color: $nf-white;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    i {
+      color: $nf-gold;
+      font-size: 18px;
+      transition: transform 0.22s ease;
+    }
+  }
+
+  // Gold accent underline — Tata Cliq touch
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, $nf-pink, $nf-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s $nf-ease;
+    z-index: 4;
+  }
+
+  // Hover
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $nf-shadow-lg;
+
+    ::ng-deep {
+      .b-cl,
+      .home-contain,
+      img { transform: scale(1.04) !important; }
+    }
+
+    .nf-card__hover-label {
+      opacity: 1;
+      transform: translateY(0);
+
+      i { transform: translateX(5px); }
+    }
+
+    &::after { transform: scaleX(1); }
+  }
+}
+
+// ── Dark mode ──────────────────────────────────────────────
+html.dark {
+  .nf-card {
+    background: #1e1e2e;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+
+    &:hover { box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5); }
+  }
+}

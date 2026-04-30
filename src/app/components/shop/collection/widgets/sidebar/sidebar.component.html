@@ -1,0 +1,152 @@
+<div class="nf-sidebar">
+
+  <!-- ── Header ─────────────────────────────────────── -->
+  <div class="nf-sidebar__header">
+    <h3 class="nf-sidebar__title">Filters</h3>
+    <a href="javascript:void(0)" class="nf-sidebar__clear" (click)="clearFilter()">Clear All</a>
+  </div>
+
+  <!-- ── Department (static, non-removable) ──────────── -->
+  <!-- <div class="nf-filter-section">
+    <span class="nf-filter-section__label">Department</span>
+    <div class="nf-filter-section__chips">
+      <span class="nf-chip">Fashion</span>
+    </div>
+  </div> -->
+
+  <!-- ── Category (removable if set) ────────────────── -->
+  <div class="nf-filter-section" *ngIf="filter && filter['category']">
+    <span class="nf-filter-section__label">Category</span>
+    <div class="nf-filter-section__chips">
+      <span class="nf-chip nf-chip--removable"
+            *ngFor="let cat of filter['category'].split(',')"
+            (click)="removeCategory(cat)">
+        {{ cat | titlecase }}
+        <i class="ri-close-line"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- ── Skeleton ────────────────────────────────────── -->
+  <div *ngIf="attributeService.skeletonLoader">
+    <app-skeleton-collection-sidebar></app-skeleton-collection-sidebar>
+  </div>
+
+  <!-- ── Accordion ───────────────────────────────────── -->
+  <div class="nf-accordion" ngbAccordion [hidden]="attributeService.skeletonLoader">
+
+    <!-- Category -->
+    <div class="nf-accordion__item" ngbAccordionItem
+         *ngIf="!hideFilter?.includes('category')">
+      <div ngbAccordionHeader>
+        <button class="nf-accordion__btn" type="button" ngbAccordionButton>
+          <span>Category</span>
+          <i class="ri-add-line nf-accordion__icon"></i>
+        </button>
+      </div>
+      <div ngbAccordionCollapse>
+        <div ngbAccordionBody>
+          <ng-template>
+            <div class="nf-accordion__body">
+              <app-collection-category-filter [filter]="filter"></app-collection-category-filter>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div class="nf-accordion__item" ngbAccordionItem
+         *ngIf="!hideFilter?.includes('price')">
+      <div ngbAccordionHeader>
+        <button class="nf-accordion__btn" type="button" ngbAccordionButton>
+          <span>Price</span>
+          <i class="ri-add-line nf-accordion__icon"></i>
+        </button>
+      </div>
+      <div ngbAccordionCollapse>
+        <div ngbAccordionBody>
+          <ng-template>
+            <div class="nf-accordion__body">
+              <app-collection-price-filter [filter]="filter"
+                [minRange]="300" [maxRange]="15000">
+              </app-collection-price-filter>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dynamic Attributes -->
+    <!-- <ng-container *ngFor="let attribute of (attribute$ | async)?.data">
+      <div class="nf-accordion__item" ngbAccordionItem
+           *ngIf="attribute?.attribute_values?.length">
+        <div ngbAccordionHeader>
+          <button class="nf-accordion__btn" type="button" ngbAccordionButton>
+            <span>{{ attribute?.name }}</span>
+            <i class="ri-add-line nf-accordion__icon"></i>
+          </button>
+        </div>
+        <div ngbAccordionCollapse>
+          <div ngbAccordionBody>
+            <ng-template>
+              <div class="nf-accordion__body">
+                <app-collection-attributes-filter
+                  [filter]="filter"
+                  [attribute]="attribute">
+                </app-collection-attributes-filter>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </ng-container> -->
+
+    <!-- Brand -->
+    <!-- <div class="nf-accordion__item" ngbAccordionItem>
+      <div ngbAccordionHeader>
+        <button class="nf-accordion__btn" type="button" ngbAccordionButton>
+          <span>Brand</span>
+          <i class="ri-add-line nf-accordion__icon"></i>
+        </button>
+      </div>
+      <div ngbAccordionCollapse>
+        <div ngbAccordionBody>
+          <ng-template>
+            <div class="nf-accordion__body">
+              <app-collection-brand-filter [filter]="filter"></app-collection-brand-filter>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Size -->
+    <div class="nf-accordion__item" ngbAccordionItem>
+      <div ngbAccordionHeader>
+        <button class="nf-accordion__btn" type="button" ngbAccordionButton>
+          <span>Size</span>
+          <i class="ri-add-line nf-accordion__icon"></i>
+        </button>
+      </div>
+      <div ngbAccordionCollapse>
+        <div ngbAccordionBody>
+          <ng-template>
+            <div class="nf-accordion__body">
+              <div class="nf-size-list">
+                <button class="nf-size-chip"
+                        *ngFor="let s of sizes"
+                        [class.active]="isSizeSelected(s)"
+                        (click)="toggleSize(s)">
+                  {{ s }}
+                </button>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /ngbAccordion -->
+
+</div>

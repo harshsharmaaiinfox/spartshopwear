@@ -1,0 +1,288 @@
+// ============================================================
+// Auth — Login · Nykaa Fashion card style
+// Wine/maroon header · white body · clean inputs
+// ============================================================
+
+$wine:      #8B1A4A;
+$wine-dark: #660F35;
+$wine-mid:  #A82058;
+$white:     #FFFFFF;
+$bg:        #F4F4F4;
+$dark:      #1C1C2E;
+$muted:     #888888;
+$border:    #E8E8E8;
+$error:     #D32F2F;
+$ease:      cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+.auth-section {
+  min-height: calc(100vh - 120px);
+  background: $bg;
+  display: flex;
+  align-items: center;
+  padding: 40px 0 60px;
+}
+
+.auth-card {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 16px 48px rgba(0,0,0,0.12);
+  background: $white;
+  margin: 0 auto;
+  max-width: 440px;
+
+  &__header {
+    background: linear-gradient(145deg, $wine-dark 0%, $wine 55%, $wine-mid 100%);
+    padding: 36px 32px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba($white, 0.06);
+      top: -80px; right: -60px;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      background: rgba($white, 0.04);
+      bottom: -60px; left: -40px;
+    }
+  }
+
+  &__body { padding: 28px 28px 24px; }
+}
+
+.auth-brand {
+  font-size: clamp(22px, 5vw, 30px);
+  font-weight: 900;
+  color: $white;
+  letter-spacing: 0.06em;
+  margin: 0;
+  line-height: 1;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+
+  span { font-weight: 300; font-style: normal; letter-spacing: 0.12em; }
+}
+
+.auth-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: $dark;
+  text-align: center;
+  margin: 0 0 6px;
+}
+
+.auth-subtitle {
+  font-size: 13px;
+  color: $muted;
+  text-align: center;
+  margin: 0 0 24px;
+  line-height: 1.5;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  &__label {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #666;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  &__input {
+    width: 100%;
+    height: 48px;
+    background: #F2F2F2;
+    border: 1.5px solid transparent;
+    border-radius: 8px;
+    padding: 0 16px;
+    font-size: 14px;
+    color: $dark;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+
+    &::placeholder { color: #aaa; font-size: 13.5px; }
+
+    &:focus {
+      border-color: $wine;
+      background: $white;
+      box-shadow: 0 0 0 3px rgba($wine, 0.08);
+    }
+
+    &--error { border-color: $error !important; background: rgba($error, 0.04) !important; }
+  }
+
+  &__error {
+    font-size: 11.5px;
+    color: $error;
+    margin: 0;
+  }
+}
+
+.auth-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.auth-forgot {
+  font-size: 12.5px;
+  color: $wine;
+  text-decoration: none;
+  font-weight: 600;
+  &:hover { text-decoration: underline; }
+}
+
+.auth-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+
+  &__input { display: none; }
+
+  &__box {
+    width: 18px; height: 18px;
+    flex-shrink: 0;
+    border: 2px solid #D0D0D0;
+    border-radius: 4px;
+    background: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.18s ease;
+    position: relative;
+
+    &--error { border-color: $error; }
+  }
+
+  &__input:checked ~ .auth-check__box {
+    background: $wine;
+    border-color: $wine;
+    &::after {
+      content: '';
+      position: absolute;
+      width: 10px; height: 6px;
+      border-left: 2px solid $white;
+      border-bottom: 2px solid $white;
+      transform: rotate(-45deg) translateY(-1px);
+    }
+  }
+
+  &__text {
+    font-size: 13px;
+    color: #555;
+    &--error { color: $error; }
+  }
+}
+
+.auth-link { color: $wine; text-decoration: underline; }
+
+::ng-deep .auth-submit-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 50px !important;
+  background: $wine !important;
+  color: $white !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.03em !important;
+  cursor: pointer !important;
+  transition: background 0.22s ease, box-shadow 0.22s ease !important;
+  margin-top: 4px !important;
+  box-shadow: 0 4px 16px rgba($wine, 0.28) !important;
+
+  &:hover { background: $wine-dark !important; box-shadow: 0 6px 20px rgba($wine, 0.38) !important; }
+  &:disabled, &[disabled] { background: #C8C8C8 !important; box-shadow: none !important; cursor: not-allowed !important; }
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 16px;
+  color: #C0C0C0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+
+  &::before, &::after { content: ''; flex: 1; height: 1px; background: $border; }
+  span { padding: 0 4px; }
+}
+
+.auth-alt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13.5px;
+  color: $muted;
+  margin-bottom: 16px;
+
+  &__link {
+    color: $wine;
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1.5px solid rgba($wine, 0.4);
+    padding-bottom: 1px;
+    transition: border-color 0.18s ease;
+    &:hover { border-color: $wine; }
+  }
+}
+
+.auth-terms {
+  font-size: 11.5px;
+  color: #aaa;
+  text-align: center;
+  margin: 4px 0 0;
+  line-height: 1.6;
+
+  a { color: $muted; text-decoration: underline; text-underline-offset: 2px; &:hover { color: $wine; } }
+}
+
+html.dark {
+  .auth-section { background: #0f0f1a; }
+  .auth-card { background: #1e1e2e; &__body { background: #1e1e2e; } }
+  .auth-title { color: #e0e0e0; }
+  .auth-subtitle { color: #888; }
+  .auth-field {
+    &__label { color: #aaa; }
+    &__input { background: #2a2a3a; color: #e0e0e0; &::placeholder { color: #666; } &:focus { background: #242434; } }
+  }
+  .auth-check__box { border-color: #444; background: #2a2a3a; }
+  .auth-check__text { color: #aaa; }
+  .auth-divider { color: #444; &::before, &::after { background: #2a2a3a; } }
+  .auth-alt { color: #666; }
+  .auth-terms { color: #555; a { color: #777; } }
+}
+
+@media (max-width: 480px) {
+  .auth-card__body { padding: 22px 18px 20px; }
+  .auth-card__header { padding: 28px 20px 24px; }
+}

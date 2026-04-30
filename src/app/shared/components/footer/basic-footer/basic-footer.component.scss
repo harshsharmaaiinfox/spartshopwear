@@ -1,0 +1,389 @@
+// ═══════════════════════════════════════════════════════════
+// NYKAA-EXACT FOOTER STYLES  —  #D4145A theme
+// ═══════════════════════════════════════════════════════════
+
+$pink       : #D4145A;
+$dark       : #2d2d2d;
+$muted      : #666;
+$border     : #e0e0e0;
+$grey-bg    : #f5f5f5;
+$white      : #ffffff;
+$link       : #555555;
+
+// ── Shared container ──────────────────────────────────────
+.nf-container {
+  max-width: 1400px;
+  margin   : 0 auto;
+  padding  : 0 48px;
+
+  @media (max-width: 991px) { padding: 0 24px; }
+  @media (max-width: 576px)  { padding: 0 16px; }
+}
+
+// ── Shared strip wrapper ───────────────────────────────────
+.nf-strip {
+  &--grey  { background: $grey-bg; border-top: 1px solid $border; border-bottom: 1px solid $border; padding: 36px 0; }
+  &--white { background: $white; border-bottom: 1px solid $border; padding: 32px 0; }
+  &--about { background: $grey-bg; border-bottom: 1px solid $border; padding: 28px 0; }
+}
+
+// ═══════════════════════════════════════════════════════════
+// STRIP 1 — Info columns (WHO ARE WE / HELP / QUICKLINKS / FOLLOW US)
+// ═══════════════════════════════════════════════════════════
+.nf-info-grid {
+  display  : flex;
+  gap      : 0;
+  flex-wrap: wrap;
+}
+
+.nf-col {
+  flex        : 1;
+  min-width   : 140px;
+  padding-right: 40px;
+
+  &--wide {
+    flex       : 2;
+    min-width  : 280px;
+  }
+
+  &__title {
+    font-size     : 12px;
+    font-weight   : 700;
+    color         : $dark;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin        : 0 0 16px;
+    padding-bottom: 10px;
+    border-bottom : 1px solid $border;
+  }
+
+  &__list {
+    list-style    : none;
+    padding       : 0;
+    margin        : 0;
+    display       : flex;
+    flex-direction: column;
+    gap           : 9px;
+
+    a {
+      font-size     : 12.5px;
+      color         : $link;
+      text-decoration: none;
+      transition    : color 0.15s;
+      line-height   : 1.4;
+
+      &:hover { color: $pink; }
+    }
+  }
+
+  // HELP — two sub-columns
+  &__two-col {
+    display              : grid;
+    grid-template-columns: 1fr 1fr;
+    gap                  : 0 24px;
+  }
+}
+
+// ── Social icons ──────────────────────────────────────────
+.nf-social-row {
+  display : flex;
+  gap     : 10px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.nf-social {
+  width          : 34px;
+  height         : 34px;
+  border-radius  : 50%;
+  background     : $dark;
+  color          : $white;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  font-size      : 16px;
+  text-decoration: none;
+  transition     : all 0.2s ease;
+  flex-shrink    : 0;
+
+  &:hover {
+    background: $pink;
+    transform : translateY(-2px);
+  }
+}
+
+// ── Contact links ─────────────────────────────────────────
+.nf-contact {
+  display       : flex;
+  flex-direction: column;
+  gap           : 8px;
+
+  &__link {
+    display        : flex;
+    align-items    : center;
+    gap            : 7px;
+    font-size      : 12.5px;
+    color          : $link;
+    text-decoration: none;
+    transition     : color 0.15s;
+
+    i { font-size: 14px; color: $pink; }
+
+    &:hover { color: $pink; }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// STRIP 2 — Category columns
+// ═══════════════════════════════════════════════════════════
+.nf-cat-grid {
+  display              : grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap                  : 0 32px;
+
+  @media (max-width: 1100px) { grid-template-columns: repeat(3, 1fr); gap: 28px 24px; }
+  @media (max-width: 768px)  { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
+  @media (max-width: 480px)  { grid-template-columns: 1fr; }
+}
+
+.nf-cat-col {
+  &__title {
+    font-size     : 12px;
+    font-weight   : 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin        : 0 0 14px;
+    padding-bottom: 10px;
+    border-bottom : 2px solid $border;
+    color         : $dark;
+
+    // Colour variants
+    &--women     { border-color: $border; color: #2d2d2d; }
+    &--men       { border-color: $border; color: #2d2d2d; }
+    &--festive   { border-color: $border; color: #2d2d2d; }
+    &--collection{ border-color: $border; color: #2d2d2d; }
+  }
+
+  &__list {
+    list-style    : none;
+    padding       : 0;
+    margin        : 0;
+    display       : flex;
+    flex-direction: column;
+    gap           : 8px;
+
+    a {
+      font-size      : 12.5px;
+      color          : $link;
+      text-decoration: none;
+      transition     : color 0.15s;
+      line-height    : 1.4;
+
+      &:hover { color: $pink; }
+    }
+  }
+}
+
+// ── Newsletter ────────────────────────────────────────────
+.nf-news-desc {
+  font-size : 12px;
+  color     : $muted;
+  margin    : 0 0 14px;
+  line-height: 1.6;
+}
+
+.nf-news-form {
+  display  : flex;
+  gap      : 0;
+  margin-bottom: 6px;
+  border   : 1px solid $border;
+  border-radius: 6px;
+  overflow : hidden;
+}
+
+.nf-news-input {
+  flex      : 1;
+  padding   : 10px 12px;
+  border    : none;
+  font-size : 12.5px;
+  color     : $dark;
+  background: $white;
+  outline   : none;
+  font-family: inherit;
+
+  &::placeholder { color: #bbb; }
+}
+
+.nf-news-btn {
+  padding      : 10px 14px;
+  background   : $pink;
+  color        : $white;
+  border       : none;
+  font-size    : 11px;
+  font-weight  : 700;
+  letter-spacing: 0.05em;
+  cursor       : pointer;
+  transition   : background 0.2s;
+  white-space  : nowrap;
+
+  &:hover   { background: darken(#D4145A, 8%); }
+  &:disabled { background: #ccc; cursor: not-allowed; }
+}
+
+.nf-news-error {
+  font-size: 11.5px;
+  color    : #ef4444;
+  margin   : 4px 0 0;
+}
+
+.nf-address-block {
+  display    : flex;
+  gap        : 8px;
+  margin-top : 16px;
+  align-items: flex-start;
+
+  i { font-size: 15px; color: $pink; flex-shrink: 0; margin-top: 2px; }
+}
+
+.nf-address-text {
+  font-style  : normal;
+  font-size   : 12px;
+  color       : $muted;
+  line-height : 1.7;
+  margin      : 0;
+}
+
+// ═══════════════════════════════════════════════════════════
+// STRIP 3 — About / SEO text
+// ═══════════════════════════════════════════════════════════
+.nf-about__title {
+  font-size    : 14px;
+  font-weight  : 700;
+  color        : $dark;
+  margin       : 0 0 10px;
+  letter-spacing: 0.01em;
+}
+
+.nf-about__desc {
+  font-size  : 12.5px;
+  color      : $muted;
+  line-height: 1.8;
+  margin     : 0;
+  max-width  : 900px;
+}
+
+// ═══════════════════════════════════════════════════════════
+// STRIP 4 — Copyright
+// ═══════════════════════════════════════════════════════════
+.nyk-footer-copy {
+  background: $dark;
+  padding   : 13px 0;
+  text-align: center;
+
+  .container { padding-left: 48px; padding-right: 48px; }
+}
+
+// ═══════════════════════════════════════════════════════════
+// Sticky social + back-to-top
+// ═══════════════════════════════════════════════════════════
+.sticky-action-container {
+  position  : fixed;
+  bottom    : 30px;
+  right     : 20px;
+  z-index   : 1000;
+  display   : flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap       : 10px;
+}
+
+.social-widget {
+  display       : flex;
+  flex-direction: column;
+  align-items   : flex-end;
+  gap           : 8px;
+}
+
+.social-menu {
+  display       : flex;
+  flex-direction: column;
+  align-items   : center;
+  gap           : 8px;
+  overflow      : hidden;
+  max-height    : 0;
+  transition    : max-height 0.3s ease;
+
+  .social-widget.expanded & { max-height: 300px; }
+}
+
+.social-item {
+  width          : 36px;
+  height         : 36px;
+  border-radius  : 50%;
+  background     : $dark;
+  color          : $white;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  font-size      : 16px;
+  text-decoration: none;
+  box-shadow     : 0 2px 8px rgba(0,0,0,0.2);
+  transition     : all 0.2s ease;
+
+  &:hover { background: $pink; transform: scale(1.1); }
+}
+
+.social-toggle-btn {
+  width          : 40px;
+  height         : 40px;
+  border-radius  : 50%;
+  background     : $pink;
+  color          : $white;
+  border         : none;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  font-size      : 18px;
+  cursor         : pointer;
+  box-shadow     : 0 4px 14px rgba($pink, 0.35);
+  transition     : all 0.2s ease;
+
+  &:hover { transform: scale(1.1); }
+}
+
+.back-to-top-btn {
+  width          : 40px;
+  height         : 40px;
+  border-radius  : 50%;
+  background     : $dark;
+  color          : $white;
+  border         : none;
+  display        : none;
+  align-items    : center;
+  justify-content: center;
+  font-size      : 18px;
+  cursor         : pointer;
+  box-shadow     : 0 4px 12px rgba(0,0,0,0.2);
+  transition     : all 0.2s ease;
+
+  &.show { display: flex; }
+  &:hover { background: $pink; transform: translateY(-2px); }
+}
+
+// ═══════════════════════════════════════════════════════════
+// Responsive
+// ═══════════════════════════════════════════════════════════
+@media (max-width: 991px) {
+  .nf-info-grid {
+    display              : grid;
+    grid-template-columns: 1fr 1fr;
+    gap                  : 28px 24px;
+  }
+
+  .nf-col { padding-right: 0; &--wide { grid-column: 1 / -1; } }
+}
+
+@media (max-width: 576px) {
+  .nf-info-grid { grid-template-columns: 1fr; gap: 24px; }
+  .nf-col--wide .nf-col__two-col { grid-template-columns: 1fr; gap: 8px; }
+}

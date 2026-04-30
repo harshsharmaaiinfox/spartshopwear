@@ -1,0 +1,51 @@
+<div class="nf-sort-bar">
+
+  <!-- Mobile filter button -->
+  <button class="nf-sort-bar__mobile-filter d-flex d-lg-none"
+          (click)="openFilter(true)">
+    <i class="ri-equalizer-2-line"></i>
+    <span>Filters</span>
+  </button>
+
+  <!-- Spacer pushes sort to right -->
+  <div class="nf-sort-bar__spacer"></div>
+
+  <!-- Grid toggles (desktop only, subtle) -->
+  <div class="nf-grid-group d-none d-lg-flex">
+    <button class="nf-grid-btn" title="3 Columns"
+            [class.nf-grid-btn--active]="selectedGrid === 'collection_3_grid'"
+            (click)="grid('collection_3_grid')">
+      <img src="assets/svg/grid-3.svg" alt="3 col">
+    </button>
+    <button class="nf-grid-btn" title="4 Columns"
+            [class.nf-grid-btn--active]="selectedGrid === 'collection_4_grid'"
+            (click)="grid('collection_4_grid')">
+      <img src="assets/svg/grid-4.svg" alt="4 col">
+    </button>
+    <button class="nf-grid-btn d-xxl-flex d-none" title="5 Columns"
+            [class.nf-grid-btn--active]="selectedGrid === 'collection_5_grid'"
+            (click)="grid('collection_5_grid')">
+      <img src="assets/svg/grid-5.svg" alt="5 col">
+    </button>
+    <button class="nf-grid-btn" title="List View"
+            [class.nf-grid-btn--active]="selectedGrid === 'collection_list_view'"
+            (click)="grid('collection_list_view')">
+      <img src="assets/svg/list.svg" alt="list">
+    </button>
+  </div>
+
+  <!-- Sort dropdown — matches Nykaa reference exactly -->
+  <div class="nf-sort-select">
+    <i class="ri-sort-desc nf-sort-select__icon"></i>
+    <span class="nf-sort-select__label">Sort by</span>
+    <select class="nf-sort-select__input" (change)="sortProducts($event)">
+      <option value="">Popularity</option>
+      <option value="low-high">Price: Low to High</option>
+      <option value="high-low">Price: High to Low</option>
+      <option value="newest">Newest First</option>
+      <option value="discount">Discount</option>
+    </select>
+    <i class="ri-arrow-down-s-line nf-sort-select__caret"></i>
+  </div>
+
+</div>

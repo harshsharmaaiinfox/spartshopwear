@@ -1,0 +1,35 @@
+<ul class="nf-attr-list" *ngIf="attribute?.attribute_values?.length">
+  <li class="nf-attr-list__item" *ngFor="let attr_val of attribute?.attribute_values">
+
+    <label class="nf-attr-item"
+           [class.nf-attr-item--checked]="checked(attr_val?.slug!)"
+           [for]="'attr-' + attr_val?.id">
+
+      <!-- Color swatch mode -->
+      <ng-container *ngIf="attribute?.style === 'color'; else checkboxMode">
+        <span class="nf-attr-item__swatch"
+              [style.background]="attr_val?.hex_color"
+              [class.nf-attr-item__swatch--checked]="checked(attr_val?.slug!)">
+          <i class="ri-check-line" *ngIf="checked(attr_val?.slug!)"></i>
+        </span>
+      </ng-container>
+
+      <!-- Checkbox mode -->
+      <ng-template #checkboxMode>
+        <span class="nf-attr-item__box">
+          <i class="ri-check-line nf-attr-item__check"></i>
+        </span>
+      </ng-template>
+
+      <span class="nf-attr-item__label">{{ attr_val?.value }}</span>
+
+      <input type="checkbox"
+             [id]="'attr-' + attr_val?.id"
+             [value]="attr_val?.slug"
+             [checked]="checked(attr_val?.slug!)"
+             (change)="applyFilter($event)"
+             class="nf-attr-item__input">
+    </label>
+
+  </li>
+</ul>
