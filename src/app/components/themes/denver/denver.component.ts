@@ -27,14 +27,14 @@ export class DenverComponent implements OnInit, AfterViewInit, OnDestroy {
   // ── Hero banner slider ───────────────────────────────────
   public bannerSlides = [
     {
-      image: 'assets/images/banner3.webp',
+      image: 'assets/images/banner1.png',
       heading: 'UP TO 60% OFF',
       subheading: 'Your underneath era starts right now',
       cta: 'SHOP NOW',
       link: '/collections'
     },
     {
-      image: 'assets/images/banner2.webp',
+      image: 'assets/images/banner2.png',
       heading: 'NEW ARRIVALS',
       subheading: 'Discover the latest trends in fashion',
       cta: 'EXPLORE NOW',
@@ -77,16 +77,21 @@ export class DenverComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   startBannerAutoPlay() {
-    this.bannerTimer = setInterval(() => this.nextBanner(), 4500);
+    this.stopBannerAutoPlay();
+    this.bannerTimer = setInterval(() => {
+      this.currentBannerIndex = (this.currentBannerIndex + 1) % this.bannerSlides.length;
+    }, 4000);
   }
 
   stopBannerAutoPlay() {
-    if (this.bannerTimer) clearInterval(this.bannerTimer);
+    if (this.bannerTimer) {
+      clearInterval(this.bannerTimer);
+      this.bannerTimer = null;
+    }
   }
 
   nextBanner() {
     this.currentBannerIndex = (this.currentBannerIndex + 1) % this.bannerSlides.length;
-    this.stopBannerAutoPlay();
     this.startBannerAutoPlay();
   }
 
@@ -95,7 +100,6 @@ export class DenverComponent implements OnInit, AfterViewInit, OnDestroy {
       this.currentBannerIndex === 0
         ? this.bannerSlides.length - 1
         : this.currentBannerIndex - 1;
-    this.stopBannerAutoPlay();
     this.startBannerAutoPlay();
   }
 

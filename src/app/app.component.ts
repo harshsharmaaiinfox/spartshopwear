@@ -80,7 +80,7 @@ export class AppComponent implements OnInit {
 
       // Set Favicon
       this.favIcon = document.querySelector('#appIcon');
-      this.favIcon!.href = 'assets/images/mangal-fav.png';
+      this.favIcon!.href = 'assets/images/SPARKSHOP-fv.png';
             
     });
 
