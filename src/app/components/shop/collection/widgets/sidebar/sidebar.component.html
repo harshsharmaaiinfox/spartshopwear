@@ -3,7 +3,15 @@
   <!-- ── Header ─────────────────────────────────────── -->
   <div class="nf-sidebar__header">
     <h3 class="nf-sidebar__title">Filters</h3>
-    <a href="javascript:void(0)" class="nf-sidebar__clear" (click)="clearFilter()">Clear All</a>
+    <div class="nf-sidebar__header-right">
+      <a href="javascript:void(0)" class="nf-sidebar__clear" (click)="clearFilter()">Clear All</a>
+      <button class="nf-sidebar__close d-lg-none"
+              type="button"
+              (click)="attributeService.offCanvasMenu = false"
+              aria-label="Close filters">
+        <i class="ri-close-line"></i>
+      </button>
+    </div>
   </div>
 
   <!-- ── Department (static, non-removable) ──────────── -->

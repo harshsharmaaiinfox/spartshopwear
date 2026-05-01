@@ -150,6 +150,51 @@ html.dark {
   .nf-sort-bar__mobile-filter { background: #1e1e2e; border-color: #2a2a3a; color: #ccc; }
 }
 
-@media (max-width: 767px) {
-  .nf-sort-select { flex: 1; &__input { min-width: 70px; } }
+@media (max-width: 991px) {
+  // Spacer is irrelevant on mobile — remove it so both controls split evenly
+  .nf-sort-bar__spacer { display: none; }
+
+  // Filters button takes half the bar
+  .nf-sort-bar__mobile-filter {
+    flex: 1;
+    justify-content: center;
+    padding: 8px 10px;
+  }
+
+  // Sort dropdown takes the other half
+  .nf-sort-select {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+    padding: 0 8px;
+
+    &__label { display: none; }   // hide "Sort by" text — saves space
+
+    &__input {
+      min-width: 0;
+      max-width: none;
+      width: 100%;
+      font-size: 13px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .nf-sort-bar { gap: 8px; padding-bottom: 12px; margin-bottom: 14px; }
+
+  .nf-sort-bar__mobile-filter {
+    font-size: 12px;
+    padding: 8px 8px;
+    gap: 4px;
+    i { font-size: 14px; }
+  }
+
+  .nf-sort-select {
+    height: 36px;
+    gap: 2px;
+
+    &__icon  { font-size: 14px; }
+    &__input { font-size: 12px; font-weight: 600; }
+    &__caret { font-size: 15px; right: 6px; }
+  }
 }

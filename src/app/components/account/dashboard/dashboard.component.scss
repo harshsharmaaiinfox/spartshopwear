@@ -1,321 +1,524 @@
-// ============================================================
-// Account · Dashboard — minimal, professional UI
-// One accent, neutral grayscale, calm typography
-// ============================================================
+$pink:   #D4145A;
+$dark:   #1a1a1a;
+$muted:  #6b7280;
+$border: #e5e7eb;
+$bg:     #f9fafb;
 
-$accent:        #8B1A4A;
-$accent-soft:   #FBE9F0;
-$ink:           #111827;
-$ink-soft:      #1f2937;
-$muted:         #6b7280;
-$muted-strong:  #4b5563;
-$line:          #e5e7eb;
-$line-soft:     #f1f3f5;
-$bg:            #ffffff;
-$bg-soft:       #f8f9fb;
-
-// ── Outer wrapper ──────────────────────────────────────────
-.acc-dash {
+// ── Outer wrapper ─────────────────────────────────────────
+.nyk-dashboard {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  color: $ink;
+  gap: 16px;
 }
 
-// ── Header ────────────────────────────────────────────────
-.acc-dash__header {
+// ══════════════════════════════════════════════════════════
+// HERO / WELCOME CARD
+// ══════════════════════════════════════════════════════════
+.nyk-db-hero {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 20px 24px;
-  background: $bg;
-  border: 1px solid $line;
-  border-radius: 12px;
+  gap: 20px;
+  padding: 24px 28px;
+  background: linear-gradient(135deg, #D4145A 0%, #e84d8a 60%, #f07aac 100%);
+  border-radius: 16px;
+  box-shadow: 0 6px 28px rgba($pink, 0.28);
   flex-wrap: wrap;
 
-  &-main {
+  &__left {
     display: flex;
     align-items: center;
-    gap: 16px;
-    min-width: 0;
+    gap: 18px;
+  }
+
+  &__text { }
+
+  &__hi {
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    margin: 0 0 3px;
+  }
+
+  &__name {
+    font-size: 24px;
+    font-weight: 800;
+    color: white;
+    margin: 0 0 4px;
+    letter-spacing: -0.4px;
+  }
+
+  &__email {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    margin: 0;
   }
 }
 
-.acc-avatar {
-  width: 56px;
-  height: 56px;
+// Avatar
+.nyk-db-avatar {
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  background: $accent-soft;
-  color: $accent;
+  border: 3px solid rgba(255,255,255,0.45);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  overflow: hidden;
-  font-size: 20px;
-  font-weight: 700;
 
-  &__img { width: 100%; height: 100%; object-fit: cover; }
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__initials {
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+  }
 }
 
-.acc-dash__greeting { min-width: 0; }
-.acc-dash__welcome  { font-size: 12px; color: $muted; margin: 0; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600; }
-.acc-dash__name     { font-size: 22px; font-weight: 700; color: $ink; margin: 2px 0 2px; letter-spacing: -0.01em; }
-.acc-dash__email    { font-size: 13px; color: $muted; margin: 0; word-break: break-all; }
-
-// ── Buttons ───────────────────────────────────────────────
-.acc-btn {
+// Edit profile button
+.nyk-db-edit-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  height: 38px;
-  padding: 0 16px;
+  gap: 7px;
+  padding: 10px 20px;
+  background: rgba(255,255,255,0.2);
+  border: 1.5px solid rgba(255,255,255,0.4);
   border-radius: 8px;
+  color: white;
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.01em;
   cursor: pointer;
-  border: 1px solid transparent;
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition: all 0.22s ease;
+  backdrop-filter: blur(4px);
 
-  i { font-size: 16px; line-height: 1; }
+  i { font-size: 16px; }
 
-  &--ghost {
-    background: $bg;
-    color: $ink-soft;
-    border-color: $line;
+  &:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-1px);
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+// STATS ROW
+// ══════════════════════════════════════════════════════════
+.nyk-db-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+
+  @media (max-width: 768px)  { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 480px)  { grid-template-columns: 1fr; }
+}
+
+.nyk-db-stat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  background: white;
+  border-radius: 12px;
+  border: 1.5px solid $border;
+  cursor: pointer;
+  transition: all 0.22s ease;
+
+  &:hover {
+    border-color: rgba($pink, 0.3);
+    box-shadow: 0 4px 16px rgba($pink, 0.1);
+    transform: translateY(-2px);
+  }
+
+  &__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__label {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: $dark;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__sub {
+    font-size: 11.5px;
+    color: $muted;
+  }
+
+  &__arrow {
+    font-size: 20px;
+    color: #d1d5db;
+    flex-shrink: 0;
+    transition: color 0.2s;
+  }
+
+  &:hover &__arrow { color: $pink; }
+}
+
+// ══════════════════════════════════════════════════════════
+// GENERIC CARD
+// ══════════════════════════════════════════════════════════
+.nyk-db-card {
+  background: white;
+  border-radius: 14px;
+  border: 1.5px solid $border;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 22px;
+    border-bottom: 1.5px solid $border;
+    background: #fafafa;
+
+    &-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      i {
+        font-size: 20px;
+        color: $pink;
+      }
+
+      h4 {
+        font-size: 15px;
+        font-weight: 700;
+        color: $dark;
+        margin: 0;
+      }
+    }
+  }
+
+  &__edit {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 14px;
+    border: 1.5px solid $border;
+    background: white;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: $dark;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    i { font-size: 14px; }
 
     &:hover {
-      background: $bg-soft;
-      border-color: darken($line, 6%);
-      color: $accent;
+      border-color: $pink;
+      color: $pink;
     }
   }
 }
 
-.acc-link-btn {
-  background: transparent;
-  border: 0;
-  padding: 0;
-  font-size: 13px;
-  font-weight: 600;
-  color: $accent;
-  cursor: pointer;
-  letter-spacing: 0.01em;
-
-  &:hover { text-decoration: underline; text-underline-offset: 3px; }
+// ══════════════════════════════════════════════════════════
+// PROFILE INFO GRID
+// ══════════════════════════════════════════════════════════
+.nyk-db-info-grid {
+  padding: 8px 0;
 }
 
-// ── Two-column grid ───────────────────────────────────────
-.acc-dash__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 340px;
-  gap: 20px;
-
-  @media (max-width: 991px) {
-    grid-template-columns: 1fr;
-  }
-}
-
-.acc-dash__col {
+.nyk-db-info-row {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  min-width: 0;
-}
+  align-items: center;
+  gap: 16px;
+  padding: 16px 22px;
+  border-bottom: 1px solid $border;
+  transition: background 0.2s ease;
 
-// ── Card ──────────────────────────────────────────────────
-.acc-card {
-  background: $bg;
-  border: 1px solid $line;
-  border-radius: 12px;
-  overflow: hidden;
+  &:last-child { border-bottom: none; }
+  &:hover      { background: #fafafa; }
 
-  &__head {
+  &__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 16px 20px;
-    border-bottom: 1px solid $line-soft;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
   }
 
-  &__title {
-    font-size: 14px;
-    font-weight: 700;
-    color: $ink;
-    margin: 0;
-    letter-spacing: 0.01em;
+  &__body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
   }
 
-  &--nav .acc-card__head { border-bottom: 1px solid $line-soft; }
-}
-
-// ── Profile fields ────────────────────────────────────────
-.acc-fields {
-  margin: 0;
-  padding: 4px 20px 8px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-
-  @media (max-width: 575px) {
-    grid-template-columns: 1fr;
-  }
-}
-
-.acc-field {
-  padding: 14px 0;
-  border-bottom: 1px solid $line-soft;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-
-  // Last row in each column shouldn't have a border
-  &:nth-last-child(-n+2) { border-bottom: 0; }
-  @media (max-width: 575px) {
-    &:nth-last-child(-n+2) { border-bottom: 1px solid $line-soft; }
-    &:last-child { border-bottom: 0; }
-  }
-
-  &--row { grid-column: 1 / -1; }
-
-  dt {
+  &__label {
     font-size: 11px;
     font-weight: 600;
-    color: $muted;
-    letter-spacing: 0.06em;
     text-transform: uppercase;
-    margin: 0;
+    letter-spacing: 0.6px;
+    color: $muted;
   }
 
-  dd {
-    font-size: 14px;
-    font-weight: 500;
-    color: $ink;
-    margin: 0;
-    word-break: break-word;
+  &__val {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: $dark;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
   }
 
-  &__muted { color: $muted !important; font-weight: 400 !important; }
+  &__action {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    background: rgba($pink, 0.08);
+    border: none;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: $pink;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
 
-  &__value-row {
+    &:hover {
+      background: $pink;
+      color: white;
+    }
+  }
+
+  // ── Small screens: tighter layout ─────────────────────
+  @media (max-width: 480px) {
+    padding: 13px 14px;
+    gap: 12px;
+
+    &__icon {
+      width: 34px;
+      height: 34px;
+      font-size: 16px;
+      border-radius: 8px;
+    }
+
+    &__val { font-size: 13px; }
+
+    &__label { font-size: 10px; letter-spacing: 0.4px; }
+
+    &__action {
+      padding  : 5px 10px;
+      font-size: 11.5px;
+    }
+  }
+
+  // ── Very small screens: wrap action below value ────────
+  @media (max-width: 360px) {
+    flex-wrap: wrap;
+
+    &__icon { align-self: flex-start; margin-top: 2px; }
+
+    &__body { width: 100%; }
+
+    &__action {
+      margin-left: 46px;   // align under body (icon 34px + gap 12px)
+      margin-top : 6px;
+    }
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+// DEFAULT ADDRESS
+// ══════════════════════════════════════════════════════════
+.nyk-db-address {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px 22px;
+
+  &__icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: rgba($pink, 0.08);
+    color: $pink;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  &__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &__type {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: $pink;
+    background: rgba($pink, 0.08);
+    padding: 3px 10px;
+    border-radius: 4px;
+    width: fit-content;
+  }
+
+  &__line {
+    font-size: 14px;
+    color: $dark;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  &__pin {
+    font-size: 13px;
+    color: $muted;
+    font-weight: 500;
   }
 }
 
-// ── Address block ─────────────────────────────────────────
-.acc-address {
-  padding: 16px 20px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+// ══════════════════════════════════════════════════════════
+// QUICK LINKS GRID
+// ══════════════════════════════════════════════════════════
+.nyk-db-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);  // all 4 in one row on desktop
+  gap: 0;
 
-  &__line { font-size: 13.5px; color: $ink-soft; line-height: 1.6; margin: 0; }
-  &__pin  { font-size: 12.5px; color: $muted; margin: 0; letter-spacing: 0.02em; }
+  @media (max-width: 640px) { grid-template-columns: repeat(2, 1fr); }
 }
 
-.acc-tag {
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: $accent;
-  background: $accent-soft;
-  padding: 4px 10px;
-  border-radius: 999px;
-}
-
-// ── Account nav (sidebar) ─────────────────────────────────
-.acc-nav {
-  display: flex;
-  flex-direction: column;
-}
-
-.acc-nav__item {
+.nyk-db-quick-item {
   display: flex;
   align-items: center;
-  gap: 14px;
-  width: 100%;
-  background: transparent;
-  border: 0;
-  padding: 14px 20px;
-  text-align: left;
+  gap: 12px;
+  padding: 18px 20px;
+  border-right: 1px solid $border;
+  border-bottom: 1px solid $border;
   cursor: pointer;
-  border-bottom: 1px solid $line-soft;
-  transition: background 0.12s ease;
+  transition: all 0.2s ease;
+  min-width: 0;  // prevent flex overflow
 
-  &:last-child { border-bottom: 0; }
+  // Desktop (4 cols): remove right border on 4th item
+  &:nth-child(4n) { border-right: none; }
+  // No items in a 2nd row on desktop (4 items × 4 cols = 1 row)
+  &:nth-last-child(-n+4) { border-bottom: none; }
 
-  > i:first-child {
-    font-size: 18px;
-    color: $muted-strong;
-    flex-shrink: 0;
-    width: 20px;
-    text-align: center;
+  @media (max-width: 640px) {
+    padding: 14px 14px;
+    gap: 10px;
+
+    // 2-col: reset desktop overrides
+    &:nth-child(4n)        { border-right: 1px solid $border; }
+    &:nth-last-child(-n+4) { border-bottom: 1px solid $border; }
+
+    // 2-col: remove right on even items
+    &:nth-child(2n)        { border-right: none; }
+    // 2-col: remove bottom on last two items
+    &:nth-last-child(-n+2) { border-bottom: none; }
   }
 
   &:hover {
-    background: $bg-soft;
+    background: #fafafa;
+    span { color: $pink; }
+    .ri-arrow-right-s-line { color: $pink; }
+  }
 
-    > i:first-child { color: $accent; }
-    .acc-nav__label { color: $accent; }
-    .acc-nav__chev  { color: $accent; transform: translateX(2px); }
+  &__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+
+    @media (max-width: 640px) { width: 36px; height: 36px; font-size: 18px; }
+    @media (max-width: 400px) { width: 32px; height: 32px; font-size: 16px; }
+  }
+
+  span {
+    flex: 1;
+    min-width: 0;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: $dark;
+    transition: color 0.2s;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.3;
+
+    @media (max-width: 640px) { font-size: 12px; }
+    @media (max-width: 400px) { font-size: 11px; }
+  }
+
+  .ri-arrow-right-s-line {
+    font-size: 20px;
+    color: #d1d5db;
+    flex-shrink: 0;
+    transition: color 0.2s;
+
+    @media (max-width: 640px) { font-size: 16px; }
   }
 }
 
-.acc-nav__text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  flex: 1;
-  min-width: 0;
-}
-
-.acc-nav__label { font-size: 13.5px; font-weight: 600; color: $ink; line-height: 1.2; }
-.acc-nav__sub   { font-size: 12px; color: $muted; line-height: 1.3; }
-
-.acc-nav__chev {
-  font-size: 18px;
-  color: #c1c5cc;
-  transition: color 0.12s ease, transform 0.12s ease;
-}
-
 // ── Responsive ────────────────────────────────────────────
-@media (max-width: 575px) {
-  .acc-dash__header { padding: 16px; }
-  .acc-card__head   { padding: 14px 16px; }
-  .acc-fields       { padding: 0 16px 4px; }
-  .acc-address      { padding: 14px 16px 18px; }
-  .acc-nav__item    { padding: 14px 16px; }
-  .acc-dash__name   { font-size: 19px; }
+@media (max-width: 768px) {
+  .nyk-db-hero {
+    padding: 20px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+
+    &__name { font-size: 20px; }
+  }
+
+  .nyk-db-edit-btn { width: 100%; justify-content: center; }
 }
 
-// ── Dark mode ─────────────────────────────────────────────
-html.dark {
-  .acc-dash { color: #e5e7eb; }
-  .acc-dash__header,
-  .acc-card { background: #161922; border-color: #232838; }
-  .acc-dash__welcome { color: #9ca3af; }
-  .acc-dash__name    { color: #f3f4f6; }
-  .acc-dash__email,
-  .acc-field dt,
-  .acc-nav__sub,
-  .acc-address__pin   { color: #9ca3af; }
-  .acc-field dd,
-  .acc-address__line,
-  .acc-nav__label     { color: #e5e7eb; }
-  .acc-card__title    { color: #f3f4f6; }
-  .acc-card__head     { border-bottom-color: #232838; }
-  .acc-field          { border-bottom-color: #232838; }
-  .acc-nav__item      { border-bottom-color: #232838; &:hover { background: #1c2030; } }
-  .acc-btn--ghost     { background: #161922; border-color: #2a3041; color: #e5e7eb; &:hover { background: #1c2030; } }
-  .acc-tag            { background: rgba(139,26,74,0.18); }
-  .acc-avatar         { background: rgba(139,26,74,0.18); }
+@media (max-width: 480px) {
+  .nyk-db-hero {
+    padding: 18px 16px;
+    &__name { font-size: 18px; }
+  }
+
+  .nyk-db-card__header { padding: 14px 16px; }
+  .nyk-db-address      { padding: 16px; }
+}
+
+@media (max-width: 360px) {
+  .nyk-db-quick-grid { grid-template-columns: 1fr; }
+
+  .nyk-db-quick-item {
+    border-right: none !important;
+    &:last-child { border-bottom: none; }
+    &:nth-last-child(-n+2) { border-bottom: 1px solid $border; }
+  }
 }

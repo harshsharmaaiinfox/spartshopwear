@@ -249,17 +249,17 @@ $error  : #ef4444;
 
 // ── Footer ────────────────────────────────────────────────
 .am-footer {
-  display         : flex;
-  align-items     : center;
-  justify-content : flex-end;
-  gap             : 12px;
-  padding         : 16px 24px;
-  border-top      : 1.5px solid $border;
-  background      : #fafafa;
+  display              : grid;
+  grid-template-columns: 1fr 1fr;
+  gap                  : 12px;
+  padding              : 16px 24px;
+  border-top           : 1.5px solid $border;
+  background           : #fafafa;
 }
 
 .am-cancel-btn {
-  padding      : 11px 24px;
+  width        : 100%;
+  padding      : 12px 16px;
   border       : 1.5px solid $border;
   background   : white;
   color        : $muted;
@@ -267,7 +267,9 @@ $error  : #ef4444;
   font-size    : 14px;
   font-weight  : 600;
   cursor       : pointer;
+  text-align   : center;
   transition   : all 0.2s ease;
+  box-sizing   : border-box;
 
   &:hover {
     border-color: #9ca3af;
@@ -277,11 +279,12 @@ $error  : #ef4444;
 
 .am-save-btn,
 button.am-save-btn {
+  width          : 100% !important;
   display        : inline-flex !important;
   align-items    : center !important;
   justify-content: center !important;
   gap            : 7px !important;
-  padding        : 11px 28px !important;
+  padding        : 12px 16px !important;
   background     : $pink !important;
   color          : white !important;
   border         : none !important;
@@ -289,6 +292,7 @@ button.am-save-btn {
   font-size      : 14px !important;
   font-weight    : 700 !important;
   cursor         : pointer !important;
+  box-sizing     : border-box !important;
   box-shadow     : 0 4px 14px rgba($pink, 0.3) !important;
   transition     : all 0.22s ease !important;
 
@@ -302,23 +306,35 @@ button.am-save-btn {
 }
 
 // ── Right-panel mode (checkout) ───────────────────────────
-.nyk-address-right-panel .am-footer .am-save-btn,
-.nyk-address-right-panel .am-footer button.am-save-btn {
-  background    : #1a1a1a !important;
-  width         : 100% !important;
-  letter-spacing: 0.8px !important;
-  text-transform: uppercase !important;
-  font-size     : 13px !important;
-  box-shadow    : none !important;
+.nyk-address-right-panel .am-footer {
+  grid-template-columns: 1fr;
+  grid-template-rows   : auto auto;
 
-  &:hover { background: #333 !important; transform: none !important; }
+  .am-save-btn,
+  button.am-save-btn {
+    background    : #1a1a1a !important;
+    letter-spacing: 0.8px !important;
+    text-transform: uppercase !important;
+    font-size     : 13px !important;
+    box-shadow    : none !important;
+    order         : -1;
+
+    &:hover { background: #333 !important; transform: none !important; }
+  }
 }
 
 // ── Responsive ────────────────────────────────────────────
 @media (max-width: 576px) {
-  .am-row       { grid-template-columns: 1fr; }
-  .am-body      { padding: 18px; gap: 16px; }
-  .am-footer    { flex-direction: column-reverse; gap: 10px; padding: 14px 18px; }
-  .am-cancel-btn,
-  .am-save-btn  { width: 100%; text-align: center; }
+  .am-row  { grid-template-columns: 1fr; }
+  .am-body { padding: 16px; gap: 14px; }
+
+  .am-footer {
+    grid-template-columns: 1fr;
+    padding              : 14px 16px;
+    gap                  : 10px;
+  }
+
+  // Save button stacks on top via order
+  .am-save-btn,
+  button.am-save-btn { order: -1; }
 }

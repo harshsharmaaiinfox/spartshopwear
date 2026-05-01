@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Select, Store } from '@ngxs/store';
@@ -21,11 +21,26 @@ export class EditProfileModalComponent {
   public form: FormGroup;
   public closeResult: string;
 
-  public modalOpen: boolean = false;
-  public flicker: boolean = false;
-  public codes = data.countryCodes;
+  public modalOpen: boolean   = false;
+  public flicker: boolean     = false;
+  public ccDropdownOpen       = false;
+  public codes = data.countryCodes as any[];
 
   @ViewChild("profileModal", { static: false }) ProfileModal: TemplateRef<string>;
+
+  get selectedCountry(): any {
+    const val = this.form?.get('country_code')?.value;
+    return this.codes.find(c => c.value === val) ?? null;
+  }
+
+  selectCountry(item: any, event: Event) {
+    event.stopPropagation();
+    this.form.get('country_code')?.setValue(item.value);
+    this.ccDropdownOpen = false;
+  }
+
+  @HostListener('document:click')
+  closeCCDropdown() { this.ccDropdownOpen = false; }
   
   constructor(private modalService: NgbModal,
     private store: Store,

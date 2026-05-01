@@ -5,7 +5,7 @@ $gray:   #878787;
 $border: #E8E8E8;
 $white:  #FFFFFF;
 
-:host { display: block; }
+:host { display: block; text-align: left; }
 
 .nyk-brand {
   font-size: 22px;
@@ -118,12 +118,16 @@ $white:  #FFFFFF;
   align-items: center;
   gap: 16px;
   margin-bottom: 20px;
+
+  @media (max-width: 575px) { gap: 12px; margin-bottom: 14px; }
 }
 
 .nyk-qty-label {
   font-size: 13px;
   font-weight: 600;
   color: $dark;
+
+  @media (max-width: 480px) { font-size: 12px; }
 }
 
 .nyk-qty-box {
@@ -135,8 +139,8 @@ $white:  #FFFFFF;
 }
 
 .nyk-qty-btn {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   background: #F5F5F5;
   border: none;
   cursor: pointer;
@@ -144,17 +148,32 @@ $white:  #FFFFFF;
   align-items: center;
   justify-content: center;
   transition: background 0.15s ease;
-  i { font-size: 16px; color: $dark; }
+  i { font-size: 18px; color: $dark; }
   &:hover { background: #E8E8E8; }
+
+  @media (max-width: 575px) {
+    width: 38px;
+    height: 38px;
+    i { font-size: 16px; }
+  }
+
+  @media (max-width: 360px) {
+    width: 34px;
+    height: 34px;
+    i { font-size: 15px; }
+  }
 }
 
 .nyk-qty-val {
-  min-width: 40px;
+  min-width: 44px;
   text-align: center;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: $dark;
-  padding: 0 8px;
+  padding: 0 10px;
+
+  @media (max-width: 575px) { min-width: 36px; font-size: 14px; padding: 0 8px; }
+  @media (max-width: 360px) { min-width: 30px; font-size: 13px; padding: 0 6px; }
 }
 
 .nyk-cta-row {
@@ -241,4 +260,57 @@ $white:  #FFFFFF;
   font-size: 13px;
   color: $pink;
   font-weight: 600;
+}
+
+// ── Responsive ─────────────────────────────────────────────
+@media (max-width: 767px) {
+  .nyk-brand        { font-size: 18px; }
+  .nyk-product-name { font-size: 17px; margin-bottom: 12px; }
+  .nyk-price        { font-size: 20px; }
+  .nyk-discount-pct { font-size: 15px; }
+
+  .nyk-cta-row {
+    grid-template-columns: 1fr 1fr;   // equal halves on tablet
+    max-width: 100%;
+    gap: 10px;
+  }
+
+  .nyk-btn {
+    font-size: 12px !important;
+    letter-spacing: 0.02em;
+  }
+}
+
+@media (max-width: 575px) {
+  .nyk-brand        { font-size: 16px; }
+  .nyk-product-name { font-size: 16px; }
+  .nyk-price        { font-size: 18px; }
+  .nyk-discount-pct { font-size: 14px; }
+
+  .nyk-divider { margin: 12px 0; }
+
+  // Stack buttons vertically on small phones
+  .nyk-cta-row {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .nyk-btn {
+    height: 44px;
+    font-size: 13px !important;
+    letter-spacing: 0.03em;
+  }
+
+  .nyk-variants {
+    ::ng-deep {
+      .size-box label,
+      .size-box .size-name {
+        width: 42px;
+        height: 42px;
+        font-size: 12px;
+      }
+    }
+  }
 }

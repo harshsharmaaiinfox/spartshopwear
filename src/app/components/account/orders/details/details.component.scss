@@ -486,7 +486,62 @@ $blue   : #2563eb;
   .nyk-od__btn { width: 100%; justify-content: center; }
   .nyk-od__product { flex-wrap: wrap; }
   .nyk-od__product-right { flex-direction: row; align-items: center; width: 100%; justify-content: space-between; }
-  .nyk-od__steps { padding: 20px 12px; }
-  .nyk-od__step { min-width: 70px; }
   .nyk-od__detail { width: 100%; }
+
+  // ── Tracking stepper — compact on mobile ────────────────
+  .nyk-od__steps {
+    padding: 16px 12px;
+  }
+
+  .nyk-od__step {
+    min-width: 64px;
+    gap      : 6px;
+  }
+
+  .nyk-od__step-circle {
+    width : 40px;
+    height: 40px;
+
+    img { width: 20px; height: 20px; }
+
+    .nyk-od__step.active & {
+      box-shadow: 0 0 0 3px rgba($pink, 0.2);
+    }
+  }
+
+  .nyk-od__step-line {
+    margin-top: 19px;   // (40px circle / 2) - 1px = keeps line centred
+    min-width : 16px;
+  }
+
+  .nyk-od__step-label {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nyk-od__steps {
+    padding: 14px 8px;
+  }
+
+  .nyk-od__step {
+    min-width: 52px;
+    gap      : 5px;
+  }
+
+  .nyk-od__step-circle {
+    width : 34px;
+    height: 34px;
+
+    img { width: 17px; height: 17px; }
+  }
+
+  .nyk-od__step-line {
+    margin-top: 16px;
+    min-width : 10px;
+  }
+
+  .nyk-od__step-label {
+    font-size: 9px;
+  }
 }

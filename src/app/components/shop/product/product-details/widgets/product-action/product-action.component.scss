@@ -1,0 +1,44 @@
+// Size delivery info row
+.size-delivery-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1C1C2E;
+    text-decoration: none;
+    transition: color 0.18s ease;
+
+    i { font-size: 15px; color: #D4145A; }
+
+    &:hover { color: #D4145A; }
+  }
+
+  @media (max-width: 480px) {
+    gap: 10px;
+
+    a { font-size: 12px; }
+  }
+}
+
+// Progress bar
+.progress-sec {
+  margin-bottom: 14px;
+
+  h6 {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 6px;
+  }
+
+  @media (max-width: 480px) {
+    h6 { font-size: 12px; }
+  }
+}

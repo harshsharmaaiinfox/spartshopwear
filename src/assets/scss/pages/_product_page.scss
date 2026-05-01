@@ -1832,6 +1832,11 @@
     }
 
     &.full-width-right-box {
+      // Override the parent's mq-max(md) text-align: center — keep left on all screen sizes
+      @include mq-max(md) {
+        text-align: left !important;
+      }
+
       .product-contain {
         p {
           width: 70%;

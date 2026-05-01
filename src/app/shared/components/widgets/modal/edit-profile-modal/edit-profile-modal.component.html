@@ -66,20 +66,37 @@
           {{ 'phone_number' | translate }}
         </label>
         <div class="ep-phone-row">
-          <select2
-            class="ep-country-code"
-            [templates]="template"
-            [data]="codes"
-            formControlName="country_code">
-            <ng-template #template let-data="data">
-              <div class="ep-flag-item">
-                <div class="flag-box">
-                  <div class="iti-flag {{data?.class}}"></div>
+          <!-- Custom country-code picker: shows flag + code in both trigger and dropdown -->
+          <div class="ep-cc-wrap" [class.ep-cc-wrap--open]="ccDropdownOpen"
+               (click)="$event.stopPropagation()">
+
+            <!-- Trigger -->
+            <button type="button" class="ep-cc-trigger"
+                    (click)="ccDropdownOpen = !ccDropdownOpen">
+              <span class="ep-cc-trigger__flag">
+                <div class="iti-flag {{ selectedCountry?.data?.class }}"></div>
+              </span>
+              <span class="ep-cc-trigger__code">
+                {{ selectedCountry?.data?.code || ('+' + form.get('country_code')?.value) }}
+              </span>
+              <i class="ri-arrow-down-s-line ep-cc-trigger__arrow"></i>
+            </button>
+
+            <!-- Dropdown list -->
+            <div class="ep-cc-dropdown" *ngIf="ccDropdownOpen">
+              <div class="ep-cc-dropdown__list">
+                <div class="ep-cc-option"
+                     *ngFor="let c of codes"
+                     [class.ep-cc-option--active]="c.value === form.get('country_code')?.value"
+                     (click)="selectCountry(c, $event)">
+                  <span class="ep-cc-option__flag">
+                    <div class="iti-flag {{ c.data?.class }}"></div>
+                  </span>
+                  <span class="ep-cc-option__code">{{ c.data?.code }}</span>
                 </div>
-                <span class="ep-dial-code">{{data.code}}</span>
               </div>
-            </ng-template>
-          </select2>
+            </div>
+          </div>
           <input type="tel" class="ep-input ep-phone-input"
                  id="phone"
                  formControlName="phone"
