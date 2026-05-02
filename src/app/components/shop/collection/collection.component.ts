@@ -40,7 +40,7 @@ export class CollectionComponent {
     'sortBy': 'asc',
     'rating': '',
     'attribute': '',
-    store_id: 26,
+    store_id: 31,
   };
 
   public totalItems: number = 0;
@@ -67,7 +67,7 @@ export class CollectionComponent {
         'sortBy': queryParams['sortBy'] ? queryParams['sortBy'] : this.filter['sortBy'],
         'rating': queryParams['rating'] ? queryParams['rating'] : '',
         'attribute': queryParams['attribute'] ? queryParams['attribute'] : '',
-        store_id: 26,
+        store_id: 31,
       }
 
       this.store.dispatch(new GetProducts(this.filter));

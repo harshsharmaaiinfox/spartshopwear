@@ -1,210 +1,145 @@
-<div class="nyk-dashboard">
+<div class="db">
 
-  <!-- ── Hero / Welcome Card ─────────────────────────────── -->
-  <div class="nyk-db-hero">
-    <div class="nyk-db-hero__left">
-
-      <!-- Avatar -->
-      <div class="nyk-db-avatar">
+  <!-- ── Page Header ─────────────────────────────────────── -->
+  <header class="db-header">
+    <div class="db-header__identity">
+      <div class="db-avatar">
         <img *ngIf="(user$ | async)?.profile_image?.original_url"
              [src]="(user$ | async)?.profile_image?.original_url"
-             class="nyk-db-avatar__img" alt="profile">
+             class="db-avatar__img" alt="profile photo">
         <span *ngIf="!(user$ | async)?.profile_image?.original_url"
-              class="nyk-db-avatar__initials">
-          {{ (user$ | async)?.name?.charAt(0)?.toUpperCase() }}
+              class="db-avatar__initials">
+          {{ (user$ | async)?.name?.charAt(0)?.toUpperCase() || 'U' }}
         </span>
       </div>
-
-      <!-- Greeting -->
-      <div class="nyk-db-hero__text">
-        <p class="nyk-db-hero__hi">Hello 👋</p>
-        <h2 class="nyk-db-hero__name">{{ (user$ | async)?.name | titlecase }}</h2>
-        <p class="nyk-db-hero__email">{{ (user$ | async)?.email }}</p>
+      <div class="db-header__text">
+        <p class="db-header__label">Welcome back</p>
+        <h1 class="db-header__name">{{ ((user$ | async)?.name | titlecase) || 'User' }}</h1>
+        <p class="db-header__email">{{ (user$ | async)?.email }}</p>
       </div>
     </div>
-
-    <!-- Edit profile button -->
-    <button class="nyk-db-edit-btn" (click)="ProfileModal.openModal()">
-      <i class="ri-edit-line"></i>
-      Edit Profile
+    <button type="button" class="db-btn" (click)="ProfileModal.openModal()">
+      <i class="ri-edit-line"></i> Edit Profile
     </button>
-  </div>
+  </header>
 
-  <!-- ── Stats Row ───────────────────────────────────────── -->
-  <div class="nyk-db-stats">
-    <div class="nyk-db-stat" (click)="navigateTo('order')">
-      <div class="nyk-db-stat__icon" style="background:rgba(212,20,90,0.1);color:#D4145A">
-        <i class="ri-shopping-bag-3-line"></i>
-      </div>
-      <div class="nyk-db-stat__info">
-        <span class="nyk-db-stat__label">My Orders</span>
-        <span class="nyk-db-stat__sub">Track & manage</span>
-      </div>
-      <i class="ri-arrow-right-s-line nyk-db-stat__arrow"></i>
+  <!-- ── Two-column body ───────────────────────────────── -->
+  <div class="db-layout">
+
+    <!-- LEFT ─────────────────────────────────────────────── -->
+    <div class="db-col">
+
+      <!-- Profile card -->
+      <section class="db-card">
+        <div class="db-card__head">
+          <h2 class="db-card__title">Profile Information</h2>
+          <button type="button" class="db-link-btn" (click)="ProfileModal.openModal()">Edit</button>
+        </div>
+
+        <dl class="db-fields">
+
+          <div class="db-field">
+            <dt class="db-field__label">Full Name</dt>
+            <dd class="db-field__value">{{ ((user$ | async)?.name | titlecase) || '—' }}</dd>
+          </div>
+
+          <div class="db-field">
+            <dt class="db-field__label">Email Address</dt>
+            <dd class="db-field__value">{{ (user$ | async)?.email || '—' }}</dd>
+          </div>
+
+          <div class="db-field">
+            <dt class="db-field__label">Phone Number</dt>
+            <dd class="db-field__value" *ngIf="(user$ | async)?.phone; else noPhone">
+              +{{ (user$ | async)?.country_code }}&nbsp;{{ (user$ | async)?.phone }}
+            </dd>
+            <ng-template #noPhone>
+              <dd class="db-field__value db-field__value--muted">Not added</dd>
+            </ng-template>
+          </div>
+
+          <div class="db-field db-field--row">
+            <dt class="db-field__label">Password</dt>
+            <dd class="db-field__value db-field__value--inline">
+              <span>••••••••</span>
+              <button type="button" class="db-link-btn" (click)="PasswordModal.openModal()">Change</button>
+            </dd>
+          </div>
+
+        </dl>
+      </section>
+
+      <!-- Default Address card -->
+      <section class="db-card" *ngIf="address">
+        <div class="db-card__head">
+          <h2 class="db-card__title">Default Address</h2>
+          <button type="button" class="db-link-btn" (click)="navigateTo('addresses')">Manage</button>
+        </div>
+
+        <div class="db-address">
+          <span class="db-tag">{{ address?.title }}</span>
+          <p class="db-address__line">
+            <span *ngIf="address?.floor_no">Floor {{ address?.floor_no }}, </span>
+            <span *ngIf="address?.flat_no">Flat {{ address?.flat_no }}, </span>
+            <span *ngIf="address?.building">{{ address?.building }}, </span>
+            <span *ngIf="address?.road">{{ address?.road }}, </span>
+            {{ address?.street }}, {{ address?.city }}, {{ address?.area }}
+          </p>
+          <p class="db-address__pin">{{ address?.country_id }} — {{ address?.pincode }}</p>
+        </div>
+      </section>
+
     </div>
 
-    <div class="nyk-db-stat" (click)="navigateTo('addresses')">
-      <div class="nyk-db-stat__icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6">
-        <i class="ri-map-pin-line"></i>
-      </div>
-      <div class="nyk-db-stat__info">
-        <span class="nyk-db-stat__label">Addresses</span>
-        <span class="nyk-db-stat__sub">Saved locations</span>
-      </div>
-      <i class="ri-arrow-right-s-line nyk-db-stat__arrow"></i>
-    </div>
-
-    <div class="nyk-db-stat" (click)="navigateTo('bank-details')">
-      <div class="nyk-db-stat__icon" style="background:rgba(16,185,129,0.1);color:#10b981">
-        <i class="ri-bank-line"></i>
-      </div>
-      <div class="nyk-db-stat__info">
-        <span class="nyk-db-stat__label">Bank Details</span>
-        <span class="nyk-db-stat__sub">Manage bank info</span>
-      </div>
-      <i class="ri-arrow-right-s-line nyk-db-stat__arrow"></i>
-    </div>
-
-  </div>
-
-  <!-- ── Profile Info Card ───────────────────────────────── -->
-  <div class="nyk-db-card">
-    <div class="nyk-db-card__header">
-      <div class="nyk-db-card__header-left">
-        <i class="ri-user-line"></i>
-        <h4>Profile Information</h4>
-      </div>
-      <button class="nyk-db-card__edit" (click)="ProfileModal.openModal()">
-        <i class="ri-edit-line"></i> Edit
-      </button>
-    </div>
-
-    <div class="nyk-db-info-grid">
-
-      <!-- Name -->
-      <div class="nyk-db-info-row">
-        <div class="nyk-db-info-row__icon" style="background:rgba(212,20,90,0.08);color:#D4145A">
-          <i class="ri-user-fill"></i>
+    <!-- RIGHT ────────────────────────────────────────────── -->
+    <aside class="db-col db-col--side">
+      <section class="db-card">
+        <div class="db-card__head">
+          <h2 class="db-card__title">Account</h2>
         </div>
-        <div class="nyk-db-info-row__body">
-          <span class="nyk-db-info-row__label">Full Name</span>
-          <span class="nyk-db-info-row__val">{{ (user$ | async)?.name | titlecase }}</span>
-        </div>
-      </div>
 
-      <!-- Email -->
-      <div class="nyk-db-info-row">
-        <div class="nyk-db-info-row__icon" style="background:rgba(139,92,246,0.08);color:#8b5cf6">
-          <i class="ri-mail-fill"></i>
-        </div>
-        <div class="nyk-db-info-row__body">
-          <span class="nyk-db-info-row__label">Email Address</span>
-          <span class="nyk-db-info-row__val">{{ (user$ | async)?.email }}</span>
-        </div>
-      </div>
+        <nav class="db-nav">
 
-      <!-- Phone -->
-      <div class="nyk-db-info-row">
-        <div class="nyk-db-info-row__icon" style="background:rgba(14,165,233,0.08);color:#0ea5e9">
-          <i class="ri-phone-fill"></i>
-        </div>
-        <div class="nyk-db-info-row__body">
-          <span class="nyk-db-info-row__label">Phone Number</span>
-          <span class="nyk-db-info-row__val">+{{ (user$ | async)?.country_code }} {{ (user$ | async)?.phone }}</span>
-        </div>
-      </div>
+          <button type="button" class="db-nav__item" (click)="navigateTo('order')">
+            <span class="db-nav__icon"><i class="ri-shopping-bag-3-line"></i></span>
+            <span class="db-nav__body">
+              <span class="db-nav__name">My Orders</span>
+              <span class="db-nav__hint">Track &amp; manage purchases</span>
+            </span>
+            <i class="ri-arrow-right-s-line db-nav__chev"></i>
+          </button>
 
-      <!-- Password -->
-      <div class="nyk-db-info-row">
-        <div class="nyk-db-info-row__icon" style="background:rgba(16,185,129,0.08);color:#10b981">
-          <i class="ri-lock-fill"></i>
-        </div>
-        <div class="nyk-db-info-row__body">
-          <span class="nyk-db-info-row__label">Password</span>
-          <span class="nyk-db-info-row__val">●●●●●●●●</span>
-        </div>
-        <button class="nyk-db-info-row__action" (click)="PasswordModal.openModal()">
-          Change
-        </button>
-      </div>
+          <button type="button" class="db-nav__item" (click)="navigateTo('addresses')">
+            <span class="db-nav__icon"><i class="ri-map-pin-line"></i></span>
+            <span class="db-nav__body">
+              <span class="db-nav__name">Addresses</span>
+              <span class="db-nav__hint">Saved delivery locations</span>
+            </span>
+            <i class="ri-arrow-right-s-line db-nav__chev"></i>
+          </button>
 
-    </div>
-  </div>
+          <button type="button" class="db-nav__item" (click)="navigateTo('bank-details')">
+            <span class="db-nav__icon"><i class="ri-bank-line"></i></span>
+            <span class="db-nav__body">
+              <span class="db-nav__name">Bank Details</span>
+              <span class="db-nav__hint">Manage refund accounts</span>
+            </span>
+            <i class="ri-arrow-right-s-line db-nav__chev"></i>
+          </button>
 
-  <!-- ── Default Address Card ────────────────────────────── -->
-  <div class="nyk-db-card" *ngIf="address">
-    <div class="nyk-db-card__header">
-      <div class="nyk-db-card__header-left">
-        <i class="ri-map-pin-line"></i>
-        <h4>Default Address</h4>
-      </div>
-      <button class="nyk-db-card__edit" (click)="navigateTo('addresses')">
-        <i class="ri-arrow-right-line"></i> Manage
-      </button>
-    </div>
+          <button type="button" class="db-nav__item" (click)="navigateTo('notifications')">
+            <span class="db-nav__icon"><i class="ri-notification-3-line"></i></span>
+            <span class="db-nav__body">
+              <span class="db-nav__name">Notifications</span>
+              <span class="db-nav__hint">Email &amp; alert preferences</span>
+            </span>
+            <i class="ri-arrow-right-s-line db-nav__chev"></i>
+          </button>
 
-    <div class="nyk-db-address">
-      <div class="nyk-db-address__icon">
-        <i class="ri-home-4-fill"></i>
-      </div>
-      <div class="nyk-db-address__body">
-        <span class="nyk-db-address__type">{{ address?.title }}</span>
-        <p class="nyk-db-address__line">
-          <span *ngIf="address?.floor_no">Floor {{ address?.floor_no }}, </span>
-          <span *ngIf="address?.flat_no">Flat {{ address?.flat_no }}, </span>
-          <span *ngIf="address?.building">{{ address?.building }}, </span>
-          <span *ngIf="address?.road">{{ address?.road }}, </span>
-          {{ address?.street }}, {{ address?.city }}, {{ address?.area }}
-        </p>
-        <span class="nyk-db-address__pin">{{ address?.country_id }} — {{ address?.pincode }}</span>
-      </div>
-    </div>
-  </div>
+        </nav>
+      </section>
+    </aside>
 
-  <!-- ── Quick Links Grid ────────────────────────────────── -->
-  <div class="nyk-db-card">
-    <div class="nyk-db-card__header">
-      <div class="nyk-db-card__header-left">
-        <i class="ri-apps-line"></i>
-        <h4>Quick Links</h4>
-      </div>
-    </div>
-
-    <div class="nyk-db-quick-grid">
-
-      <div class="nyk-db-quick-item" (click)="navigateTo('order')">
-        <div class="nyk-db-quick-item__icon" style="background:#fff0f5">
-          <i class="ri-shopping-bag-3-line" style="color:#D4145A"></i>
-        </div>
-        <span>My Orders</span>
-        <i class="ri-arrow-right-s-line"></i>
-      </div>
-
-      <div class="nyk-db-quick-item" (click)="navigateTo('addresses')">
-        <div class="nyk-db-quick-item__icon" style="background:#f5f0ff">
-          <i class="ri-map-pin-line" style="color:#8b5cf6"></i>
-        </div>
-        <span>Saved Addresses</span>
-        <i class="ri-arrow-right-s-line"></i>
-      </div>
-
-      <div class="nyk-db-quick-item" (click)="navigateTo('bank-details')">
-        <div class="nyk-db-quick-item__icon" style="background:#f0fdf4">
-          <i class="ri-bank-line" style="color:#10b981"></i>
-        </div>
-        <span>Bank Details</span>
-        <i class="ri-arrow-right-s-line"></i>
-      </div>
-
-      <div class="nyk-db-quick-item" (click)="navigateTo('notifications')">
-        <div class="nyk-db-quick-item__icon" style="background:#eff6ff">
-          <i class="ri-notification-3-line" style="color:#3b82f6"></i>
-        </div>
-        <span>Notifications</span>
-        <i class="ri-arrow-right-s-line"></i>
-      </div>
-
-    </div>
   </div>
 
 </div>
