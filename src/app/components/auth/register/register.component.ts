@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Store, Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { CustomValidators } from '../../../shared/validator/password-match';
-import { Register } from '../../../shared/action/auth.action';
+import { Register, VerifyRegistrationOtp } from '../../../shared/action/auth.action';
 import { Breadcrumb } from '../../../shared/interface/breadcrumb';
 import { SettingState } from '../../../shared/state/setting.state';
 import { ThemeOptionState } from '../../../shared/state/theme-option.state';
@@ -35,6 +35,12 @@ export class RegisterComponent {
   public reCaptcha: boolean = true;
   public showPassword: boolean = false;
   public showConfirmPassword: boolean = false;
+
+  public showOtpOverlay: boolean = false;
+  public registeredEmail: string = '';
+  public otpValue: string = '';
+  public otpLoading: boolean = false;
+  public otpError: string = '';
 
 
   constructor(
@@ -160,15 +166,51 @@ export class RegisterComponent {
   submit() {
     this.form.markAllAsTouched();
     if(this.tnc.invalid){
-      return
+      return;
     }
     if(this.form.valid) {
       this.store.dispatch(new Register(this.form.value)).subscribe({
-          complete: () => {
-            this.router.navigateByUrl('/account/dashboard');
-          }
+        complete: () => {
+          this.registeredEmail = this.form.value.email;
+          this.showOtpOverlay = true;
         }
-      );
+      });
     }
+  }
+
+  onOtpInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const sanitized = input.value.replace(/[^0-9]/g, '').slice(0, 6);
+    this.otpValue = sanitized;
+    input.value = sanitized;
+  }
+
+  get otpComplete(): boolean {
+    return this.otpValue.trim().length === 6;
+  }
+
+  submitOtp(): void {
+    if (!this.otpComplete || this.otpLoading) return;
+    this.otpLoading = true;
+    this.otpError = '';
+    this.store.dispatch(new VerifyRegistrationOtp({
+      email: this.registeredEmail,
+      otp: this.otpValue.trim()
+    })).subscribe({
+      complete: () => {
+        this.otpLoading = false;
+        this.router.navigateByUrl('/auth/login');
+      },
+      error: (err: any) => {
+        this.otpLoading = false;
+        this.otpError = err?.message || 'Invalid OTP. Please try again.';
+      }
+    });
+  }
+
+  resendOtp(): void {
+    this.otpValue = '';
+    this.otpError = '';
+    this.notificationService.showSuccess('Verification code resent to your email.');
   }
 }

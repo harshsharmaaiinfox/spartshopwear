@@ -1,0 +1,45 @@
+.refund-source-notice {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: #f0faf4;
+  border: 1px solid #b7e4c7;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 14px;
+
+  i {
+    font-size: 20px;
+    color: #2d9e5f;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a6e3c;
+    margin-bottom: 4px;
+  }
+
+  p {
+    font-size: 12px;
+    color: #2d6a4f;
+    margin: 0;
+    line-height: 1.55;
+  }
+}
+
+.cod-bank-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 12px;
+  color: #666;
+  margin-top: 8px;
+
+  i { color: #D4145A; font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+  a { color: #D4145A; text-decoration: underline; }
+}

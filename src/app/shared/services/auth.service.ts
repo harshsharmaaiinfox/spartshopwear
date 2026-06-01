@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
-import { AuthNumberLoginState, AuthStateModal, AuthUserForgotModel, AuthUserStateModel, AuthVerifyNumberOTPState, RegisterModal, UpdatePasswordModel, VerifyEmailOtpModel } from "../interface/auth.interface";
+import { AuthNumberLoginState, AuthStateModal, AuthUserForgotModel, AuthUserStateModel, AuthVerifyNumberOTPState, RegisterModal, UpdatePasswordModel, VerifyEmailOtpModel, VerifyRegistrationOtpModel } from "../interface/auth.interface";
 
 @Injectable({
   providedIn: "root",
@@ -40,6 +40,10 @@ export class AuthService {
 
   updatePassword(payload: UpdatePasswordModel): Observable<any> {
     return this.http.post(`${environment.URL}/update-password`, payload);
+  }
+
+  verifyRegistrationOtp(payload: VerifyRegistrationOtpModel): Observable<any> {
+    return this.http.post(`${environment.URL}/verify-registration-otp`, payload);
   }
 
   logout(): Observable<any> {

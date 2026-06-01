@@ -219,17 +219,13 @@ $ease:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
 .acc-panel__actions {
   display: flex;
   flex-direction: row;
+  align-items: stretch;
   gap: 12px;
   padding: 18px 15px 14px;
 }
 
 .acc-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
   flex: 1;
-  padding: 11px 8px;
   border-radius: 10px;
   font-size: 12px;
   font-weight: 700;
@@ -237,30 +233,43 @@ $ease:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
   text-decoration: none !important;
   cursor: pointer;
   transition: all 0.22s $ease;
+}
 
-  i { font-size: 16px; }
+// Nested inside .acc-panel for specificity [0,4,0] — defeats parent
+// ::ng-deep a { background:transparent; width:100%; height:100% } at [0,2,1]
+.acc-panel .acc-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 11px 8px !important;
+  width: auto !important;
+  height: auto !important;
+
+  i   { font-size: 16px !important; color: inherit !important; transform: none !important; }
+  span { display: inline !important; }
 
   &--primary {
-    background: $pink;
+    background: $pink !important;
     color: $white !important;
     box-shadow: 0 4px 14px rgba($pink, 0.3);
 
     &:hover {
-      background: darken($pink, 8%);
+      background: darken($pink, 8%) !important;
       box-shadow: 0 6px 18px rgba($pink, 0.4);
       transform: translateY(-1px);
     }
   }
 
   &--ghost {
-    background: transparent;
+    background: transparent !important;
     color: $dark !important;
     border: 1.5px solid #E0E0E0;
 
     &:hover {
       border-color: $pink;
       color: $pink !important;
-      background: rgba($pink, 0.04);
+      background: rgba($pink, 0.04) !important;
     }
   }
 }

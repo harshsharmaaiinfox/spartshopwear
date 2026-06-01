@@ -35,17 +35,34 @@
           <div class="invalid-feedback" *ngIf="form?.controls?.['reason']?.touched && form?.controls?.['reason']?.errors?.['required']">
             {{ 'reason_is_required' | translate }}
           </div>
-          <label class="form-label mt-3" for="payment_option">{{ 'Payment Option' | translate }}</label>
-          <select2 
-            class="custom-select"
-            [data]="option ? option : []"
-            [placeholder]="'select_payment_option' | translate"
-            formControlName="payment_type"
-            resettable>
-          </select2>
-          <div class="invalid-feedback" *ngIf="form?.controls?.['payment_type']?.touched && form?.controls?.['payment_type']?.errors?.['required']">
-              {{ 'payment_type_is_required' | translate }}
+          <!-- Prepaid: auto refund to source, no manual selection -->
+          <div class="refund-source-notice" *ngIf="!isCod">
+            <i class="ri-shield-check-line"></i>
+            <div>
+              <strong>Auto-Refund to Payment Source</strong>
+              <p>As per RBI guidelines, your refund will be automatically credited back to the original payment method used for this order (Card / UPI / Net Banking) within 5–7 working days.</p>
+            </div>
           </div>
+
+          <!-- COD: manual refund method selection -->
+          <ng-container *ngIf="isCod">
+            <label class="form-label mt-3" for="payment_option">{{ 'Refund Method' | translate }}</label>
+            <select2
+              class="custom-select"
+              [data]="option"
+              [placeholder]="'Select refund method' | translate"
+              formControlName="payment_type"
+              resettable>
+            </select2>
+            <div class="invalid-feedback" *ngIf="form?.controls?.['payment_type']?.touched && form?.controls?.['payment_type']?.errors?.['required']">
+              {{ 'payment_type_is_required' | translate }}
+            </div>
+            <p class="cod-bank-hint" *ngIf="form?.controls?.['payment_type']?.value === 'bank'">
+              <i class="ri-information-line"></i>
+              Your saved bank details will be used. Please ensure they are up to date in your
+              <a [routerLink]="['/account/bank-details']">account settings</a>.
+            </p>
+          </ng-container>
         </form>
       </div>
     </form>

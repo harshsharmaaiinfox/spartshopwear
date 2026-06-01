@@ -18,36 +18,43 @@ export class RefundModalComponent {
   public closeResult: string;
   public modalOpen: boolean = false;
   public product: Product;
+  public isCod: boolean = false;
   public form: FormGroup;
 
-  public option: Select2Data = [
-    {
-      label: 'Wallet',
-      value: 'wallet',
-    },
-    {
-      label: 'Paypal',
-      value: 'paypal',
-    },
-    {
-      label: 'Bank',
-      value: 'bank',
-    }
-  ]
+  public option: Select2Data = [];
+
+  private readonly codOptions: Select2Data = [
+    { label: 'Bank Transfer', value: 'bank' },
+    { label: 'Store Wallet Credit', value: 'wallet' },
+  ];
 
   constructor(private modalService: NgbModal, private store: Store ){
     this.form = new FormGroup({
       order_id: new FormControl('', [Validators.required]),
       reason: new FormControl('', [Validators.required]),
-      payment_type: new FormControl('', [Validators.required]),
+      payment_type: new FormControl(''),
       product_id: new FormControl()
-    })
+    });
   }
 
-  async openModal(product: Product, order_id: number) {
+  async openModal(product: Product, order_id: number, paymentMethod: string = '') {
     this.product = product;
+    this.isCod = paymentMethod === 'cod';
     this.form.controls['order_id'].setValue(order_id);
     this.form.get('product_id')?.patchValue(product.id);
+
+    if (this.isCod) {
+      this.option = this.codOptions;
+      this.form.controls['payment_type'].setValidators([Validators.required]);
+      this.form.controls['payment_type'].setValue('');
+    } else {
+      // Prepaid: refund goes back to original source automatically
+      this.option = [];
+      this.form.controls['payment_type'].clearValidators();
+      this.form.controls['payment_type'].setValue('source');
+    }
+    this.form.controls['payment_type'].updateValueAndValidity();
+
     this.modalOpen = true;
     this.modalService.open(this.RefundModal, {
       ariaLabelledBy: 'profile-Modal',

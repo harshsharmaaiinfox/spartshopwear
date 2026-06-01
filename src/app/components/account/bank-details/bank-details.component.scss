@@ -4,6 +4,42 @@ $muted:  #6b7280;
 $border: #e5e7eb;
 $bg:     #f3f4f6;
 
+// ── COD-only notice ───────────────────────────────────────
+.bd-cod-notice {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: #fffbeb;
+  border: 1px solid #fcd34d;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 20px;
+
+  > i {
+    font-size: 22px;
+    color: #d97706;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  strong {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #92400e;
+    margin-bottom: 6px;
+  }
+
+  p {
+    font-size: 12.5px;
+    color: #78350f;
+    margin: 0;
+    line-height: 1.6;
+
+    em { font-style: italic; font-weight: 600; }
+  }
+}
+
 // ── Page Header ───────────────────────────────────────────
 .bd-header {
   display: flex;

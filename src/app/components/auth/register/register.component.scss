@@ -393,3 +393,173 @@ html.dark {
   .auth-phone { flex-direction: row; }
   .auth-phone__code { width: 100px; }
 }
+
+// ============================================================
+// OTP Verification Overlay
+// ============================================================
+
+.otp-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.52);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 16px;
+  animation: fadeIn 0.22s ease;
+}
+
+.otp-modal {
+  background: $white;
+  border-radius: 20px;
+  padding: 36px 28px 28px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22);
+  animation: slideUp 0.28s $ease;
+
+  &__icon {
+    width: 68px;
+    height: 68px;
+    background: rgba($wine, 0.10);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+
+    i { font-size: 30px; color: $wine; }
+  }
+
+  &__title {
+    font-size: 21px;
+    font-weight: 700;
+    color: $dark;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+
+  &__desc {
+    font-size: 13px;
+    color: $muted;
+    margin: 0 0 22px;
+    line-height: 1.55;
+
+    strong { color: $dark; font-weight: 600; word-break: break-all; }
+  }
+
+  &__error {
+    font-size: 12px;
+    color: $error;
+    margin: 10px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    &::before { content: '⚠'; font-size: 11px; }
+  }
+
+  &__btn {
+    width: 100%;
+    height: 48px;
+    background: $wine;
+    color: $white;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 20px;
+    letter-spacing: 0.03em;
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    box-shadow: 0 4px 16px rgba($wine, 0.28);
+
+    &:hover:not(:disabled) {
+      background: $wine-dark;
+      box-shadow: 0 8px 22px rgba($wine, 0.40);
+      transform: translateY(-1px);
+    }
+
+    &:disabled {
+      background: #C8C8C8;
+      box-shadow: none;
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
+
+  &__resend {
+    margin-top: 16px;
+    font-size: 13px;
+    color: $muted;
+  }
+
+  &__resend-btn {
+    background: none;
+    border: none;
+    color: $wine;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    font-size: 13px;
+    transition: text-decoration 0.15s ease;
+
+    &:hover { text-decoration: underline; }
+  }
+}
+
+.otp-field {
+  &__input {
+    width: 100%;
+    height: 48px;
+    background: #F6F6F8;
+    border: 1.5px solid $border;
+    border-radius: 10px;
+    padding: 0 16px;
+    font-size: 18px;
+    font-weight: 600;
+    color: $dark;
+    letter-spacing: 0.22em;
+    text-align: center;
+    outline: none;
+    caret-color: $wine;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+    &::placeholder { font-size: 13px; letter-spacing: 0.04em; color: #bbb; font-weight: 400; }
+
+    &:focus {
+      border-color: $wine;
+      background: $white;
+      box-shadow: 0 0 0 4px rgba($wine, 0.08);
+    }
+
+    &--error { border-color: $error !important; background: rgba($error, 0.04) !important; }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(22px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+html.dark {
+  .otp-modal {
+    background: #1e1e2e;
+    &__title { color: #e0e0e0; }
+    &__desc { color: #888; strong { color: #ccc; } }
+  }
+  .otp-digit {
+    background: #2a2a3a;
+    border-color: #3a3a4a;
+    color: #e0e0e0;
+    &:focus { background: #242434; border-color: $wine-mid; }
+  }
+}

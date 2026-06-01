@@ -91,7 +91,7 @@
               order.order_status?.slug == 'delivered' &&
               !product?.pivot?.refund_status; else refundState">
               <a class="nyk-od__refund-btn" href="javascript:void(0)"
-                 (click)="refundModal.openModal(product, order.id)">
+                 (click)="refundModal.openModal(product, order.id, order.payment_method)">
                 <i class="ri-refund-line"></i> Refund
               </a>
             </ng-container>

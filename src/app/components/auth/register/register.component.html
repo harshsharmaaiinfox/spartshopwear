@@ -194,3 +194,46 @@
     </div>
   </div>
 </section>
+
+<!-- OTP Verification Overlay -->
+<div class="otp-overlay" *ngIf="showOtpOverlay">
+  <div class="otp-modal">
+
+    <div class="otp-modal__icon">
+      <i class="ri-mail-check-line"></i>
+    </div>
+
+    <h2 class="otp-modal__title">Verify Your Email</h2>
+    <p class="otp-modal__desc">
+      Enter the 6-digit code sent to <strong>{{ registeredEmail }}</strong>
+    </p>
+
+    <div class="otp-field">
+      <input
+        type="text"
+        inputmode="numeric"
+        maxlength="6"
+        autocomplete="one-time-code"
+        class="otp-field__input"
+        placeholder="Enter 6-digit code"
+        [(ngModel)]="otpValue"
+        (input)="onOtpInput($event)"
+        [class.otp-field__input--error]="otpError">
+    </div>
+
+    <p class="otp-modal__error" *ngIf="otpError">{{ otpError }}</p>
+
+    <button
+      class="otp-modal__btn"
+      [disabled]="!otpComplete || otpLoading"
+      (click)="submitOtp()">
+      {{ otpLoading ? 'Verifying...' : 'Verify & Continue' }}
+    </button>
+
+    <p class="otp-modal__resend">
+      Didn't receive the code?&nbsp;
+      <button type="button" class="otp-modal__resend-btn" (click)="resendOtp()">Resend</button>
+    </p>
+
+  </div>
+</div>
