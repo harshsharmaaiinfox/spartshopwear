@@ -146,6 +146,20 @@
   </section>
 
   <!-- ══════════════════════════════════════════
+    2b. FEATURED PRODUCTS ROW 1
+  ══════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--featured">
+    <div class="container-fluid-lg">
+      <h2 class="nf-home-section-title nf-home-section-title--center">Trending Now</h2>
+      <app-theme-product
+        [style]="'horizontal'"
+        [productIds]="featuredProductIds"
+        [showItem]="4">
+      </app-theme-product>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
     3. CATEGORY SPOTLIGHT — "Brand Spotlight" style
   ══════════════════════════════════════════ -->
   <section class="nf-sec nf-sec--cat-section">
@@ -199,22 +213,6 @@
 
 
   <!-- ══════════════════════════════════════════
-    6. MEN'S FASHION
-  ══════════════════════════════════════════ -->
-  <section class="nf-sec nf-sec--cat-section">
-    <div class="container-fluid-lg">
-      <h2 class="nf-home-section-title nf-home-section-title--center">Men's Fashion</h2>
-      <div class="nf-cat-grid nf-cat-grid--5">
-        <a href="/collections/mens-jeans"        class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/jeans.jpg"         alt="Jeans"          loading="lazy"><span class="nf-cat-card__name">JEANS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 30% off</p><p class="nf-cat-card__desc">Slim, regular &amp; more</p></div></a>
-        <a href="/collections/mens-shirts"       class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/menu_banner.jpg"    alt="Shirts"         loading="lazy"><span class="nf-cat-card__name">SHIRTS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 40% off</p><p class="nf-cat-card__desc">Casual &amp; formal shirts</p></div></a>
-        <a href="/collections/mens-suit-sets"    class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/suit.png"           alt="Suit Sets"      loading="lazy"><span class="nf-cat-card__name">SUIT SETS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 35% off</p><p class="nf-cat-card__desc">Smart suit sets</p></div></a>
-        <a href="/collections/kurtas"            class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/menu_banner_2.jpg"  alt="Kurtas"         loading="lazy"><span class="nf-cat-card__name">KURTAS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 50% off</p><p class="nf-cat-card__desc">Ethnic men's kurtas</p></div></a>
-        <a href="/collections/sherwani-sets"     class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/menu_banner_3.jpg"  alt="Sherwani Sets"  loading="lazy"><span class="nf-cat-card__name">SHERWANI SETS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 45% off</p><p class="nf-cat-card__desc">Wedding &amp; festive wear</p></div></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════
     7. ETHNIC WEAR
   ══════════════════════════════════════════ -->
   <section class="nf-sec nf-sec--cat-section nf-sec--bg-light">
@@ -230,22 +228,6 @@
     </div>
   </section>
 
-
-  <!-- ══════════════════════════════════════════
-    8. SPORTS & FITNESS
-  ══════════════════════════════════════════ -->
-  <section class="nf-sec nf-sec--cat-section">
-    <div class="container-fluid-lg">
-      <h2 class="nf-home-section-title nf-home-section-title--center">Sports &amp; Fitness</h2>
-      <div class="nf-cat-grid nf-cat-grid--5">
-        <a href="/collections/leggings"          class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/jeans.jpg"          alt="Leggings"         loading="lazy"><span class="nf-cat-card__name">LEGGINGS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 40% off</p><p class="nf-cat-card__desc">Gym &amp; training leggings</p></div></a>
-        <a href="/collections/tank-tops"         class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/hoodie.jpg"          alt="Tank Tops"        loading="lazy"><span class="nf-cat-card__name">TANK TOPS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 30% off</p><p class="nf-cat-card__desc">Breathable &amp; light</p></div></a>
-        <a href="/collections/stringers"         class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/sweatshirt.jpg"      alt="Stringers"        loading="lazy"><span class="nf-cat-card__name">STRINGERS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 35% off</p><p class="nf-cat-card__desc">Performance stringers</p></div></a>
-        <a href="/collections/compression-wear"  class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/menu_banner.jpg"     alt="Compression Wear" loading="lazy"><span class="nf-cat-card__name">COMPRESSION WEAR</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 25% off</p><p class="nf-cat-card__desc">Support &amp; recovery</p></div></a>
-        <a href="/collections/tracksuits"        class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/menu_banner_2.jpg"   alt="Tracksuits"       loading="lazy"><span class="nf-cat-card__name">TRACKSUITS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 45% off</p><p class="nf-cat-card__desc">Sports &amp; performance</p></div></a>
-      </div>
-    </div>
-  </section>
 
   <!-- ══════════════════════════════════════════
     9. FESTIVE & BRIDAL
@@ -315,25 +297,6 @@
   </section> -->
 
   <!-- ══════════════════════════════════════════
-    11. CASUAL & WESTERN WEAR
-  ══════════════════════════════════════════ -->
-  <section class="nf-sec nf-sec--cat-section nf-sec--bg-light">
-    <div class="container-fluid-lg">
-      <h2 class="nf-home-section-title nf-home-section-title--center">Her New Lookbook</h2>
-      <div class="nf-cat-grid nf-cat-grid--5">
-        <a href="/collections/dresses"          class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/dress3.jpg"        alt="Dresses"           loading="lazy"><span class="nf-cat-card__name">DRESSES</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 50% off</p><p class="nf-cat-card__desc">Summer &amp; casual dresses</p></div></a>
-        <a href="/collections/tops"              class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/menu_banner_2.jpg" alt="Tops"               loading="lazy"><span class="nf-cat-card__name">TOPS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 40% off</p><p class="nf-cat-card__desc">Every occasion tops</p></div></a>
-        <a href="/collections/co-ords"           class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/CO-ORD%20SETS.png
-          
-          
-          " alt="Co-Ord Sets"        loading="lazy"><span class="nf-cat-card__name">CO-ORD SETS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 55% off</p><p class="nf-cat-card__desc">Matching set looks</p></div></a>
-        <a href="/collections/jeans-women"       class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/jeans.jpg"         alt="Women's Jeans"     loading="lazy"><span class="nf-cat-card__name">WOMEN'S JEANS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 35% off</p><p class="nf-cat-card__desc">Denim &amp; more</p></div></a>
-        <a href="/collections/trousers-pants"    class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/dress-1.png"       alt="Trousers &amp; Pants" loading="lazy"><span class="nf-cat-card__name">TROUSERS &amp; PANTS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 45% off</p><p class="nf-cat-card__desc">Chic western styles</p></div></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════
     12. HIS NEW LOOKBOOK
   ══════════════════════════════════════════ -->
   <!-- <section class="nf-sec nf-sec--cat-section">
@@ -379,6 +342,20 @@
         [categoryIds]="data?.content?.categories_icon_list?.category_ids || []"
         [image]="data?.content?.categories_icon_list?.image_url">
       </app-theme-categories>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+    16. FEATURED PRODUCTS ROW 2
+  ══════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--featured nf-sec--bg-light">
+    <div class="container-fluid-lg">
+      <h2 class="nf-home-section-title nf-home-section-title--center">New Arrivals</h2>
+      <app-theme-product
+        [style]="'horizontal'"
+        [productIds]="featuredProductIds2"
+        [showItem]="4">
+      </app-theme-product>
     </div>
   </section>
 
