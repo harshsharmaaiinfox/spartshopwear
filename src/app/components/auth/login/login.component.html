@@ -17,6 +17,15 @@
             <h2 class="auth-title">Welcome Back</h2>
             <p class="auth-subtitle">Sign in to access your account &amp; exclusive offers</p>
 
+            <!-- Verification required banner -->
+            <div *ngIf="showVerificationBanner" class="auth-verify-banner">
+              <i class="ri-mail-check-line"></i>
+              <div>
+                <strong>Email verification required</strong>
+                <p>Your email address is not yet verified. Please complete the OTP verification sent to your inbox before logging in.</p>
+              </div>
+            </div>
+
             <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form">
 
               <!-- Email -->

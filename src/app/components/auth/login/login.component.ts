@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store, Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Cart, CartAddOrUpdate } from '../../../shared/interface/cart.interface';
@@ -29,10 +29,12 @@ export class LoginComponent {
   }
   public reCaptcha: boolean = true;
   public showPassword: boolean = false;
+  public showVerificationBanner: boolean = false;
 
   constructor(
     private store: Store,
     private router: Router,
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private authService: AuthService
   ) {
@@ -50,6 +52,10 @@ export class LoginComponent {
         this.reCaptcha = true;
       }
     });
+  }
+
+  ngOnInit() {
+    this.showVerificationBanner = this.route.snapshot.queryParamMap.get('verified') === 'false';
   }
 
   filterEmailCharacters(event: any) {
