@@ -51,6 +51,8 @@ export class DenverComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public featuredProductIds:  number[] = [7515, 7511, 7572, 7555];
   public featuredProductIds2: number[] = [7564, 7580, 7561, 7824];
+  public featuredProductIds3: number[] = [9040, 9039, 9028, 9053];
+  public featuredProductIds4: number[] = [9293, 9325, 9290, 9443];
 
   // Video carousel
   public currentVideoIndex = 0;
@@ -114,7 +116,9 @@ export class DenverComponent implements OnInit, AfterViewInit, OnDestroy {
       const allProductIds = [
         ...(this.data?.content?.products_ids || []),
         ...this.featuredProductIds,
-        ...this.featuredProductIds2
+        ...this.featuredProductIds2,
+        ...this.featuredProductIds3,
+        ...this.featuredProductIds4
       ];
       const uniqueIds = [...new Set(allProductIds)];
 
