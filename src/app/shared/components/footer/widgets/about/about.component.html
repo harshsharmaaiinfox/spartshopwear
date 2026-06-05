@@ -5,9 +5,10 @@
         <li>
             <i class="ri-home-line"></i>
             <div *ngIf="!data?.footer?.about_address">
+                <div>SPARKSPIRIT VENTURES PRIVATE LIMITED</div>
                 <div>Ground Floor, Plot No. 23, MiQB Building</div>
                 <div>Maruti Industrial Area, Sector 18</div>
-                <div>Gurugram, Haryana – 122015</div>
+                <div>Gurugram, Gurugram, Haryana – 122015</div>
             </div>
             <a href="https://www.google.com/maps" target="_blank" title="View on Google Maps" *ngIf="data?.footer?.about_address">{{ data?.footer?.about_address }}</a>
         </li>

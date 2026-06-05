@@ -267,7 +267,7 @@ export class SeoService {
       "email": "info@sparkshopwear.com",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Ground Floor, Plot No. 23, MiQB Building, Maruti Industrial Area, Sector 18",
+        "streetAddress": "SPARKSPIRIT VENTURES PRIVATE LIMITED, Ground Floor, Plot No. 23, MiQB Building, Maruti Industrial Area, Sector 18",
         "addressLocality": "Gurugram",
         "addressRegion": "Haryana",
         "postalCode": "122015",
