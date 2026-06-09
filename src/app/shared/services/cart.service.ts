@@ -235,4 +235,24 @@ export class CartService {
     });
   }
 
+  initiatePayuSparkshopwearIntent(data: any): Observable<any> {
+    return new Observable(observer => {
+      fetch(`${environment.URL}/payu-initiate-payment-sparkshopwear`,{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(data => {
+          observer.next(data);
+          observer.complete();
+        })
+        .catch(error => {
+          observer.error(error);
+        });
+    });
+  }
+
 }

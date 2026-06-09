@@ -31,7 +31,7 @@ export class PaymentBlockComponent {
   getMethodIcon(name: string): string {
     const n = name?.toLowerCase() || '';
     if (n.includes('upi') || n.includes('star_mangal') || n.includes('nabu')) return 'ri-smartphone-line';
-    if (n.includes('drill') || n.includes('cashfree') || n.includes('card')) return 'ri-bank-card-line';
+    if (n.includes('payu') || n.includes('drill') || n.includes('cashfree') || n.includes('card')) return 'ri-bank-card-line';
     if (n.includes('wallet')) return 'ri-wallet-3-line';
     if (n.includes('net')) return 'ri-global-line';
     if (n.includes('cod')) return 'ri-money-rupee-circle-line';
@@ -42,6 +42,7 @@ export class PaymentBlockComponent {
   getMethodSub(name: string): string {
     const n = name?.toLowerCase() || '';
     if (n.includes('upi') || n.includes('star_mangal') || n.includes('nabu')) return 'GPay · PhonePe · Paytm & more';
+    if (n.includes('payu')) return 'UPI · Cards · Net Banking & more';
     if (n.includes('drill') || n.includes('cashfree')) return 'Cashfree · Instant & Secure';
     if (n.includes('card')) return 'Visa, Mastercard, Rupay & more';
     if (n.includes('net')) return 'Pay through your favourite bank';

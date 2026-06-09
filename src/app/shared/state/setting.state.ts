@@ -104,8 +104,11 @@ export class SettingState {
                 title: 'Cash Free',
                 icon: './assets/images/cash_free.jpg',
               },
-              
-             
+              {
+                name: 'payu_sparkshopwear',
+                status: true,
+                title: 'Pay by PayU',
+              },
             ];
             customValue.payment_methods = customPayments //[result.values.payment_methods[0]];
           }
