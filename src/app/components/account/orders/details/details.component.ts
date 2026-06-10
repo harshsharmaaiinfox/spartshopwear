@@ -116,7 +116,7 @@ export class OrderDetailsComponent {
     // Only start polling for specific payment methods that need status checking
     // and only if the order is not already completed
     if (this.order &&
-        this.order.payment_method === 'mangal fashion_nabu' &&
+        this.order.payment_method === 'spark shop wear_nabu' &&
         (this.order.payment_status === 'PENDING' || this.order.payment_status === 'PROCESSING') &&
         this.order.uuid &&
         this.order.order_status?.slug !== 'delivered' &&

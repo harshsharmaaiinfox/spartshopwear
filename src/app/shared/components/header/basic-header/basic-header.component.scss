@@ -312,6 +312,21 @@ $nf-ease:     cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
   &:hover &__label { color: $nf-pink; }
 
+  // Active route state — matches header wishlist highlight
+  &--active {
+    background: rgba($nf-pink, 0.08);
+
+    .nf-action__circle {
+      border-color: rgba($nf-pink, 0.45);
+      background: rgba($nf-pink, 0.06);
+      box-shadow: 0 0 0 3px rgba($nf-pink, 0.08);
+
+      ::ng-deep i { color: $nf-pink !important; }
+    }
+
+    .nf-action__label { color: $nf-pink; }
+  }
+
   // Subtle divider between actions
   &--wishlist,
   &--cart {
@@ -501,6 +516,12 @@ html.dark {
 
   .nf-action--wishlist::before,
   .nf-action--cart::before { background: #2a2a3a; }
+
+  .nf-action--active {
+    background: rgba($nf-pink, 0.12);
+
+    .nf-action__label { color: $nf-pink; }
+  }
 
   .nf-row1__nav ::ng-deep .navbar-nav > .nav-item > .nav-link {
     color: #ddd !important;

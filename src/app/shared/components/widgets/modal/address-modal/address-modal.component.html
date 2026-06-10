@@ -64,8 +64,9 @@
             <i class="ri-map-line"></i> {{ 'State' | translate }}
           </label>
           <select2 class="am-select2" [data]="stateNameData"
-                   [placeholder]="'Select State' | translate"
+                   [placeholder]="isLocationLoading ? ('Loading...' | translate) : ('Select State' | translate)"
                    formControlName="state_id"
+                   [disabled]="isLocationLoading"
                    (update)="stateChange($event)">
           </select2>
           <p class="am-error" *ngIf="form?.controls?.['state_id']?.touched && form?.controls?.['state_id']?.errors?.['required']">
@@ -78,8 +79,9 @@
             <i class="ri-building-line"></i> {{ 'City' | translate }}
           </label>
           <select2 class="am-select2" [data]="cityOptions"
-                   [placeholder]="'Enter City' | translate"
+                   [placeholder]="isLocationLoading ? ('Loading...' | translate) : ('Enter City' | translate)"
                    formControlName="city"
+                   [disabled]="isLocationLoading"
                    (update)="cityChange($event)">
           </select2>
           <p class="am-error" *ngIf="form?.controls?.['city']?.touched && form.controls['city']?.errors?.['required']">

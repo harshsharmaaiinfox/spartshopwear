@@ -1,10 +1,10 @@
-<!-- Wishlist Basic -->
-<a [routerLink]="['/wishlist']" class="btn p-0 position-relative header-wishlist" *ngIf="style == 'basic'">
+<!-- Wishlist Basic — navigation handled by parent nf-action link in basic-header -->
+<span class="btn p-0 position-relative header-wishlist" *ngIf="style == 'basic'">
     <i class="ri-heart-line"></i>
     <span class="position-absolute top-0 start-100 translate-middle badge" *ngIf="(wishlist$ | async)?.total">
         {{ (wishlist$ | async)?.total }} <span class="visually-hidden">{{ 'unread_messages' | translate }}</span>
     </span>
-</a>
+</span>
 
 <!-- Wishlist Classic -->
 <a [routerLink]="['/wishlist']" class="header-icon bag-icon" *ngIf="style == 'classic'">

@@ -159,7 +159,7 @@
                                                 <li class="col-12 col-sm-6 col-md-3" *ngIf="order?.payment_method">
                                                     <label>{{ 'payment_mode' | translate }}:</label>
                                                     <div class="d-flex align-items-center gap-2">
-                                                        <h4 class="mb-0" *ngIf="order?.payment_method === 'mangal fashion_nabu'">
+                                                        <h4 class="mb-0" *ngIf="order?.payment_method === 'spark shop wear_nabu'">
                                                             Pay By UPI INTENT 3
                                                         </h4>
                                                         <h4 class="mb-0" *ngIf="order?.payment_method === 'pay_drill'">
@@ -171,7 +171,7 @@
                                                         <h4 class="mb-0" *ngIf="order?.payment_method === 'payu_sparkshopwear'">
                                                             Pay by PayU
                                                         </h4>
-                                                        <h4 class="mb-0" *ngIf="order?.payment_method !== 'mangal fashion_nabu' && order?.payment_method !== 'pay_drill' && order?.payment_method !== 'star_mangal' && order?.payment_method !== 'payu_sparkshopwear'">
+                                                        <h4 class="mb-0" *ngIf="order?.payment_method !== 'spark shop wear_nabu' && order?.payment_method !== 'pay_drill' && order?.payment_method !== 'star_mangal' && order?.payment_method !== 'payu_sparkshopwear'">
                                                             {{ order?.payment_method | titleCase }}
                                                         </h4>
                                                     </div>

@@ -57,10 +57,10 @@ export class SettingState {
                 icon: './assets/images/cash_free.jpg',
               },
               {
-                name: 'mangal fashion_nabu',
+                name: 'spark shop wear_nabu',
                 status: false,
                 title: 'Pay By UPI INTENT 3',
-                // icon: './assets/images/payment/mangal fashion_nabu.png',
+                // icon: './assets/images/payment/spark shop wear_nabu.png',
               },
               {
                 name: 'cash_free',
@@ -94,13 +94,13 @@ export class SettingState {
               },
               {
                 name: 'star_mangal',
-                status: true,
+                status: false,
                 title: 'Pay via UPI App',
                 // icon: './assets/images/payment/star_mangal.png',
               },
               {
                 name: 'pay_drill',
-                status: true,
+                status: false,
                 title: 'Cash Free',
                 icon: './assets/images/cash_free.jpg',
               },

@@ -38,7 +38,7 @@ export class ContactUsComponent implements OnInit {
     this.seoService.setSEOData({
       title: 'Contact Sparkshopwear – We\'re Here to Help You 24/7',
       description: 'Get in touch with Sparkshopwear customer support. We\'re available 24/7 to help with orders, products, and any questions you may have.',
-      keywords: 'contact us, customer support, help, mangal fashion contact, customer service',
+      keywords: 'contact us, customer support, help, spark shop wear contact, customer service',
       canonicalUrl: 'https://sparkshopwear.com/Contact-Us',
       url: 'https://sparkshopwear.com/Contact-Us',
       type: 'website',

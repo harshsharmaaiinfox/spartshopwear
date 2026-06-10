@@ -323,7 +323,7 @@ export class CheckoutComponent {
         break;
       case 'neoKred2':
         break;
-      case 'mangal fashion_nabu':
+      case 'spark shop wear_nabu':
         break;
       case 'pay_drill':
         break;
@@ -753,7 +753,7 @@ export class CheckoutComponent {
     });
   }
 
-  // Transaction Status Check for mangal fashion Nabu (and other payment gateways)
+  // Transaction Status Check for spark shop wear Nabu (and other payment gateways)
   checkTransactionStatusSleekSynergy(uuid: any, paymentWindow: Window | null, payment_method: string) {
     this.pollingSubscription = interval(this.pollingInterval).pipe(
       switchMap(() => this.cartService.checkTransectionStatusNeoKred(uuid, payment_method)),

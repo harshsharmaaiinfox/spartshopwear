@@ -39,12 +39,15 @@
             <span class="nf-action__label d-none d-lg-inline">Account</span>
           </div>
 
-          <div class="nf-action nf-action--wishlist d-none d-md-flex">
+          <a class="nf-action nf-action--wishlist d-none d-md-flex"
+             routerLink="/wishlist"
+             routerLinkActive="nf-action--active"
+             [routerLinkActiveOptions]="{ exact: true }">
             <div class="nf-action__circle">
               <app-header-wishlist [style]="'basic'"></app-header-wishlist>
             </div>
             <span class="nf-action__label d-none d-lg-inline">Wishlist</span>
-          </div>
+          </a>
 
           <div class="nf-action nf-action--cart onhover-dropdown">
             <div class="nf-action__circle">

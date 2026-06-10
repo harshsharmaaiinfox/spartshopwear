@@ -7,8 +7,8 @@ import { SeoService } from '../services/seo.service';
     <div class="seo-example-container">
       <!-- Main page title with H1 -->
       <app-seo-heading 
-        title="mangal fashion Premium Mens and Womens Fashion Online" 
-        description="Discover new season shirts jackets suits denim and more at mangal fashion. Premium quality fast shipping across India COD and easy returns."
+        title="spark shop wear Premium Mens and Womens Fashion Online" 
+        description="Discover new season shirts jackets suits denim and more at spark shop wear. Premium quality fast shipping across India COD and easy returns."
         level="1"
         headingClass="main-title">
       </app-seo-heading>
@@ -177,11 +177,11 @@ export class SeoExampleComponent implements OnInit {
   ngOnInit() {
     // Set comprehensive SEO data for this page
     this.seoService.setSEOData({
-      title: 'mangal fashion Premium Mens and Womens Fashion Online',
-      description: 'Discover new season shirts jackets suits denim and more at mangal fashion. Premium quality fast shipping across India COD and easy returns.',
-      keywords: 'activewear, gym wear, joggers, men\'s clothes, women\'s clothes, stylish outfits, comfort fit, performance clothing, mangal fashion',
-      image: 'https://mangal fashion.in/assets/images/hero-banner.jpg',
-      url: 'https://mangal fashion.in',
+      title: 'spark shop wear Premium Mens and Womens Fashion Online',
+      description: 'Discover new season shirts jackets suits denim and more at spark shop wear. Premium quality fast shipping across India COD and easy returns.',
+      keywords: 'activewear, gym wear, joggers, men\'s clothes, women\'s clothes, stylish outfits, comfort fit, performance clothing, spark shop wear',
+      image: 'https://spark shop wear.in/assets/images/hero-banner.jpg',
+      url: 'https://spark shop wear.in',
       type: 'website',
       author: 'Ecomus Team'
     });
@@ -191,8 +191,8 @@ export class SeoExampleComponent implements OnInit {
 
     // Set breadcrumb structured data
     this.seoService.setBreadcrumbStructuredData([
-      { name: 'Home', url: 'https://mangal fashion.in' },
-      { name: 'Featured Products', url: 'https://mangal fashion.in/featured' }
+      { name: 'Home', url: 'https://spark shop wear.in' },
+      { name: 'Featured Products', url: 'https://spark shop wear.in/featured' }
     ]);
   }
 } 

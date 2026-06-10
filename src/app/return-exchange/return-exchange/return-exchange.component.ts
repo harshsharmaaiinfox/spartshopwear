@@ -18,7 +18,7 @@ export class ReturnExchangeComponent implements OnInit {
     this.seoService.setSEOData({
       title: 'Easy 7-Day Return Policy – Shop Risk-Free | Sparkshopwear',
       description: 'Shop with confidence at Sparkshopwear. Our easy 7-day return policy ensures you can shop risk-free. Learn about our simple return and exchange process.',
-      keywords: 'return policy, exchange policy, 7-day return, shop risk-free, mangal fashion returns',
+      keywords: 'return policy, exchange policy, 7-day return, shop risk-free, spark shop wear returns',
       canonicalUrl: 'https://sparkshopwear.com/return-policy',
       url: 'https://sparkshopwear.com/return-policy',
       type: 'website'

@@ -23,6 +23,7 @@ import { Values, Analytics } from './shared/interface/setting.interface';
 import { TranslateService } from '@ngx-translate/core';
 import { PlaceOrder } from './shared/action/order.action';
 import { CartService } from './shared/services/cart.service';
+import { PincodeLocationService } from './shared/services/pincode-location.service';
 
 @Component({
   selector: 'app-root',
@@ -43,7 +44,8 @@ export class AppComponent implements OnInit {
     private store: Store,
     public seoService: SeoService,
     private translate: TranslateService,
-    private cartService: CartService
+    private cartService: CartService,
+    private pincodeLocationService: PincodeLocationService
   ) {
 
     this.translate.addLangs(['de', 'en']);
@@ -56,6 +58,7 @@ export class AppComponent implements OnInit {
 
     this.store.dispatch(new GetCountries());
     this.store.dispatch(new GetStates());
+    this.pincodeLocationService.preload();
     this.store.dispatch(new GetCartItems());
     this.store.dispatch(new GetSettingOption());
     this.store.dispatch(new GetThemeOption());
